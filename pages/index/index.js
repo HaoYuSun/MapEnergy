@@ -16,10 +16,17 @@ Page({
     longitude: 113.504708375,//经度
     //标记点
     markers: [{
-      // iconPath: "../images/123.png",
+      iconPath: "../../images/addtag.png",
       id: 0,
-      longitude: 117.265348,
-      latitude: 38.907694,
+      longitude: 23.265348,
+      latitude: 115.907694,
+      width: 20,
+      height: 20,
+    },{
+      iconPath: "../../images/addtag.png",
+      id: 1,
+      longitude: 26.265348,
+      latitude: 120.907694,
       width: 20,
       height: 20,
     }],
@@ -52,6 +59,8 @@ Page({
        }
     });
  },
+//  https://blog.csdn.net/weixin_42460570/article/details/103800766
+// https://jingyan.baidu.com/article/642c9d34a36283254b46f736.html
   onLoad: function (options) {  
     var that = this;
     that.mpCtx = wx.createMapContext("map", this);
@@ -61,7 +70,22 @@ Page({
         that.setData({
         /*赋值*/
           latitude: res.latitude,
-          longitude: res.longitude
+          longitude: res.longitude,
+          markers:[{
+            iconPath: "../../images/addtag.png",
+            id: 0,
+            longitude: 23.265348,
+            latitude: 115.907694,
+            width: 20,
+            height: 20,
+          },{
+            iconPath: "../../images/addtag.png",
+            id: 1,
+            longitude: 26.265348,
+            latitude: 120.907694,
+            width: 20,
+            height: 20,
+          }]
         })
       }
     });
