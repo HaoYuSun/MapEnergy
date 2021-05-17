@@ -1,4 +1,44 @@
 <!--index.wxml-->
-<map id='map' longitude="{{longitude}}" latitude="{{latitude}}"
- markers="{{markers}}" polyline="{{polyline}}"  enable-satellite="true"
- bindregionchange="regionchange" show-location style='width:100%;height:100vh;'></map>
+<map id='map' longitude="{{longitude}}" latitude="{{latitude}}" scale="17" controls="{{controls}}" bindcontroltap="controltap" markers="{{markers}}" bindmarkertap="markertap" polyline="{{polyline}}" polygons="{{polygons}}" bindregionchange="regionchange"
+ enable-satellite="true"   show-location style='width:100%;height:100vh;'></map>
+
+ <view class="page cover-input" >
+    <!-- <view class="page__hd">
+        <view class="page__title">SearchBar</view>
+        <view class="page__desc">搜索栏</view>
+    </view> -->
+    <view class="page__bd">
+        <mp-searchbar bindselectresult="selectResult" search="{{search}}"></mp-searchbar>
+    </view>
+</view>
+
+<!-- <cover-view class='cover-input' bindtap='tapInput'>
+    <cover-view class='text'>{{inputInfo}}</cover-view>
+    <input class='input' value='{{inputModel}}' focus='{{inputFocus}}' bindblur='blurInput'></input>
+</cover-view> -->
+<view class="center_tag"><mp-icon type='field' icon="add" color="blue" size="{{20}}"></mp-icon></view>
+
+<view class="left_contr"><mp-icon type='field' icon="me" color="black" size="{{25}}"></mp-icon></view>
+
+<view class="home_t_left_contr" bindtap="hometap"><mp-icon type='field' icon="refresh" color="black" size="{{25}}"></mp-icon></view>
+<view class="home_t_center_contr" bindtap="hometap"><mp-icon type='field' icon="close" color="black" size="{{25}}"></mp-icon></view>
+<view class="home_t_right_contr" bindtap="hometap"><mp-icon type='field' icon="done" color="black" size="{{25}}"></mp-icon></view>
+
+<view class="home_contr" bindtap="hometap"><mp-icon type='field' icon="tag" color="black" size="{{30}}"></mp-icon></view>
+<view class="right_contr"  bindtap="righttap"><mp-icon class="mp-icon" type='field' icon="location" color="black" size="{{25}}"></mp-icon></view>
+<!-- <button  class="right_contr" bindtap="controltap" ></button> -->
+
+<!-- <view class="page-body">
+  <view class="page-section page-section-gap">
+    <map id="qqMap" style="width: 100%; height: 300px;" latitude="{{latitude}}" longitude="{{longitude}}" markers="{{markers}}" show-location></map>
+  </view>
+  <view class="btn-area">
+    <button bindtap="moveToLocation" class="page-body-button" type="primary">移动位置</button>
+    
+    选择的位置：
+    <view>位置：{{mobileLocation.address}}</view>
+    <view>经度：{{mobileLocation.longitude}}</view>
+    <view>纬度：{{mobileLocation.latitude}}</view>
+
+  </view>
+</view> -->

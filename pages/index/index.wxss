@@ -17,3 +17,118 @@
 .usermotto {
   margin-top: 200px;
 }
+
+.center_tag{
+  position: absolute;
+  bottom: 47vh;
+  width: 8vw;
+  height: 8vw;
+  /* border-radius: 10vw; */
+  left: 46vw;
+  /* line-height: 9vw; */
+  text-align: center;
+  /* background-color: white; */
+  /* color: lightblue; */
+}
+
+.home_contr{
+  position: absolute;
+  bottom: 2vw;
+  width: 10vw;
+  height: 10vw;
+  border-radius: 10vw;
+  left: 45vw;
+  line-height: 9vw;
+  text-align: center;
+  background-color: white;
+}
+
+.home_t_left_contr{
+  position: absolute;
+  bottom: 12vw;
+  width: 8vw;
+  height: 8vw;
+  border-radius: 4vw;
+  left: 33vw;
+  line-height: 7vw;
+  text-align: center;
+  background-color: white;
+  /* align-items: center */
+}
+
+.home_t_center_contr{
+  position: absolute;
+  bottom: 16vw;
+  width: 8vw;
+  height: 8vw;
+  border-radius: 4vw;
+  left: 46vw;
+  line-height: 7.5vw;
+  text-align: center;
+  background-color: white;
+  
+}
+
+.home_t_right_contr{
+  position: absolute;
+  bottom: 12vw;
+  width: 8vw;
+  height: 8vw;
+  border-radius: 4vw;
+  right: 33vw;
+  line-height: 7.5vw;
+  text-align: center;
+  background-color: white;
+  /* align-items: center */
+}
+
+.left_contr{
+  position: absolute;
+  bottom: 8px;
+  width: 8vw;
+  height: 8vw;
+  border-radius: 4vw;
+  left: 5vw;
+  line-height: 7vw;
+  text-align: center;
+  background-color: white;
+}
+
+.right_contr{
+  position: absolute;
+  bottom: 8px;
+  width: 8vw;
+  height: 8vw;
+  border-radius: 4vw;
+  right: 5vw;
+  line-height: 7.5vw;
+  text-align: center;
+  background-color: white;
+  align-items: center
+}
+
+.mp-icon{
+  margin-bottom: -23px;
+}
+
+.cover-input{
+  position: absolute;
+  /* width: 84vw; */
+  top: 0vw;
+  width: 100vw;
+  height: 40px;
+  /* left: 5vw; */
+  /* border-radius: 1vw;
+  padding: 5px 3vw; */
+  text-align: left;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+.text{
+  height: 32px;
+  line-height: 32px;
+}
+.input{
+  height: 32px;
+  line-height: 32px;
+  margin-top: -32px; 
+}
