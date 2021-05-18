@@ -1,6 +1,17 @@
 <!--index.wxml-->
-<map id='map' longitude="{{longitude}}" latitude="{{latitude}}" scale="17" controls="{{controls}}" bindcontroltap="controltap" markers="{{markers}}" bindmarkertap="markertap" polyline="{{polyline}}" polygons="{{polygons}}" bindregionchange="regionchange"
- enable-satellite="true"  show-scale   show-location style='width:100%;height:100vh;'></map>
+<view  bindtouchend="touchEnd">
+  <map id='map' 
+        longitude="{{longitude}}" 
+        latitude="{{latitude}}" 
+        scale="17"  
+        markers="{{markers}}" 
+        bindregionchange="regionchange"
+        polygons="{{polygons}}"
+        show-scale   
+        show-location 
+        enable-satellite
+        style='width:100%;height:100vh;'>
+  </map>
 
  <view class="page cover-input" >
     <!-- <view class="page__hd">
@@ -17,7 +28,7 @@
     <input class='input' value='{{inputModel}}' focus='{{inputFocus}}' bindblur='blurInput'></input>
 </cover-view> -->
 <!-- <view class="center_tag"><mp-icon type='field' icon="add" color="blue" size="{{20}}"></mp-icon></view> -->
-<cover-image class="center_tag" src="../../images/addtag.png"></cover-image>
+<cover-image class="center_tag" src="../../images/addtag.png" id="the-id"></cover-image>
 <!-- <view class="center_tag"><image src="../../images/addtag.png"></mp-icon></view> -->
 <!-- <view class="left_contr"><mp-icon type='field' icon="me" color="black" size="{{25}}"></mp-icon></view> -->
 <cover-image class="left_contr" src="../../images/left.png" bindtap="hometap"></cover-image>
@@ -30,10 +41,10 @@
 
 <cover-image class="home_t_left_contr" src="../../images/menu_1.png" bindtap="hometap"></cover-image>
 <cover-image class="home_t_center_contr" src="../../images/menu_2.png" bindtap="hometap"></cover-image>
-<cover-image class="home_t_right_contr" src="../../images/menu_3.png" bindtap="hometap"></cover-image>
+<cover-image class="home_t_right_contr" src="../../images/menu_3.png" bindtap="getAreaTap"></cover-image>
 
-<cover-image class="home_contr" src="../../images/center_menu.png" bindtap="hometap"></cover-image>
-<cover-image class="right_contr" src="../../images/right.png" bindtap="righttap"></cover-image>
+<cover-image class="home_contr" src="../../images/center_menu.png" bindtap="getCenterLocation"></cover-image>
+<cover-image class="right_contr" src="../../images/right.png" bindtap="moveToLocation"></cover-image>
 
 <!-- <button  class="right_contr" bindtap="controltap" ></button> -->
 
@@ -51,3 +62,4 @@
 
   </view>
 </view> -->
+</view>

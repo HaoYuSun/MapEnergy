@@ -14,6 +14,7 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    map_key: 'QYEBZ-VCMED-DD44G-H4QVE-U7OHS-PAFAA'
   }
 })
