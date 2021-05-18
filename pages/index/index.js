@@ -54,6 +54,11 @@ Page({
           iconPath: "../../images/redpoint.jpg",
           width: 4,
           height: 4,
+          customCallout:{//自定义气泡
+            display:"ALWAYS",//显示方式，可选值BYCLICK
+            anchorX:0,//横向偏移
+            anchorY:0,
+          },
         }
         old_markers.push(marker_point);
         that.setData({
@@ -83,20 +88,27 @@ Page({
             polygons_points : old_polygons_points
           });
         }
-        
-
       }
     })
   },
 
   /**
-   * 计算区域面积
+   * 计算区域面积 墨卡托投影
+   * https://www.cnblogs.com/grimm/p/5097383.html
   */
   getAreaTap: function(e){
     var that = this;
     if(that.data.polygons_points.length > 2){
       area_api.getArea(that.data.polygons_points).then(res => {
         console.log(JSON.stringify(res));
+        let pao = {
+          content: '气泡名称',
+          color: '#FF0000',
+          fontSize: 15,
+          borderRadius: 1,
+          display: 'ALWAYS',
+        }
+
       });
     }else{
       // 提示点数不够

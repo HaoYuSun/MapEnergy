@@ -1,3 +1,4 @@
+// https://www.jianshu.com/p/da32d38962e7
 const GET = 'GET';
 const POST = 'POST';
 const PUT = 'PUT';

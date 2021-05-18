@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<view  bindtouchend="touchEnd">
+<view>
   <map id='map' 
         longitude="{{longitude}}" 
         latitude="{{latitude}}" 
@@ -11,7 +11,57 @@
         show-location 
         enable-satellite
         style='width:100%;height:100vh;'>
+    <!-- <cover-view slot="callout">
+      <cover-view marker-id="0">
+123123
+      </cover-view>
+    </cover-view> -->
   </map>
+
+  <cover-view class="areainfo">
+    <cover-view class="areainfo-body">
+        <cover-view class="areainfo-body-cell">
+          <cover-image class="areainfo-body-cell-img"></cover-image>
+          <cover-view class="areainfo-body-cell-info">
+            <cover-view class="areainfo-body-cell-info-title">66.1</cover-view>
+            <cover-view class="areainfo-body-cell-info-subtitle">总装机量(KW)</cover-view>
+          </cover-view>
+        </cover-view>
+        <cover-view class="areainfo-body-cell body-cell-left">
+          <cover-image class="areainfo-body-cell-img cell-img-left"></cover-image>
+          <cover-view class="areainfo-body-cell-info">
+            <cover-view class="areainfo-body-cell-info-title">28万</cover-view>
+            <cover-view class="areainfo-body-cell-info-subtitle">总投资(元)</cover-view>
+          </cover-view>
+        </cover-view>
+        <cover-view class="areainfo-body-cell body-cell-top">
+          <cover-image class="areainfo-body-cell-img"></cover-image>
+          <cover-view class="areainfo-body-cell-info">
+            <cover-view class="areainfo-body-cell-info-title">66.1</cover-view>
+            <cover-view class="areainfo-body-cell-info-subtitle">面积(㎡)</cover-view>
+          </cover-view>
+        </cover-view>
+        <cover-view class="areainfo-body-cell body-cell-left body-cell-top">
+          <cover-image class="areainfo-body-cell-img cell-img-left"></cover-image>
+          <cover-view class="areainfo-body-cell-info">
+            <cover-view class="areainfo-body-cell-info-title">9.99万</cover-view>
+            <cover-view class="areainfo-body-cell-info-subtitle">年发电量(度)</cover-view>
+          </cover-view>
+        </cover-view>
+        <cover-view class="areainfo-body-cell areainfo-body-cell-button">
+          查看详情
+        </cover-view>
+        <cover-view class="areainfo-body-cell areainfo-body-cell-button areainfo-body-cell-width">
+          去分享
+        </cover-view>
+        <!-- <cover-view class="areainfo-body-cell"></cover-view>
+        <cover-view class="areainfo-body-cell"></cover-view>
+        <cover-view class="areainfo-body-cell"></cover-view>
+        <cover-view class="areainfo-body-cell"></cover-view>
+        <cover-view class="areainfo-body-cell"></cover-view> -->
+    </cover-view>
+    <cover-view class="areainfo-foot"></cover-view>
+  </cover-view>
 
  <view class="page cover-input" >
     <!-- <view class="page__hd">
