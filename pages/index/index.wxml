@@ -7,61 +7,57 @@
         markers="{{markers}}" 
         bindregionchange="regionchange"
         polygons="{{polygons}}"
-        show-scale   
+         
         show-location 
         enable-satellite
         style='width:100%;height:100vh;'>
-    <!-- <cover-view slot="callout">
-      <cover-view marker-id="0">
-123123
+    <cover-view slot="callout">
+      <cover-view marker-id="{{customCalloutInfo.id}}" slot="callout" class="areainfo">
+        <cover-view class="areainfo-body">
+            <cover-view class="areainfo-body-cell">
+              <cover-image class="areainfo-body-cell-img" src="../../images/infotag1.png"></cover-image>
+              <cover-view class="areainfo-body-cell-info">
+                <cover-view class="areainfo-body-cell-info-title">{{customCalloutInfo.info1}}</cover-view>
+                <cover-view class="areainfo-body-cell-info-subtitle">总装机量(KW)</cover-view>
+              </cover-view>
+            </cover-view>
+            <cover-view class="areainfo-body-cell body-cell-left">
+              <cover-image class="areainfo-body-cell-img cell-img-left"  src="../../images/infotag2.png"></cover-image>
+              <cover-view class="areainfo-body-cell-info">
+                <cover-view class="areainfo-body-cell-info-title">{{customCalloutInfo.info2}}万</cover-view>
+                <cover-view class="areainfo-body-cell-info-subtitle">总投资(元)</cover-view>
+              </cover-view>
+            </cover-view>
+            <cover-view class="areainfo-body-cell body-cell-top">
+              <cover-image class="areainfo-body-cell-img"  src="../../images/infotag3.png"></cover-image>
+              <cover-view class="areainfo-body-cell-info">
+                <cover-view class="areainfo-body-cell-info-title">{{customCalloutInfo.info3}}</cover-view>
+                <cover-view class="areainfo-body-cell-info-subtitle">面积(㎡)</cover-view>
+              </cover-view>
+            </cover-view>
+            <cover-view class="areainfo-body-cell body-cell-left body-cell-top">
+              <cover-image class="areainfo-body-cell-img cell-img-left"  src="../../images/infotag4.png"></cover-image>
+              <cover-view class="areainfo-body-cell-info">
+                <cover-view class="areainfo-body-cell-info-title">{{customCalloutInfo.info4}}万</cover-view>
+                <cover-view class="areainfo-body-cell-info-subtitle">年发电量(度)</cover-view>
+              </cover-view>
+            </cover-view>
+            <cover-view class="areainfo-body-cell areainfo-body-cell-button">
+              查看详情
+            </cover-view>
+            <cover-view class="areainfo-body-cell areainfo-body-cell-button areainfo-body-cell-width">
+              去分享
+            </cover-view>
+        </cover-view>
+        <cover-view class="areainfo-foot">
+          <cover-image class="areainfo-foot-img" src="../../images/down.png"></cover-image>
+        </cover-view>
       </cover-view>
-    </cover-view> -->
+    </cover-view>
+    
   </map>
 
-  <cover-view class="areainfo">
-    <cover-view class="areainfo-body">
-        <cover-view class="areainfo-body-cell">
-          <cover-image class="areainfo-body-cell-img"></cover-image>
-          <cover-view class="areainfo-body-cell-info">
-            <cover-view class="areainfo-body-cell-info-title">66.1</cover-view>
-            <cover-view class="areainfo-body-cell-info-subtitle">总装机量(KW)</cover-view>
-          </cover-view>
-        </cover-view>
-        <cover-view class="areainfo-body-cell body-cell-left">
-          <cover-image class="areainfo-body-cell-img cell-img-left"></cover-image>
-          <cover-view class="areainfo-body-cell-info">
-            <cover-view class="areainfo-body-cell-info-title">28万</cover-view>
-            <cover-view class="areainfo-body-cell-info-subtitle">总投资(元)</cover-view>
-          </cover-view>
-        </cover-view>
-        <cover-view class="areainfo-body-cell body-cell-top">
-          <cover-image class="areainfo-body-cell-img"></cover-image>
-          <cover-view class="areainfo-body-cell-info">
-            <cover-view class="areainfo-body-cell-info-title">66.1</cover-view>
-            <cover-view class="areainfo-body-cell-info-subtitle">面积(㎡)</cover-view>
-          </cover-view>
-        </cover-view>
-        <cover-view class="areainfo-body-cell body-cell-left body-cell-top">
-          <cover-image class="areainfo-body-cell-img cell-img-left"></cover-image>
-          <cover-view class="areainfo-body-cell-info">
-            <cover-view class="areainfo-body-cell-info-title">9.99万</cover-view>
-            <cover-view class="areainfo-body-cell-info-subtitle">年发电量(度)</cover-view>
-          </cover-view>
-        </cover-view>
-        <cover-view class="areainfo-body-cell areainfo-body-cell-button">
-          查看详情
-        </cover-view>
-        <cover-view class="areainfo-body-cell areainfo-body-cell-button areainfo-body-cell-width">
-          去分享
-        </cover-view>
-        <!-- <cover-view class="areainfo-body-cell"></cover-view>
-        <cover-view class="areainfo-body-cell"></cover-view>
-        <cover-view class="areainfo-body-cell"></cover-view>
-        <cover-view class="areainfo-body-cell"></cover-view>
-        <cover-view class="areainfo-body-cell"></cover-view> -->
-    </cover-view>
-    <cover-view class="areainfo-foot"></cover-view>
-  </cover-view>
+  
 
  <view class="page cover-input" >
     <!-- <view class="page__hd">
@@ -82,18 +78,13 @@
 <!-- <view class="center_tag"><image src="../../images/addtag.png"></mp-icon></view> -->
 <!-- <view class="left_contr"><mp-icon type='field' icon="me" color="black" size="{{25}}"></mp-icon></view> -->
 <cover-image class="left_contr" src="../../images/left.png" bindtap="hometap"></cover-image>
-<!-- <view class="home_t_left_contr" bindtap="hometap"><mp-icon type='field' icon="refresh" color="black" size="{{25}}"></mp-icon></view>
-<view class="home_t_center_contr" bindtap="hometap"><mp-icon type='field' icon="close" color="black" size="{{25}}"></mp-icon></view>
-<view class="home_t_right_contr" bindtap="hometap"><mp-icon type='field' icon="done" color="black" size="{{25}}"></mp-icon></view>
-
-<view class="home_contr" bindtap="hometap"><mp-icon type='field' icon="tag" color="black" size="{{30}}"></mp-icon></view>
-<view class="right_contr"  bindtap="righttap"><mp-icon class="mp-icon" type='field' icon="location" color="black" size="{{25}}"></mp-icon></view> -->
 
 <cover-image class="home_t_left_contr" src="../../images/menu_1.png" bindtap="hometap"></cover-image>
 <cover-image class="home_t_center_contr" src="../../images/menu_2.png" bindtap="hometap"></cover-image>
 <cover-image class="home_t_right_contr" src="../../images/menu_3.png" bindtap="getAreaTap"></cover-image>
 
 <cover-image class="home_contr" src="../../images/center_menu.png" bindtap="getCenterLocation"></cover-image>
+
 <cover-image class="right_contr" src="../../images/right.png" bindtap="moveToLocation"></cover-image>
 
 <!-- <button  class="right_contr" bindtap="controltap" ></button> -->

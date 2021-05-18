@@ -19,8 +19,14 @@ Page({
     //标记点
     polygons: [],
     polygons_points: [],
-    markers:[]
-
+    markers:[],
+    customCalloutInfo:{
+      id: 999,
+      info1: 0,
+      info2: 0,
+      info3: 0,
+      info4: 0
+    }
   },
   /**
    * 初始化地图时
@@ -42,16 +48,15 @@ Page({
     var that = this;
     this.mapCtx.getCenterLocation({
       success: function(res){
-        console.log(res.longitude)
-        console.log(res.latitude)
+
         let old_markers = that.data.markers;
         let new_id = old_markers.length;
-        console.log(new_id);
+
         let  marker_point = {
           id: new_id,
           longitude: res.longitude,
           latitude: res.latitude,
-          iconPath: "../../images/redpoint.jpg",
+          iconPath: "../../images/redpoint.png",
           width: 4,
           height: 4,
           customCallout:{//自定义气泡
@@ -64,7 +69,7 @@ Page({
         that.setData({
           markers: old_markers
         })
-        console.log('polygons length:'+that.data.polygons_points.length);
+ 
         let old_polygons_points =  that.data.polygons_points;
         let polygons_point = {
           longitude: res.longitude,
@@ -100,14 +105,72 @@ Page({
     var that = this;
     if(that.data.polygons_points.length > 2){
       area_api.getArea(that.data.polygons_points).then(res => {
-        console.log(JSON.stringify(res));
-        let pao = {
-          content: '气泡名称',
-          color: '#FF0000',
-          fontSize: 15,
-          borderRadius: 1,
-          display: 'ALWAYS',
+        // console.log(JSON.stringify(res));
+        let min_longitude = 0;
+        let max_longitude = 0;
+        let min_latitude = 0;
+        let max_latitude = 0;
+        for (var i = 0; i < that.data.markers.length; i++) {
+          if(i == 0){
+            min_longitude = Number(that.data.markers[i]['longitude']);
+            max_longitude = Number(that.data.markers[i]['longitude']);
+            min_latitude = Number(that.data.markers[i]['latitude']);
+            max_latitude = Number(that.data.markers[i]['latitude']);
+          }else{
+            if (min_longitude > Number(that.data.markers[i]['longitude'])){
+              min_longitude = Number(that.data.markers[i]['longitude']);
+            }
+            if (max_longitude < Number(that.data.markers[i]['longitude'])){
+              max_longitude = Number(that.data.markers[i]['longitude']);
+            }
+            if (min_latitude > Number(that.data.markers[i]['latitude'])){
+              min_latitude = Number(that.data.markers[i]['latitude']);
+            }
+            if (max_latitude < Number(that.data.markers[i]['latitude'])){
+              max_latitude = Number(that.data.markers[i]['latitude']);
+            }
+          }
+          
         }
+        // console.log("min_longitude"+JSON.stringify(min_longitude));
+        // console.log("max_longitude"+JSON.stringify(max_longitude));
+        // console.log("min_latitude"+JSON.stringify(min_latitude));
+        // console.log("max_latitude"+JSON.stringify(max_latitude));
+        let c_longitude = (min_longitude + max_longitude) / 2;
+        let c_latitude = max_latitude;
+        
+        let old_markers = that.data.markers;
+        let new_id = old_markers.length;
+        // console.log(JSON.stringify(c_longitude));
+        // console.log(JSON.stringify(c_latitude));
+        let calloutinfo = {
+          id: new_id,
+          info1: 0,
+          info2: 0,
+          info3: res,
+          info4: 0
+        }
+        that.setData({
+          customCalloutInfo: calloutinfo
+        })
+
+        let  marker_point = {
+          id: new_id,
+          longitude: c_longitude,
+          latitude: c_latitude,
+          iconPath: "../../images/redpoint.png",
+          width: 2,
+          height: 2,
+          customCallout:{//自定义气泡
+            display:"ALWAYS",//显示方式，可选值BYCLICK
+            anchorX:0,//横向偏移
+            anchorY:0,
+          },
+        }
+        old_markers.push(marker_point);
+        that.setData({
+          markers: old_markers
+        })
 
       });
     }else{
