@@ -26,7 +26,8 @@ Page({
       info2: 0,
       info3: 0,
       info4: 0
-    }
+    },
+    isShow: false,
   },
   /**
    * 初始化地图时
@@ -42,59 +43,127 @@ Page({
     this.mapCtx.moveToLocation()
   },
   /**
-   * 获取当前坐标
+   * 刷新圈图
   */
-  getCenterLocation: function () {
+  refreshTap: function(e){
     var that = this;
-    this.mapCtx.getCenterLocation({
-      success: function(res){
-
-        let old_markers = that.data.markers;
-        let new_id = old_markers.length;
-
-        let  marker_point = {
-          id: new_id,
-          longitude: res.longitude,
-          latitude: res.latitude,
-          iconPath: "../../images/redpoint.png",
-          width: 4,
-          height: 4,
-          customCallout:{//自定义气泡
-            display:"ALWAYS",//显示方式，可选值BYCLICK
-            anchorX:0,//横向偏移
-            anchorY:0,
-          },
-        }
-        old_markers.push(marker_point);
-        that.setData({
-          markers: old_markers
-        })
- 
-        let old_polygons_points =  that.data.polygons_points;
-        let polygons_point = {
-          longitude: res.longitude,
-          latitude: res.latitude,
-        }
-        old_polygons_points.push(polygons_point);
-        console.log(old_polygons_points.length);
-        if(old_polygons_points.length > 2){
-          that.setData({
-            polygons_points : old_polygons_points,
-            polygons : [{
-              points: old_polygons_points,
-              fillColor: "#ffff0033",
-              strokeColor: "#ff0000",
-              strokeWidth: 4,
-              zIndex: 1
-            }]
-          });
-        }else{
-          that.setData({
-            polygons_points : old_polygons_points
-          });
-        }
+    that.setData({
+      polygons: [],
+      polygons_points: [],
+      markers:[],
+      customCalloutInfo:{
+        id: 999,
+        info1: 0,
+        info2: 0,
+        info3: 0,
+        info4: 0
       }
+    });
+  },
+  /**
+   * 跳转个人页面
+  */
+  selfTap: function(e){
+    var that = this;
+    wx.navigateTo({
+      url: '../self/self',
     })
+  },
+  /**
+   * 回撤构图
+  */
+  backTap: function(e){
+    var that = this;
+    console.log(that.data.markers);
+    if(that.data.polygons_points.length > 0){
+      that.data.polygons_points.pop();
+      that.data.polygons.pop();
+      that.data.markers.pop();
+      console.log(that.data.markers);
+
+      if(that.data.markers.length > that.data.polygons_points.length){
+        that.data.markers.pop();
+        let customCalloutInfo = {
+          id: 999,
+          info1: 0,
+          info2: 0,
+          info3: 0,
+          info4: 0
+        }
+        that.setData({
+          polygons: that.data.polygons,
+          polygons_points: that.data.polygons_points,
+          markers: that.data.markers,
+          customCalloutInfo: customCalloutInfo
+        });
+      }else{
+        that.setData({
+          polygons: that.data.polygons,
+          polygons_points: that.data.polygons_points,
+          markers: that.data.markers
+        });
+      }
+    }
+  },
+  /**
+   * 添加当前坐标
+  */
+  addCenterLocation: function () {
+    var that = this;
+    if(that.data.isShow == false){
+      that.setData({
+        isShow: true
+      });
+    }else{
+      this.mapCtx.getCenterLocation({
+        success: function(res){
+          let old_markers = that.data.markers;
+          let new_id = old_markers.length;
+          let  marker_point = {
+            id: new_id,
+            longitude: res.longitude,
+            latitude: res.latitude,
+            iconPath: "../../images/redpoint.png",
+            width: 3,
+            height: 3,
+            customCallout:{//自定义气泡
+              display:"ALWAYS",//显示方式，可选值BYCLICK
+              anchorX:0,//横向偏移
+              anchorY:0,
+            },
+          }
+          old_markers.push(marker_point);
+          that.setData({
+            markers: old_markers
+          })
+   
+          let old_polygons_points =  that.data.polygons_points;
+          let polygons_point = {
+            longitude: res.longitude,
+            latitude: res.latitude,
+          }
+          old_polygons_points.push(polygons_point);
+          console.log(old_polygons_points.length);
+          if(old_polygons_points.length > 2){
+            that.setData({
+              polygons_points : old_polygons_points,
+              polygons : [{
+                points: old_polygons_points,
+                fillColor: "#ffff0033",
+                strokeColor: "#ff0000",
+                strokeWidth: 2,
+                zIndex: 1
+              }]
+            });
+          }else{
+            that.setData({
+              polygons_points : old_polygons_points
+            });
+          }
+        }
+      });
+    }
+    
   },
 
   /**
@@ -141,14 +210,18 @@ Page({
         
         let old_markers = that.data.markers;
         let new_id = old_markers.length;
-        // console.log(JSON.stringify(c_longitude));
-        // console.log(JSON.stringify(c_latitude));
+        
+        let info3 = Math.ceil(Number(res) * 100) / 100.0;
+        let info1 = Math.ceil(info3 * 1.2 / 10000.0 * 100) / 100.0;
+        let info2 = Math.ceil(info3 * 480 / 10000.0 * 100) / 100.0;
+        let info4 = Math.ceil(info3 * 144 / 10000 * 100) / 100.0;
+
         let calloutinfo = {
           id: new_id,
-          info1: 0,
-          info2: 0,
-          info3: res,
-          info4: 0
+          info1: info1,
+          info2: info2,
+          info3: info3,
+          info4: info4
         }
         that.setData({
           customCalloutInfo: calloutinfo

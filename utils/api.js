@@ -29,7 +29,7 @@ function request(method, url, data) {
             },
             fail(err) {
                 //请求失败
-                reject(err)
+                reject(err);
             }
         })
     })
