@@ -1,11 +1,21 @@
-<view class="body">
-  <view class="meview">
-    <view class="userself">
-      <view class="userhead">
-      <button class="startbtn" wx:if="{{sOpenId == '' && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">登录</button>
-        <image wx:else class="userimg" src="{{userImg}}"></image>
+
+<view class="page">
+  <view class="body">
+    <view class="meview">
+      <view class="userself">
+        <view class="userhead">
+        <button class="startbtn" wx:if="{{sOpenId == '' && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">登录</button>
+          <image wx:else class="userimg" src="{{userImg}}"></image>
+        </view>
+        <view class="username">{{userName}}</view>
       </view>
-      <view class="username">{{userName}}</view>
     </view>
+  </view>
+  <view class="page__bd">
+    <mp-cells title="">
+      <mp-cell link url="../index" value="记录" style="font-size:16px" footer="">
+        <image slot="icon" src="../../images/self_img1.png" style="margin-right: 16px;vertical-align: middle;width:20px; height: 20px;"></image>
+      </mp-cell>
+    </mp-cells>
   </view>
 </view>

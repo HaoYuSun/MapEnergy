@@ -1,1 +1,37 @@
 /* pages/detail/detail.wxss */
+.body{
+  width: 88vw;
+  padding: 3vh 6vw;
+  height: 94vh;
+  background-color: red;
+}
+
+.body-cell{
+  width: 84vw;
+  height: 4vh;
+  margin: 1vw 2vw;
+  background-color: greenyellow;
+}
+
+.cell1{
+  width: 28vw;
+  font-size: 14px;
+  line-height: 4vh;
+  float: left;
+}
+.cell-t-l{
+  text-align: left;
+}
+.cell-t-c{
+  text-align: center;
+}
+.cell-t-r{
+  text-align: right;
+}
+
+.cell2{
+  width: 42vw;
+  font-size: 14px;
+  line-height: 4vh;
+  float: left;
+}

@@ -1,2 +1,63 @@
-<!--pages/detail/detail.wxml-->
-<text>pages/detail/detail.wxml</text>
+
+<view class="body"> 
+  <view class="body-cell">
+    <view class="cell1 cell-t-l">装机容量</view>
+    <view class="cell1 cell-t-c">每瓦成本</view>
+    <view class="cell1 cell-t-r">投资成本</view>
+  </view>
+  <view class="body-cell">
+    <view class="cell1 cell-t-l">66.10KW ×</view>
+    <view class="cell1 cell-t-c">入力框</view>
+    <view class="cell1 cell-t-r">¥ 28.42万</view>
+  </view>
+  <view class="body-cell">
+    <view class="cell2 cell-t-l">安装面积(m²)</view>
+    <view class="cell2 cell-t-r">666</view>
+  </view>
+  <view class="body-cell">
+    <view class="cell2 cell-t-l">辐照参数(kWh/kWp/年)</view>
+    <view class="cell2 cell-t-r">1111</view>
+  </view>
+  <view class="body-cell">
+    <view class="cell2 cell-t-l">年发电量(度)</view>
+    <view class="cell2 cell-t-r">28万</view>
+  </view>
+
+  <view class="body-cell">
+    <view class="cell2 cell-t-l">国家补贴(元/瓦)</view>
+    <view class="cell2 cell-t-r">28万</view>
+  </view>
+  <view class="body-cell">
+    <view class="cell2 cell-t-l">地方补贴(元/瓦)</view>
+    <view class="cell2 cell-t-r">28万</view>
+  </view>
+  <view class="body-cell">
+    <view class="cell2 cell-t-l">初装补贴(元/瓦)</view>
+    <view class="cell2 cell-t-r">28万</view>
+  </view>
+  <view class="body-cell">
+    <view class="cell2 cell-t-l">度电收益(元/瓦)</view>
+    <view class="cell2 cell-t-r">28万</view>
+  </view>
+  <view class="body-cell">
+    <view class="cell2 cell-t-l">租金(元/平方米/年)</view>
+    <view class="cell2 cell-t-r">28万</view>
+  </view>
+  <view class="body-cell">
+    <view class="cell2 cell-t-l">运维成本(元/W/年)</view>
+    <view class="cell2 cell-t-r">28万</view>
+  </view>
+
+  <view class="body-cell">
+    <view class="cell2 cell-t-l">年收益(万元)</view>
+    <view class="cell2 cell-t-r">28万</view>
+  </view>
+  <view class="body-cell">
+    <view class="cell2 cell-t-l">税前年收益(%)</view>
+    <view class="cell2 cell-t-r">28万</view>
+  </view>
+  <view class="body-cell">
+    <view class="cell2 cell-t-l">回本周期(/年)</view>
+    <view class="cell2 cell-t-r">28万</view>
+  </view>
+</view>
