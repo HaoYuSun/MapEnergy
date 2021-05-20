@@ -28,6 +28,8 @@ Page({
       info4: 0
     },
     isShow: false,
+    inputShowed: true,
+    inputVal: "12312"
   },
   /**
    * 初始化地图时
@@ -60,6 +62,18 @@ Page({
       }
     });
   },
+
+  /**
+   * 跳转详情
+  */
+ detailTap: function(e){
+    var that = this;
+    var para = JSON.stringify(that.data.customCalloutInfo);
+    wx.navigateTo({
+      url: '../detail/detail?para=' + para,
+    })
+  },
+
   /**
    * 跳转个人页面
   */
@@ -260,12 +274,26 @@ Page({
   //     }
   //   })
   // },
-
+  search: function(e){
+    var that = this;
+    console.log(123123);
+    wx.chooseLocation({
+          success: res => {
+            // that.getValueMap(res)
+          },
+          fail: res => {
+          console.log('打开地图选择位置取消', res)
+          }
+        })
+  },
 //  https://blog.csdn.net/weixin_42460570/article/details/103800766
 // https://jingyan.baidu.com/article/642c9d34a36283254b46f736.html
+// https://blog.csdn.net/hql1024/article/details/105971096
+// https://www.freesion.com/article/6660601183/
   onLoad: function (options) {  
     var that = this;
     this.mpCtx = wx.createMapContext("map", this);
+    
     wx.getSetting({
       success(res) {
         if (res.authSetting['scope.userLocation'] == false) { // 如果已拒绝授权，则打开设置页面
@@ -291,11 +319,11 @@ Page({
               }
               //下面是get去请求数据
               var url = config.qqMapApi
-              console.log('url'+JSON.stringify(url));
+              // console.log('url'+JSON.stringify(url));
               util.postrequest(url, param).then(res => {
-                console.log(JSON.stringify(res))
+                // console.log(JSON.stringify(res))
                 var d = res.data.result
-                console.log(d)
+                console.log(d.address)
                 console.log(d.address_component.city)
                 that.setData({
                   citySelected: d.address_component.city,
@@ -306,6 +334,19 @@ Page({
         }
       }
     });
+    this.setData({
+      search: this.search.bind(this)
+    });
+  },
+  search: function (value) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve([{text: '搜索结果', value: 1}, {text: '搜索结果2', value: 2}])
+        }, 200)
+    })
+  },
+  selectResult: function (e) {
+      console.log('select result', e.detail)
   },
   /**
      * 将焦点给到 input（在真机上不能获取input焦点）

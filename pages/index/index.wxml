@@ -7,7 +7,7 @@
         markers="{{markers}}" 
         bindregionchange="regionchange"
         polygons="{{polygons}}"
-         
+        bindcallouttap="detailTap" 
         show-location 
         enable-satellite
         style='width:100%;height:100vh;'>
@@ -42,7 +42,7 @@
                 <cover-view class="areainfo-body-cell-info-subtitle">年发电量(度)</cover-view>
               </cover-view>
             </cover-view>
-            <cover-view class="areainfo-body-cell areainfo-body-cell-button">
+            <cover-view class="areainfo-body-cell areainfo-body-cell-button" bindtap="detailTap">
               查看详情
             </cover-view>
             <cover-view class="areainfo-body-cell areainfo-body-cell-button areainfo-body-cell-width">
@@ -60,13 +60,16 @@
   
 
  <view class="page cover-input" >
-    <!-- <view class="page__hd">
-        <view class="page__title">SearchBar</view>
-        <view class="page__desc">搜索栏</view>
-    </view> -->
-    <view class="page__bd">
+  <view class="weui-search-bar__box">
+    <icon class="icom-search" size="20" type="search" role="img"></icon>
+    <input class="weui-search-bar__input" placeholder="搜索" type="text" selection-start="-1" selection-end="-1" cursor="-1"></input>
+  </view>
+  <view class="tapview" bindtap="search">
+
+  </view>
+    <!-- <view class="page__bd">
         <mp-searchbar bindselectresult="selectResult" search="{{search}}"></mp-searchbar>
-    </view>
+    </view> -->
 </view>
 
 <!-- <cover-view class='cover-input' bindtap='tapInput'>
@@ -87,21 +90,4 @@
 <cover-image  wx:if="{{isShow == false}}" class="home_contr" src="../../images/center_home.png" bindtap="addCenterLocation"></cover-image>
 
 <cover-image class="right_contr" src="../../images/right.png" bindtap="moveToLocation"></cover-image>
-
-<!-- <button  class="right_contr" bindtap="controltap" ></button> -->
-
-<!-- <view class="page-body">
-  <view class="page-section page-section-gap">
-    <map id="qqMap" style="width: 100%; height: 300px;" latitude="{{latitude}}" longitude="{{longitude}}" markers="{{markers}}" show-location></map>
-  </view>
-  <view class="btn-area">
-    <button bindtap="moveToLocation" class="page-body-button" type="primary">移动位置</button>
-    
-    选择的位置：
-    <view>位置：{{mobileLocation.address}}</view>
-    <view>经度：{{mobileLocation.longitude}}</view>
-    <view>纬度：{{mobileLocation.latitude}}</view>
-
-  </view>
-</view> -->
 </view>

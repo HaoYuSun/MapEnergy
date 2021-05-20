@@ -3,14 +3,14 @@
   width: 88vw;
   padding: 3vh 6vw;
   height: 94vh;
-  background-color: red;
+  /* background-color: red; */
 }
 
 .body-cell{
   width: 84vw;
   height: 4vh;
   margin: 1vw 2vw;
-  background-color: greenyellow;
+  /* background-color: greenyellow; */
 }
 
 .cell1{
@@ -34,4 +34,19 @@
   font-size: 14px;
   line-height: 4vh;
   float: left;
+}
+
+.cell1-inp{
+  background-color: #00000033;
+  width: 12vw;
+  padding: 0 2vw;
+  margin-left: 6vw;
+  text-align: right;
+}
+.cell2-inp{
+  background-color: #00000033;
+  width: 12vw;
+  padding: 0 1vw;
+  margin-left: 28vw;
+  text-align: right;
 }

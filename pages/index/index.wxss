@@ -116,12 +116,12 @@
   /* width: 84vw; */
   top: 0vw;
   width: 100vw;
-  height: 40px;
+  /* height: 40px; */
   /* left: 5vw; */
   /* border-radius: 1vw;
   padding: 5px 3vw; */
   text-align: left;
-  background-color: rgba(255, 255, 255, 0.9);
+  /* background-color: rgba(255, 255, 255, 0.9); */
 }
 .text{
   height: 32px;
@@ -233,4 +233,29 @@
   width: 10vw;
   height: 5vw;
   margin-top: -2px;
+}
+
+.weui-search-bar__box{
+  background-color: rgba(255, 255, 255, 0.9);
+  margin: 2vw 5vw;
+  width: 90vw;
+  border-radius: 3px;
+  position: relative;
+}
+.icom-search{
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 2vw 2vw;
+}
+
+.tapview{
+  /* background-color: red; */
+  width: 90vw;
+  height: 10vw;
+  position: fixed;
+  top: 0;
+  z-index: 9;
+  margin-left: 5vw;
+  margin-top: 2vw;
 }
