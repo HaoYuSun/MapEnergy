@@ -59,10 +59,10 @@ Page({
     if(Object.keys(options).length > 0){
       var obj = JSON.parse(options.para);
       that.setData({
-        area: obj.info3,  // 面积
-        install_area: obj.info1,  //安装容量
-        sum_price: obj.info2,  // 总投资金额
-        generating_year: obj.info4,  // 年发电量
+        area: obj.area,  // 面积
+        install_area: obj.installedcapacity,  //安装容量
+        sum_price: obj.sumprice,  // 总投资金额
+        generating_year: obj.yeargeneratingcapacity,  // 年发电量
       });
     }
     this.updatePageData();

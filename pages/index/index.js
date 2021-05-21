@@ -12,6 +12,7 @@ const area = require("../../utils/area.js");
 
 Page({
   data: {
+    address: '',
     inputModel: '',
     inputFocus: '',
     latitude: 0,//纬度
@@ -22,10 +23,10 @@ Page({
     markers:[],
     customCalloutInfo:{
       id: 999,
-      info1: 0,
-      info2: 0,
-      info3: 0,
-      info4: 0
+      installedcapacity: 0,  // 装机量
+      sumprice: 0,
+      area: 0,
+      yeargeneratingcapacity: 0
     },
     isShow: false,
     inputShowed: true,
@@ -55,10 +56,10 @@ Page({
       markers:[],
       customCalloutInfo:{
         id: 999,
-        info1: 0,
-        info2: 0,
-        info3: 0,
-        info4: 0
+        installedcapacity: 0,
+        sumprice: 0,
+        area: 0,
+        yeargeneratingcapacity: 0
       }
     });
   },
@@ -99,10 +100,10 @@ Page({
         that.data.markers.pop();
         let customCalloutInfo = {
           id: 999,
-          info1: 0,
-          info2: 0,
-          info3: 0,
-          info4: 0
+          installedcapacity: 0,
+          sumprice: 0,
+          area: 0,
+          yeargeneratingcapacity: 0
         }
         that.setData({
           polygons: that.data.polygons,
@@ -225,17 +226,17 @@ Page({
         let old_markers = that.data.markers;
         let new_id = old_markers.length;
         
-        let info3 = Math.ceil(Number(res) * 100) / 100.0;
-        let info1 = Math.ceil(info3 * 1.2 / 10000.0 * 100) / 100.0;
-        let info2 = Math.ceil(info3 * 480 / 10000.0 * 100) / 100.0;
-        let info4 = Math.ceil(info3 * 144 / 10000 * 100) / 100.0;
+        let area = Math.ceil(Number(res) * 100) / 100.0;
+        let installedcapacity = Math.ceil(area * 1.2 / 10000.0 * 100) / 100.0;
+        let sumprice = Math.ceil(area * 480 / 10000.0 * 100) / 100.0;
+        let yeargeneratingcapacity = Math.ceil(area * 144 / 10000 * 100) / 100.0;
 
         let calloutinfo = {
           id: new_id,
-          info1: info1,
-          info2: info2,
-          info3: info3,
-          info4: info4
+          installedcapacity: installedcapacity,
+          sumprice: sumprice,
+          area: area,
+          yeargeneratingcapacity: yeargeneratingcapacity
         }
         that.setData({
           customCalloutInfo: calloutinfo
@@ -265,26 +266,27 @@ Page({
     }
     
   },
-  // touchEnd: function () {
-  //   var that = this;
-  //   console.log("dsfs")
-  //   this.mapCtx.getCenterLocation({
-  //     success: function(res){ 
-  //       console.log(res.latitude)
-  //     }
-  //   })
-  // },
   search: function(e){
     var that = this;
     console.log(123123);
     wx.chooseLocation({
-          success: res => {
-            // that.getValueMap(res)
-          },
-          fail: res => {
-          console.log('打开地图选择位置取消', res)
-          }
+      success: res => {
+        // that.getValueMap(res)
+        console.log(res.name);
+        console.log(res.address);
+        console.log(res.longitude);
+        console.log(res.latitude);
+        that.setData({
+          /*赋值*/
+          latitude: res.latitude,
+          longitude: res.longitude,
+          address: res.name
         })
+      },
+      fail: res => {
+        console.log('打开地图选择位置取消', res)
+      }
+    })
   },
 //  https://blog.csdn.net/weixin_42460570/article/details/103800766
 // https://jingyan.baidu.com/article/642c9d34a36283254b46f736.html
@@ -326,6 +328,7 @@ Page({
                 console.log(d.address)
                 console.log(d.address_component.city)
                 that.setData({
+                  address: d.address,
                   citySelected: d.address_component.city,
                 })
               })
@@ -334,17 +337,17 @@ Page({
         }
       }
     });
-    this.setData({
-      search: this.search.bind(this)
-    });
+    // this.setData({
+    //   search: this.search.bind(this)
+    // });
   },
-  search: function (value) {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve([{text: '搜索结果', value: 1}, {text: '搜索结果2', value: 2}])
-        }, 200)
-    })
-  },
+  // search: function (value) {
+  //   return new Promise((resolve, reject) => {
+  //       setTimeout(() => {
+  //           resolve([{text: '搜索结果', value: 1}, {text: '搜索结果2', value: 2}])
+  //       }, 200)
+  //   })
+  // },
   selectResult: function (e) {
       console.log('select result', e.detail)
   },

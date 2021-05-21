@@ -31,23 +31,23 @@
             <cover-view class="areainfo-body-cell body-cell-top">
               <cover-image class="areainfo-body-cell-img"  src="../../images/infotag3.png"></cover-image>
               <cover-view class="areainfo-body-cell-info">
-                <cover-view class="areainfo-body-cell-info-title">{{customCalloutInfo.info3}}</cover-view>
+                <cover-view class="areainfo-body-cell-info-title">{{customCalloutInfo.area}}</cover-view>
                 <cover-view class="areainfo-body-cell-info-subtitle">面积(㎡)</cover-view>
               </cover-view>
             </cover-view>
             <cover-view class="areainfo-body-cell body-cell-left body-cell-top">
               <cover-image class="areainfo-body-cell-img cell-img-left"  src="../../images/infotag4.png"></cover-image>
               <cover-view class="areainfo-body-cell-info">
-                <cover-view class="areainfo-body-cell-info-title">{{customCalloutInfo.info4}}万</cover-view>
+                <cover-view class="areainfo-body-cell-info-title">{{customCalloutInfo.yeargeneratingcapacity}}万</cover-view>
                 <cover-view class="areainfo-body-cell-info-subtitle">年发电量(度)</cover-view>
               </cover-view>
             </cover-view>
-            <cover-view class="areainfo-body-cell areainfo-body-cell-button" bindtap="detailTap">
+            <cover-view class="areainfo-body-cell areainfo-body-cell-button" >
               查看详情
             </cover-view>
-            <cover-view class="areainfo-body-cell areainfo-body-cell-button areainfo-body-cell-width">
+            <!-- <cover-view class="areainfo-body-cell areainfo-body-cell-button areainfo-body-cell-width">
               去分享
-            </cover-view>
+            </cover-view> -->
         </cover-view>
         <cover-view class="areainfo-foot">
           <cover-image class="areainfo-foot-img" src="../../images/down.png"></cover-image>
@@ -62,7 +62,7 @@
  <view class="page cover-input" >
   <view class="weui-search-bar__box">
     <icon class="icom-search" size="20" type="search" role="img"></icon>
-    <input class="weui-search-bar__input" placeholder="搜索" type="text" selection-start="-1" selection-end="-1" cursor="-1"></input>
+    <input class="weui-search-bar__input" placeholder="搜索" type="text" value="{{address}}"selection-start="-1" selection-end="-1" cursor="-1"></input>
   </view>
   <view class="tapview" bindtap="search">
 

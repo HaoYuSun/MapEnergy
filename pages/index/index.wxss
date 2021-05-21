@@ -162,6 +162,7 @@
 
 .areainfo-body-cell-button{
   /* background-color: firebrick; */
+  width: 62vw;
   padding-top: 0vw;
   margin-top: 2vw;
   line-height: 8vw;

@@ -1,0 +1,37 @@
+<view class="page">
+  <!-- <view class="page__bd">
+    <mp-cells title="">
+      <mp-cell link url="../index" hover value="无hover效果，带跳转URL" footer="">
+          <image slot="icon" src="{{icon}}" style="margin-right: 16px;vertical-align: middle;width:20px; height: 20px;"></image>
+      </mp-cell>
+      
+    </mp-cells>
+  </view> -->
+  <mp-cells title="">
+    
+      <mp-cell link wx:for="{{list}}" wx:for-index="idx" data-index="{{idx}}" bindtap="cellTap">
+          <view slot="title" style="position: relative;margin-right: 10px;">
+              <image src="{{icon}}" style="width: 30px; height: 30px; display: block"/>
+              <mp-badge content="99+" style="position: absolute;top: -.4em;right: -.4em;"/>
+          </view>
+          <view>{{item.address}}</view>
+          <view style="font-size: 13px;color: #888888;">总面积(m²)：{{item.area}},装机容量(kw):{{item.install_area}}</view>
+      </mp-cell>
+      <!-- <mp-cell link>
+          <view slot="title" style="position: relative;margin-right: 10px;">
+              <image src="{{icon}}" style="width: 30px; height: 30px; display: block"/>
+              <mp-badge content="99+" style="position: absolute;top: -.4em;right: -.4em;"/>
+          </view>
+          <view>联系人名称</view>
+          <view style="font-size: 13px;color: #888888;">摘要信息</view>
+      </mp-cell>
+      <mp-cell link>
+          <view slot="title" style="position: relative;margin-right: 10px;">
+              <image src="{{icon}}" style="width: 30px; height: 30px; display: block"/>
+              <mp-badge content="99+" style="position: absolute;top: -.4em;right: -.4em;"/>
+          </view>
+          <view>联系人名称</view>
+          <view style="font-size: 13px;color: #888888;">摘要信息</view>
+      </mp-cell> -->
+  </mp-cells>
+</view>
