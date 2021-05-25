@@ -67,84 +67,9 @@ Page({
 
   },
 
-  getUserInfo: function (e) {
-    console.log(e)
-    var that = this;
-    app.globalData.userInfo = e.detail.userInfo
-    var encryptedData = e.detail.encryptedData
-    var iv = e.detail.iv
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        var getUnionIdUrl = "https://ai.en.com.cn/miniapp/login";
-        wx.request({
-          url: getUnionIdUrl,
-          data: {
-            code: res.code
-          },
-          method: 'GET',
-          success: function (res) {
-            app.globalData.sOpenId = res.data.OpenId;
-            that.setData({
-              sOpenId: res.data.OpenId
-            });
+  
 
-
-            var getUnionId = "https://ai.en.com.cn/miniapp/getUnionId";
-            wx.request({
-              url: getUnionId,
-              data: {
-                session_key: res.data.Session_Key,
-                iv: iv,
-                encryptedData: encryptedData,
-                sOpenId: res.data.OpenId
-              },
-              method: 'GET',
-              success: function (res) {
-                if (res.data.ErrCode == 0) {
-                  that.setData({
-                    unionId: res.data.Msg
-                  })
-                  app.globalData.unionId = res.data.Msg;
-                  that.getselinfo();
-                }
-
-
-              }
-            })
-          }
-        })
-      }
-    })
-  },
-
-  getselinfo: function () {
-    var that = this;
-    if (app.globalData.sOpenId == ''){
-      return;
-    }
-    
-    var url1 = "https://ai.en.com.cn/user/getUserInfo";
-    wx.request({
-      url: url1,
-      data: {
-        sOpenId: app.globalData.sOpenId
-      },
-      method: 'GET',
-      success: function (res) {
-        if(res.data.ErrCode == 0){
-          that.setData({
-            userName: res.data.UserName,
-            userImg: res.data.UserHeadImg,
-            money: res.data.Money
-          })
-          that.getsellist();
-        }
-        
-      }
-    })
-  },
-
+  
   getsellist: function () {
     var that = this;
     if (that.data.isLoaded == true) {
@@ -186,18 +111,7 @@ Page({
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
-        hasUserInfo: true,
-        sOpenId: app.globalData.sOpenId
       })
-    } else if (this.data.canIUse) {
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
     } else {
       // 在没有 open-type=getUserInfo 版本的兼容处理
       wx.getUserInfo({
@@ -210,8 +124,6 @@ Page({
         }
       })
     }
-
-    this.getselinfo();
     
   },
   

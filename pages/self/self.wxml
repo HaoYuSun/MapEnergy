@@ -5,9 +5,9 @@
       <view class="userself">
         <view class="userhead">
         <button class="startbtn" wx:if="{{sOpenId == '' && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">登录</button>
-          <image wx:else class="userimg" src="{{userImg}}"></image>
+          <image wx:else class="userimg" src="{{userInfo.avatarUrl}}"></image>
         </view>
-        <view class="username">{{userName}}</view>
+        <view class="username">{{userInfo.nickName}}</view>
       </view>
     </view>
   </view>
