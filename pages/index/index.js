@@ -12,6 +12,7 @@ const area = require("../../utils/area.js");
 
 Page({
   data: {
+    openid: '',
     address: '',
     inputModel: '',
     inputFocus: '',
@@ -216,17 +217,35 @@ Page({
           }
           
         }
-        // console.log("min_longitude"+JSON.stringify(min_longitude));
-        // console.log("max_longitude"+JSON.stringify(max_longitude));
-        // console.log("min_latitude"+JSON.stringify(min_latitude));
-        // console.log("max_latitude"+JSON.stringify(max_latitude));
+   
         let c_longitude = (min_longitude + max_longitude) / 2;
         let c_latitude = max_latitude;
+        let t_latitude = (min_latitude + max_latitude) / 2;
         
         let old_markers = that.data.markers;
         let new_id = old_markers.length;
         
-        let area = Math.ceil(Number(res) * 100) / 100.0;
+        var area = Math.ceil(Number(res) * 100) / 100.0;
+        console.log(app.globalData.openid)
+        console.log(app.globalData.upAreaUrl)
+        wx.request({
+          url: app.globalData.upAreaUrl,
+          data:{
+            openid: that.data.openid,
+            area: area,
+            longitude: c_longitude,
+            latitude: t_latitude
+          },
+          method:"GET",
+          success(resp){
+            if(resp.data.code == '0'){
+              console.log(resp)
+            }
+            // that.getUserInfo();
+          }
+        });
+
+
         let installedcapacity = Math.ceil(area * 1.2 / 10000.0 * 100) / 100.0;
         let sumprice = Math.ceil(area * 480 / 10000.0 * 100) / 100.0;
         let yeargeneratingcapacity = Math.ceil(area * 144 / 10000 * 100) / 100.0;
@@ -295,7 +314,6 @@ Page({
   onLoad: function (options) {  
     var that = this;
     this.mpCtx = wx.createMapContext("map", this);
-    
     wx.getSetting({
       success(res) {
         if (res.authSetting['scope.userLocation'] == false) { // 如果已拒绝授权，则打开设置页面
@@ -337,9 +355,20 @@ Page({
         }
       }
     });
-    // this.setData({
-    //   search: this.search.bind(this)
-    // });
+    if (app.globalData.testData && app.globalData.testData != '') {
+      this.setData({
+        openid: app.globalData.openid
+      });
+    } else {
+      // 声明回调函数获取app.js onLaunch中接口调用成功后设置的globalData数据
+      app.getOpenidCallback = data => {
+        if (data != '') {
+          this.setData({
+            openid: data
+          });
+        }
+      }
+    }
   },
   // search: function (value) {
   //   return new Promise((resolve, reject) => {

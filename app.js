@@ -12,6 +12,7 @@ App({
   },
   login: function () {//1、调用微信登录接口，获取code
     var that = this;
+    console.log('login')
     wx.login({
       success: function (r) {
         var code = r.code;//登录凭证
@@ -24,8 +25,10 @@ App({
           method:"GET",
           success(res){
             if(res.data.code == '0'){
+              console.log(res)
               that.globalData.openid=res.data.openid
             }
+            console.log(that.globalData.openid)
             that.getUserInfo();
           }
         });
@@ -67,8 +70,13 @@ App({
                 },
                 method:"GET",
                 success(res){
+                  console.log(res)
                   if(res.data.code == '0'){
                     that.globalData.openid=res.data.openid
+                  }
+                  if (this.getOpenidCallback){
+                    // https://blog.csdn.net/weixin_30695195/article/details/97652048
+                    this.getOpenidCallback(res.data.openid);
                   }
                   // that.getUserInfo();
                 }
@@ -111,5 +119,6 @@ App({
     openid: null,
     getOpenidUrl: 'http://127.0.0.1:8000/getopenid',
     upUserinfoUrl: 'http://127.0.0.1:8000/upuserinfo',
+    upAreaUrl: 'http://127.0.0.1:8000/test',
   }
 })
