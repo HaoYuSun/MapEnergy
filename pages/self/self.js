@@ -7,6 +7,9 @@ Page({
    */
   data: {
     userInfo: {},
+    openid: '',
+
+
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
 
@@ -121,6 +124,37 @@ Page({
             userInfo: res.userInfo,
             hasUserInfo: true
           })
+        }
+      })
+    }
+
+    if (app.globalData.openid && app.globalData.openid != '') {
+      this.setData({
+        openid: app.globalData.openid
+      });
+    } else {
+      wx.login({
+        success: function (r) {
+          var code = r.code;//登录凭证
+          let getOpenidUrl = app.globalData.getOpenidUrl;
+          wx.request({
+            url: getOpenidUrl,
+            data:{
+              js_code: code,
+            },
+            method:"GET",
+            success(res){
+              if(res.data.code == '0'){
+                console.log(res)
+                that.setData({
+                  openid: res.data.openid
+                });
+              }
+            }
+          });
+        },
+        fail: function () {
+          console.log('系统错误')
         }
       })
     }

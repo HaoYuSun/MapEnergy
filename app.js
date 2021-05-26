@@ -71,14 +71,6 @@ App({
                 method:"GET",
                 success(res){
                   console.log(res)
-                  if(res.data.code == '0'){
-                    that.globalData.openid=res.data.openid
-                  }
-                  if (this.getOpenidCallback){
-                    // https://blog.csdn.net/weixin_30695195/article/details/97652048
-                    this.getOpenidCallback(res.data.openid);
-                  }
-                  // that.getUserInfo();
                 }
               });
             },
@@ -119,6 +111,7 @@ App({
     openid: null,
     getOpenidUrl: 'http://127.0.0.1:8000/getopenid',
     upUserinfoUrl: 'http://127.0.0.1:8000/upuserinfo',
-    upAreaUrl: 'http://127.0.0.1:8000/test',
+    upAreaUrl: 'http://127.0.0.1:8000/uparea',
+    getRecordsUrl: 'http://127.0.0.1:8000/getrecords',
   }
 })

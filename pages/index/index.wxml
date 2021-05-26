@@ -17,14 +17,14 @@
             <cover-view class="areainfo-body-cell">
               <cover-image class="areainfo-body-cell-img" src="../../images/infotag1.png"></cover-image>
               <cover-view class="areainfo-body-cell-info">
-                <cover-view class="areainfo-body-cell-info-title">{{customCalloutInfo.info1}}</cover-view>
+                <cover-view class="areainfo-body-cell-info-title">{{customCalloutInfo.install_edcapacity}}</cover-view>
                 <cover-view class="areainfo-body-cell-info-subtitle">总装机量(KW)</cover-view>
               </cover-view>
             </cover-view>
             <cover-view class="areainfo-body-cell body-cell-left">
               <cover-image class="areainfo-body-cell-img cell-img-left"  src="../../images/infotag2.png"></cover-image>
               <cover-view class="areainfo-body-cell-info">
-                <cover-view class="areainfo-body-cell-info-title">{{customCalloutInfo.info2}}万</cover-view>
+                <cover-view class="areainfo-body-cell-info-title">{{customCalloutInfo.sum_price}}万</cover-view>
                 <cover-view class="areainfo-body-cell-info-subtitle">总投资(元)</cover-view>
               </cover-view>
             </cover-view>
@@ -38,7 +38,7 @@
             <cover-view class="areainfo-body-cell body-cell-left body-cell-top">
               <cover-image class="areainfo-body-cell-img cell-img-left"  src="../../images/infotag4.png"></cover-image>
               <cover-view class="areainfo-body-cell-info">
-                <cover-view class="areainfo-body-cell-info-title">{{customCalloutInfo.yeargeneratingcapacity}}万</cover-view>
+                <cover-view class="areainfo-body-cell-info-title">{{customCalloutInfo.year_generating_capacity}}万</cover-view>
                 <cover-view class="areainfo-body-cell-info-subtitle">年发电量(度)</cover-view>
               </cover-view>
             </cover-view>

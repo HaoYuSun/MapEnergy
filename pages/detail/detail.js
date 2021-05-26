@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    openid:'',
     area: 0,  // 面积
     install_area: 0,  //安装容量
     sum_price: 0,  // 总投资金额
@@ -56,13 +57,15 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    console.log(options)
     if(Object.keys(options).length > 0){
       var obj = JSON.parse(options.para);
       that.setData({
         area: obj.area,  // 面积
-        install_area: obj.installedcapacity,  //安装容量
-        sum_price: obj.sumprice,  // 总投资金额
-        generating_year: obj.yeargeneratingcapacity,  // 年发电量
+        install_area: obj.install_edcapacity,  //安装容量
+        sum_price: obj.sum_price,  // 总投资金额
+        generating_year: obj.year_generating_capacity,  // 年发电量
+        openid: obj.openid
       });
     }
     this.updatePageData();

@@ -24,10 +24,10 @@ Page({
     markers:[],
     customCalloutInfo:{
       id: 999,
-      installedcapacity: 0,  // 装机量
-      sumprice: 0,
+      install_edcapacity: 0,  // 装机量
+      sum_price: 0,
       area: 0,
-      yeargeneratingcapacity: 0
+      year_generating_capacity: 0
     },
     isShow: false,
     inputShowed: true,
@@ -57,10 +57,10 @@ Page({
       markers:[],
       customCalloutInfo:{
         id: 999,
-        installedcapacity: 0,
-        sumprice: 0,
+        install_edcapacity: 0,
+        sum_price: 0,
         area: 0,
-        yeargeneratingcapacity: 0
+        year_generating_capacity: 0
       }
     });
   },
@@ -70,7 +70,9 @@ Page({
   */
  detailTap: function(e){
     var that = this;
-    var para = JSON.stringify(that.data.customCalloutInfo);
+    var dict = that.data.customCalloutInfo;
+    dict['openid'] = that.data.openid;
+    var para = JSON.stringify(dict);
     wx.navigateTo({
       url: '../detail/detail?para=' + para,
     })
@@ -101,10 +103,10 @@ Page({
         that.data.markers.pop();
         let customCalloutInfo = {
           id: 999,
-          installedcapacity: 0,
-          sumprice: 0,
+          install_edcapacity: 0,
+          sum_price: 0,
           area: 0,
-          yeargeneratingcapacity: 0
+          year_generating_capacity: 0
         }
         that.setData({
           polygons: that.data.polygons,
@@ -226,75 +228,76 @@ Page({
         let new_id = old_markers.length;
         
         var area = Math.ceil(Number(res) * 100) / 100.0;
-        console.log(app.globalData.openid)
-        console.log(app.globalData.upAreaUrl)
         wx.request({
           url: app.globalData.upAreaUrl,
           data:{
             openid: that.data.openid,
             area: area,
             longitude: c_longitude,
-            latitude: t_latitude
+            latitude: t_latitude,
+            address: that.data.address
           },
           method:"GET",
           success(resp){
             if(resp.data.code == '0'){
               console.log(resp)
+              let install_edcapacity = resp.data.data.install_edcapacity;
+              let sum_price = resp.data.data.sum_price;
+              let year_generating_capacity = resp.data.data.year_generating_capacity;
+
+              let calloutinfo = {
+                id: new_id,
+                install_edcapacity: install_edcapacity,
+                sum_price: sum_price,
+                area: area,
+                year_generating_capacity: year_generating_capacity
+              }
+              that.setData({
+                customCalloutInfo: calloutinfo
+              })
+
+              let  marker_point = {
+                id: new_id,
+                longitude: c_longitude,
+                latitude: c_latitude,
+                iconPath: "../../images/redpoint.png",
+                width: 2,
+                height: 2,
+                customCallout:{//自定义气泡
+                  display:"ALWAYS",//显示方式，可选值BYCLICK
+                  anchorX:0,//横向偏移
+                  anchorY:0,
+                },
+              }
+              old_markers.push(marker_point);
+              that.setData({
+                markers: old_markers
+              })
             }
             // that.getUserInfo();
           }
         });
-
-
-        let installedcapacity = Math.ceil(area * 1.2 / 10000.0 * 100) / 100.0;
-        let sumprice = Math.ceil(area * 480 / 10000.0 * 100) / 100.0;
-        let yeargeneratingcapacity = Math.ceil(area * 144 / 10000 * 100) / 100.0;
-
-        let calloutinfo = {
-          id: new_id,
-          installedcapacity: installedcapacity,
-          sumprice: sumprice,
-          area: area,
-          yeargeneratingcapacity: yeargeneratingcapacity
-        }
-        that.setData({
-          customCalloutInfo: calloutinfo
-        })
-
-        let  marker_point = {
-          id: new_id,
-          longitude: c_longitude,
-          latitude: c_latitude,
-          iconPath: "../../images/redpoint.png",
-          width: 2,
-          height: 2,
-          customCallout:{//自定义气泡
-            display:"ALWAYS",//显示方式，可选值BYCLICK
-            anchorX:0,//横向偏移
-            anchorY:0,
-          },
-        }
-        old_markers.push(marker_point);
-        that.setData({
-          markers: old_markers
-        })
-
       });
     }else{
       // 提示点数不够
+      wx.showModal({
+        title: '提示！',
+        confirmText: '最少需要三个点',
+        showCancel: false,
+        content: e,
+        success: function(res) {
+          if (res.confirm) {
+          }
+        }
+      })
     }
     
   },
   search: function(e){
     var that = this;
-    console.log(123123);
     wx.chooseLocation({
       success: res => {
         // that.getValueMap(res)
-        console.log(res.name);
-        console.log(res.address);
-        console.log(res.longitude);
-        console.log(res.latitude);
         that.setData({
           /*赋值*/
           latitude: res.latitude,
@@ -339,9 +342,7 @@ Page({
               }
               //下面是get去请求数据
               var url = config.qqMapApi
-              // console.log('url'+JSON.stringify(url));
               util.postrequest(url, param).then(res => {
-                // console.log(JSON.stringify(res))
                 var d = res.data.result
                 console.log(d.address)
                 console.log(d.address_component.city)
@@ -355,28 +356,38 @@ Page({
         }
       }
     });
-    if (app.globalData.testData && app.globalData.testData != '') {
+    if (app.globalData.openid && app.globalData.openid != '') {
       this.setData({
         openid: app.globalData.openid
       });
     } else {
-      // 声明回调函数获取app.js onLaunch中接口调用成功后设置的globalData数据
-      app.getOpenidCallback = data => {
-        if (data != '') {
-          this.setData({
-            openid: data
+      wx.login({
+        success: function (r) {
+          var code = r.code;//登录凭证
+          let getOpenidUrl = app.globalData.getOpenidUrl;
+          wx.request({
+            url: getOpenidUrl,
+            data:{
+              js_code: code,
+            },
+            method:"GET",
+            success(res){
+              if(res.data.code == '0'){
+                console.log(res)
+                that.setData({
+                  openid: res.data.openid
+                });
+              }
+            }
           });
+        },
+        fail: function () {
+          console.log('系统错误')
         }
-      }
+      })
     }
   },
-  // search: function (value) {
-  //   return new Promise((resolve, reject) => {
-  //       setTimeout(() => {
-  //           resolve([{text: '搜索结果', value: 1}, {text: '搜索结果2', value: 2}])
-  //       }, 200)
-  //   })
-  // },
+
   selectResult: function (e) {
       console.log('select result', e.detail)
   },

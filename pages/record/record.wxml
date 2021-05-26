@@ -14,8 +14,8 @@
               <image src="{{icon}}" style="width: 30px; height: 30px; display: block"/>
               <mp-badge content="99+" style="position: absolute;top: -.4em;right: -.4em;"/>
           </view>
-          <view>{{item.address}}</view>
-          <view style="font-size: 13px;color: #888888;">总面积(m²)：{{item.area}},装机容量(kw):{{item.install_area}}</view>
+          <view>{{item.fields.address}}</view>
+          <view style="font-size: 13px;color: #888888;">总面积(m²)：{{item.fields.area}},装机容量(kw):{{item.fields.install_edcapacity}}</view>
       </mp-cell>
       <!-- <mp-cell link>
           <view slot="title" style="position: relative;margin-right: 10px;">
