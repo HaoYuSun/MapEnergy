@@ -1,12 +1,12 @@
 {
   "pages": [
-    
+    "pages/setauth/setauth",
     "pages/index/index",
     "pages/detail/detail",
     "pages/logs/logs",
     "pages/record/record",
-    "pages/self/self",
-    "pages/setauth/setauth"
+    "pages/self/self"
+    
   ],
   "useExtendedLib": {
     "kbone": true,
