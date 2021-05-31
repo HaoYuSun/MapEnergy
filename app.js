@@ -109,9 +109,9 @@ App({
     userInfo: null,
     map_key: 'QYEBZ-VCMED-DD44G-H4QVE-U7OHS-PAFAA',
     openid: null,
-    getOpenidUrl: 'http://127.0.0.1:8000/getopenid',
-    upUserinfoUrl: 'http://127.0.0.1:8000/upuserinfo',
-    upAreaUrl: 'http://127.0.0.1:8000/uparea',
-    getRecordsUrl: 'http://127.0.0.1:8000/getrecords',
+    getOpenidUrl: 'https://www.sgosgo.com/getopenid',
+    upUserinfoUrl: 'https://www.sgosgo.com/upuserinfo',
+    upAreaUrl: 'https://www.sgosgo.com/uparea',
+    getRecordsUrl: 'https://www.sgosgo.com/getrecords',
   }
 })
