@@ -412,7 +412,7 @@ Page({
       return;
     }
     wx.request({
-      url: app.globalData.upAreaUrl,
+      url: app.globalData.upFromopenidUrl,
       data:{
         openid: that.data.openid,
         fromopenid: e
