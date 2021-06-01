@@ -90,4 +90,10 @@
 <cover-image  wx:if="{{isShow == false}}" class="home_contr" src="../../images/center_home.png" bindtap="addCenterLocation"></cover-image>
 
 <cover-image class="right_contr" src="../../images/right.png" bindtap="moveToLocation"></cover-image>
+
+<view class='share'>
+<mp-icon type='field' icon="share" color="black" size="{{22}}"></mp-icon>
+<button open-type='share'></button>
+</view>
+
 </view>
