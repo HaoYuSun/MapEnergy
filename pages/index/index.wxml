@@ -98,3 +98,8 @@
 </view>
 
 </view>
+
+
+<!-- <view class="authview" bindtap="authset">
+
+</view> -->

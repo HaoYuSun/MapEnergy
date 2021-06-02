@@ -15,6 +15,7 @@ App({
     console.log('login')
     wx.login({
       success: function (r) {
+        console.log(r);
         var code = r.code;//登录凭证
         let getOpenidUrl = that.globalData.getOpenidUrl;
         wx.request({
@@ -26,10 +27,11 @@ App({
           success(res){
             if(res.data.code == '0'){
               console.log(res)
-              that.globalData.openid=res.data.openid
+              that.globalData.openid=res.data.openid;
+              that.globalData.userInfo=res.data.userInfo;
             }
             console.log(that.globalData.openid)
-            that.getUserInfo();
+            // that.getUserInfo();
           }
         });
       },
@@ -59,7 +61,7 @@ App({
         if (res.authSetting['scope.userInfo']) {
           console.log("已授权=====")
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-          wx.getUserProfile({
+          wx.getUserInfo({
             success(res) {
               console.log(res.userInfo)
               that.globalData.userInfo=res.userInfo

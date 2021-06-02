@@ -83,9 +83,13 @@ Page({
   */
   selfTap: function(e){
     var that = this;
-    wx.navigateTo({
-      url: '../self/self',
-    })
+    if(app.globalData.userInfo){
+      wx.navigateTo({
+        url: '../self/self',
+      })
+    }else{
+      that.authset();
+    }
   },
   /**
    * 回撤构图
@@ -185,6 +189,31 @@ Page({
       });
     }            
   },
+
+  authset: function(e){
+    var that = this;
+    wx.getUserProfile({
+      desc: '获取你的昵称、头像、地区及性别',
+      success: res => {
+        console.log(res.userInfo);
+        app.globalData.userInfo = res.userInfo;
+        wx.request({
+          url: app.globalData.upUserinfoUrl,
+          data:{
+            openid: app.globalData.openid,
+            userInfo: app.globalData.userInfo
+          },
+          method:"GET",
+          success(res){
+            console.log(res)
+          }
+        });
+      }
+    })
+  },
+
+
+
   /**
    * 计算区域面积 墨卡托投影
    * https://www.cnblogs.com/grimm/p/5097383.html
@@ -489,34 +518,24 @@ Page({
 
   onShareAppMessage(res) {
     var that = this;
-    
-    // let id = wx.getStorageSync('shareId') // 分享产品的Id
-    // if (res.from === 'button') {
-    //   // 来自页面内转发按钮
-    //   console.log(res.target)
-    // }
-    // var url = '';
-    if(that.data.customCalloutInfo.area > 0){
-      var oepnid = that.data.openid;
-      var dict = that.data.customCalloutInfo;
-      dict['openid'] = that.data.openid;
-      var para = JSON.stringify(dict);
-      let sendurl = encodeURIComponent('/pages/detail/detail?para=' + para);
-      // url = '../detail/detail?para=' + para;
-
-      return {
-        title: '能源预算',
-        path: `/pages/index/index?fromopenid=${oepnid}&url=${sendurl}` // 分享后打开的页面
-      }
-    }else{
-      return {
-        title: "能源预算",
-        path:`/pages/index/index?fromopenid=${oepnid}` 
-      }
-    }
-    
-
-    
+    if(that.data.customCalloutInfo.area > 0){
+        var oepnid = that.data.openid;
+        var dict = that.data.customCalloutInfo;
+        dict['openid'] = that.data.openid;
+        var para = JSON.stringify(dict);
+        let sendurl = encodeURIComponent('/pages/detail/detail?para=' + para);
+        // url = '../detail/detail?para=' + para;
+  
+        return {
+          title: '能源预算',
+          path: `/pages/index/index?fromopenid=${oepnid}&url=${sendurl}` // 分享后打开的页面
+        }
+      }else{
+        return {
+          title: "能源预算",
+          path:`/pages/index/index?fromopenid=${oepnid}` 
+        }
+      }
   },
 
 })
