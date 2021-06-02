@@ -135,12 +135,20 @@ Page({
     }else{
       this.mapCtx.getCenterLocation({
         success: function(res){
-          let old_markers = that.data.markers;
-          let new_id = old_markers.length;
+          that.addPoint(res.longitude, res.latitude)
+        }
+      });
+    }
+    
+  },
+  addPoint: function(longi, lati){
+    var that = this;
+    let old_markers = that.data.markers;
+    let new_id = old_markers.length;
           let  marker_point = {
             id: new_id,
-            longitude: res.longitude,
-            latitude: res.latitude,
+            longitude: longi,
+            latitude: lati,
             iconPath: "../../images/point.png",
             width: 3,
             height: 3,
@@ -153,8 +161,8 @@ Page({
    
           let old_polygons_points =  that.data.polygons_points;
           let polygons_point = {
-            longitude: res.longitude,
-            latitude: res.latitude,
+            longitude: longi,
+            latitude: lati,
             iconPath: "../../images/point.png",
             width: 1,
             height: 1,
@@ -176,13 +184,8 @@ Page({
             that.setData({
               polygons_points : old_polygons_points
             });
-          }
-        }
-      });
-    }
-    
-  },
-
+          }      
+  },
   /**
    * 计算区域面积 墨卡托投影
    * https://www.cnblogs.com/grimm/p/5097383.html
@@ -465,6 +468,19 @@ Page({
       }
     })
   },
+  /**
+   * 点击地图获取坐标
+  */
+  mapclick(res){
+    var that = this;
+    if(that.data.isShow){
+      // console.log(res.detail.latitude);
+      // console.log(res.detail.longitude);
+      that.addPoint(res.detail.longitude, res.detail.latitude);
+    }
+    
+  },
+
   _locationChangeFn(res) {
     console.log('location change', res)
    },
