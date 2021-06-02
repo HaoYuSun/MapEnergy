@@ -142,8 +142,8 @@ Page({
             longitude: res.longitude,
             latitude: res.latitude,
             iconPath: "../../images/point.png",
-            width: 2,
-            height: 2,
+            width: 3,
+            height: 3,
   
           }
           old_markers.push(marker_point);
@@ -227,7 +227,7 @@ Page({
         let new_id = old_markers.length;
         
         var area = Math.ceil(Number(res) * 100) / 100.0;
-        console.log(JSON.stringify(res));
+        console.log('====='+that.data.address);
         wx.request({
           url: app.globalData.upAreaUrl,
           data:{

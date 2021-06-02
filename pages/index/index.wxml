@@ -18,7 +18,7 @@
               <cover-image class="areainfo-body-cell-img" src="../../images/infotag1.png"></cover-image>
               <cover-view class="areainfo-body-cell-info">
                 <cover-view class="areainfo-body-cell-info-title">{{customCalloutInfo.install_edcapacity}}</cover-view>
-                <cover-view class="areainfo-body-cell-info-subtitle">总装机量(KW)</cover-view>
+                <cover-view class="areainfo-body-cell-info-subtitle">总装机量(MW)</cover-view>
               </cover-view>
             </cover-view>
             <cover-view class="areainfo-body-cell body-cell-left">

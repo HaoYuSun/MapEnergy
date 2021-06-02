@@ -59,8 +59,9 @@ App({
         if (res.authSetting['scope.userInfo']) {
           console.log("已授权=====")
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-          wx.getUserInfo({
+          wx.getUserProfile({
             success(res) {
+              console.log(res.userInfo)
               that.globalData.userInfo=res.userInfo
               wx.request({
                 url: that.globalData.upUserinfoUrl,
@@ -84,6 +85,12 @@ App({
             url: 'pages/setauth/setauth',
           })
         }
+      },
+      fail(res){
+        console.log("未授权=====")
+        wx.navigateTo({
+          url: 'pages/setauth/setauth',
+        })
       }
     })
   },
@@ -109,10 +116,10 @@ App({
     userInfo: null,
     map_key: 'QYEBZ-VCMED-DD44G-H4QVE-U7OHS-PAFAA',
     openid: null,
-    getOpenidUrl: 'https://106.14.175.103/getopenid',
-    upUserinfoUrl: 'https://106.14.175.103/upuserinfo',
-    upAreaUrl: 'https://106.14.175.103/uparea',
-    getRecordsUrl: 'https://106.14.175.103/getrecords',
-    upFromopenidUrl: 'https://106.14.175.103/upfromopenid',
+    getOpenidUrl: 'https://sgo.en.com.cn/getopenid',
+    upUserinfoUrl: 'https://sgo.en.com.cn/upuserinfo',
+    upAreaUrl: 'https://sgo.en.com.cn/uparea',
+    getRecordsUrl: 'https://sgo.en.com.cn/getrecords',
+    upFromopenidUrl: 'https://sgo.en.com.cn/upfromopenid',
   }
 })

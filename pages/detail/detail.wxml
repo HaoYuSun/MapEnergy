@@ -6,7 +6,7 @@
     <view class="cell1 cell-t-r">投资成本</view>
   </view>
   <view class="body-cell">
-    <view class="cell1 cell-t-l">{{install_area}}KW ×</view>
+    <view class="cell1 cell-t-l">{{install_area}}MW ×</view>
     <view class="cell1 cell-t-c">
       <input class="cell1-inp" type="digit" maxlength="6" bindblur="w_cost_inp_blur" value="{{w_cost}}"/>
     </view>
