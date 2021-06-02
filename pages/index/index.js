@@ -141,50 +141,49 @@ Page({
     }
     
   },
+
   addPoint: function(longi, lati){
     var that = this;
     let old_markers = that.data.markers;
-    let new_id = old_markers.length;
-          let  marker_point = {
-            id: new_id,
-            longitude: longi,
-            latitude: lati,
-            iconPath: "../../images/point.png",
-            width: 3,
-            height: 3,
-  
-          }
-          old_markers.push(marker_point);
-          that.setData({
-            markers: old_markers
-          })
-   
-          let old_polygons_points =  that.data.polygons_points;
-          let polygons_point = {
-            longitude: longi,
-            latitude: lati,
-            iconPath: "../../images/point.png",
-            width: 1,
-            height: 1,
-          }
-          old_polygons_points.push(polygons_point);
-          console.log(old_polygons_points.length);
-          if(old_polygons_points.length > 2){
-            that.setData({
-              polygons_points : old_polygons_points,
-              polygons : [{
-                points: old_polygons_points,
-                fillColor: "#ffff0033",
-                strokeColor: "#ffCC33",
-                strokeWidth: 2,
-                zIndex: 1
-              }]
-            });
-          }else{
-            that.setData({
-              polygons_points : old_polygons_points
-            });
-          }      
+    let new_id = old_markers.length;
+    let marker_point = {
+      id: new_id,
+      longitude: longi,
+      latitude: lati,
+      iconPath: "../../images/point.png",
+      width: 3,
+      height: 3,
+    }
+    old_markers.push(marker_point);
+    that.setData({
+       markers: old_markers
+    })     
+    let old_polygons_points =  that.data.polygons_points;
+    let polygons_point = {
+      longitude: longi,
+      latitude: lati,
+      iconPath: "../../images/point.png",
+      width: 1,
+      height: 1,
+    }                            
+    old_polygons_points.push(polygons_point);
+    console.log(old_polygons_points.length);
+    if(old_polygons_points.length > 2){
+      that.setData({
+        polygons_points : old_polygons_points,
+        polygons : [{
+          points: old_polygons_points,
+          fillColor: "#ffff0033",
+          strokeColor: "#ffCC33",
+          strokeWidth: 2,
+          zIndex: 1
+        }]
+      });
+    }else{
+      that.setData({
+        polygons_points : old_polygons_points
+      });
+    }            
   },
   /**
    * 计算区域面积 墨卡托投影
