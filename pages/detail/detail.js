@@ -11,6 +11,8 @@ Page({
     sum_price: 0,  // 总投资金额
     generating_year: 0,  // 年发电量
 
+    year_light: 1200,
+
     w_cost:4,  // 每瓦成本
     country_subsidy: 0,  // 国家补贴
     local_subsidy: 0,  // 本地补贴
@@ -22,6 +24,7 @@ Page({
     yield_year: 0,  // 年收益
     pre_tax_yield_year: 0,  // 税前年收益
     back_period: 0,  // 回本周期
+
   },
   /**
    * 更新页面数据
@@ -65,7 +68,8 @@ Page({
         install_area: obj.install_edcapacity,  //安装容量
         sum_price: obj.sum_price,  // 总投资金额
         generating_year: obj.year_generating_capacity,  // 年发电量
-        openid: obj.openid
+        openid: obj.openid,
+        year_light: obj.year_light
       });
     }
     this.updatePageData();

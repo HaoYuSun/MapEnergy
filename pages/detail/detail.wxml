@@ -18,7 +18,7 @@
   </view>
   <view class="body-cell">
     <view class="cell2 cell-t-l">辐照参数(kWh/kWp/年)</view>
-    <view class="cell2 cell-t-r">1200</view>
+    <view class="cell2 cell-t-r">{{year_light}}</view>
   </view>
   <view class="body-cell">
     <view class="cell2 cell-t-l">年发电量(度)</view>

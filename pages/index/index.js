@@ -27,11 +27,13 @@ Page({
       install_edcapacity: 0,  // 装机量
       sum_price: 0,
       area: 0,
-      year_generating_capacity: 0
+      year_generating_capacity: 0,
+      year_light: 1200
     },
     isShow: false,
     inputShowed: true,
-    inputVal: "12312"
+    inputVal: "12312",
+    isUpOver: false
   },
   /**
    * 初始化地图时
@@ -52,6 +54,7 @@ Page({
   refreshTap: function(e){
     var that = this;
     that.setData({
+      isUpOver: false,
       polygons: [],
       polygons_points: [],
       markers:[],
@@ -60,7 +63,8 @@ Page({
         install_edcapacity: 0,
         sum_price: 0,
         area: 0,
-        year_generating_capacity: 0
+        year_generating_capacity: 0,
+        year_light: 1200
       }
     });
   },
@@ -96,12 +100,14 @@ Page({
   */
   backTap: function(e){
     var that = this;
-    console.log(that.data.markers);
+    that.setData({
+      isUpOver: false
+    })
     if(that.data.polygons_points.length > 0){
+      console.log(that.data.polygons)
       that.data.polygons_points.pop();
-      that.data.polygons.pop();
       that.data.markers.pop();
-      console.log(that.data.markers);
+      console.log(that.data.polygons)
 
       if(that.data.markers.length > that.data.polygons_points.length){
         that.data.markers.pop();
@@ -110,21 +116,35 @@ Page({
           install_edcapacity: 0,
           sum_price: 0,
           area: 0,
-          year_generating_capacity: 0
+          year_generating_capacity: 0,
+          year_light: 1200
         }
         that.setData({
-          polygons: that.data.polygons,
           polygons_points: that.data.polygons_points,
           markers: that.data.markers,
           customCalloutInfo: customCalloutInfo
         });
       }else{
         that.setData({
-          polygons: that.data.polygons,
           polygons_points: that.data.polygons_points,
           markers: that.data.markers
         });
       }
+      if(that.data.polygons_points.length > 2){
+        that.setData({
+          polygons : [{
+            points: that.data.polygons_points,
+            fillColor: "#ffff0033",
+            strokeColor: "#ffCC33",
+            strokeWidth: 2,
+            zIndex: 1
+          }]
+        });
+      }else{
+        that.setData({
+          polygons : []
+        });
+      }
     }
   },
   /**
@@ -145,9 +165,29 @@ Page({
     }
     
   },
-
+  /**
+   * 添加坐标共通
+  */
   addPoint: function(longi, lati){
     var that = this;
+
+    //手动添加 可能是在提交后，所以判断是否是冒泡状态
+    if(that.data.markers.length > that.data.polygons_points.length){
+      that.data.markers.pop();
+      let customCalloutInfo = {
+        id: 999,
+        install_edcapacity: 0,
+        sum_price: 0,
+        area: 0,
+        year_generating_capacity: 0,
+        year_light: 1200
+      }
+      that.setData({
+        markers: that.data.markers,
+        customCalloutInfo: customCalloutInfo
+      });
+    }
+
     let old_markers = that.data.markers;
     let new_id = old_markers.length;
     let marker_point = {
@@ -187,9 +227,17 @@ Page({
       that.setData({
         polygons_points : old_polygons_points
       });
-    }            
+    }
+    
+    // 此时肯定未弹面积信息框
+    that.setData({
+      isUpOver: false
+    })
+                
   },
-
+  /**
+   * 授权提醒
+  */
   authset: function(e){
     var that = this;
     wx.getUserProfile({
@@ -212,15 +260,22 @@ Page({
     })
   },
 
-
-
   /**
    * 计算区域面积 墨卡托投影
    * https://www.cnblogs.com/grimm/p/5097383.html
   */
   getAreaTap: function(e){
     var that = this;
+    //防止多次执行
+    if(that.data.isUpOver){
+      console.log('状态未改变');
+      return;
+    }
     if(that.data.polygons_points.length > 2){
+      // 防止多次提交
+      that.setData({
+        isUpOver: true
+      })
       area_api.getArea(that.data.polygons_points).then(res => {
         console.log(JSON.stringify(res));
         let min_longitude = 0;
@@ -258,7 +313,7 @@ Page({
         let new_id = old_markers.length;
         
         var area = Math.ceil(Number(res) * 100) / 100.0;
-        console.log('====='+that.data.address);
+        //提交面积 获取后续数据 此处添加所属城市 以匹配对应城市的光照数据
         wx.request({
           url: app.globalData.upAreaUrl,
           data:{
@@ -266,7 +321,8 @@ Page({
             area: area,
             longitude: c_longitude,
             latitude: t_latitude,
-            address: that.data.address
+            address: that.data.address,
+            city: that.data.citySelected,
           },
           method:"GET",
           success(resp){
@@ -275,13 +331,15 @@ Page({
               let install_edcapacity = resp.data.data.install_edcapacity;
               let sum_price = resp.data.data.sum_price;
               let year_generating_capacity = resp.data.data.year_generating_capacity;
-
+              let year_light = parseFloat(resp.data.data.year_light);
+              console.log(year_light)
               let calloutinfo = {
                 id: new_id,
                 install_edcapacity: install_edcapacity,
                 sum_price: sum_price,
                 area: area,
-                year_generating_capacity: year_generating_capacity
+                year_generating_capacity: year_generating_capacity,
+                year_light: year_light
               }
               that.setData({
                 customCalloutInfo: calloutinfo
@@ -309,24 +367,27 @@ Page({
           },
           fail(resp){
             console.log(resp);
+            // 此时肯定未弹面积信息框
+            that.setData({
+              isUpOver: false
+            })
           }
         });
       });
     }else{
-      // 提示点数不够
-      wx.showModal({
-        title: '提示！',
-        confirmText: '最少需要三个点',
-        showCancel: false,
-        content: e,
-        success: function(res) {
-          if (res.confirm) {
-          }
-        }
-      })
-    }
-    
+      console.log(12121)
+      // 提示点数不够
+      wx.showModal({
+        title: '提示',
+        confirmText: '确定',
+        showCancel: false,
+        content: '最少需要标记三个坐标',
+      })
+    }
   },
+  /**
+   * 地图查找
+  */
   search: function(e){
     var that = this;
     wx.chooseLocation({
@@ -338,19 +399,34 @@ Page({
           longitude: res.longitude,
           address: res.name
         })
+        var param = {
+          location: res.latitude + ',' + res.longitude,
+          key: app.globalData.map_key,
+          get_poi: 1
+        }
+        //下面是get去请求数据
+        var url = config.qqMapApi
+        util.postrequest(url, param).then(res => {
+          var d = res.data.result
+          console.log(d)
+          console.log(d.address_component.city)
+          that.setData({
+            citySelected: d.address_component.city,
+          })
+        })
       },
       fail: res => {
         console.log('打开地图选择位置取消', res)
       }
     })
   },
-//  https://blog.csdn.net/weixin_42460570/article/details/103800766
-// https://jingyan.baidu.com/article/642c9d34a36283254b46f736.html
-// https://blog.csdn.net/hql1024/article/details/105971096
-// https://www.freesion.com/article/6660601183/
+  /**
+   *  onLoad
+  */
   onLoad: function (options) {  
     var that = this;
     var fromopenid = '';
+
     if(options.fromopenid){
       fromopenid = options.fromopenid;
     }
@@ -382,7 +458,7 @@ Page({
               var url = config.qqMapApi
               util.postrequest(url, param).then(res => {
                 var d = res.data.result
-                console.log(d.address)
+                console.log(d)
                 console.log(d.address_component.city)
                 that.setData({
                   address: d.address,
@@ -398,7 +474,9 @@ Page({
       this.setData({
         openid: app.globalData.openid
       });
-      that.upfromopenid(fromopenid);
+      if(fromopenid != ''){
+        that.upfromopenid(fromopenid);
+      }
     } else {
       wx.login({
         success: function (r) {
@@ -416,7 +494,9 @@ Page({
                 that.setData({
                   openid: res.data.openid
                 });
-                that.upfromopenid(fromopenid);
+                if(fromopenid != ''){
+                  that.upfromopenid(fromopenid);
+                }
               }
             }
           });
@@ -462,30 +542,7 @@ Page({
   selectResult: function (e) {
       console.log('select result', e.detail)
   },
-  /**
-     * 将焦点给到 input（在真机上不能获取input焦点）
-     */
-    tapInput() {
-      this.setData({
-          //在真机上将焦点给input
-          inputFocus:true,
-          //初始占位清空
-          inputInfo: ''
-      });
-  },
 
-  /**
-   * input 失去焦点后将 input 的输入内容给到cover-view
-   */
-  blurInput(e) {
-      this.setData({
-          inputInfo: e.detail.value || '输入'
-      });
-  },
-
-  hometap:function(e){
-    console.log('123123');
-  },
   righttap:function(e) {
     var that = this;
     wx.getLocation({
@@ -502,16 +559,10 @@ Page({
   mapclick(res){
     var that = this;
     if(that.data.isShow){
-      // console.log(res.detail.latitude);
-      // console.log(res.detail.longitude);
       that.addPoint(res.detail.longitude, res.detail.latitude);
     }
-    
   },
 
-  _locationChangeFn(res) {
-    console.log('location change', res)
-   },
   //视野发生变化时触发 移动
   regionchange(e) {
   },
@@ -524,8 +575,6 @@ Page({
         dict['openid'] = that.data.openid;
         var para = JSON.stringify(dict);
         let sendurl = encodeURIComponent('/pages/detail/detail?para=' + para);
-        // url = '../detail/detail?para=' + para;
-  
         return {
           title: '能源预算',
           path: `/pages/index/index?fromopenid=${oepnid}&url=${sendurl}` // 分享后打开的页面
