@@ -7,6 +7,15 @@ Page({
    * 页面的初始数据
    */
   data: {
+    tabs: [
+      {
+        "text": "个人记录",
+      },
+      {
+        "text": "他人分享",
+      }
+    ],
+    activeTab: 0,
     openid: '',
     pageid: 1,
     pagesize: 12,
