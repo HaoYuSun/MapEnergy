@@ -1,3 +1,6 @@
+page {
+  overflow: hidden;
+}
 .meview{
   width: 100%;
   background-image: radial-gradient(circle at center top, rgba(214, 186, 140, 0.6) 0%, rgba(214, 186, 140, 0.8) 82%);

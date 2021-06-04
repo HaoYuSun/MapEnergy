@@ -1,8 +1,11 @@
 /* pages/detail/detail.wxss */
+page {
+  overflow: hidden;
+}
 .body{
-  width: 88vw;
-  padding: 3vh 6vw;
-  height: 94vh;
+  width: 94vw;
+  padding: 0vh 3vw 1vh 3vw;
+  height: 99vh;
   /* background-color: red; */
 }
 

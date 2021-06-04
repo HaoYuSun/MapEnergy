@@ -122,6 +122,7 @@ App({
     upUserinfoUrl: 'https://sgo.en.com.cn/upuserinfo',
     upAreaUrl: 'https://sgo.en.com.cn/uparea',
     getRecordsUrl: 'https://sgo.en.com.cn/getrecords',
+    getRecordDetailUrl: 'https://sgo.en.com.cn/getrecorddetail',
     upFromopenidUrl: 'https://sgo.en.com.cn/upfromopenid',
   }
 })

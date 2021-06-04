@@ -1,10 +1,12 @@
 // pages/detail/detail.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    recordid: 0,
     openid:'',
     area: 0,  // 面积
     install_area: 0,  //安装容量
@@ -25,6 +27,21 @@ Page({
     pre_tax_yield_year: 0,  // 税前年收益
     back_period: 0,  // 回本周期
 
+
+    latitude: 0,//纬度
+    longitude: 0,//经度
+    //标记点
+    polygons: [],
+    polygons_points: [],
+    markers:[],
+    customCalloutInfo:{
+      id: 999,
+      install_edcapacity: 0,  // 装机量
+      sum_price: 0,
+      area: 0,
+      year_generating_capacity: 0,
+      year_light: 1200
+    },
   },
   /**
    * 更新页面数据
@@ -60,19 +77,61 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    console.log(options)
-    if(Object.keys(options).length > 0){
-      var obj = JSON.parse(options.para);
+    console.log(Object.keys(options).length)
+    console.log(options.recordid)
+    if(Object.keys(options).length == 2){
+
       that.setData({
-        area: obj.area,  // 面积
-        install_area: obj.install_edcapacity,  //安装容量
-        sum_price: obj.sum_price,  // 总投资金额
-        generating_year: obj.year_generating_capacity,  // 年发电量
-        openid: obj.openid,
-        year_light: obj.year_light
-      });
+        recordid: options.recordid,
+        openid: options.openid
+      })
+
+      that.getDetail();
+      // var obj = JSON.parse(options.para);
+      // console.log(obj)
+
+      // that.setData({
+      //   latitude: obj.latitude,
+      //   longitude: obj.longitude,
+      //   polygons: obj.polygons,
+      //   area: obj.customCalloutInfo.area,  // 面积
+      //   install_area: obj.customCalloutInfo.install_edcapacity,  //安装容量
+      //   sum_price: obj.customCalloutInfo.sum_price,  // 总投资金额
+      //   generating_year: obj.customCalloutInfo.year_generating_capacity,  // 年发电量
+      //   openid: obj.openid,
+      //   year_light: obj.year_light
+      // });
     }
-    this.updatePageData();
+    
+  },
+
+  getDetail: function(e){
+    var that = this;
+    wx.request({
+      url: app.globalData.getRecordDetailUrl,
+      data:{
+        openid: that.data.openid,
+        recordid: that.data.recordid
+      },
+      method:"GET",
+      success(resp){
+        if(resp.data.code == '0'){
+          console.log(resp)
+          that.setData({
+            latitude: resp.data.detail.latitude,
+            longitude: resp.data.detail.longitude,
+            polygons: JSON.parse(resp.data.detail.polygons),
+            area: resp.data.detail.area,  // 面积
+            install_area: resp.data.detail.install_area,  //安装容量
+            sum_price: resp.data.detail.sum_price,  // 总投资金额
+            generating_year: resp.data.detail.generating_year,  // 年发电量
+            year_light: resp.data.detail.year_light
+          });
+
+          that.updatePageData();
+        }
+      }
+    });
   },
 
   /**

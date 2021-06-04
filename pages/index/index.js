@@ -12,6 +12,7 @@ const area = require("../../utils/area.js");
 
 Page({
   data: {
+    recordid: 0,
     openid: '',
     address: '',
     inputModel: '',
@@ -78,11 +79,12 @@ Page({
   */
  detailTap: function(e){
     var that = this;
-    var dict = that.data.customCalloutInfo;
-    dict['openid'] = that.data.openid;
-    var para = JSON.stringify(dict);
+//     var dict = that.data.customCalloutInfo;
+//     var dict = that.data;
+//     dict['openid'] = that.data.openid;
+//     var para = JSON.stringify(dict);
     wx.navigateTo({
-      url: '../detail/detail?para=' + para,
+      url: '../detail/detail?recordid=' +that.data.recordid+'&openid='+that.data.openid,
     })
   },
 
@@ -357,6 +359,7 @@ Page({
             latitude: t_latitude,
             address: that.data.address,
             city: that.data.citySelected,
+            polygons: that.data.polygons
           },
           method:"GET",
           success(resp){
@@ -394,7 +397,8 @@ Page({
               }
               old_markers.push(marker_point);
               that.setData({
-                markers: old_markers
+                markers: old_markers,
+                recordid: resp.data.data.recordid
               })
             }
             // that.getUserInfo();
@@ -616,10 +620,13 @@ Page({
     var that = this;
     if(that.data.customCalloutInfo.area > 0){
         var oepnid = that.data.openid;
-        var dict = that.data.customCalloutInfo;
-        dict['openid'] = that.data.openid;
+  //       var dict = that.data.customCalloutInfo;
+  //       var dict = {
+  //         'recordid': 
+  //       };
+  //       dict['openid'] = that.data.openid;
         var para = JSON.stringify(dict);
-        let sendurl = encodeURIComponent('/pages/detail/detail?para=' + para);
+        let sendurl = encodeURIComponent('/pages/detail/detail?recordid=' +that.data.recordid+'&openid='+that.data.openid);
         return {
           title: '能源预算',
           path: `/pages/index/index?fromopenid=${oepnid}&url=${sendurl}` // 分享后打开的页面

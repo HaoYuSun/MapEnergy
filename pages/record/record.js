@@ -18,9 +18,12 @@ Page({
   cellTap: function(e){
     var that = this;
     var index = e.currentTarget.dataset.index;
-    var para = JSON.stringify(that.data.list[index].fields);
+    var recordid = that.data.list[index].pk;
+
+    // var para = JSON.stringify(that.data.list[index].fields);
+    // console.log(para)
     wx.navigateTo({
-      url: '../detail/detail?para=' + para,
+      url: '../detail/detail?recordid=' +recordid+'&openid='+that.data.openid,
     })
   },
   /**
@@ -51,6 +54,7 @@ Page({
       method:"GET",
       success(resp){
         if(resp.data.code == '0'){
+          console.log(resp)
           var size = resp.data.pagesize;
           var pageid = resp.data.pageid;
           var cpageid = pageid;
