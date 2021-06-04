@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    fromopenid: '',
     recordid: 0,
     openid:'',
     area: 0,  // 面积
@@ -79,30 +80,67 @@ Page({
     var that = this;
     console.log(Object.keys(options).length)
     console.log(options.recordid)
-    if(Object.keys(options).length == 2){
 
+    // 分享来的
+    if(options.fromopenid){
       that.setData({
-        recordid: options.recordid,
+        fromopenid: options.fromopenid
+      })
+    }
+
+    if(options.recordid){
+      that.setData({
+        recordid: options.recordid
+      })
+    }
+
+    if(options.openid){
+      that.setData({
         openid: options.openid
       })
-
+      //有openid后再取详情
       that.getDetail();
-      // var obj = JSON.parse(options.para);
-      // console.log(obj)
-
-      // that.setData({
-      //   latitude: obj.latitude,
-      //   longitude: obj.longitude,
-      //   polygons: obj.polygons,
-      //   area: obj.customCalloutInfo.area,  // 面积
-      //   install_area: obj.customCalloutInfo.install_edcapacity,  //安装容量
-      //   sum_price: obj.customCalloutInfo.sum_price,  // 总投资金额
-      //   generating_year: obj.customCalloutInfo.year_generating_capacity,  // 年发电量
-      //   openid: obj.openid,
-      //   year_light: obj.year_light
-      // });
+    }else{
+      // 获取openid
+      wx.login({
+        success: function (r) {
+          var code = r.code;//登录凭证
+          let getOpenidUrl = app.globalData.getOpenidUrl;
+          wx.request({
+            url: getOpenidUrl,
+            data:{
+              js_code: code,
+            },
+            method:"GET",
+            success(res){
+              if(res.data.code == '0'){
+                console.log(res)
+                app.globalData.openid=res.data.openid;
+                that.setData({
+                  openid: res.data.openid
+                })
+                //有openid后再取详情
+                that.getDetail();
+              }
+              console.log(that.globalData.openid)
+            }
+          });
+        },
+        fail: function () {
+          wx.showModal({
+            title: '提示！',
+            confirmText: '系统错误',
+            showCancel: false,
+            content: e,
+            success: function(res) {
+              if (res.confirm) {
+              }
+            }
+          })
+          console.log('系统错误')
+        }
+      })
     }
-    
   },
 
   getDetail: function(e){
@@ -111,7 +149,8 @@ Page({
       url: app.globalData.getRecordDetailUrl,
       data:{
         openid: that.data.openid,
-        recordid: that.data.recordid
+        recordid: that.data.recordid,
+        fromopenid: that.data.fromopenid
       },
       method:"GET",
       success(resp){

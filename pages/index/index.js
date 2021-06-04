@@ -625,8 +625,8 @@ Page({
   //         'recordid': 
   //       };
   //       dict['openid'] = that.data.openid;
-        var para = JSON.stringify(dict);
-        let sendurl = encodeURIComponent('/pages/detail/detail?recordid=' +that.data.recordid+'&openid='+that.data.openid);
+  //       var para = JSON.stringify(dict);
+        let sendurl = encodeURIComponent('/pages/detail/detail?recordid=' +that.data.recordid+'&fromopenid='+oepnid);
         return {
           title: '能源预算',
           path: `/pages/index/index?fromopenid=${oepnid}&url=${sendurl}` // 分享后打开的页面
