@@ -8,6 +8,7 @@
         bindregionchange="regionchange"
         bindtap='mapclick'
         polygons="{{polygons}}"
+        polyline="{{polyline}}"
         bindcallouttap="detailTap" 
         show-location 
         enable-satellite

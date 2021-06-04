@@ -21,6 +21,8 @@ Page({
     //标记点
     polygons: [],
     polygons_points: [],
+    polyline: [],
+    polyline_points: [],
     markers:[],
     customCalloutInfo:{
       id: 999,
@@ -58,6 +60,8 @@ Page({
       polygons: [],
       polygons_points: [],
       markers:[],
+      polyline: [],
+      polyline_points: [],
       customCalloutInfo:{
         id: 999,
         install_edcapacity: 0,
@@ -145,6 +149,14 @@ Page({
           polygons : []
         });
       }
+
+      //处理polyline
+      if(that.data.polygons_points.length < 2){
+        that.data.polyline_points.pop();
+        that.setData({
+          polyline:[]
+        })
+      }
     }
   },
   /**
@@ -154,7 +166,8 @@ Page({
     var that = this;
     if(that.data.isShow == false){
       that.setData({
-        isShow: true
+        isShow: true,
+        markers: []
       });
     }else{
       this.mapCtx.getCenterLocation({
@@ -228,7 +241,28 @@ Page({
         polygons_points : old_polygons_points
       });
     }
-    
+    console.log('old_markers.length:'+old_markers.length)
+    if(that.data.polyline_points.length < 2){
+      that.data.polyline_points.push({
+        longitude: longi,
+        latitude: lati,
+      })
+    }
+    if(old_markers.length == 2){
+      that.setData({
+        polyline: [{
+          points: that.data.polyline_points,
+          color: "#ffCC33",
+          width: 2
+        }]
+      })
+    }else{
+      // that.setData({
+      //   polyline: []
+      // })
+    }
+
+
     // 此时肯定未弹面积信息框
     that.setData({
       isUpOver: false
@@ -391,14 +425,27 @@ Page({
   search: function(e){
     var that = this;
     wx.chooseLocation({
+      latitude: that.data.latitude,
+      longitude: that.data.longitude,
       success: res => {
         // that.getValueMap(res)
         that.setData({
           /*赋值*/
           latitude: res.latitude,
           longitude: res.longitude,
-          address: res.name
+          address: res.name,
+          isShow: false,
+          markers: [{
+            id: 100,
+            longitude: res.longitude,
+            latitude: res.latitude,
+            iconPath: "../../images/point.png",
+            width: 10,
+            height: 10,
+          }]
         })
+
+
         var param = {
           location: res.latitude + ',' + res.longitude,
           key: app.globalData.map_key,
@@ -408,8 +455,6 @@ Page({
         var url = config.qqMapApi
         util.postrequest(url, param).then(res => {
           var d = res.data.result
-          console.log(d)
-          console.log(d.address_component.city)
           that.setData({
             citySelected: d.address_component.city,
           })
