@@ -1,6 +1,17 @@
-<view class="page">
-    <mp-tabbar style="margin-top:-20px" list="{{tabs}}" bindchange="tabChange"></mp-tabbar>
-
+<view class="body">
+    <view class="meview">
+    <view class="selectview">
+        <view bindtap="selchange" data-type="0" class="item2 {{isLeftSel == true ? 'doing' : ''}}">
+            <view>个人记录</view>
+            <image class="selfselimg {{isLeftSel == true ? '' : 'dn'}}" src="../../images/selfselimg.png"></image>
+        </view>
+            <view bindtap="selchange" data-type="1" class="item2 {{isLeftSel == true ? '' : 'doing'}}">
+            <view>他人分享</view>
+            <image class="selfselimg {{isLeftSel == true ? 'dn' : ''}}" src="../../images/selfselimg.png"></image>
+        </view>
+    </view>
+</view>
+<view style="margin-top:57px">
   <mp-cells title="">
       <mp-cell link wx:for="{{list}}" wx:for-index="idx" data-index="{{idx}}" bindtap="cellTap">
           <view slot="title" style="position: relative;margin-right: 10px;">
@@ -11,4 +22,5 @@
           <view style="font-size: 13px;color: #888888;">总面积(m²)：{{item.fields.area}},装机容量(MW):{{item.fields.install_edcapacity}}</view>
       </mp-cell>
   </mp-cells>
+</view>
 </view>

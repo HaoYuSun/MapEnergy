@@ -7,21 +7,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-    tabs: [
-      {
-        "text": "个人记录",
-      },
-      {
-        "text": "他人分享",
-      }
-    ],
+    isLeftSel: true,
     activeTab: 0,
     openid: '',
     pageid: 1,
     pagesize: 12,
     isall: false,
     icon: '../../images/right.png',
-    list:[]
+    list:[],
+    proType: 0,
   },
 
   cellTap: function(e){
@@ -35,6 +29,36 @@ Page({
       url: '../detail/detail?recordid=' +recordid+'&openid='+that.data.openid,
     })
   },
+
+  selchange: function (e) {
+    var that = this;
+    var type = e.currentTarget.dataset.type;
+    if ((type == "0" && that.data.isLeftSel == true) || (type == "1" && that.data.isLeftSel == false)) {
+      return;
+    }
+
+    if (type == 0) {
+      that.setData({
+        isLeftSel: true,
+        pageId: 1,
+        list: [],
+        isall: false,
+        proType: 0
+      })
+    } else {
+      that.setData({
+        isLeftSel: false,
+        pageId: 1,
+        list: [],
+        isall: false,
+        proType: 1
+      })
+    }
+
+    this.getRecordsList();
+
+  },
+  
   /**
    * 生命周期函数--监听页面加载
    */
@@ -58,7 +82,8 @@ Page({
       data:{
         openid: that.data.openid,
         pageid: that.data.pageid,
-        pagesize: that.data.pagesize
+        pagesize: that.data.pagesize,
+        proType: that.data.proType
       },
       method:"GET",
       success(resp){
@@ -67,20 +92,22 @@ Page({
           var size = resp.data.pagesize;
           var pageid = resp.data.pageid;
           var cpageid = pageid;
-          if(size > 0){
+          var len = resp.data.list.length;
+          if(len == size){
             var list = resp.data.list;
             var old_list = that.data.list;
             var new_list = old_list.concat(list);
             if(pageid == 1){
               new_list = list;
             }
-            if(size == that.data.pagesize){
-              pageid += 1;
-            }else{
-              that.setData({
-                isall: true
-              })
-            }
+            // if(size == that.data.pagesize){
+            //   pageid += 1;
+            // }else{
+            //   that.setData({
+            //     isall: true
+            //   })
+            // }
+            pageid += 1;
 
             that.setData({
               list: new_list,

@@ -386,7 +386,7 @@ Page({
                 id: new_id,
                 longitude: c_longitude,
                 latitude: c_latitude,
-                iconPath: "../../images/redpoint.png",
+                iconPath: "../../images/point.png",
                 width: 2,
                 height: 2,
                 customCallout:{//自定义气泡

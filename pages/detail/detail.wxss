@@ -1,7 +1,7 @@
 /* pages/detail/detail.wxss */
-page {
+/* page {
   overflow: hidden;
-}
+} */
 .body{
   width: 94vw;
   padding: 0vh 3vw 1vh 3vw;
