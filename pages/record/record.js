@@ -23,8 +23,6 @@ Page({
     var index = e.currentTarget.dataset.index;
     var recordid = that.data.list[index].pk;
 
-    // var para = JSON.stringify(that.data.list[index].fields);
-    // console.log(para)
     wx.navigateTo({
       url: '../detail/detail?recordid=' +recordid+'&openid='+that.data.openid,
     })
@@ -77,6 +75,8 @@ Page({
     if(that.data.isall){
       return;
     }
+    console.log('getrecord:'+that.data.openid)
+    console.log('getrecord:'+that.data.proType)
     wx.request({
       url: app.globalData.getRecordsUrl,
       data:{
@@ -100,13 +100,7 @@ Page({
             if(pageid == 1){
               new_list = list;
             }
-            // if(size == that.data.pagesize){
-            //   pageid += 1;
-            // }else{
-            //   that.setData({
-            //     isall: true
-            //   })
-            // }
+            console.log(JSON.stringify(new_list))
             pageid += 1;
 
             that.setData({
