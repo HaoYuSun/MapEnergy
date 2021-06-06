@@ -211,7 +211,6 @@ Page({
       iconPath: "../../images/point.png",
       width: 6,
       height: 6,
-      label:{}
     }
     that.data.point_markers.push(marker_point);
 

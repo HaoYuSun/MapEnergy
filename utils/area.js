@@ -116,9 +116,9 @@ function distance(data) {
 						id: 300+i,
 						latitude: tag_latitude,
 						longitude: tag_longitude,
-						iconPath: "../../images/point.png",
-						width: 0,
-						height: 0,
+						iconPath: "../../images/point1.png",
+						width: 1,
+						height: 1,
 						label:{
 							content: s + '米',  //文本
 							color: '#000',  //文本颜色
@@ -146,8 +146,8 @@ function distance(data) {
 						latitude: tag_latitude,
 						longitude: tag_longitude,
 						iconPath: "../../images/point.png",
-						width: 0,
-						height: 0,
+						width: 1,
+						height: 1,
 						label:{
 							content: s + '米',  //文本
 							color: '#000',  //文本颜色

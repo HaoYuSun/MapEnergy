@@ -170,6 +170,7 @@
   color: rgba(136, 136, 25, 0.87);
   border-top: solid 0.1vw #f2f2f2;
   border-right: solid 0.1vw #f2f2f2;
+  
   /* line-height: 10vw; */
 }
 .areainfo-body-cell-width{

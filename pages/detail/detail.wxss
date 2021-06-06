@@ -62,4 +62,5 @@
   text-align: center;
   padding: 5px;
   margin: 20px 25vw;
+  line-height: 30px;
 }
