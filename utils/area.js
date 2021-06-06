@@ -95,9 +95,85 @@ function getArea(data) {
   
 }
 
+function distance(data) {
+	return new Promise(function(resolve, reject) {
+		var pointArr = new Array();
+		for (var i = 0; i < data.length; i++) {
+			if(i==1 && data.length == 2){
+				break;
+			}else{
+				if(i==(data.length-1)){
+					var La1 = data[i]['latitude'] * Math.PI / 180.0;
+					var La2 = data[0]['latitude'] * Math.PI / 180.0;
+					var La3 = La1 - La2;
+					var Lb3 = data[i]['longitude'] * Math.PI / 180.0 - data[0]['longitude'] * Math.PI / 180.0;
+					var s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(La3 / 2), 2) + Math.cos(La1) * Math.cos(La2) * Math.pow(Math.sin(Lb3 / 2), 2)));
+					s = s * 6378.137;//地球半径
+					s = Math.round(s * 1000);
+					var tag_longitude = (data[i]['longitude'] + data[0]['longitude']) / 2;
+					var tag_latitude = (data[i]['latitude'] + data[0]['latitude']) / 2
+					var point = {
+						id: 300+i,
+						latitude: tag_latitude,
+						longitude: tag_longitude,
+						iconPath: "../../images/point.png",
+						width: 0,
+						height: 0,
+						label:{
+							content: s + '米',  //文本
+							color: '#000',  //文本颜色
+							borderRadius: 1,  //边框圆角
+							borderWidth: 0,  //边框宽度
+							borderColor: '#FF0202',  //边框颜色
+							bgColor: '#ffff00',  //背景色
+							padding: 2,  //文本边缘留白
+							textAlign: 'center'  //文本对齐方式。有效值: left, right, center
+						}
+					};
+					pointArr.push(point);
+				}else{
+					var La1 = data[i]['latitude'] * Math.PI / 180.0;
+					var La2 = data[i+1]['latitude'] * Math.PI / 180.0;
+					var La3 = La1 - La2;
+					var Lb3 = data[i]['longitude'] * Math.PI / 180.0 - data[i+1]['longitude'] * Math.PI / 180.0;
+					var s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(La3 / 2), 2) + Math.cos(La1) * Math.cos(La2) * Math.pow(Math.sin(Lb3 / 2), 2)));
+					s = s * 6378.137;//地球半径
+					s = Math.round(s * 1000);
+					var tag_longitude = (data[i]['longitude'] + data[i+1]['longitude']) / 2;
+					var tag_latitude = (data[i]['latitude'] + data[i+1]['latitude']) / 2
+					var point = {
+						id: 300+i,
+						latitude: tag_latitude,
+						longitude: tag_longitude,
+						iconPath: "../../images/point.png",
+						width: 0,
+						height: 0,
+						label:{
+							content: s + '米',  //文本
+							color: '#000',  //文本颜色
+							borderRadius: 1,  //边框圆角
+							borderWidth: 0,  //边框宽度
+							borderColor: '#FF0202',  //边框颜色
+							bgColor: '#ffff00',  //背景色
+							padding: 2,  //文本边缘留白
+							textAlign: 'center'  //文本对齐方式。有效值: left, right, center
+						}
+					};
+					pointArr.push(point);
+				}
+				
+			}
+		}
+
+		resolve(pointArr);
+  })	
+}
+
+
 
 const AreaAPI = {
-  getArea: (data) => getArea(data),
+	getArea: (data) => getArea(data),
+	distance: (data) => distance(data)
 };
 
 module.exports = {

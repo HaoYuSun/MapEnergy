@@ -86,7 +86,7 @@
 
 <cover-image wx:if="{{isShow}}" class="home_t_left_contr" src="../../images/menu_1.png" bindtap="refreshTap"></cover-image>
 <cover-image wx:if="{{isShow}}" class="home_t_center_contr" src="../../images/menu_2.png" bindtap="backTap"></cover-image>
-<cover-image wx:if="{{isShow}}" class="home_t_right_contr" src="../../images/menu_3.png" bindtap="getAreaTap"></cover-image>
+<cover-image wx:if="{{isShow && !isUpOver}}" class="home_t_right_contr" src="../../images/menu_3.png" bindtap="getAreaTap"></cover-image>
 
 <cover-image  wx:if="{{isShow}}" class="home_contr" src="../../images/center_menu.png" bindtap="addCenterLocation"></cover-image>
 <cover-image  wx:if="{{isShow == false}}" class="home_contr" src="../../images/center_home.png" bindtap="addCenterLocation"></cover-image>

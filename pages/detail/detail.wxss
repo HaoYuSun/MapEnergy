@@ -53,3 +53,13 @@
   margin-left: 28vw;
   text-align: right;
 }
+
+.baocun{
+  width: 50vw;
+  height: 30px;
+  border-radius: 15px;
+  background-color: rgba(214, 186, 140, 0.8);
+  text-align: center;
+  padding: 5px;
+  margin: 20px 25vw;
+}

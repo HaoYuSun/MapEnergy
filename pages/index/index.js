@@ -25,6 +25,8 @@ Page({
     polyline: [],
     polyline_points: [],
     markers:[],
+    tag_markers:[],
+    point_markers:[],
     customCalloutInfo:{
       id: 999,
       install_edcapacity: 0,  // 装机量
@@ -36,7 +38,8 @@ Page({
     isShow: false,
     inputShowed: true,
     inputVal: "12312",
-    isUpOver: false
+    isUpOver: false,
+    
   },
   /**
    * 初始化地图时
@@ -61,6 +64,8 @@ Page({
       polygons: [],
       polygons_points: [],
       markers:[],
+      tag_markers:[],
+      point_markers:[],
       polyline: [],
       polyline_points: [],
       customCalloutInfo:{
@@ -110,10 +115,10 @@ Page({
       isUpOver: false
     })
     if(that.data.polygons_points.length > 0){
-      console.log(that.data.polygons)
+
       that.data.polygons_points.pop();
-      that.data.markers.pop();
-      console.log(that.data.polygons)
+      that.data.point_markers.pop();
+      that.data.tag_markers.pop();
 
       if(that.data.markers.length > that.data.polygons_points.length){
         that.data.markers.pop();
@@ -126,36 +131,33 @@ Page({
           year_light: 1200
         }
         that.setData({
-          polygons_points: that.data.polygons_points,
-          markers: that.data.markers,
           customCalloutInfo: customCalloutInfo
         });
-      }else{
-        that.setData({
-          polygons_points: that.data.polygons_points,
-          markers: that.data.markers
-        });
       }
-      if(that.data.polygons_points.length > 2){
-        that.setData({
-          polygons : [{
-            points: that.data.polygons_points,
-            fillColor: "#ffff0033",
-            strokeColor: "#ffCC33",
-            strokeWidth: 2,
-            zIndex: 1
-          }]
-        });
-      }else{
-        that.setData({
-          polygons : []
-        });
-      }
 
-      //处理polyline
-      if(that.data.polygons_points.length < 2){
+      if(that.data.polygons_points.length > 1){
+        area_api.distance(that.data.polygons_points).then(res => {
+          that.data.tag_markers = res;
+          // console.log("----"+that.data.tag_markers)
+          that.setData({
+            tag_markers: that.data.tag_markers,
+            markers: [...that.data.point_markers,...that.data.tag_markers],
+            polygons_points: that.data.polygons_points,
+            polygons : [{
+              points: that.data.polygons_points,
+              fillColor: "#ffff0033",
+              strokeColor: "#ffCC33",
+              strokeWidth: 2,
+              zIndex: 1
+            }]
+          })
+        })
+      }else{
         that.data.polyline_points.pop();
         that.setData({
+          markers: [...that.data.point_markers,...that.data.tag_markers],
+          polygons_points: that.data.polygons_points,
+          polygons : [],
           polyline:[]
         })
       }
@@ -178,7 +180,6 @@ Page({
         }
       });
     }
-    
   },
   /**
    * 添加坐标共通
@@ -203,20 +204,17 @@ Page({
       });
     }
 
-    let old_markers = that.data.markers;
-    let new_id = old_markers.length;
     let marker_point = {
-      id: new_id,
+      id: that.data.point_markers.length,
       longitude: longi,
       latitude: lati,
       iconPath: "../../images/point.png",
-      width: 3,
-      height: 3,
+      width: 6,
+      height: 6,
+      label:{}
     }
-    old_markers.push(marker_point);
-    that.setData({
-       markers: old_markers
-    })     
+    that.data.point_markers.push(marker_point);
+
     let old_polygons_points =  that.data.polygons_points;
     let polygons_point = {
       longitude: longi,
@@ -226,31 +224,31 @@ Page({
       height: 1,
     }                            
     old_polygons_points.push(polygons_point);
-    console.log(old_polygons_points.length);
-    if(old_polygons_points.length > 2){
-      that.setData({
-        polygons_points : old_polygons_points,
-        polygons : [{
-          points: old_polygons_points,
-          fillColor: "#ffff0033",
-          strokeColor: "#ffCC33",
-          strokeWidth: 2,
-          zIndex: 1
-        }]
-      });
-    }else{
-      that.setData({
-        polygons_points : old_polygons_points
-      });
-    }
-    console.log('old_markers.length:'+old_markers.length)
+
+    // if(old_polygons_points.length > 2){
+    //   that.setData({
+    //     polygons_points : old_polygons_points,
+    //     polygons : [{
+    //       points: old_polygons_points,
+    //       fillColor: "#ffff0033",
+    //       strokeColor: "#ffCC33",
+    //       strokeWidth: 2,
+    //       zIndex: 1
+    //     }]
+    //   });
+    // }else{
+    //   that.setData({
+    //     polygons_points : old_polygons_points
+    //   });
+    // }
+
     if(that.data.polyline_points.length < 2){
       that.data.polyline_points.push({
         longitude: longi,
         latitude: lati,
       })
     }
-    if(old_markers.length == 2){
+    if(that.data.point_markers.length == 2){
       that.setData({
         polyline: [{
           points: that.data.polyline_points,
@@ -258,18 +256,40 @@ Page({
           width: 2
         }]
       })
-    }else{
-      // that.setData({
-      //   polyline: []
-      // })
     }
 
-
-    // 此时肯定未弹面积信息框
-    that.setData({
-      isUpOver: false
-    })
-                
+    if(that.data.polygons_points.length > 1){
+      area_api.distance(that.data.polygons_points).then(res => {
+        that.data.tag_markers = res;
+        if(that.data.polygons_points.length == 2){
+          that.setData({
+            markers: [...that.data.point_markers,...that.data.tag_markers],
+            isUpOver: false,
+            polygons_points : old_polygons_points,
+          })
+        }else{
+          that.setData({
+            markers: [...that.data.point_markers,...that.data.tag_markers],
+            isUpOver: false,
+            polygons_points : old_polygons_points,
+            polygons : [{
+              points: old_polygons_points,
+              fillColor: "#ffff0033",
+              strokeColor: "#ffCC33",
+              strokeWidth: 2,
+              zIndex: 1
+            }]
+          })
+        }
+        
+      })
+    }else{
+      that.setData({
+        markers:[...that.data.point_markers,...that.data.tag_markers],
+        isUpOver: false,
+        polygons_points : old_polygons_points
+      })
+    }     
   },
   /**
    * 授权提醒

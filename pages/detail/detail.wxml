@@ -61,7 +61,7 @@
   <view class="body-cell">
     <view class="cell1 cell-t-l">{{install_area}}MW ×</view>
     <view class="cell1 cell-t-c">
-      <input class="cell1-inp" type="digit" maxlength="6" bindblur="w_cost_inp_blur" value="{{w_cost}}"/>
+      <input class="cell1-inp" type="digit" maxlength="6" bindfocus="w_cost_inp_focus" bindblur="w_cost_inp_blur" value="{{w_cost}}"/>
     </view>
     <view class="cell1 cell-t-r">¥ {{sum_price}}万</view>
   </view>
@@ -81,37 +81,37 @@
   <view class="body-cell">
     <view class="cell2 cell-t-l">国家补贴(元/瓦)</view>
     <view class="cell2 cell-t-r">
-      <input class="cell2-inp" type="digit" maxlength="6" bindblur="country_subsidy_inp_blur" value="{{country_subsidy}}"/>
+      <input class="cell2-inp" type="digit" maxlength="6" bindfocus="country_subsidy_inp_focus" bindblur="country_subsidy_inp_blur" value="{{country_subsidy}}"/>
     </view>
   </view>
   <view class="body-cell">
     <view class="cell2 cell-t-l">地方补贴(元/瓦)</view>
     <view class="cell2 cell-t-r">
-      <input class="cell2-inp" type="digit" maxlength="6" bindblur="local_subsidy_inp_blur" value="{{local_subsidy}}"/>
+      <input class="cell2-inp" type="digit" maxlength="6" bindfocus="local_subsidy_inp_focus" bindblur="local_subsidy_inp_blur" value="{{local_subsidy}}"/>
     </view>
   </view>
   <view class="body-cell">
     <view class="cell2 cell-t-l">初装补贴(元/瓦)</view>
     <view class="cell2 cell-t-r">
-      <input class="cell2-inp" type="digit" maxlength="6" bindblur="init_subsidy_inp_blur" value="{{init_subsidy}}"/>
+      <input class="cell2-inp" type="digit" maxlength="6" bindfocus="init_subsidy_inp_focus" bindblur="init_subsidy_inp_blur" value="{{init_subsidy}}"/>
     </view>
   </view>
   <view class="body-cell">
     <view class="cell2 cell-t-l">度电收益(元/瓦)</view>
     <view class="cell2 cell-t-r">
-      <input class="cell2-inp" type="digit" maxlength="6" bindblur="yield_inp_blur" value="{{yield}}"/>
+      <input class="cell2-inp" type="digit" maxlength="6" bindfocus="yield_inp_focus" bindblur="yield_inp_blur" value="{{yield}}"/>
     </view>
   </view>
   <view class="body-cell">
     <view class="cell2 cell-t-l">租金(元/平方米/年)</view>
     <view class="cell2 cell-t-r">
-      <input class="cell2-inp" type="digit" maxlength="6" bindblur="rent_inp_blur" value="{{rent}}"/>
+      <input class="cell2-inp" type="digit" maxlength="6" bindfocus="rent_inp_focus" bindblur="rent_inp_blur" value="{{rent}}"/>
     </view>
   </view>
   <view class="body-cell">
     <view class="cell2 cell-t-l">运维成本(元/W/年)</view>
     <view class="cell2 cell-t-r">
-      <input class="cell2-inp" type="digit" maxlength="6" bindblur="operational_cost_inp_blur" value="{{operational_cost}}"/>
+      <input class="cell2-inp" type="digit" maxlength="6" bindfocus="operational_cost_inp_focus" bindblur="operational_cost_inp_blur" value="{{operational_cost}}"/>
     </view>
   </view>
 
@@ -127,4 +127,8 @@
     <view class="cell2 cell-t-l">回本周期(/年)</view>
     <view class="cell2 cell-t-r">{{back_period}}</view>
   </view>
+</view>
+
+<view class="baocun" bindtap="updetail">
+  保存
 </view>

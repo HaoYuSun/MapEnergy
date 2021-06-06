@@ -143,6 +143,35 @@ Page({
     }
   },
 
+  updetail: function(e){
+    var that = this;
+    wx.request({
+      url: app.globalData.upRecordDetailUrl,
+      data:{
+        openid: that.data.openid,
+        recordid: that.data.recordid,
+        w_cost: that.data.w_cost,  // 每瓦成本
+        country_subsidy: that.data.country_subsidy,  // 国家补贴
+        local_subsidy: that.data.local_subsidy,  // 本地补贴
+        init_subsidy: that.data.init_subsidy,  // 初装补贴
+        w_yield: that.data.yield,  // 度电收益
+        rent: that.data.rent,  // 租金
+        operational_cost: that.data.operational_cost,  // 运维成本
+      },
+      method:"GET",
+      success(resp){
+        if(resp.data.code == '0'){
+          wx.showModal({
+            title: '提示',
+            confirmText: '确定',
+            showCancel: false,
+            content: '保存成功',
+          })
+        }
+      }
+    });
+  },
+
   getDetail: function(e){
     var that = this;
     wx.request({
@@ -164,7 +193,15 @@ Page({
             install_area: resp.data.detail.install_area,  //安装容量
             sum_price: resp.data.detail.sum_price,  // 总投资金额
             generating_year: resp.data.detail.generating_year,  // 年发电量
-            year_light: resp.data.detail.year_light
+            year_light: resp.data.detail.year_light,
+            w_cost: resp.data.detail.w_cost,  // 每瓦成本
+            country_subsidy: resp.data.detail.country_subsidy,  // 国家补贴
+            local_subsidy: resp.data.detail.local_subsidy,  // 本地补贴
+            init_subsidy: resp.data.detail.init_subsidy,  // 初装补贴
+            yield: resp.data.detail.w_yield,  // 度电收益
+
+            rent: resp.data.detail.rent,  // 租金
+            operational_cost: resp.data.detail.operational_cost,  // 运维成本
           });
 
           that.updatePageData();
@@ -178,14 +215,37 @@ Page({
    */
   w_cost_inp_blur: function(e){
     var that = this;
+    console.log(e)
     if(that.data.w_cost == e.detail.value){
-      return;
+      if(e.detail.value == ''){
+        that.setData({
+          w_cost: 0
+        });
+        this.updatePageData();
+      }else{
+        return;
+      }
+      
     }else{
-      that.setData({
-        w_cost: Number(e.detail.value)
-      });
+      console.log('===='+e.detail.value)
+      if(e.detail.value == ''){
+        that.setData({
+          w_cost: 0
+        });
+      }else{
+        that.setData({
+          w_cost: Number(e.detail.value)
+        });
+      }
+      
       this.updatePageData();
     }
+  },
+  w_cost_inp_focus: function(e){
+    var that = this;
+    that.setData({
+      w_cost: ''
+    });
   },
 
   /**
@@ -194,13 +254,26 @@ Page({
   country_subsidy_inp_blur: function(e){
     var that = this;
     if(that.data.country_subsidy == e.detail.value){
-      return;
+      if(e.detail.value == ''){
+        that.setData({
+          country_subsidy: 0
+        });
+        this.updatePageData();
+      }else{
+        return;
+      }
     }else{
       that.setData({
         country_subsidy: Number(e.detail.value)
       });
       this.updatePageData();
     }
+  },
+  country_subsidy_inp_focus: function(e){
+    var that = this;
+    that.setData({
+      country_subsidy: ''
+    });
   },
 
    /**
@@ -209,13 +282,26 @@ Page({
   local_subsidy_inp_blur: function(e){
     var that = this;
     if(that.data.local_subsidy == e.detail.value){
-      return;
+      if(e.detail.value == ''){
+        that.setData({
+          local_subsidy: 0
+        });
+        this.updatePageData();
+      }else{
+        return;
+      }
     }else{
       that.setData({
         local_subsidy: Number(e.detail.value)
       });
       this.updatePageData();
     }
+  },
+  local_subsidy_inp_focus: function(e){
+    var that = this;
+    that.setData({
+      local_subsidy: ''
+    });
   },
 
   /**
@@ -224,13 +310,26 @@ Page({
   init_subsidy_inp_blur: function(e){
     var that = this;
     if(that.data.init_subsidy == e.detail.value){
-      return;
+      if(e.detail.value == ''){
+        that.setData({
+          init_subsidy: 0
+        });
+        this.updatePageData();
+      }else{
+        return;
+      }
     }else{
       that.setData({
         init_subsidy: Number(e.detail.value)
       });
       this.updatePageData();
     }
+  },
+  init_subsidy_inp_focus: function(e){
+    var that = this;
+    that.setData({
+      init_subsidy: ''
+    });
   },
 
   /**
@@ -239,13 +338,26 @@ Page({
   yield_inp_blur: function(e){
     var that = this;
     if(that.data.yield == e.detail.value){
-      return;
+      if(e.detail.value == ''){
+        that.setData({
+          yield: 0
+        });
+        this.updatePageData();
+      }else{
+        return;
+      }
     }else{
       that.setData({
         yield: Number(e.detail.value)
       });
       this.updatePageData();
     }
+  },
+  yield_inp_focus: function(e){
+    var that = this;
+    that.setData({
+      yield: ''
+    });
   },
 
   /**
@@ -254,13 +366,26 @@ Page({
   rent_inp_blur: function(e){
     var that = this;
     if(that.data.rent == e.detail.value){
-      return;
+      if(e.detail.value == ''){
+        that.setData({
+          rent: 0
+        });
+        this.updatePageData();
+      }else{
+        return;
+      }
     }else{
       that.setData({
         rent: Number(e.detail.value)
       });
       this.updatePageData();
     }
+  },
+  rent_inp_focus: function(e){
+    var that = this;
+    that.setData({
+      rent: ''
+    });
   },
 
   /**
@@ -269,13 +394,26 @@ Page({
   operational_cost_inp_blur: function(e){
     var that = this;
     if(that.data.operational_cost == e.detail.value){
-      return;
+      if(e.detail.value == ''){
+        that.setData({
+          operational_cost: 0
+        });
+        this.updatePageData();
+      }else{
+        return;
+      }
     }else{
       that.setData({
         operational_cost: Number(e.detail.value)
       });
       this.updatePageData();
     }
+  },
+  operational_cost_inp_focus: function(e){
+    var that = this;
+    that.setData({
+      operational_cost: ''
+    });
   },
 
   /**
