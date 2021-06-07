@@ -38,7 +38,7 @@ Page({
     if (type == 0) {
       that.setData({
         isLeftSel: true,
-        pageId: 1,
+        pageid: 1,
         list: [],
         isall: false,
         proType: 0
@@ -46,7 +46,7 @@ Page({
     } else {
       that.setData({
         isLeftSel: false,
-        pageId: 1,
+        pageid: 1,
         list: [],
         isall: false,
         proType: 1
@@ -77,6 +77,8 @@ Page({
     }
     console.log('getrecord:'+that.data.openid)
     console.log('getrecord:'+that.data.proType)
+    console.log('getrecord:'+that.data.pageid)
+    console.log('getrecord:'+that.data.pagesize)
     wx.request({
       url: app.globalData.getRecordsUrl,
       data:{
@@ -93,16 +95,23 @@ Page({
           var pageid = resp.data.pageid;
           var cpageid = pageid;
           var len = resp.data.list.length;
-          if(len == size){
+          if(len > 0){
             var list = resp.data.list;
             var old_list = that.data.list;
-            var new_list = old_list.concat(list);
+            var new_list = [...old_list,...list];
             if(pageid == 1){
               new_list = list;
             }
             console.log(JSON.stringify(new_list))
-            pageid += 1;
-
+            console.log(JSON.stringify(new_list[0]['fields']['area']))
+            if(len == size){
+              pageid += 1;
+            }else{
+              that.setData({
+                isall: true
+              })
+            }
+            
             that.setData({
               list: new_list,
               pageid: pageid,

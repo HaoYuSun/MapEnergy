@@ -173,6 +173,9 @@ Page({
 
   getDetail: function(e){
     var that = this;
+    console.log('getrecorddetail-openid:'+that.data.openid)
+    console.log('getrecorddetail-fromopenid:'+that.data.fromopenid)
+    console.log('getrecorddetail-recordid:'+that.data.recordid)
     wx.request({
       url: app.globalData.getRecordDetailUrl,
       data:{
@@ -460,7 +463,13 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
-  }
+  onShareAppMessage(res) {
+    var that = this;
+    console.log('share:'+that.data.openid)
+    let sendurl = encodeURIComponent('/pages/detail/detail?recordid=' +that.data.recordid+'&fromopenid='+that.data.openid);
+    return {
+      title: '能源预算',
+      path: `/pages/index/index?fromopenid=${that.data.openid}&url=${sendurl}` // 分享后打开的页面
+    }
+  },
 })
