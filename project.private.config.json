@@ -1,0 +1,30 @@
+{
+  "setting": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pages/detail/detail",
+          "pathName": "pages/detail/detail",
+          "query": "recordid=108&openid=oi3_x4o3V5dAlMi1-IF1BHy6WXBY",
+          "scene": null
+        },
+        {
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
+          "query": "fromopenid=oi3_x4pMY-6rBCHs3aEcGbd8VABM&url='/pages/detail/detail?recordid=116&fromopenid=oi3_x4pMY-6rBCHs3aEcGbd8VABM'",
+          "scene": 1008
+        }
+      ]
+    }
+  }
+}

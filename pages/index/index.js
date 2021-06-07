@@ -280,7 +280,6 @@ Page({
             }]
           })
         }
-        
       })
     }else{
       that.setData({
@@ -321,6 +320,12 @@ Page({
   */
   getAreaTap: function(e){
     var that = this;
+
+    if(!app.globalData.userInfo){
+      that.authset();
+      return;
+    }
+
     //防止多次执行
     if(that.data.isUpOver){
       console.log('状态未改变');
@@ -577,6 +582,7 @@ Page({
     
     if(options.url){
       let url = decodeURIComponent(options.url);
+      console.log('333'+url)
       wx.navigateTo({
         url
       })
@@ -639,12 +645,7 @@ Page({
     var that = this;
     if(that.data.customCalloutInfo.area > 0){
         var oepnid = that.data.openid;
-  //       var dict = that.data.customCalloutInfo;
-  //       var dict = {
-  //         'recordid': 
-  //       };
-  //       dict['openid'] = that.data.openid;
-  //       var para = JSON.stringify(dict);
+
         let sendurl = encodeURIComponent('/pages/detail/detail?recordid=' +that.data.recordid+'&fromopenid='+oepnid);
         return {
           title: '能源预算',

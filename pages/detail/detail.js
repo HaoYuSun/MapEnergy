@@ -51,19 +51,19 @@ Page({
       var that = this;
 
       // 年收益
-      var yield_year = Number(that.data.generating_year) * (Number(that.data.country_subsidy) + Number(that.data.local_subsidy) + Number(that.data.init_subsidy) + Number(that.data.yield)) - Number(that.data.area) * Number(that.data.rent) / 10000.0 - Number(that.data.operational_cost) * Number(that.data.install_area) * 100;
+      var yield_year = Number(that.data.generating_year) * (Number(that.data.country_subsidy) + Number(that.data.local_subsidy) + Number(that.data.yield)) - Number(that.data.area) * Number(that.data.rent) / 10000.0 - Number(that.data.operational_cost) * Number(that.data.install_area) * 100;
       yield_year = Math.floor(yield_year * 100) / 100;
 
       // 税前年收益
       var pre_tax_yield_year = 0;
       if(that.data.sum_price > 0){
-        pre_tax_yield_year = Math.floor(yield_year * 10000.0 / Number(that.data.sum_price)) / 100;
+        pre_tax_yield_year = Math.floor(yield_year * 10000.0 / (Number(that.data.sum_price) -  Number(that.data.init_subsidy))) / 100;
       }
  
       // 回本周期
       var back_period = 0;
       if(yield_year > 0){
-        back_period = Math.floor(Number(that.data.sum_price) * 100.0 / yield_year) / 100;
+        back_period = Math.floor((Number(that.data.sum_price) -  Number(that.data.init_subsidy)) * 100.0 / yield_year) / 100;
       }
 
       that.setData({
@@ -78,7 +78,8 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-
+    console.log('33333')
+    console.log(options)
     // 分享来的
     if(options.fromopenid){
       that.setData({
@@ -120,7 +121,7 @@ Page({
                 //有openid后再取详情
                 that.getDetail();
               }
-              console.log(that.globalData.openid)
+              // console.log(that.globalData.openid)
             }
           });
         },
