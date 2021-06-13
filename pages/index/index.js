@@ -373,6 +373,7 @@ Page({
         let new_id = old_markers.length;
         
         var area = Math.ceil(Number(res) * 100) / 100.0;
+        console.log('city:'+that.data.citySelected);
         //提交面积 获取后续数据 此处添加所属城市 以匹配对应城市的光照数据
         wx.request({
           url: app.globalData.upAreaUrl,
