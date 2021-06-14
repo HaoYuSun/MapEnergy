@@ -63,7 +63,7 @@
     <view class="cell1 cell-t-c">
       <input class="cell1-inp" type="digit" maxlength="6" bindfocus="w_cost_inp_focus" bindblur="w_cost_inp_blur" value="{{w_cost}}"/>
     </view>
-    <view class="cell1 cell-t-r">¥ {{sum_price - init_subsidy}}万</view>
+    <view class="cell1 cell-t-r">¥ {{cost}}万</view>
   </view>
   <view class="body-cell">
     <view class="cell2 cell-t-l">安装面积(m²)</view>

@@ -28,6 +28,7 @@ Page({
     pre_tax_yield_year: 0,  // 税前年收益
     back_period: 0,  // 回本周期
 
+    cost: 0,
 
     latitude: 0,//纬度
     longitude: 0,//经度
@@ -50,26 +51,44 @@ Page({
   updatePageData: function(e){
       var that = this;
 
-      // 年收益
+      //投资成本
+      var cost = 0;
+      that.data.sum_price = Number(that.data.w_cost) * Number(that.data.install_area) * 100;
+      cost = Math.floor((Number(that.data.sum_price) -  Number(that.data.init_subsidy) * Number(that.data.install_area)*100) * 100) / 100;
+      if(cost < 0){
+        cost = 0;
+      }
+      
+      // 年收益 = 年发电量*(国家补贴+地方补贴+度电收益) - 面积*租金/10000 - 运维成本*安装容积*100
       var yield_year = Number(that.data.generating_year) * (Number(that.data.country_subsidy) + Number(that.data.local_subsidy) + Number(that.data.yield)) - Number(that.data.area) * Number(that.data.rent) / 10000.0 - Number(that.data.operational_cost) * Number(that.data.install_area) * 100;
       yield_year = Math.floor(yield_year * 100) / 100;
+      // if(yield_year < 0){
+      //   yield_year = 0;
+      // }
 
-      // 税前年收益
+      // 税前年收益 = 年收益 / 总投资金额
       var pre_tax_yield_year = 0;
       if(that.data.sum_price > 0){
-        pre_tax_yield_year = Math.floor(yield_year * 10000.0 / (Number(that.data.sum_price) -  Number(that.data.init_subsidy))) / 100;
+        if(cost > 0){
+          pre_tax_yield_year = Math.floor(yield_year * 10000.0 / cost) / 100;
+        }else{
+          pre_tax_yield_year = 0
+        }
       }
  
-      // 回本周期
+      // 回本周期 = 总投资金额 / 年收益
       var back_period = 0;
       if(yield_year > 0){
-        back_period = Math.floor((Number(that.data.sum_price) -  Number(that.data.init_subsidy)) * 100.0 / yield_year) / 100;
+        back_period = Math.floor(cost * 100.0 / yield_year) / 100;
       }
 
+      
+      console.log(cost);
       that.setData({
         yield_year: yield_year,
         pre_tax_yield_year: pre_tax_yield_year,
-        back_period: back_period
+        back_period: back_period,
+        cost: cost
       })
   },
 
@@ -204,6 +223,7 @@ Page({
 
             rent: resp.data.detail.rent,  // 租金
             operational_cost: resp.data.detail.operational_cost,  // 运维成本
+            cost: Number(resp.data.detail.sum_price) - Math.floor(Number(resp.data.detail.init_subsidy) * Number(resp.data.detail.install_area)*100 * 100) / 100
           });
 
           that.updatePageData();
