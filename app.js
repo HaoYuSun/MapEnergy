@@ -125,5 +125,6 @@ App({
     getRecordDetailUrl: 'https://sgo.en.com.cn/getrecorddetail',
     upFromopenidUrl: 'https://sgo.en.com.cn/upfromopenid',
     upRecordDetailUrl: 'https://sgo.en.com.cn/uprecorddetail',
+    delRecordUrl: 'https://sgo.en.com.cn/delrecord',
   }
 })

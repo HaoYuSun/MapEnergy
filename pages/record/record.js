@@ -16,6 +16,8 @@ Page({
     icon: '../../images/right.png',
     list:[],
     proType: 0,
+    checkboxlist:[],
+    deleteall: 0
   },
 
   cellTap: function(e){
@@ -25,6 +27,70 @@ Page({
 
     wx.navigateTo({
       url: '../detail/detail?recordid=' +recordid+'&openid='+that.data.openid,
+    })
+  },
+  del:function(e){
+    var that = this;
+    var id_list = '';
+    for (var ii = 0; that.data.checkboxlist.length > ii; ii++) {
+      if(that.data.checkboxlist[ii] == 1){
+        // 添加记录id
+        id_list += that.data.list[ii].pk + ','
+      }
+    }
+    if(id_list.length > 0){
+      id_list = id_list.substring(0, id_list.length-1);
+      wx.request({
+        url: app.globalData.delRecordUrl,
+        data:{
+          openid: that.data.openid,
+          id_list: id_list,
+          proType: that.data.proType
+        },
+        method:"GET",
+        success(resp){
+          if(resp.data.code == '0'){
+            that.setData({
+              pageid: 1,
+              list: [],
+              deleteall: 0,
+              checkboxlist:[]
+            })
+            this.getRecordsList();  
+          }
+        }
+      });
+    }
+  },
+
+  allbox: function(e){
+    var that = this;
+    var curr_statu = that.data.deleteall;
+    var curr_box_list = that.data.checkboxlist;
+    if(curr_statu == 0){
+      for (var ii = 0; curr_box_list.length > ii; ii++) {
+        curr_box_list[ii] = 1
+      }
+    }else{
+      for (var ii = 0; curr_box_list.length > ii; ii++) {
+        curr_box_list[ii] = 0
+      }
+    }
+    that.data.deleteall = curr_statu == 1 ? 0 : 1;
+    that.setData({
+      deleteall: that.data.deleteall,
+      checkboxlist: curr_box_list
+    })
+
+  },
+  checkboxTap: function(e){
+    var that = this;
+    var index = parseInt(e.currentTarget.dataset.index);
+    that.data.checkboxlist[index] = that.data.checkboxlist[index] == 1 ? 0 : 1;
+    that.data.deleteall = that.data.checkboxlist[index] == 0 ? 0 : that.data.deleteall;
+    that.setData({
+      checkboxlist: that.data.checkboxlist,
+      deleteall: that.data.deleteall
     })
   },
 
@@ -41,7 +107,8 @@ Page({
         pageid: 1,
         list: [],
         isall: false,
-        proType: 0
+        proType: 0,
+        checkboxlist:[]
       })
     } else {
       that.setData({
@@ -49,7 +116,8 @@ Page({
         pageid: 1,
         list: [],
         isall: false,
-        proType: 1
+        proType: 1,
+        checkboxlist:[]
       })
     }
 
@@ -75,10 +143,7 @@ Page({
     if(that.data.isall){
       return;
     }
-    console.log('getrecord:'+that.data.openid)
-    console.log('getrecord:'+that.data.proType)
-    console.log('getrecord:'+that.data.pageid)
-    console.log('getrecord:'+that.data.pagesize)
+
     wx.request({
       url: app.globalData.getRecordsUrl,
       data:{
@@ -99,11 +164,17 @@ Page({
             var list = resp.data.list;
             var old_list = that.data.list;
             var new_list = [...old_list,...list];
+            var old_box_list = that.data.checkboxlist;
+            var box_list = [];
+            for (var ii = 0; len > ii; ii++) {
+              box_list[ii] = 0
+            }
+            var new_box_list = [...old_box_list,...box_list];
             if(pageid == 1){
               new_list = list;
+              new_box_list = box_list;
             }
-            console.log(JSON.stringify(new_list))
-            console.log(JSON.stringify(new_list[0]['fields']['area']))
+
             if(len == size){
               pageid += 1;
             }else{
@@ -115,7 +186,8 @@ Page({
             that.setData({
               list: new_list,
               pageid: pageid,
-              current_page: cpageid
+              current_page: cpageid,
+              checkboxlist: new_box_list
             });
           }else{
             that.setData({

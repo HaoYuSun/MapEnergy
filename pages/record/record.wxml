@@ -11,16 +11,34 @@
         </view>
     </view>
 </view>
-<view style="margin-top:57px">
+<view style="margin-top:57px; margin-bottom:44px">
   <mp-cells title="">
-      <mp-cell link wx:for="{{list}}" wx:for-index="idx" data-index="{{idx}}" bindtap="cellTap">
-          <view slot="title" style="position: relative;margin-right: 10px;">
-              <image src="{{icon}}" style="width: 30px; height: 30px; display: block"/>
-              <mp-badge content="99+" style="position: absolute;top: -.4em;right: -.4em;"/>
+      <mp-cell link wx:for="{{list}}" wx:for-index="idx" >
+        <view class="icon-box checkbox-view"   data-index="{{idx}}" bindtap="checkboxTap">
+            <view class="icon-small-wrp">
+                <icon class="icon-small" type="{{checkboxlist[idx] == 0 ? 'circle' : 'success'}}" size="23"></icon>
+            </view>
+        </view>
+          <view class="cell-body-view">
+            <view>{{item.fields.address}}</view>
+            <view style="font-size: 13px;color: #888888;">总面积(m²)：{{item.fields.area}},装机容量(MW):{{item.fields.install_edcapacity}}</view>
           </view>
-          <view>{{item.fields.address}}</view>
-          <view style="font-size: 13px;color: #888888;">总面积(m²)：{{item.fields.area}},装机容量(MW):{{item.fields.install_edcapacity}}</view>
+          <view class="bg-tap-view"  data-index="{{idx}}" bindtap="cellTap">
+          </view>
       </mp-cell>
   </mp-cells>
+</view>
+<view class="bot-view">
+    <view class="bot-view-left-view" bindtap="allbox">
+        <view class="icon-box left-view"   data-index="{{idx}}" bindtap="checkboxTap">
+            <view class="icon-small-wrp">
+                <icon class="icon-small" type="{{deleteall == 0 ? 'circle' : 'success'}}" size="23"></icon>
+            </view>
+        </view>
+        <view class="rig-text">
+            全选
+        </view>
+    </view>
+    <view class="bot-view-right-view"  bindtap="del">删除选中</view>
 </view>
 </view>

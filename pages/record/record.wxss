@@ -190,3 +190,62 @@ page {
   color: rgb(214, 186, 140);
   font-size: 24rpx;
 }
+
+.checkbox-view{
+  /* background-color: red; */
+  width: 10vw;
+  float: left;
+  height: 40px;
+}
+
+.cell-body-view{
+  float: left;
+  /* background-color: yellow; */
+  width: 75vw;
+}
+.bg-tap-view{
+  width: 90vw;
+  height: 60px;
+  position: absolute;
+  top: 7px;
+  left: 14vw;
+  /* background-color: red; */
+}
+.bot-view{
+  width: 100vw;
+  height: 44px;
+  background-color: red;
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+}
+.bot-view-left-view{
+  width: 25vw;
+  height: 44px;
+  background-color: #fff;
+  float: left;
+  text-align: center;
+}
+.bot-view-left-view .left-view{
+  float: left;
+  margin: 10px 0 0 10px;
+  /* background-color: red; */
+}
+.bot-view-left-view .rig-text{
+  float: left;
+  margin: 10px 0 0 5px;
+  /* background-color: red; */
+  font-size: 17px;
+
+}
+.bot-view-right-view{
+  width: 75vw;
+  height: 44px;
+  background-color: rgba(214, 186, 140, 1);
+  float: left;
+  text-align: center;
+  line-height: 44px;
+  font-size: 17px;
+  font-weight: 500;
+  color: #fff;
+}
