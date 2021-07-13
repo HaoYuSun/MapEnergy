@@ -46,6 +46,99 @@ Page({
       year_light: 1200
     },
   },
+
+  /**
+   * 生成简单报告
+   */
+  createshortreport: function(e){
+    var that = this;
+    var shortReportUrl = app.globalData.shortReportUrl;
+    wx.showLoading({
+      title: '生成中...',
+    });
+    wx.request({
+      url: shortReportUrl,
+      data:{
+        'openid': that.data.openid,
+        'recordid': that.data.recordid
+      },
+      method:"GET",
+      success(res){
+        console.log(res)
+        if(res.data.code == '0'){
+          var URL = 'https://sgo.en.com.cn/' + res.data.file_path;
+          var file_name = res.data.file_name;
+          wx.showModal({
+            title: '提示',
+            content: '文件已生成',
+            confirmText: '转发',
+            success (res) {
+              if (res.confirm) {
+                wx.downloadFile({
+                  url: URL, // 下载url
+                  success (res) {
+                    // 下载完成后转发
+                    wx.shareFileMessage({
+                      filePath: res.tempFilePath,
+                      fileName: file_name,
+                      success() {},
+                      fail: console.error,
+                    })
+                  },
+                  fail: console.error,
+                })
+              } else if (res.cancel) {
+                console.log('用户点击取消')
+              }
+            }
+          })
+        }
+      },
+      complete(){
+        wx.hideLoading();
+      }
+    });
+  },
+  /**
+   * 生成详细报告
+   */
+  createlongreport: function(e){
+    var that = this;
+    var shortReportUrl = app.globalData.longReportUrl;
+    wx.showLoading({
+      title: '生成中...',
+    });
+    wx.request({
+      url: shortReportUrl,
+      data:{
+        'openid': that.data.openid,
+        'recordid': that.data.recordid
+      },
+      method:"GET",
+      success(res){
+        console.log(res)
+        if(res.data.code == '0'){
+          wx.showModal({
+            title: '提示',
+            content: '文件已生成，到个人中心查看',
+            confirmText: '查看',
+            success (res) {
+              if (res.confirm) {
+                wx.navigateTo({
+                  url: '../self/self',
+                })
+              } else if (res.cancel) {
+                console.log('用户点击取消')
+              }
+            }
+          })
+        }
+      },
+      complete(){
+        wx.hideLoading();
+      }
+    });
+  },
   /**
    * 更新页面数据
    */
