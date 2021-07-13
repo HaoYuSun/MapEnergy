@@ -136,7 +136,7 @@
 </view>
 
 <div class="bot_menu">
-  <view class="baocun baocun-border" bindtap="createshortreport">简单报告</view>
+  <view class="baocun baocun-border" bindtap="createshortreport">基础报告</view>
   <view class="baocun baocun-border" bindtap="createlongreport">详细报告</view>
   <view class="baocun" bindtap="updetail">保存</view>
 </div>
