@@ -10,6 +10,7 @@ Page({
     recordid: 0,
     openid:'',
     area: 0,  // 面积
+    area_rate: 0.8,
     install_area: 0,  //安装容量
     sum_price: 0,  // 总投资金额
     generating_year: 0,  // 年发电量
@@ -50,7 +51,18 @@ Page({
    */
   updatePageData: function(e){
       var that = this;
-
+      // * Number(that.data.area_rate)
+      console.log('area:',that.data.area)
+      console.log('area_rate:',that.data.area_rate)
+      console.log('area_rate:',parseFloat(that.data.area) * parseFloat(that.data.area_rate) * 100 * 1.2 / 10000.0)
+      var zhuangjirongliang = Math.floor(parseFloat(that.data.area) * parseFloat(that.data.area_rate) * 100 * 1.2 / 10000.0) / 100.0;
+      var sumprice = Math.ceil(zhuangjirongliang * that.data.w_cost * 100);
+      var year_generating_capacity = Math.ceil(zhuangjirongliang * that.data.year_light / 10);
+      that.setData({
+        install_area: zhuangjirongliang,
+        sum_price: sumprice,
+        generating_year: year_generating_capacity
+      })
       //投资成本
       var cost = 0;
       that.data.sum_price = Number(that.data.w_cost) * Number(that.data.install_area) * 100;
@@ -60,6 +72,7 @@ Page({
       }
       
       // 年收益 = 年发电量*(国家补贴+地方补贴+度电收益) - 面积*租金/10000 - 运维成本*安装容积*100
+      console.log(Number(that.data.area) * Number(that.data.area_rate) * Number(that.data.rent) / 10000.0)
       var yield_year = Number(that.data.generating_year) * (Number(that.data.country_subsidy) + Number(that.data.local_subsidy) + Number(that.data.yield)) - Number(that.data.area) * Number(that.data.rent) / 10000.0 - Number(that.data.operational_cost) * Number(that.data.install_area) * 100;
       yield_year = Math.floor(yield_year * 100) / 100;
       // if(yield_year < 0){
@@ -82,7 +95,6 @@ Page({
         back_period = Math.floor(cost * 100.0 / yield_year) / 100;
       }
 
-      
       console.log(cost);
       that.setData({
         yield_year: yield_year,
@@ -97,8 +109,6 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    console.log('33333')
-    console.log(options)
     // 分享来的
     if(options.fromopenid){
       that.setData({
@@ -175,6 +185,10 @@ Page({
         w_yield: that.data.yield,  // 度电收益
         rent: that.data.rent,  // 租金
         operational_cost: that.data.operational_cost,  // 运维成本
+        area_rate: that.data.area_rate,
+        install_area: that.data.install_area,
+        sum_price: that.data.sum_price,
+        generating_year: that.data.generating_year
       },
       method:"GET",
       success(resp){
@@ -192,9 +206,6 @@ Page({
 
   getDetail: function(e){
     var that = this;
-    console.log('getrecorddetail-openid:'+that.data.openid)
-    console.log('getrecorddetail-fromopenid:'+that.data.fromopenid)
-    console.log('getrecorddetail-recordid:'+that.data.recordid)
     wx.request({
       url: app.globalData.getRecordDetailUrl,
       data:{
@@ -211,6 +222,7 @@ Page({
             longitude: resp.data.detail.longitude,
             polygons: JSON.parse(resp.data.detail.polygons),
             area: resp.data.detail.area,  // 面积
+            area_rate: resp.data.detail.area_rate,
             install_area: resp.data.detail.install_area,  //安装容量
             sum_price: resp.data.detail.sum_price,  // 总投资金额
             generating_year: resp.data.detail.generating_year,  // 年发电量
@@ -229,6 +241,40 @@ Page({
           that.updatePageData();
         }
       }
+    });
+  },
+
+  /**
+   * 房屋利用率改变时
+   */
+  area_rate_inp_blur: function(e){
+    var that = this;
+    if(that.data.area_rate == e.detail.value){
+      if(e.detail.value == ''){
+        that.setData({
+          area_rate: 0
+        });
+        this.updatePageData();
+      }else{
+        return;
+      }
+    }else{
+      if(e.detail.value == ''){
+        that.setData({
+          area_rate: 0
+        });
+      }else{
+        that.setData({
+          area_rate: Number(e.detail.value)
+        });
+      }
+      this.updatePageData();
+    }
+  },
+  area_rate_inp_focus: function(e){
+    var that = this;
+    that.setData({
+      area_rate: ''
     });
   },
 

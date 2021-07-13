@@ -54,13 +54,23 @@
   text-align: right;
 }
 
+.bot_menu{
+  width: 100vw;
+  height: 44px;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  background-color: rgba(214, 186, 140, 1);
+}
+
 .baocun{
-  width: 50vw;
-  height: 30px;
-  border-radius: 15px;
-  background-color: rgba(214, 186, 140, 0.8);
+  width: 33vw;
+  height: 44px;
   text-align: center;
-  padding: 5px;
-  margin: 20px 25vw;
-  line-height: 30px;
+  line-height: 44px;
+  
+  float: left;
+}
+.baocun-border{
+  border-right: 1px solid #f2f2f2;
 }

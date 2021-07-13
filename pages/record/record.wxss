@@ -218,6 +218,7 @@ page {
   position: fixed;
   left: 0px;
   bottom: 0px;
+  z-index: 9;
 }
 .bot-view-left-view{
   width: 25vw;

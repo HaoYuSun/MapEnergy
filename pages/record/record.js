@@ -40,6 +40,7 @@ Page({
     }
     if(id_list.length > 0){
       id_list = id_list.substring(0, id_list.length-1);
+      console.log(id_list);
       wx.request({
         url: app.globalData.delRecordUrl,
         data:{

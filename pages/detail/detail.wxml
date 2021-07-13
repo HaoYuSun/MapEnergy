@@ -70,6 +70,12 @@
     <view class="cell2 cell-t-r">{{area}}</view>
   </view>
   <view class="body-cell">
+    <view class="cell2 cell-t-l">房顶利用率</view>
+    <view class="cell2 cell-t-r">
+      <input class="cell2-inp" type="digit" maxlength="6" bindfocus="area_rate_inp_focus" bindblur="area_rate_inp_blur" value="{{area_rate}}"/>
+    </view>
+  </view>
+  <view class="body-cell">
     <view class="cell2 cell-t-l">辐照参数(kWh/kWp/年)</view>
     <view class="cell2 cell-t-r">{{year_light}}</view>
   </view>
@@ -129,6 +135,8 @@
   </view>
 </view>
 
-<view class="baocun" bindtap="updetail">
-  保存
-</view>
+<div class="bot_menu">
+  <view class="baocun baocun-border" bindtap="createshortreport">简单报告</view>
+  <view class="baocun baocun-border" bindtap="createlongreport">详细报告</view>
+  <view class="baocun" bindtap="updetail">保存</view>
+</div>
