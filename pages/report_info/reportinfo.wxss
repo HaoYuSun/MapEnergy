@@ -1,0 +1,78 @@
+/* pages/detail/detail.wxss */
+/* page {
+  overflow: hidden;
+} */
+.body{
+  width: 94vw;
+  padding: 0vh 3vw 1vh 3vw;
+  height: 99vh;
+  padding-bottom: 44px;
+  margin-bottom: 44px;
+  /* background-color: red; */
+}
+
+.body-cell{
+  width: 84vw;
+  height: 4vh;
+  margin: 1vw 2vw;
+  /* background-color: greenyellow; */
+}
+
+.cell1{
+  width: 28vw;
+  font-size: 14px;
+  line-height: 4vh;
+  float: left;
+}
+.cell-t-l{
+  text-align: left;
+}
+.cell-t-c{
+  text-align: center;
+}
+.cell-t-r{
+  text-align: right;
+}
+
+.cell2{
+  width: 42vw;
+  font-size: 14px;
+  line-height: 4vh;
+  float: left;
+}
+
+.cell1-inp{
+  background-color: #00000033;
+  width: 12vw;
+  padding: 0 2vw;
+  margin-left: 6vw;
+  text-align: right;
+}
+.cell2-inp{
+  background-color: #00000033;
+  width: 12vw;
+  padding: 0 1vw;
+  margin-left: 28vw;
+  text-align: right;
+}
+
+.bot_menu{
+  width: 100vw;
+  height: 44px;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  background-color: rgba(214, 186, 140, 1);
+}
+
+.baocun{
+  width: 100vw;
+  height: 44px;
+  text-align: center;
+  line-height: 44px;
+  
+  float: left;
+}
+.baocun-border{
+  border-right: 1px solid #f2f2f2;
+}

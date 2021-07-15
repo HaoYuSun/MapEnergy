@@ -104,40 +104,10 @@ Page({
    */
   createlongreport: function(e){
     var that = this;
-    var shortReportUrl = app.globalData.longReportUrl;
-    wx.showLoading({
-      title: '生成中...',
-    });
-    wx.request({
-      url: shortReportUrl,
-      data:{
-        'openid': that.data.openid,
-        'recordid': that.data.recordid
-      },
-      method:"GET",
-      success(res){
-        console.log(res)
-        if(res.data.code == '0'){
-          wx.showModal({
-            title: '提示',
-            content: '文件已生成，到个人中心查看',
-            confirmText: '查看',
-            success (res) {
-              if (res.confirm) {
-                wx.navigateTo({
-                  url: '../self/self',
-                })
-              } else if (res.cancel) {
-                console.log('用户点击取消')
-              }
-            }
-          })
-        }
-      },
-      complete(){
-        wx.hideLoading();
-      }
-    });
+    wx.navigateTo({
+      url: '../report_info/reportinfo?recordid=' +that.data.recordid+'&openid='+that.data.openid,
+    })
+    
   },
   /**
    * 更新页面数据
