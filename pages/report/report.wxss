@@ -1,0 +1,252 @@
+/* pages/record/record.wxss */
+page {
+  background-color: rgba(250,250,250,0.90);
+}
+.meview{
+  width: 100%;
+  background-image: radial-gradient(circle at center top, rgba(214, 186, 140, 1) 0%, rgba(214, 186, 140, 1) 82%);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+
+.userself{
+  display: flex;
+  flex-direction: column;
+  -webkit-box-align: center;
+  align-items: center;
+  padding: 32px 0px 19px;
+  position: relative;
+}
+
+.userhead{
+  display: inline-block;
+  vertical-align: top;
+  box-sizing: border-box;
+  width: 80px;
+  height: 80px;
+  box-shadow: rgba(24, 12, 12, 0.2) 0px 0px 8px 0px;
+  background: rgb(242, 242, 242);
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(242, 242, 242);
+  border-image: initial;
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.startbtn{
+  width: 90px;
+  height: 90px;
+  line-height: 90px;
+  margin-top: -5px;
+  margin-left: -5px;
+  background:  rgb(242, 242, 242);
+  border: 1px solid rgb(242, 242, 242);
+  color: rgb(214, 186, 140);
+}
+
+.userimg{
+
+  width: 80px;
+  height: 80px;
+}
+.username{
+  font-size: 20px;
+  font-weight: 400;
+  margin: 8px 15px;
+  color: rgb(255, 255, 255);
+}
+
+.tempye{
+  color: white;
+  font-size: 30rpx;
+  font-weight: 500;
+  height: 30rpx;
+  line-height: 30rpx;
+}
+
+.userbody{
+  color: rgb(255, 255, 255);
+  border-top: 0.5px solid rgba(255, 255, 255, 0.6);
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.6);
+}
+
+.warp{
+  display: flex;
+  justify-content: space-around;
+  -webkit-box-align: center;
+  align-items: center;
+  height: 72px;
+}
+
+.item{
+  text-align: center;
+  flex: 1 1 0%;
+  color: white;
+  position: relative;
+}
+
+.selfselimg{
+  width: 28rpx;
+  height: 16rpx;
+  position: absolute;
+  bottom: 0;
+  left:46%;
+}
+
+.dn{
+  display: none;
+}
+
+.selectview{
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  justify-content: space-around;
+  height: 56px;
+  font-size: 16px;
+  border-top: 0.5px solid rgba(255, 255, 255, 0.6);
+}
+
+.item2{
+  text-align: center;
+  flex: 1 1 0%;
+  color: white;
+  position: relative;
+  line-height: 56px;
+}
+
+.selimg1{
+  width: 30rpx;
+  height: 34rpx;
+
+}
+
+.selimg2{
+  width: 31rpx;
+  height: 36rpx;
+  
+}
+.selimg3{
+  width: 30rpx;
+  height: 37rpx;
+  
+}
+.selimg4{
+  width: 32rpx;
+  height: 38rpx;
+  
+}
+
+.doing{
+  font-weight: 500;
+}
+
+.bodyview{
+  padding: 0 20rpx;
+  width: 710rpx;
+
+}
+.bodycell{
+  width: 710rpx;
+  border-bottom: 1rpx solid #f2f2f2;
+  position: relative;
+  height: 160rpx;
+
+}
+
+.bodycellimg{
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 60rpx;
+  position: absolute;
+  top: 20rpx;
+  left: 0;
+}
+
+.bodyrigview{
+  width: 580rpx;
+  height: 120rpx;
+  /* background-color: red; */
+  position: absolute;
+  left: 130rpx;
+  top: 20rpx;
+}
+
+.bodytitle1{
+  color: black;
+  font-size: 30rpx;
+  font-weight: 400;
+  margin-top: 4rpx;
+}
+.bodytitle2{
+  color: rgb(170, 170, 170);
+  font-size: 24rpx;
+  margin-top: 4rpx;
+}
+.bodytitle3{
+  color: rgb(214, 186, 140);
+  font-size: 24rpx;
+}
+
+.checkbox-view{
+  /* background-color: red; */
+  width: 10vw;
+  float: left;
+  height: 40px;
+}
+
+.cell-body-view{
+  float: left;
+  /* background-color: yellow; */
+  width: 75vw;
+}
+.bg-tap-view{
+  width: 90vw;
+  height: 60px;
+  position: absolute;
+  top: 7px;
+  left: 14vw;
+  /* background-color: red; */
+}
+.bot-view{
+  width: 100vw;
+  height: 44px;
+  background-color: red;
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  z-index: 9;
+}
+.bot-view-left-view{
+  width: 25vw;
+  height: 44px;
+  background-color: #fff;
+  float: left;
+  text-align: center;
+}
+.bot-view-left-view .left-view{
+  float: left;
+  margin: 10px 0 0 10px;
+  /* background-color: red; */
+}
+.bot-view-left-view .rig-text{
+  float: left;
+  margin: 10px 0 0 5px;
+  /* background-color: red; */
+  font-size: 17px;
+
+}
+.bot-view-right-view{
+  width: 75vw;
+  height: 44px;
+  background-color: rgba(214, 186, 140, 1);
+  float: left;
+  text-align: center;
+  line-height: 44px;
+  font-size: 17px;
+  font-weight: 500;
+  color: #fff;
+}

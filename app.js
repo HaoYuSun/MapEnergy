@@ -128,5 +128,7 @@ App({
     delRecordUrl: 'https://sgo.en.com.cn/delrecord',
     shortReportUrl: 'https://sgo.en.com.cn/createbriefnessreport',
     longReportUrl: 'https://sgo.en.com.cn/createdetailreport',
+    getReportsUrl: 'https://sgo.en.com.cn/getreports',
+    delReportUrl: 'https://sgo.en.com.cn/delreport',
   }
 })
