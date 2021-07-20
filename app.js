@@ -131,5 +131,6 @@ App({
     getReportsUrl: 'https://sgo.en.com.cn/getreports',
     delReportUrl: 'https://sgo.en.com.cn/delreport',
     upReportInfoUrl: 'https://sgo.en.com.cn/upreportinfo',
+    getReportInfoUrl: 'https://sgo.en.com.cn/getreportinfo',
   }
 })

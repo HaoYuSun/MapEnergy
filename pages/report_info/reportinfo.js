@@ -281,6 +281,7 @@ Page({
   submitForm() {
     var that = this;
     console.log('title:', that.data.report_title)
+    console.log('ziyouzijin:', that.data.ziyouzijin)
     wx.request({
       url: app.globalData.upReportInfoUrl,
       data:{
@@ -374,6 +375,42 @@ Page({
         recordid: options.recordid
       })
     }
+
+    var getReportInfoUrl = app.globalData.getReportInfoUrl;
+    wx.showLoading({
+      title: '生成中...',
+      mask: true
+    });
+    wx.request({
+      url: getReportInfoUrl,
+      data:{
+        'openid': that.data.openid,
+        'recordid': that.data.recordid
+      },
+      method:"GET",
+      success(res){
+        console.log(res)
+        if(res.data.code == '0'){
+          
+          that.setData({
+            bianyaqimiaoshu: res.data.info.bianyaqimiaoshu,
+            bianyaqirongliang: res.data.info.bianyaqirongliang,
+            dianzhekou: res.data.info.dianzhekou,
+            nianzongyongdian: res.data.info.nianzongyongdian,
+            pingjundianjia: res.data.info.pingjundianjia,
+            report_title: res.data.info.report_title,
+            ziyouzijin: res.data.info.ziyouzijin,
+            dianyadengjiIndex: that.data.dianyadengji.indexOf(res.data.info.dianyadengji) >= 0 ? that.data.dianyadengji.indexOf(res.data.info.dianyadengji) : 0,
+            hezuomoshiIndex: that.data.hezuomoshi.indexOf(res.data.info.hezuomoshi) >= 0 ? that.data.hezuomoshi.indexOf(res.data.info.hezuomoshi) : 0,
+            wudingleixingIndex: that.data.wudingleixing.indexOf(res.data.info.wudingleixing) >= 0 ? that.data.wudingleixing.indexOf(res.data.info.wudingleixing) : 0,
+            caigangleixingIndex: that.data.caigangleixing.indexOf(res.data.info.caigangleixing) >= 0 ? that.data.caigangleixing.indexOf(res.data.info.caigangleixing) : 0,
+          })
+        }
+      },
+      complete(){
+        wx.hideLoading();
+      }
+    });
   },
 
   /**
