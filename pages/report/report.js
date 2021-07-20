@@ -60,7 +60,7 @@ Page({
     for (var ii = 0; that.data.checkboxlist.length > ii; ii++) {
       if(that.data.checkboxlist[ii] == 1){
         // 添加记录id
-        id_list += that.data.list[ii].pk + ','
+        id_list += that.data.list[ii].id + ','
       }
     }
     if(id_list.length > 0){
@@ -79,9 +79,10 @@ Page({
               pageid: 1,
               list: [],
               deleteall: 0,
-              checkboxlist:[]
+              checkboxlist:[],
+              isall: false
             })
-            this.getRecordsList();  
+            that.getRecordsList();  
           }
         }
       });
@@ -146,7 +147,7 @@ Page({
       })
     }
 
-    this.getRecordsList();
+    that.getRecordsList();
 
   },
   

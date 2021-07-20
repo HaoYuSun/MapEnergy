@@ -57,7 +57,7 @@ Page({
               deleteall: 0,
               checkboxlist:[]
             })
-            this.getRecordsList();  
+            that.getRecordsList();  
           }
         }
       });

@@ -7,7 +7,7 @@
           <view class="weui-cells weui-cells_after-title">
               <view class="weui-cell">
                   <view class="weui-cell__bd">
-                      <input class="weui-input" placeholder="请输入..." value="{{report_title}}" />
+                      <input class="weui-input" placeholder="请输入..." bindfocus="reoirt_title_inp_focus" bindblur="reoirt_title_inp_blur" value="{{report_title}}" />
                   </view>
               </view>
           </view>
@@ -27,7 +27,7 @@
           <view class="weui-cells weui-cells_after-title">
               <view class="weui-cell">
                   <view class="weui-cell__bd">
-                      <input class="weui-input" placeholder="请输入..."  value="{{nianzongyongdian}}" />
+                      <input class="weui-input" placeholder="请输入..." bindfocus="nianzongyongdian_inp_focus" bindblur="nianzongyongdian_inp_blur"  value="{{nianzongyongdian}}" />
                   </view>
               </view>
           </view>
@@ -36,7 +36,7 @@
           <view class="weui-cells weui-cells_after-title">
               <view class="weui-cell">
                   <view class="weui-cell__bd">
-                      <input class="weui-input" placeholder="请输入..."  value="{{pingjundianjia}}" />
+                      <input class="weui-input" placeholder="请输入..." bindfocus="pingjundianjia_inp_focus" bindblur="pingjundianjia_inp_blur"  value="{{pingjundianjia}}" />
                   </view>
               </view>
           </view>
@@ -56,7 +56,7 @@
           <view class="weui-cells weui-cells_after-title">
               <view class="weui-cell">
                   <view class="weui-cell__bd">
-                      <input class="weui-input" placeholder="请输入..."  value="{{dianzhekou}}" />
+                      <input class="weui-input" placeholder="请输入..." bindblur="dianzhekou_inp_blur" bindfocus="dianzhekou_inp_focus"  value="{{dianzhekou}}" />
                   </view>
               </view>
           </view>

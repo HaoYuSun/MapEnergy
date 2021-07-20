@@ -21,9 +21,136 @@ Page({
 
     nianzongyongdian: '',
     pingjundianjia: '',
-    dianzhekou: '',
+    dianzhekou: '1',
   },
 
+  /**
+   * 电折扣改变时
+   */
+  dianzhekou_inp_blur: function(e){
+    var that = this;
+    if(that.data.dianzhekou == e.detail.value){
+      if(e.detail.value == ''){
+        that.setData({
+          dianzhekou: 1
+        });
+      }else{
+        return;
+      }
+    }else{
+      if(e.detail.value == ''){
+        that.setData({
+          dianzhekou: 1
+        });
+      }else{
+        that.setData({
+          dianzhekou: Number(e.detail.value)
+        });
+      }
+    }
+  },
+  dianzhekou_inp_focus: function(e){
+    var that = this;
+    that.setData({
+      dianzhekou: ''
+    });
+  },
+
+  /**
+   * 平均电价改变时
+   */
+  pingjundianjia_inp_blur: function(e){
+    var that = this;
+    if(that.data.pingjundianjia == e.detail.value){
+      if(e.detail.value == ''){
+        that.setData({
+          pingjundianjia: 0
+        });
+      }else{
+        return;
+      }
+    }else{
+      if(e.detail.value == ''){
+        that.setData({
+          pingjundianjia: 0
+        });
+      }else{
+        that.setData({
+          pingjundianjia: Number(e.detail.value)
+        });
+      }
+    }
+  },
+  pingjundianjia_inp_focus: function(e){
+    var that = this;
+    that.setData({
+      pingjundianjia: ''
+    });
+  },
+
+  /**
+   * 年总用电量改变时
+   */
+  nianzongyongdian_inp_blur: function(e){
+    var that = this;
+    if(that.data.nianzongyongdian == e.detail.value){
+      if(e.detail.value == ''){
+        that.setData({
+          nianzongyongdian: 0
+        });
+      }else{
+        return;
+      }
+    }else{
+      if(e.detail.value == ''){
+        that.setData({
+          nianzongyongdian: 0
+        });
+      }else{
+        that.setData({
+          nianzongyongdian: Number(e.detail.value)
+        });
+      }
+    }
+  },
+  nianzongyongdian_inp_focus: function(e){
+    var that = this;
+    that.setData({
+      nianzongyongdian: ''
+    });
+  },
+
+  /**
+   * 项目地点改变时
+   */
+  reoirt_title_inp_blur: function(e){
+    var that = this;
+    if(that.data.report_title == e.detail.value){
+      if(e.detail.value == ''){
+        that.setData({
+          report_title: ''
+        });
+      }else{
+        return;
+      }
+    }else{
+      if(e.detail.value == ''){
+        that.setData({
+          report_title: ''
+        });
+      }else{
+        that.setData({
+          report_title: e.detail.value
+        });
+      }
+    }
+  },
+  reoirt_title_inp_focus: function(e){
+    var that = this;
+    that.setData({
+      report_title: ''
+    });
+  },
 
   /**
    * 进线等级
@@ -59,6 +186,7 @@ Page({
 
   submitForm() {
     var that = this;
+    console.log('title:', that.data.report_title)
     wx.request({
       url: app.globalData.upReportInfoUrl,
       data:{
@@ -76,7 +204,52 @@ Page({
       success(res){
         console.log(res)
         if(res.data.code == '0'){
-          
+          wx.showModal({
+            title: '提示',
+            content: '是否生成详细报告',
+            confirmText: '生成',
+            success (res) {
+              if (res.confirm) {
+                var createReportUrl = app.globalData.longReportUrl;
+                wx.showLoading({
+                  title: '生成中...',
+                });
+                wx.request({
+                  url: createReportUrl,
+                  data:{
+                    'openid': that.data.openid,
+                    'recordid': that.data.recordid
+                  },
+                  method:"GET",
+                  success(res){
+                    console.log(res)
+                    if(res.data.code == '0'){
+                      wx.showModal({
+                        title: '提示',
+                        content: '文件已生成。前往个人中心查看',
+                        confirmText: '前往',
+                        success (res) {
+                          if (res.confirm) {
+                            wx.redirectTo({
+                              url: '../self/self',
+                            })
+                          } else if (res.cancel) {
+                            console.log('用户点击取消')
+                          }
+                        }
+                      })
+                    }
+                  },
+                  complete(){
+                    wx.hideLoading();
+                  }
+                });
+
+              } else if (res.cancel) {
+                console.log('用户点击取消')
+              }
+            }
+          })
           
         }
       },

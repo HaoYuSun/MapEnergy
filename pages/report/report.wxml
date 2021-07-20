@@ -20,8 +20,8 @@
             </view>
         </view>
           <view class="cell-body-view">
-            <view>{{item.file_name}}</view>
-            <view style="font-size: 13px;color: #888888;">{{item.create_time}}</view>
+            <view>{{item.address}}</view>
+            <view style="font-size: 13px;color: #888888;">{{item.file_name}}</view>
           </view>
           <view class="bg-tap-view"  data-index="{{idx}}" bindtap="cellTap">
           </view>

@@ -39,7 +39,8 @@ Page({
     inputShowed: true,
     inputVal: "12312",
     isUpOver: false,
-    
+    citySelected: '',
+    cityPath: ''
   },
   /**
    * 初始化地图时
@@ -384,7 +385,8 @@ Page({
             latitude: t_latitude,
             address: that.data.address,
             city: that.data.citySelected,
-            polygons: that.data.polygons
+            polygons: that.data.polygons,
+            cityPath: that.data.cityPath
           },
           method:"GET",
           success(resp){
@@ -458,6 +460,7 @@ Page({
       longitude: that.data.longitude,
       success: res => {
         // that.getValueMap(res)
+
         that.setData({
           /*赋值*/
           latitude: res.latitude,
@@ -484,8 +487,10 @@ Page({
         var url = config.qqMapApi
         util.postrequest(url, param).then(res => {
           var d = res.data.result
+          console.log(d)
           that.setData({
             citySelected: d.address_component.city,
+            cityPath: d.address_component.province+'-'+d.address_component.city+'-'+d.address_component.district
           })
         })
       },
@@ -537,6 +542,7 @@ Page({
                 that.setData({
                   address: d.address,
                   citySelected: d.address_component.city,
+                  cityPath: d.address_component.province+'-'+d.address_component.city+'-'+d.address_component.district
                 })
               })
             }
