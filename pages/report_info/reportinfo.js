@@ -26,7 +26,40 @@ Page({
     pingjundianjia: '1',
     dianzhekou: '0.85',
     bianyaqirongliang: '200',
-    bianyaqimiaoshu: ''
+    bianyaqimiaoshu: '',
+    ziyouzijin:'0'
+  },
+
+  /**
+   * 自有资金改变时
+   */
+  ziyouzijin_inp_blur: function(e){
+    var that = this;
+    if(that.data.ziyouzijin == e.detail.value){
+      if(e.detail.value == ''){
+        that.setData({
+          ziyouzijin: '0'
+        });
+      }else{
+        return;
+      }
+    }else{
+      if(e.detail.value == ''){
+        that.setData({
+          ziyouzijin: '0'
+        });
+      }else{
+        that.setData({
+          ziyouzijin: e.detail.value
+        });
+      }
+    }
+  },
+  ziyouzijin_inp_focus: function(e){
+    var that = this;
+    that.setData({
+      ziyouzijin: ''
+    });
   },
 
   /**
@@ -38,7 +71,7 @@ Page({
       return;
     }else{
       that.setData({
-        bianyaqirongliang: e.detail.value
+        bianyaqimiaoshu: e.detail.value
       });
     }
   },
@@ -68,10 +101,10 @@ Page({
       }
     }
   },
-  dianzhekou_inp_focus: function(e){
+  bianyaqirongliang_inp_focus: function(e){
     var that = this;
     that.setData({
-      dianzhekou: ''
+      bianyaqirongliang: ''
     });
   },
 
@@ -262,7 +295,8 @@ Page({
         'pingjundianjia': that.data.pingjundianjia,
         'dianzhekou': that.data.dianzhekou,
         'bianyaqirongliang': that.data.bianyaqirongliang,
-        'bianyaqimiaoshu': that.data.bianyaqimiaoshu
+        'bianyaqimiaoshu': that.data.bianyaqimiaoshu,
+        'ziyouzijin': that.data.ziyouzijin
       },
       method:"GET",
       success(res){

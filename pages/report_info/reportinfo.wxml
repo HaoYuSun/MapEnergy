@@ -61,6 +61,15 @@
               </view>
           </view>
 
+          <view class="weui-cells__title">自有资金占比(0~1)</view>
+          <view class="weui-cells weui-cells_after-title">
+              <view class="weui-cell">
+                  <view class="weui-cell__bd">
+                      <input class="weui-input" placeholder="请输入..." bindblur="ziyouzijin_inp_blur" bindfocus="ziyouzijin_inp_focus"  value="{{ziyouzijin}}" />
+                  </view>
+              </view>
+          </view>
+
           <view class="weui-cells__title">屋顶类型</view>
           <view class="weui-cells weui-cells_after-title">
               <view class="weui-cell weui-cell_select">
