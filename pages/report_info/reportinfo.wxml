@@ -71,21 +71,41 @@
                   </view>
               </view>
           </view>
+          <view wx:if="{{wudingleixingIndex == 0}}" class="weui-cells__title">彩钢类型</view>
+          <view wx:if="{{wudingleixingIndex == 0}}" class="weui-cells weui-cells_after-title">
+              <view class="weui-cell weui-cell_select">
+                  <view class="weui-cell__bd">
+                      <picker bindchange="bindCaigangleixingChange" value="{{caigangleixingIndex}}" range="{{caigangleixing}}">
+                          <view class="weui-select">{{caigangleixing[caigangleixingIndex]}}</view>
+                      </picker>
+                  </view>
+              </view>
+          </view>
+
+          <view class="weui-cells__title">变压器容量(kVA)</view>
+          <view class="weui-cells weui-cells_after-title">
+              <view class="weui-cell">
+                  <view class="weui-cell__bd">
+                      <input class="weui-input" placeholder="请输入..." bindblur="bianyaqirongliang_inp_blur" bindfocus="bianyaqirongliang_inp_focus"  value="{{bianyaqirongliang}}" />
+                  </view>
+              </view>
+          </view>
+        <view class="weui-cells__title">变压器描述</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell">
+                <view class="weui-cell__bd">
+                    <textarea class="weui-textarea" bindblur="bianyaqimiaoshu_inp_blur"  placeholder="请输入文本" style="height: 3.3em" value="{{bianyaqimiaoshu}}"/>
+                    <view class="weui-textarea-counter">0/60</view>
+                </view>
+            </view>
+        </view>
 
       <!-- </mp-form> -->
 
 
         
 
-        <!-- <view class="weui-cells__title">文本域</view>
-        <view class="weui-cells weui-cells_after-title">
-            <view class="weui-cell">
-                <view class="weui-cell__bd">
-                    <textarea class="weui-textarea" placeholder="请输入文本" style="height: 3.3em" />
-                    <view class="weui-textarea-counter">0/200</view>
-                </view>
-            </view>
-        </view> -->
+       
 
 
         <view class="weui-btn-area">

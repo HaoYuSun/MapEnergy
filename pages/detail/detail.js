@@ -55,6 +55,7 @@ Page({
     var shortReportUrl = app.globalData.shortReportUrl;
     wx.showLoading({
       title: '生成中...',
+      mask: true
     });
     wx.request({
       url: shortReportUrl,
@@ -74,6 +75,10 @@ Page({
             confirmText: '转发',
             success (res) {
               if (res.confirm) {
+                wx.showLoading({
+                  title: '下载中...',
+                  mask: true
+                });
                 wx.downloadFile({
                   url: URL, // 下载url
                   success (res) {
@@ -86,6 +91,9 @@ Page({
                     })
                   },
                   fail: console.error,
+                  complete (res){
+                    wx.hideLoading();
+                  }
                 })
               } else if (res.cancel) {
                 console.log('用户点击取消')

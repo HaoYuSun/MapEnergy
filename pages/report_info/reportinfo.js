@@ -18,10 +18,61 @@ Page({
 
     wudingleixing: ["彩钢瓦", "混凝土"],
     wudingleixingIndex: 0,
+    
+    caigangleixing: ["角驰彩钢", "梯形彩钢"],
+    caigangleixingIndex: 0,
 
-    nianzongyongdian: '',
-    pingjundianjia: '',
-    dianzhekou: '1',
+    nianzongyongdian: '20',
+    pingjundianjia: '1',
+    dianzhekou: '0.85',
+    bianyaqirongliang: '200',
+    bianyaqimiaoshu: ''
+  },
+
+  /**
+   * 变压器容量描述改变时
+   */
+  bianyaqimiaoshu_inp_blur: function(e){
+    var that = this;
+    if(that.data.bianyaqimiaoshu == e.detail.value){
+      return;
+    }else{
+      that.setData({
+        bianyaqirongliang: e.detail.value
+      });
+    }
+  },
+
+  /**
+   * 变压器容量改变时
+   */
+  bianyaqirongliang_inp_blur: function(e){
+    var that = this;
+    if(that.data.bianyaqirongliang == e.detail.value){
+      if(e.detail.value == ''){
+        that.setData({
+          bianyaqirongliang: '200'
+        });
+      }else{
+        return;
+      }
+    }else{
+      if(e.detail.value == ''){
+        that.setData({
+          bianyaqirongliang: '200'
+        });
+      }else{
+        that.setData({
+          bianyaqirongliang: e.detail.value
+        });
+      }
+    }
+  },
+  dianzhekou_inp_focus: function(e){
+    var that = this;
+    that.setData({
+      dianzhekou: ''
+    });
   },
 
   /**
@@ -183,6 +234,16 @@ Page({
       wudingleixingIndex: e.detail.value
     })
   },
+  /**
+   * 彩钢类型
+  */
+ bindCaigangleixingChange: function(e) {
+  console.log('picker caigangleixing 发生选择改变，携带值为', e.detail.value);
+
+  this.setData({
+    caigangleixingIndex: e.detail.value
+  })
+},
 
   submitForm() {
     var that = this;
@@ -196,9 +257,12 @@ Page({
         'dianyadengji': that.data.dianyadengji[that.data.dianyadengjiIndex],
         'hezuomoshi': that.data.hezuomoshi[that.data.hezuomoshiIndex],
         'wudingleixing': that.data.wudingleixing[that.data.wudingleixingIndex],
+        'caigangleixing': that.data.caigangleixing[that.data.caigangleixingIndex],
         'nianzongyongdian': that.data.nianzongyongdian,
         'pingjundianjia': that.data.pingjundianjia,
         'dianzhekou': that.data.dianzhekou,
+        'bianyaqirongliang': that.data.bianyaqirongliang,
+        'bianyaqimiaoshu': that.data.bianyaqimiaoshu
       },
       method:"GET",
       success(res){
@@ -213,6 +277,7 @@ Page({
                 var createReportUrl = app.globalData.longReportUrl;
                 wx.showLoading({
                   title: '生成中...',
+                  mask: true
                 });
                 wx.request({
                   url: createReportUrl,
