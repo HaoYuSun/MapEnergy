@@ -4,9 +4,9 @@
 } */
 .body{
   width: 94vw;
-  padding: 0vh 3vw 1vh 3vw;
+  padding: 0vh 3vw 100px 3vw;
   height: 99vh;
-  padding-bottom: 44px;
+
   margin-bottom: 44px;
   /* background-color: red; */
 }

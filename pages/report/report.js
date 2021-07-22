@@ -28,6 +28,7 @@ Page({
     console.log(file_path)
     var URL = 'https://sgo.en.com.cn/' + file_path;
     var file_name = that.data.list[index].file_name;
+    var file_title = that.data.list[index].address;
     wx.showModal({
       title: '提示',
       content: '是否转发文件',
@@ -44,7 +45,7 @@ Page({
               // 下载完成后转发
               wx.shareFileMessage({
                 filePath: res.tempFilePath,
-                fileName: file_name,
+                fileName: file_title+file_name,
                 success() {},
                 fail: console.error,
               })
