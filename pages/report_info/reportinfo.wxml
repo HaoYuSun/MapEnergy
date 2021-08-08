@@ -32,6 +32,15 @@
               </view>
           </view>
 
+          <view class="weui-cells__title">脱硫煤电价(元/度)</view>
+          <view class="weui-cells weui-cells_after-title">
+              <view class="weui-cell">
+                  <view class="weui-cell__bd">
+                      <input type="digit" class="weui-input" placeholder="请输入..." bindfocus="tuoliumeidianjia_inp_focus" bindblur="tuoliumeidianjia_inp_blur"  value="{{tuoliumeidianjia}}" />
+                  </view>
+              </view>
+          </view>
+
           <view class="weui-cells__title">平均电价(元/度)</view>
           <view class="weui-cells weui-cells_after-title">
               <view class="weui-cell">
@@ -61,7 +70,7 @@
               </view>
           </view>
 
-          <view class="weui-cells__title">自有资金占比(0~1)</view>
+          <view class="weui-cells__title">自有资金占比(0~100)%</view>
           <view class="weui-cells weui-cells_after-title">
               <view class="weui-cell">
                   <view class="weui-cell__bd">

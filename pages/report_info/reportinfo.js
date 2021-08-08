@@ -27,7 +27,39 @@ Page({
     dianzhekou: '0.85',
     bianyaqirongliang: '200',
     bianyaqimiaoshu: '',
-    ziyouzijin:'0'
+    ziyouzijin:'0',
+    tuoliumeidianjia: '0'
+  },
+/**
+   * 脱硫煤电价改变时
+   */
+  tuoliumeidianjia_inp_blur: function(e){
+    var that = this;
+    if(that.data.tuoliumeidianjia == e.detail.value){
+      if(e.detail.value == ''){
+        that.setData({
+          tuoliumeidianjia: '0'
+        });
+      }else{
+        return;
+      }
+    }else{
+      if(e.detail.value == ''){
+        that.setData({
+          tuoliumeidianjia: '0'
+        });
+      }else{
+        that.setData({
+          tuoliumeidianjia: e.detail.value
+        });
+      }
+    }
+  },
+  tuoliumeidianjia_inp_focus: function(e){
+    var that = this;
+    that.setData({
+      tuoliumeidianjia: ''
+    });
   },
 
   /**
@@ -297,7 +329,8 @@ Page({
         'dianzhekou': that.data.dianzhekou,
         'bianyaqirongliang': that.data.bianyaqirongliang,
         'bianyaqimiaoshu': that.data.bianyaqimiaoshu,
-        'ziyouzijin': that.data.ziyouzijin
+        'ziyouzijin': that.data.ziyouzijin,
+        'tuoliumeidianjia': that.data.tuoliumeidianjia
       },
       method:"GET",
       success(res){
@@ -404,6 +437,7 @@ Page({
             hezuomoshiIndex: that.data.hezuomoshi.indexOf(res.data.info.hezuomoshi) >= 0 ? that.data.hezuomoshi.indexOf(res.data.info.hezuomoshi) : 0,
             wudingleixingIndex: that.data.wudingleixing.indexOf(res.data.info.wudingleixing) >= 0 ? that.data.wudingleixing.indexOf(res.data.info.wudingleixing) : 0,
             caigangleixingIndex: that.data.caigangleixing.indexOf(res.data.info.caigangleixing) >= 0 ? that.data.caigangleixing.indexOf(res.data.info.caigangleixing) : 0,
+            tuoliumeidianjia: res.data.info.tuoliumeidianjia
           })
         }
       },
