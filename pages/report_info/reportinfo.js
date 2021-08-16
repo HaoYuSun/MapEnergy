@@ -27,9 +27,42 @@ Page({
     dianzhekou: '0.85',
     bianyaqirongliang: '200',
     bianyaqimiaoshu: '',
-    ziyouzijin:'0',
-    tuoliumeidianjia: '0'
+    ziyouzijin:'100',
+    tuoliumeidianjia: '0.40',
+    wudingzujin: '0',
   },
+  /**
+   * 屋顶租金改变时
+   */
+  wudingzujin_inp_blur: function(e){
+    var that = this;
+    if(that.data.wudingzujin == e.detail.value){
+      if(e.detail.value == ''){
+        that.setData({
+          wudingzujin: '0'
+        });
+      }else{
+        return;
+      }
+    }else{
+      if(e.detail.value == ''){
+        that.setData({
+          wudingzujin: '0'
+        });
+      }else{
+        that.setData({
+          wudingzujin: Number(e.detail.value)
+        });
+      }
+    }
+  },
+  wudingzujin_inp_focus: function(e){
+    var that = this;
+    that.setData({
+      wudingzujin: ''
+    });
+  },
+
 /**
    * 脱硫煤电价改变时
    */
@@ -70,7 +103,7 @@ Page({
     if(that.data.ziyouzijin == e.detail.value){
       if(e.detail.value == ''){
         that.setData({
-          ziyouzijin: '0'
+          ziyouzijin: '100'
         });
       }else{
         return;
@@ -78,7 +111,7 @@ Page({
     }else{
       if(e.detail.value == ''){
         that.setData({
-          ziyouzijin: '0'
+          ziyouzijin: '100'
         });
       }else{
         that.setData({
@@ -327,6 +360,7 @@ Page({
         'nianzongyongdian': that.data.nianzongyongdian,
         'pingjundianjia': that.data.pingjundianjia,
         'dianzhekou': that.data.dianzhekou,
+        'wudingzujin': that.data.wudingzujin,
         'bianyaqirongliang': that.data.bianyaqirongliang,
         'bianyaqimiaoshu': that.data.bianyaqimiaoshu,
         'ziyouzijin': that.data.ziyouzijin,
@@ -429,6 +463,7 @@ Page({
             bianyaqimiaoshu: res.data.info.bianyaqimiaoshu,
             bianyaqirongliang: res.data.info.bianyaqirongliang,
             dianzhekou: res.data.info.dianzhekou,
+            wudingzujin: res.data.info.wudingzujin,
             nianzongyongdian: res.data.info.nianzongyongdian,
             pingjundianjia: res.data.info.pingjundianjia,
             report_title: res.data.info.report_title,

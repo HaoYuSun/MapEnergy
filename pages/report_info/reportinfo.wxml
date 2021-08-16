@@ -3,11 +3,11 @@
     <view class="page__bd">
       <!-- <mp-form id="form" rules="{{rules}}" models="{{formData}}"> -->
         <!-- <mp-cells title="信息补充" footer="底部说明文字底部说明文字"> -->
-          <view class="weui-cells__title">项目地点</view>
+          <view class="weui-cells__title">项目名称</view>
           <view class="weui-cells weui-cells_after-title">
               <view class="weui-cell">
                   <view class="weui-cell__bd">
-                      <input type="digit" class="weui-input" placeholder="请输入..." bindfocus="reoirt_title_inp_focus" bindblur="reoirt_title_inp_blur" value="{{report_title}}" />
+                      <input type="text" class="weui-input" placeholder="请输入..." bindfocus="reoirt_title_inp_focus" bindblur="reoirt_title_inp_blur" value="{{report_title}}" />
                   </view>
               </view>
           </view>
@@ -23,7 +23,7 @@
               </view>
           </view>
 
-          <view class="weui-cells__title">年总用电量(万度)</view>
+          <view class="weui-cells__title">年日间总用电量(万度)</view>
           <view class="weui-cells weui-cells_after-title">
               <view class="weui-cell">
                   <view class="weui-cell__bd">
@@ -61,11 +61,20 @@
               </view>
           </view>
 
-          <view class="weui-cells__title">电价折扣</view>
-          <view class="weui-cells weui-cells_after-title">
+          <view wx:if="{{hezuomoshiIndex == 0}}" class="weui-cells__title">电价折扣</view>
+          <view wx:if="{{hezuomoshiIndex == 0}}" class="weui-cells weui-cells_after-title">
               <view class="weui-cell">
                   <view class="weui-cell__bd">
                       <input type="digit" class="weui-input" placeholder="请输入..." bindblur="dianzhekou_inp_blur" bindfocus="dianzhekou_inp_focus"  value="{{dianzhekou}}" />
+                  </view>
+              </view>
+          </view>
+
+          <view wx:if="{{hezuomoshiIndex == 1}}" class="weui-cells__title">屋顶租金(元/平方米/年)</view>
+          <view wx:if="{{hezuomoshiIndex == 1}}" class="weui-cells weui-cells_after-title">
+              <view class="weui-cell">
+                  <view class="weui-cell__bd">
+                      <input type="digit" class="weui-input" placeholder="请输入..." bindblur="wudingzujin_inp_blur" bindfocus="wudingzujin_inp_focus"  value="{{wudingzujin}}" />
                   </view>
               </view>
           </view>
@@ -108,7 +117,7 @@
                   </view>
               </view>
           </view>
-        <view class="weui-cells__title">变压器描述</view>
+        <view class="weui-cells__title">其他描述</view>
         <view class="weui-cells weui-cells_after-title">
             <view class="weui-cell">
                 <view class="weui-cell__bd">
