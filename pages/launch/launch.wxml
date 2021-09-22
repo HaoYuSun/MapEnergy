@@ -1,0 +1,4 @@
+<!--pages/launch/launch.wxml-->
+
+<image class="mapbgimg" src="../../images/mapauthbg.png"></image>
+

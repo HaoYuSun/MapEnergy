@@ -10,6 +10,9 @@ App({
     this.login();
     
   },
+  onShow: function(){
+    
+  },
   login: function () {//1、调用微信登录接口，获取code
     var that = this;
     console.log('login')

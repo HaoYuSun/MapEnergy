@@ -1,0 +1,54 @@
+<!--pages/nav/nav.wxml-->
+<view class="page-body">
+  <view class="btn-area" id="buttonContainer">
+    
+    <view class="btn-cell">
+      <view class="cell-left-bg">
+        <image src="../../images/menu1.jpg" class="cell-left-img"></image>
+      </view>
+      <view class="title-cell">开发地图</view>
+    </view>
+    <view class="btn-cell">
+      <view class="cell-left-bg">
+        <image src="../../images/menu2.jpg" class="cell-left-img"></image>
+      </view>
+      <view class="title-cell">我的项目</view>
+    </view>
+    <view class="btn-cell">
+      <view class="cell-left-bg">
+        <image src="../../images/menu3.jpg" class="cell-left-img"></image>
+      </view>
+      <view class="title-cell">在线咨询</view>
+    </view>
+
+    <!-- <button open-type="contact" type="primary" class="chatbtn">在线咨询</button> -->
+    
+    <view class='contact-list'>
+    
+      <contact-button size='30'></contact-button>
+        
+      <contact-button size='30'></contact-button>
+        
+      <contact-button size='30'></contact-button>
+        
+      <contact-button size='30'></contact-button>
+        
+      <contact-button size='30'></contact-button>
+        
+      <contact-button size='30'></contact-button>
+        
+      <contact-button size='30'></contact-button>
+        
+      <contact-button size='30'></contact-button>
+        
+      <contact-button size='30'></contact-button>
+        
+      <contact-button size='30'></contact-button>
+        
+      <contact-button size='30'></contact-button>
+        
+      <contact-button size='30'></contact-button>
+    </view>
+ 
+  </view>
+</view>

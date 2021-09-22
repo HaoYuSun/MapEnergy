@@ -3,7 +3,7 @@
   <map id='map' 
         longitude="{{longitude}}" 
         latitude="{{latitude}}" 
-        scale="17"  
+        scale="20"  
         markers="{{markers}}" 
         bindregionchange="regionchange"
         bindtap='mapclick'

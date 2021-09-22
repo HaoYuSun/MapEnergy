@@ -1,0 +1,69 @@
+/* pages/nav/nav.wxss */
+html, body { 
+  margin: 0; 
+  padding: 0;
+  background-color: white;
+}
+
+.page-body{
+  border-top: 1px solid #f2f2f2;
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+}
+
+button{
+  margin-top: 30rpx;
+  margin-bottom: 30rpx;
+}
+.button-sp-area{
+  margin: 0 auto;
+  width: 60%;
+}
+.mini-btn{
+  margin-right: 10rpx;
+}
+
+.btn-area{
+  padding: 20vh 20vw;
+}
+
+.btn-cell{
+  width: 60vw;
+  height: 8vh;
+  background-color: #e3e3e3;
+  border-radius: 1vh;
+  margin-top: 20px;
+}
+.cell-left-bg{
+  float: left;
+  height: 8vh;
+  width: 8.4vh;
+  background-color: white;
+  border-radius: 1vh;
+}
+
+.cell-left-img{
+  width: 8vh;
+  height: 8vh;
+  background-color: aquamarine;
+  border-radius: 1vh;
+}
+.title-cell{
+  height: 8vh;
+  line-height: 8vh;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: darkolivegreen;
+}
+
+.chatbtn{
+  width: 60vw;
+  height: 8vh;
+}
+
+.contact-list{
+  margin-top: -8vh;
+  opacity: 0;
+}

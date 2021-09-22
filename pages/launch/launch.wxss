@@ -1,0 +1,13 @@
+/* pages/launch/launch.wxss */
+html, body { 
+  margin: 0; 
+  padding: 0; 
+} 
+
+.mapbgimg{
+  width: 100vw;
+  height: 100vh;
+  margin: 0px;
+  padding: 0px;
+  display:block
+}
