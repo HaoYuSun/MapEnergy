@@ -53,90 +53,177 @@
     </cover-view>
     
   </map> 
-  <view class="body-cell">
-    <view class="cell1 cell-t-l">装机容量</view>
-    <view class="cell1 cell-t-c">每瓦成本</view>
-    <view class="cell1 cell-t-r">投资成本</view>
-  </view>
-  <view class="body-cell">
-    <view class="cell1 cell-t-l">{{install_area}}MW ×</view>
-    <view class="cell1 cell-t-c">
-      <input class="cell1-inp" type="digit" maxlength="6" bindfocus="w_cost_inp_focus" bindblur="w_cost_inp_blur" value="{{w_cost}}"/>
-    </view>
-    <view class="cell1 cell-t-r">¥ {{cost}}万</view>
-  </view>
-  <view class="body-cell">
-    <view class="cell2 cell-t-l">安装面积(m²)</view>
-    <view class="cell2 cell-t-r">{{area}}</view>
-  </view>
-  <view class="body-cell">
-    <view class="cell2 cell-t-l">房顶利用率</view>
-    <view class="cell2 cell-t-r">
-      <input class="cell2-inp" type="digit" maxlength="6" bindfocus="area_rate_inp_focus" bindblur="area_rate_inp_blur" value="{{area_rate}}"/>
-    </view>
-  </view>
-  <view class="body-cell">
-    <view class="cell2 cell-t-l">辐照参数(kWh/kWp/年)</view>
-    <view class="cell2 cell-t-r">{{year_light}}</view>
-  </view>
-  <view class="body-cell">
-    <view class="cell2 cell-t-l">年发电量(度)</view>
-    <view class="cell2 cell-t-r">{{generating_year}}万</view>
-  </view>
+  <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_active">
+          <view class="weui-cell__hd">
+              <view class="weui-label">装机容量</view>
+          </view>
+          <view class="weui-cell__bd">
+            {{install_area}}MW
+          </view>
+      </view>
+      <view class="weui-cell weui-cell_active">
+          <view class="weui-cell__hd">
+              <view class="weui-label">每瓦成本</view>
+          </view>
+          <view class="weui-cell__bd weui-cell__bd__bgcolor">
+              <input class="weui-input" bindfocus="w_cost_inp_focus" bindblur="w_cost_inp_blur" placeholder-class="weui-input__placeholder" value="{{w_cost}}" placeholder="请输入每瓦成本"/>
+          </view>
+      </view>
+      <view class="weui-cell weui-cell_active">
+          <view class="weui-cell__hd">
+              <view class="weui-label">投资成本</view>
+          </view>
+          <view class="weui-cell__bd">
+            ¥ {{cost}}万
+          </view>
+      </view>
+      <view class="weui-cell weui-cell_active">
+          <view class="weui-cell__hd">
+              <view class="weui-label">安装面积</view>
+          </view>
+          <view class="weui-cell__bd">
+            {{area}}m²
+          </view>
+      </view>
+      <view class="weui-cell weui-cell_active">
+          <view class="weui-cell__hd">
+              <view class="weui-label">房顶利用率</view>
+          </view>
+          <view class="weui-cell__bd weui-cell__bd__bgcolor">
+              <input class="weui-input" bindfocus="area_rate_inp_focus" bindblur="area_rate_inp_blur" value="{{area_rate}}" placeholder-class="weui-input__placeholder" placeholder="请输入房顶利用率"/>
+          </view>
+      </view>
+      <view class="weui-cell weui-cell_active">
+          <view class="weui-cell__hd">
+              <view class="weui-label">辐照参数</view>
+              <view class="weui-label">(kWh/kWp/年)</view>
+          </view>
+          <view class="weui-cell__bd">
+            {{year_light}} 
+          </view>
+      </view>
+      <view class="weui-cell weui-cell_active">
+          <view class="weui-cell__hd">
+              <view class="weui-label">年发电量</view>
+          </view>
+          <view class="weui-cell__bd">
+            {{generating_year}} 万度
+          </view>
+      </view>
+      <view class="weui-cell weui-cell_active">
+          <view class="weui-cell__hd ">
+              <view class="weui-label">国补(元/瓦)</view>
+          </view>
+          <view class="weui-cell__bd weui-cell__bd__bgcolor">
+              <input class="weui-input" bindfocus="country_subsidy_inp_focus" bindblur="country_subsidy_inp_blur" value="{{country_subsidy}}" placeholder-class="weui-input__placeholder" placeholder="请输入国补"/>
+          </view>
+      </view>
+      <view class="weui-cell weui-cell_active">
+          <view class="weui-cell__hd">
+              <view class="weui-label">地方补贴</view>
+          </view>
+          <view class="weui-cell__bd weui-cell__bd__bgcolor">
+              <input class="weui-input" bindfocus="local_subsidy_inp_focus" bindblur="local_subsidy_inp_blur" value="{{local_subsidy}}" placeholder-class="weui-input__placeholder" placeholder="请输入地方补贴"/>
+          </view>
+      </view>
+      <view class="weui-cell weui-cell_active">
+          <view class="weui-cell__hd">
+              <view class="weui-label">初装补贴</view>
+          </view>
+          <view class="weui-cell__bd weui-cell__bd__bgcolor">
+              <input class="weui-input" bindfocus="init_subsidy_inp_focus" bindblur="init_subsidy_inp_blur" value="{{init_subsidy}}" placeholder-class="weui-input__placeholder" placeholder="请输入地方补贴"/>
+          </view>
+      </view>
+      <view class="weui-cell weui-cell_active">
+          <view class="weui-cell__hd">
+            <view class="weui-label">度电收益(元/瓦)</view>
+              
+          </view>
+          <view class="weui-cell__bd weui-cell__bd__bgcolor">
+            <input class="weui-input" bindfocus="yield_inp_focus" bindblur="yield_inp_blur" value="{{yield}}" placeholder-class="weui-input__placeholder" placeholder="请输入地方补贴"/>
+          </view>
+      </view>
+      <view class="weui-cell weui-cell_active">
+          <view class="weui-cell__hd">
+            <view class="weui-label">租金(元/平方米/年)</view>
+          </view>
+          <view class="weui-cell__bd weui-cell__bd__bgcolor">
+            <input class="weui-input" bindfocus="rent_inp_focus" bindblur="rent_inp_blur" value="{{rent}}" placeholder-class="weui-input__placeholder" placeholder="请输入地方补贴"/>
+          </view>
+      </view>
+      <view class="weui-cell weui-cell_active">
+          <view class="weui-cell__hd">
+            <view class="weui-label">运维成本(元/W/年)</view>
+          </view>
+          <view class="weui-cell__bd weui-cell__bd__bgcolor">
+            <input class="weui-input" bindfocus="operational_cost_inp_focus" bindblur="operational_cost_inp_blur" value="{{operational_cost}}" placeholder-class="weui-input__placeholder" placeholder="请输入地方补贴"/>
+          </view>
+      </view>
+      <view class="weui-cell weui-cell_active">
+          <view class="weui-cell__hd">
+              <view class="weui-label">年收益</view>
+          </view>
+          <view class="weui-cell__bd">
+            {{yield_year}} 万
+          </view>
+      </view>
+      <view class="weui-cell weui-cell_active">
+          <view class="weui-cell__hd">
+              <view class="weui-label">税前年收益</view>
+          </view>
+          <view class="weui-cell__bd">
+            {{pre_tax_yield_year}} %
+          </view>
+      </view>
+      <view class="weui-cell weui-cell_active">
+          <view class="weui-cell__hd">
+              <view class="weui-label">回本周期</view>
+          </view>
+          <view class="weui-cell__bd">
+            {{back_period}} 年
+          </view>
+      </view>
 
-  <view class="body-cell">
-    <view class="cell2 cell-t-l">国家补贴(元/瓦)</view>
-    <view class="cell2 cell-t-r">
-      <input class="cell2-inp" type="digit" maxlength="6" bindfocus="country_subsidy_inp_focus" bindblur="country_subsidy_inp_blur" value="{{country_subsidy}}"/>
-    </view>
-  </view>
-  <view class="body-cell">
-    <view class="cell2 cell-t-l">地方补贴(元/瓦)</view>
-    <view class="cell2 cell-t-r">
-      <input class="cell2-inp" type="digit" maxlength="6" bindfocus="local_subsidy_inp_focus" bindblur="local_subsidy_inp_blur" value="{{local_subsidy}}"/>
-    </view>
-  </view>
-  <view class="body-cell">
-    <view class="cell2 cell-t-l">初装补贴(元/瓦)</view>
-    <view class="cell2 cell-t-r">
-      <input class="cell2-inp" type="digit" maxlength="6" bindfocus="init_subsidy_inp_focus" bindblur="init_subsidy_inp_blur" value="{{init_subsidy}}"/>
-    </view>
-  </view>
-  <view class="body-cell">
-    <view class="cell2 cell-t-l">度电收益(元/瓦)</view>
-    <view class="cell2 cell-t-r">
-      <input class="cell2-inp" type="digit" maxlength="6" bindfocus="yield_inp_focus" bindblur="yield_inp_blur" value="{{yield}}"/>
-    </view>
-  </view>
-  <view class="body-cell">
-    <view class="cell2 cell-t-l">租金(元/平方米/年)</view>
-    <view class="cell2 cell-t-r">
-      <input class="cell2-inp" type="digit" maxlength="6" bindfocus="rent_inp_focus" bindblur="rent_inp_blur" value="{{rent}}"/>
-    </view>
-  </view>
-  <view class="body-cell">
-    <view class="cell2 cell-t-l">运维成本(元/W/年)</view>
-    <view class="cell2 cell-t-r">
-      <input class="cell2-inp" type="digit" maxlength="6" bindfocus="operational_cost_inp_focus" bindblur="operational_cost_inp_blur" value="{{operational_cost}}"/>
-    </view>
-  </view>
 
-  <view class="body-cell">
-    <view class="cell2 cell-t-l">年收益(万元)</view>
-    <view class="cell2 cell-t-r">{{yield_year}}万</view>
+      <view class="weui-cell weui-cell_active">
+          <view class="weui-cell__hd">
+            <view class="weui-label">有效发电小时数</view>
+          </view>
+          <view class="weui-cell__bd weui-cell__bd__bgcolor">
+            <input class="weui-input" bindfocus="youxiaofadianshu_inp_focus" bindblur="youxiaofadianshu_inp_blur" value="{{youxiaofadianshu}}" placeholder-class="weui-input__placeholder" placeholder="请输入"/>
+          </view>
+      </view>
+      <view class="weui-cells weui-cells_after-title">
+            <label for="js_area" class="weui-cell weui-cell_active weui-cell_select weui-cell_select-after">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">铺设方式</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <picker aria-role="combobox" id="js_area" bindchange="bindPushefangshiChange" value="{{pushefangshiIndex}}" range="{{pushefangshi}}">
+                        <view class="weui-select weui-select_in-select-after">{{pushefangshi[pushefangshiIndex]}}</view>
+                    </picker>
+                </view>
+            </label>
+        </view>
+      <view class="weui-cell weui-cell_active">
+          <view class="weui-cell__hd">
+              <view class="weui-label">特殊情况说明</view>
+          </view>
+          <view class="weui-cell__bd  weui-cell__bd__bgcolor">
+            <textarea class="weui-textarea" bindblur="teshuqingkuangshuoming_inp_blur" placeholder-class="weui-input__placeholder" value="{{teshushuoming}}" placeholder="请输入文本" style="height: 3.3em" />
+          </view>
+      </view>
+      
+      
   </view>
-  <view class="body-cell">
-    <view class="cell2 cell-t-l">税前年收益(%)</view>
-    <view class="cell2 cell-t-r">{{pre_tax_yield_year}}</view>
-  </view>
-  <view class="body-cell">
-    <view class="cell2 cell-t-l">回本周期(/年)</view>
-    <view class="cell2 cell-t-r">{{back_period}}</view>
+  <view style="width: 100%; height: 88px;"> 
   </view>
 </view>
 
 <div class="bot_menu">
   <view class="baocun baocun-border" bindtap="createshortreport">基础报告</view>
   <view class="baocun baocun-border" bindtap="createlongreport">详细报告</view>
+  <view class="baocun baocun-border" bindtap="createsgoreport">SGO+</view>
   <view class="baocun" bindtap="updetail">保存</view>
 </div>

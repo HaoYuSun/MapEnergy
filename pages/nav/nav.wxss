@@ -46,7 +46,7 @@ button{
 .cell-left-img{
   width: 8vh;
   height: 8vh;
-  background-color: aquamarine;
+  /* background-color: aquamarine; */
   border-radius: 1vh;
 }
 .title-cell{

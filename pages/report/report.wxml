@@ -1,32 +1,23 @@
 <view class="body">
-    <!-- <view class="meview">
-      <view class="selectview">
-          <view bindtap="selchange" data-type="0" class="item2 {{isLeftSel == true ? 'doing' : ''}}">
-              <view>个人记录</view>
-              <image class="selfselimg {{isLeftSel == true ? '' : 'dn'}}" src="../../images/selfselimg.png"></image>
-          </view>
-              <view bindtap="selchange" data-type="1" class="item2 {{isLeftSel == true ? '' : 'doing'}}">
-              <view>他人分享</view>
-              <image class="selfselimg {{isLeftSel == true ? 'dn' : ''}}" src="../../images/selfselimg.png"></image>
-          </view>
-      </view>
-  </view> -->
-<view style="margin-bottom:44px">
-  <mp-cells title="">
-      <mp-cell link wx:for="{{list}}" wx:for-index="idx" >
+
+<view style="padding-bottom:44px">
+    <view wx:for="{{list}}" wx:for-index="idx"  class="list-cell">
         <view class="icon-box checkbox-view"   data-index="{{idx}}" bindtap="checkboxTap">
             <view class="icon-small-wrp">
-                <icon class="icon-small" type="{{checkboxlist[idx] == 0 ? 'circle' : 'success'}}" size="23"></icon>
+                <icon class="icon-small" type="{{checkboxlist[idx] == 0 ? 'circle' : 'success'}}" size="17"></icon>
             </view>
         </view>
-          <view class="cell-body-view">
+        <view class="cell-body-view">
             <view>{{item.address}}</view>
-            <view style="font-size: 13px;color: #888888;">{{item.file_name}}</view>
-          </view>
-          <view class="bg-tap-view"  data-index="{{idx}}" bindtap="cellTap">
-          </view>
-      </mp-cell>
-  </mp-cells>
+        </view>
+        <view class="icon-box checkbox-view">
+            <view class="icon-small-wrp">
+                <mp-icon icon="folder" color="black" size="18"></mp-icon>   
+            </view>
+        </view>
+        <view class="bg-tap-view"  data-index="{{idx}}" bindtap="cellTap">
+        </view>
+    </view>
 </view>
 <view class="bot-view">
     <view class="bot-view-left-view" bindtap="allbox">

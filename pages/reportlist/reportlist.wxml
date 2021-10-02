@@ -1,0 +1,46 @@
+<view class="body">
+    <view style="padding-bottom:44px">
+        <view wx:for="{{list}}" wx:for-index="idx"  class="list-cell">
+            <view class="cell-body-view">
+                <view>{{item.file_name}}</view>
+            </view>
+            <view class="icon-box checkbox-view">
+                <view class="icon-small-wrp">
+                    <mp-icon icon="share" color="black" size="18"></mp-icon>   
+                </view>
+            </view>
+            <view class="bg-tap-view"  data-index="{{idx}}" bindtap="cellTap">
+            </view>
+        </view>
+    </view>
+    <view class="bot-view">
+        <view class="bot-view-left-view"  bindtap="down">下载</view>
+        <view class="bot-view-right-view" >咨询</view>
+        <view class='contact-list'>
+    
+    <contact-button size='30'></contact-button>
+      
+    <contact-button size='30'></contact-button>
+      
+    <contact-button size='30'></contact-button>
+      
+    <contact-button size='30'></contact-button>
+      
+    <contact-button size='30'></contact-button>
+      
+    <contact-button size='30'></contact-button>
+      
+    <contact-button size='30'></contact-button>
+      
+    <contact-button size='30'></contact-button>
+      
+    <contact-button size='30'></contact-button>
+      
+    <contact-button size='30'></contact-button>
+      
+    <contact-button size='30'></contact-button>
+      
+    <contact-button size='30'></contact-button>
+  </view>
+    </view>
+</view>

@@ -14,7 +14,7 @@ Page({
     pagesize: 12,
     isall: false,
     icon: '../../images/right.png',
-    list:[],
+    list:[{'address':'123123'}],
     proType: 0,
     checkboxlist:[],
     deleteall: 0
@@ -24,42 +24,10 @@ Page({
     var that = this;
     var index = e.currentTarget.dataset.index;
     console.log(index)
-    var file_path = that.data.list[index]['file_path'];
-    console.log(file_path)
-    var URL = 'https://sgo.en.com.cn/' + file_path;
-    var file_name = that.data.list[index].file_name;
-    var file_title = that.data.list[index].address;
-    wx.showModal({
-      title: '提示',
-      content: '是否转发文件',
-      confirmText: '转发',
-      success (res) {
-        if (res.confirm) {
-          wx.showLoading({
-            title: '下载中...',
-            mask: true
-          });
-          wx.downloadFile({
-            url: URL, // 下载url
-            success (res) {
-              // 下载完成后转发
-              wx.shareFileMessage({
-                filePath: res.tempFilePath,
-                fileName: file_title+file_name,
-                success() {},
-                fail: console.error,
-              })
-            },
-            fail: console.error,
-            complete (res){
-              wx.hideLoading();
-            },
-          })
-        } else if (res.cancel) {
-          console.log('用户点击取消')
-        }
-      }
-    })
+    var record_id = that.data.list[index]['id'];
+    wx.navigateTo({
+      url: '../reportlist/reportlist?record_id='+record_id,
+    })
     
   },
   del:function(e){
@@ -75,7 +43,7 @@ Page({
       id_list = id_list.substring(0, id_list.length-1);
       console.log(id_list);
       wx.request({
-        url: app.globalData.delReportUrl,
+        url: app.globalData.delProjectsUrl,
         data:{
           openid: that.data.openid,
           id_list: id_list
@@ -179,7 +147,7 @@ Page({
     }
 
     wx.request({
-      url: app.globalData.getReportsUrl,
+      url: app.globalData.getProjectsUrl,
       data:{
         openid: that.data.openid,
         pageid: that.data.pageid,

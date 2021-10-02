@@ -2,12 +2,15 @@
 html, body { 
   margin: 0; 
   padding: 0; 
+  text-align: center;
 } 
-
-.mapbgimg{
+.bgview{
   width: 100vw;
   height: 100vh;
-  margin: 0px;
-  padding: 0px;
-  display:block
+  text-align: center;
+}
+.mapbgimg{
+  width: 42vw;
+  height: 25vw;
+  margin-top: 70%;
 }

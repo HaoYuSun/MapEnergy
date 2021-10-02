@@ -199,10 +199,10 @@
         </view>
 
 
-        <view class="weui-cells__title">厂房说明</view>
+        <view class="weui-cells__title">复选列表项</view>
         <view class="weui-cells weui-cells_checkbox weui-cells_after-title">
             <checkbox-group bindchange="checkboxChange">
-                <label class="weui-cell weui-check__label" wx:for="{{changfangshuoming}}" wx:key="value">
+                <label class="weui-cell weui-check__label" wx:for="{{checkboxItems}}" wx:key="value">
                     <view class="weui-cell__hd">
                         <checkbox
                             class="weui-check"
@@ -216,6 +216,9 @@
                     </view>
                 </label>
             </checkbox-group>
+            <view class="weui-cell weui-cell_link" aria-role="button">
+                <view class="weui-cell__bd">添加更多</view>
+            </view>
         </view>
 
        

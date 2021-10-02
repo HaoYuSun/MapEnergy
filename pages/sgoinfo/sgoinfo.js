@@ -51,33 +51,8 @@ Page({
     zaiheshuoming: ["不确定", "载荷满足", "加固后满足"],
     zaiheshuomingIndex: 0,
 
-    changfangshuoming: [
-      {name: '屋顶漏水', value: '屋顶漏水'},
-      {name: '空管', value: '空管'},
-      {name: '消防', value: '消防'},
-      {name: '高空作业', value: '高空作业'}
-    ],
+
   },
-  checkboxChange: function (e) {
-    var that = this;
-    console.log('checkbox发生change事件，携带value值为：', e.detail.value);
-
-    var checkboxItems = this.data.changfangshuoming, values = e.detail.value;
-    for (var i = 0, lenI = checkboxItems.length; i < lenI; ++i) {
-      checkboxItems[i].checked = false;
-
-        for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
-            if(checkboxItems[i].value == values[j]){
-              checkboxItems[i].checked = true;
-                break;
-            }
-        }
-    }
-
-    this.setData({
-      changfangshuoming: checkboxItems
-    });
-},
 
   /**
    * 项目地址改变时
@@ -517,7 +492,6 @@ Page({
         'yezhuxingzhi': that.data.yezhuxingzhi[that.data.yezhuxingzhiIndex],
         'zaiheshuoming': that.data.zaiheshuoming[that.data.zaiheshuomingIndex],
         'report_address': that.data.report_address,
-        'changfangshuoming': that.data.changfangshuoming
       },
       method:"GET",
       success(res){
@@ -603,13 +577,9 @@ Page({
     });
     wx.request({
       url: getReportInfoUrl,
-      // data:{
-      //   'openid': that.data.openid,
-      //   'recordid': that.data.recordid
-      // },
       data:{
-        'openid': 'oi3_x4o3V5dAlMi1-IF1BHy6WXBY',
-        'recordid': 813
+        'openid': that.data.openid,
+        'recordid': that.data.recordid
       },
       method:"GET",
       success(res){
@@ -638,7 +608,6 @@ Page({
             changfanggaoduIndex: that.data.changfanggaodu.indexOf(res.data.info.changfanggaodu) >= 0 ? that.data.changfanggaodu.indexOf(res.data.info.changfanggaodu) : 0,
             yezhuxingzhiIndex: that.data.yezhuxingzhi.indexOf(res.data.info.yezhuxingzhi) >= 0 ? that.data.yezhuxingzhi.indexOf(res.data.info.yezhuxingzhi) : 0,
             zaiheshuomingIndex: that.data.zaiheshuoming.indexOf(res.data.info.zaiheshuoming) >= 0 ? that.data.zaiheshuoming.indexOf(res.data.info.zaiheshuoming) : 0,
-            changfangshuoming : res.data.info.changfangshuoming
           })
         }
       },

@@ -1,3 +1,4 @@
+const app = getApp()
 // pages/nav/nav.js
 Page({
 
@@ -6,6 +7,51 @@ Page({
    */
   data: {
 
+  },
+
+  gohome: function(e){
+    var that = this;
+    if(app.globalData.userInfo){
+      wx.navigateTo({
+        url: '../index/index',
+      })
+    }else{
+      that.authset();
+    }
+  },
+  goproject: function(e){
+    var that = this;
+    if(app.globalData.userInfo){
+      wx.navigateTo({
+        url: '../self/self',
+      })
+    }else{
+      that.authset();
+    }
+  },
+  /**
+   * 授权提醒
+  */
+  authset: function(e){
+    var that = this;
+    wx.getUserProfile({
+      desc: '获取你的昵称、头像、地区及性别',
+      success: res => {
+        console.log(res.userInfo);
+        app.globalData.userInfo = res.userInfo;
+        wx.request({
+          url: app.globalData.upUserinfoUrl,
+          data:{
+            openid: app.globalData.openid,
+            userInfo: app.globalData.userInfo
+          },
+          method:"GET",
+          success(res){
+            console.log(res)
+          }
+        });
+      }
+    })
   },
 
   /**

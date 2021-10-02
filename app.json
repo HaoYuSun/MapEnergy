@@ -1,16 +1,18 @@
 {
   "pages": [
+    
+    "pages/report_info/reportinfo",
+    "pages/detail/detail",
     "pages/nav/nav",
     "pages/launch/launch",
+    "pages/report/report",
     "pages/index/index",
-    "pages/detail/detail",
     "pages/logs/logs",
     "pages/record/record",
     "pages/self/self",
     "pages/setauth/setauth",
-    "pages/report_info/reportinfo",
-    "pages/report/report"
-    
+    "pages/reportlist/reportlist",
+    "pages/sgoinfo/sgoinfo"
   ],
   "useExtendedLib": {
     "kbone": true,

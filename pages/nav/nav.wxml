@@ -2,13 +2,13 @@
 <view class="page-body">
   <view class="btn-area" id="buttonContainer">
     
-    <view class="btn-cell">
+    <view class="btn-cell" bindtap="gohome">
       <view class="cell-left-bg">
         <image src="../../images/menu1.jpg" class="cell-left-img"></image>
       </view>
       <view class="title-cell">开发地图</view>
     </view>
-    <view class="btn-cell">
+    <view class="btn-cell" bindtap="goproject">
       <view class="cell-left-bg">
         <image src="../../images/menu2.jpg" class="cell-left-img"></image>
       </view>

@@ -1,4 +1,6 @@
 <!--pages/launch/launch.wxml-->
+<view class="bgview">
+  <image class="mapbgimg" src="../../images/logo.png"></image>
+</view>
 
-<image class="mapbgimg" src="../../images/mapauthbg.png"></image>
 

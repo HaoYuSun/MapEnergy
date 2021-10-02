@@ -4,23 +4,11 @@
 } */
 .body{
   width: 94vw;
-  padding: 0vh 3vw 100px 3vw;
+  padding: 0vh 3vw 44px 3vw;
   height: 99vh;
-
-  margin-bottom: 88px;
-  padding-bottom: 88px;
+  /* padding-bottom: 44px; */
+  margin-bottom: 44px;
   /* background-color: red; */
-}
-
-.weui-cell__hd{
-  width: 46%;
-}
-.weui-label{
-  width: auto;
-}
-.weui-cell{
-  padding: 8px 10px;
-  font-size: 15px;
 }
 
 .body-cell{
@@ -75,11 +63,10 @@
   bottom: 0px;
   left: 0px;
   background-color: rgba(214, 186, 140, 1);
-  z-index: 9999;
 }
 
 .baocun{
-  width: 24vw;
+  width: 100vw;
   height: 44px;
   text-align: center;
   line-height: 44px;
@@ -88,12 +75,4 @@
 }
 .baocun-border{
   border-right: 1px solid #f2f2f2;
-}
-
-.weui-cell__bd{
-  padding: 0 5px;
-}
-
-.weui-cell__bd__bgcolor{
-  background-color: #f2f2f2;
 }

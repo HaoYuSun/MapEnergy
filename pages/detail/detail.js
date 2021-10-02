@@ -45,6 +45,11 @@ Page({
       year_generating_capacity: 0,
       year_light: 1200
     },
+
+    pushefangshi: ["最佳倾角", "平铺", "均衡"],
+    pushefangshiIndex: 0,
+    teshushuoming: '',
+    youxiaofadianshu: '0'
   },
 
   /**
@@ -114,6 +119,16 @@ Page({
     var that = this;
     wx.navigateTo({
       url: '../report_info/reportinfo?recordid=' +that.data.recordid+'&openid='+that.data.openid,
+    })
+    
+  },
+  /**
+   * 生成sgo报告
+   */
+  createsgoreport: function(e){
+    var that = this;
+    wx.navigateTo({
+      url: '../sgoinfo/sgoinfo?recordid=' +that.data.recordid+'&openid='+that.data.openid,
     })
     
   },
@@ -259,7 +274,10 @@ Page({
         area_rate: that.data.area_rate,
         install_area: that.data.install_area,
         sum_price: that.data.sum_price,
-        generating_year: that.data.generating_year
+        generating_year: that.data.generating_year,
+        youxiaofadianshu: that.data.youxiaofadianshu,
+        teshushuoming: that.data.teshushuoming,
+        pushefangshi: that.data.pushefangshi[that.data.pushefangshiIndex]
       },
       method:"GET",
       success(resp){
@@ -306,12 +324,50 @@ Page({
 
             rent: resp.data.detail.rent,  // 租金
             operational_cost: resp.data.detail.operational_cost,  // 运维成本
-            cost: Number(resp.data.detail.sum_price) - Math.floor(Number(resp.data.detail.init_subsidy) * Number(resp.data.detail.install_area)*100 * 100) / 100
+            cost: Number(resp.data.detail.sum_price) - Math.floor(Number(resp.data.detail.init_subsidy) * Number(resp.data.detail.install_area)*100 * 100) / 100,
+
+            youxiaofadianshu: resp.data.youxiaofadianshu,
+            teshushuoming: resp.data.teshushuoming,
+            pushefangshiIndex: that.data.pushefangshi.indexOf(resp.data.pushefangshi)
           });
 
           that.updatePageData();
         }
       }
+    });
+  },
+
+  /**
+   * 有效发电小时改变时
+   */
+  youxiaofadianshu_inp_blur: function(e){
+    var that = this;
+    if(that.data.youxiaofadianshu == e.detail.value){
+      if(e.detail.value == ''){
+        that.setData({
+          youxiaofadianshu: 0
+        });
+        // this.updatePageData();
+      }else{
+        return;
+      }
+    }else{
+      if(e.detail.value == ''){
+        that.setData({
+          youxiaofadianshu: 0
+        });
+      }else{
+        that.setData({
+          youxiaofadianshu: Number(e.detail.value)
+        });
+      }
+      // this.updatePageData();
+    }
+  },
+  youxiaofadianshu_inp_focus: function(e){
+    var that = this;
+    that.setData({
+      youxiaofadianshu: ''
     });
   },
 
@@ -553,6 +609,30 @@ Page({
     that.setData({
       operational_cost: ''
     });
+  },
+
+  /**
+   * 铺设方式
+  */
+ bindPushefangshiChange: function(e) {
+  console.log(' 铺设方式改变，携带值为', e.detail.value);
+
+  this.setData({
+    pushefangshiIndex: e.detail.value
+  })
+},
+/**
+   * 变压器容量描述改变时
+   */
+  teshuqingkuangshuoming_inp_blur: function(e){
+    var that = this;
+    if(that.data.teshushuoming == e.detail.value){
+      return;
+    }else{
+      that.setData({
+        teshushuoming: e.detail.value
+      });
+    }
   },
 
   /**

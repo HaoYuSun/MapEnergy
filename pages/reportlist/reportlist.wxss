@@ -202,21 +202,20 @@ page {
 .cell-body-view{
   float: left;
   /* background-color: yellow; */
-  width: 75vw;
+  width: 84vw;
   line-height: 44px;
 }
 .bg-tap-view{
-  width: 90vw;
-  height: 66px;
-  position: absolute;
-  top: 0;
-  left: 10vw;
-  /* background-color: red; */
+  width: 100vw;
+    height: 44px;
+    position: absolute;
+    top: 0px;
+    left: 0vw;
 }
 .bot-view{
   width: 100vw;
   height: 44px;
-  /* background-color: red; */
+  background-color: red;
   position: fixed;
   left: 0px;
   bottom: 0px;
@@ -241,10 +240,22 @@ page {
   font-size: 17px;
 
 }
-.bot-view-right-view{
-  width: 75vw;
+.bot-view-left-view{
+  width: 50vw;
   height: 44px;
   background-color: rgba(214, 186, 140, 1);
+  float: left;
+  text-align: center;
+  line-height: 44px;
+  font-size: 17px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.bot-view-right-view{
+  width: 50vw;
+  height: 44px;
+  background-color: rgba(204, 176, 140, 1);
   float: left;
   text-align: center;
   line-height: 44px;
@@ -257,7 +268,7 @@ page {
   position: relative;
   height: 44px;
   /* background-color: red; */
-  padding: 0 2vw;
+  padding: 0 2vw 0 4vw;
   border-bottom: 1px solid #f2f2f2;
 }
 
@@ -267,4 +278,11 @@ page {
 
 .body{
   border-top: 1px solid #f6f6f6;
+}
+
+.contact-list{
+  position: absolute;
+  width: 50vw;
+  right: 0;
+  opacity: 0;
 }
