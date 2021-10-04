@@ -76,3 +76,12 @@
 .baocun-border{
   border-right: 1px solid #f2f2f2;
 }
+
+.weui-progress{
+  width: 92vw;
+  margin: 2vw 4vw;
+}
+
+.weui-progress__bar{
+  height: 6px;
+}

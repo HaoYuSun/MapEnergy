@@ -1,238 +1,242 @@
-
-<view class="page">
+<page-meta root-font-size="system"/>
+<view class="page" data-weui-theme="{{theme}}">
+ 
     <view class="page__bd">
-      <!-- <mp-form id="form" rules="{{rules}}" models="{{formData}}"> -->
-        <!-- <mp-cells title="信息补充" footer="底部说明文字底部说明文字"> -->
-          <view class="weui-cells__title">项目名称</view>
-          <view class="weui-cells weui-cells_after-title">
-              <view class="weui-cell">
-                  <view class="weui-cell__bd">
-                      <input type="text" class="weui-input" placeholder="请输入..." bindfocus="reoirt_title_inp_focus" bindblur="reoirt_title_inp_blur" value="{{report_title}}" />
-                  </view>
-              </view>
+      <view class="page__bd page__bd_spacing">
+        <view class="weui-progress">
+          <view class="weui-progress__bar">
+            <view class="weui-progress__inner-bar js_progress" style="width: {{rate}}%;"></view>
           </view>
-          
-
-          <view class="weui-cells__title">进线等级</view>
-          <view class="weui-cells weui-cells_after-title">
-              <view class="weui-cell weui-cell_select">
-                  <view class="weui-cell__bd">
-                      <picker bindchange="bindDianyadengjiChange" value="{{dianyadengjiIndex}}" range="{{dianyadengji}}">
-                          <view class="weui-select">{{dianyadengji[dianyadengjiIndex]}}</view>
-                      </picker>
-                  </view>
-              </view>
-          </view>
-
-          <view class="weui-cells__title">年日间总用电量(万度)</view>
-          <view class="weui-cells weui-cells_after-title">
-              <view class="weui-cell">
-                  <view class="weui-cell__bd">
-                      <input type="digit" class="weui-input" placeholder="请输入..." bindfocus="nianzongyongdian_inp_focus" bindblur="nianzongyongdian_inp_blur"  value="{{nianzongyongdian}}" />
-                  </view>
-              </view>
-          </view>
-
-          <view class="weui-cells__title">脱硫煤电价(元/度)</view>
-          <view class="weui-cells weui-cells_after-title">
-              <view class="weui-cell">
-                  <view class="weui-cell__bd">
-                      <input type="digit" class="weui-input" placeholder="请输入..." bindfocus="tuoliumeidianjia_inp_focus" bindblur="tuoliumeidianjia_inp_blur"  value="{{tuoliumeidianjia}}" />
-                  </view>
-              </view>
-          </view>
-
-          <view class="weui-cells__title">平均电价(元/度)</view>
-          <view class="weui-cells weui-cells_after-title">
-              <view class="weui-cell">
-                  <view class="weui-cell__bd">
-                      <input type="digit" class="weui-input" placeholder="请输入..." bindfocus="pingjundianjia_inp_focus" bindblur="pingjundianjia_inp_blur"  value="{{pingjundianjia}}" />
-                  </view>
-              </view>
-          </view>
-
-          <view class="weui-cells__title">合作模式</view>
-          <view class="weui-cells weui-cells_after-title">
-              <view class="weui-cell weui-cell_select">
-                  <view class="weui-cell__bd">
-                      <picker bindchange="bindHezuomoshiChange" value="{{hezuomoshiIndex}}" range="{{hezuomoshi}}">
-                          <view class="weui-select">{{hezuomoshi[hezuomoshiIndex]}}</view>
-                      </picker>
-                  </view>
-              </view>
-          </view>
-
-          <view wx:if="{{hezuomoshiIndex == 0}}" class="weui-cells__title">电价折扣</view>
-          <view wx:if="{{hezuomoshiIndex == 0}}" class="weui-cells weui-cells_after-title">
-              <view class="weui-cell">
-                  <view class="weui-cell__bd">
-                      <input type="digit" class="weui-input" placeholder="请输入..." bindblur="dianzhekou_inp_blur" bindfocus="dianzhekou_inp_focus"  value="{{dianzhekou}}" />
-                  </view>
-              </view>
-          </view>
-
-          <view wx:if="{{hezuomoshiIndex == 1}}" class="weui-cells__title">屋顶租金(元/平方米/年)</view>
-          <view wx:if="{{hezuomoshiIndex == 1}}" class="weui-cells weui-cells_after-title">
-              <view class="weui-cell">
-                  <view class="weui-cell__bd">
-                      <input type="digit" class="weui-input" placeholder="请输入..." bindblur="wudingzujin_inp_blur" bindfocus="wudingzujin_inp_focus"  value="{{wudingzujin}}" />
-                  </view>
-              </view>
-          </view>
-
-          <view class="weui-cells__title">自有资金占比(0~100)%</view>
-          <view class="weui-cells weui-cells_after-title">
-              <view class="weui-cell">
-                  <view class="weui-cell__bd">
-                      <input type="digit" class="weui-input" placeholder="请输入..." bindblur="ziyouzijin_inp_blur" bindfocus="ziyouzijin_inp_focus"  value="{{ziyouzijin}}" />
-                  </view>
-              </view>
-          </view>
-
-          <view class="weui-cells__title">屋顶类型</view>
-          <view class="weui-cells weui-cells_after-title">
-              <view class="weui-cell weui-cell_select">
-                  <view class="weui-cell__bd">
-                      <picker bindchange="bindWudingleixingChange" value="{{wudingleixingIndex}}" range="{{wudingleixing}}">
-                          <view class="weui-select">{{wudingleixing[wudingleixingIndex]}}</view>
-                      </picker>
-                  </view>
-              </view>
-          </view>
-          <view wx:if="{{wudingleixingIndex == 0}}" class="weui-cells__title">彩钢类型</view>
-          <view wx:if="{{wudingleixingIndex == 0}}" class="weui-cells weui-cells_after-title">
-              <view class="weui-cell weui-cell_select">
-                  <view class="weui-cell__bd">
-                      <picker bindchange="bindCaigangleixingChange" value="{{caigangleixingIndex}}" range="{{caigangleixing}}">
-                          <view class="weui-select">{{caigangleixing[caigangleixingIndex]}}</view>
-                      </picker>
-                  </view>
-              </view>
-          </view>
-
-          <view class="weui-cells__title">变压器容量(kVA)</view>
-          <view class="weui-cells weui-cells_after-title">
-              <view class="weui-cell">
-                  <view class="weui-cell__bd">
-                      <input type="digit" class="weui-input" placeholder="请输入..." bindblur="bianyaqirongliang_inp_blur" bindfocus="bianyaqirongliang_inp_focus"  value="{{bianyaqirongliang}}" />
-                  </view>
-              </view>
-          </view>
-        <view class="weui-cells__title">其他描述</view>
-        <view class="weui-cells weui-cells_after-title">
-            <view class="weui-cell">
-                <view class="weui-cell__bd">
-                    <textarea class="weui-textarea" bindblur="bianyaqimiaoshu_inp_blur"  placeholder="例：1台 300kVA，1台 1000kVA" style="height: 3.3em" value="{{bianyaqimiaoshu}}"/>
-                    <view class="weui-textarea-counter">0/60</view>
-                </view>
-            </view>
+          <!-- <navigator class="weui-wa-hotarea weui-progress__opr" aria-role="button" url="javascript:">
+            <text aria-label="取消" class="weui-icon-cancel" aria-role="img"></text>
+          </navigator> -->
+          <text id="js_current" class="weui-hidden_abs" aria-role="alert">{{num}}/7</text>
         </view>
+      </view>
+        <view class="weui-cells">
+            <view class="weui-cell weui-cell_uploader">
+                <view class="weui-cell__bd">
+                    <view class="weui-uploader">
+                        <view class="weui-uploader__hd">
+                          <view aria-role="option" class="weui-uploader__overview">
+                              <view class="weui-uploader__title">屋面结构</view>
+                              <!-- <view class="weui-uploader__info">{{files.length}}/2</view> -->
+                          </view>
+                          <!-- <view class="weui-uploader__tips">
+                            屋面结构
+                          </view> -->
+                        </view>
+                        <view class="weui-uploader__bd">
+                            <view class="weui-uploader__files" id="uploaderFiles">
+                                <block wx:for="{{wumianjiegou}}" wx:key="*this">
+                                    <view class="weui-uploader__file" bindtap="previewImage" data-type="1" id="{{item}}">
+                                        <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                                    </view>
+                                </block>
+                                <!-- <view class="weui-uploader__file">
+                                    <image class="weui-uploader__img" src="../../images/pic_160.png" mode="aspectFill" />
+                                </view> -->
+                                <!-- <view class="weui-uploader__file weui-uploader__file_status">
+                                    <image class="weui-uploader__img" src="../../images/pic_160.png" mode="aspectFill" />
+                                    <view aria-role="alert" class="weui-uploader__file-content">
+                                      <view aria-role="img" aria-label="上传中" class="weui-loading"></view>
+                                    </view>
+                                </view>
+                                <view class="weui-uploader__file weui-uploader__file_status">
+                                    <image class="weui-uploader__img" src="../../images/pic_160.png" mode="aspectFill" />
+                                    <view aria-role="alert" class="weui-uploader__file-content">
+                                        <icon aria-label="错误" type="warn" size="23" color="#F43530"></icon>
+                                    </view>
+                                </view> -->
 
-      <!-- </mp-form> -->
-        <view class="weui-cells__title">预计备案及电力接入完成时间</view>
-        <view class="weui-cells weui-cells_after-title">
-            <view class="weui-cell weui-cell_select">
-                <view class="weui-cell__bd">
-                    <picker bindchange="bindDianlijierushijianChange" value="{{yushedianlijierushijianIndex}}" range="{{yushedianlijierushijian}}">
-                        <view class="weui-select">{{yushedianlijierushijian[yushedianlijierushijianIndex]}}</view>
-                    </picker>
-                </view>
-            </view>
-        </view>
-        <view class="weui-cells__title">房屋使用年限</view>
-        <view class="weui-cells weui-cells_after-title">
-            <view class="weui-cell weui-cell_select">
-                <view class="weui-cell__bd">
-                    <picker bindchange="bindFangwushiyongnianxianChange" value="{{fangwushiyongnianxianIndex}}" range="{{fangwushiyongnianxian}}">
-                        <view class="weui-select">{{fangwushiyongnianxian[fangwushiyongnianxianIndex]}}</view>
-                    </picker>
-                </view>
-            </view>
-        </view>
-        <view class="weui-cells__title">企业工作时间</view>
-        <view class="weui-cells weui-cells_after-title">
-            <view class="weui-cell weui-cell_select">
-                <view class="weui-cell__bd">
-                    <picker bindchange="bindQiyegongzuoshijianChange" value="{{qiyegongzuoshijianIndex}}" range="{{qiyegongzuoshijian}}">
-                        <view class="weui-select">{{qiyegongzuoshijian[qiyegongzuoshijianIndex]}}</view>
-                    </picker>
-                </view>
-            </view>
-        </view>
-        <view class="weui-cells__title">厂房高度</view>
-        <view class="weui-cells weui-cells_after-title">
-            <view class="weui-cell weui-cell_select">
-                <view class="weui-cell__bd">
-                    <picker bindchange="bindChangfanggaoduChange" value="{{changfanggaoduIndex}}" range="{{changfanggaodu}}">
-                        <view class="weui-select">{{changfanggaodu[changfanggaoduIndex]}}</view>
-                    </picker>
-                </view>
-            </view>
-        </view>
-        <view class="weui-cells__title">项目地址</view>
-        <view class="weui-cells weui-cells_after-title">
-            <view class="weui-cell">
-                <view class="weui-cell__bd">
-                    <input type="text" class="weui-input" placeholder="请输入..." bindfocus="reoirt_addr_inp_focus" bindblur="reoirt_addr_inp_blur" value="{{report_address}}" />
-                </view>
-            </view>
-        </view>
-        <view class="weui-cells__title">业主性质</view>
-        <view class="weui-cells weui-cells_after-title">
-            <view class="weui-cell weui-cell_select">
-                <view class="weui-cell__bd">
-                    <picker bindchange="bindYezhuxingzhiChange" value="{{yezhuxingzhiIndex}}" range="{{yezhuxingzhi}}">
-                        <view class="weui-select">{{yezhuxingzhi[yezhuxingzhiIndex]}}</view>
-                    </picker>
-                </view>
-            </view>
-        </view>
-        <view class="weui-cells__title">载荷说明</view>
-        <view class="weui-cells weui-cells_after-title">
-            <view class="weui-cell weui-cell_select">
-                <view class="weui-cell__bd">
-                    <picker bindchange="bindHezuomoshiChange" value="{{zaiheshuomingIndex}}" range="{{zaiheshuoming}}">
-                        <view class="weui-select">{{zaiheshuoming[zaiheshuomingIndex]}}</view>
-                    </picker>
-                </view>
-            </view>
-        </view>
-
-
-        <view class="weui-cells__title">复选列表项</view>
-        <view class="weui-cells weui-cells_checkbox weui-cells_after-title">
-            <checkbox-group bindchange="checkboxChange">
-                <label class="weui-cell weui-check__label" wx:for="{{checkboxItems}}" wx:key="value">
-                    <view class="weui-cell__hd">
-                        <checkbox
-                            class="weui-check"
-                            value="{{item.value}}"
-                            checked="{{item.checked}}"
-                        />
-                        <i class="weui-icon-checked"></i>
+                            </view>
+                            <view class="weui-uploader__input-box">
+                                <view aria-role="button" aria-label="上传" class="weui-uploader__input" id="1"  bindtap="chooseImage"></view>
+                            </view>
+                        </view>
                     </view>
-                    <view class="weui-cell__bd">
-                        <view>{{item.name}}</view>
-                    </view>
-                </label>
-            </checkbox-group>
-            <view class="weui-cell weui-cell_link" aria-role="button">
-                <view class="weui-cell__bd">添加更多</view>
+                </view>
             </view>
         </view>
 
-       
+        <view class="weui-cells">
+            <view class="weui-cell weui-cell_uploader">
+                <view class="weui-cell__bd">
+                    <view class="weui-uploader">
+                        <view class="weui-uploader__hd">
+                          <view aria-role="option" class="weui-uploader__overview">
+                              <view class="weui-uploader__title">电费单</view>
+                          </view>
+                        </view>
+                        <view class="weui-uploader__bd">
+                            <view class="weui-uploader__files" id="uploaderFiles">
+                                <block wx:for="{{dianfeidan}}" wx:key="*this">
+                                    <view class="weui-uploader__file" bindtap="previewImage" data-type="2" id="{{item}}">
+                                        <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                                    </view>
+                                </block>
+                                <!-- <view class="weui-uploader__file">
+                                    <image class="weui-uploader__img" src="../../images/pic_160.png" mode="aspectFill" />
+                                </view> -->
 
-
-        <view class="weui-btn-area">
-            <button class="weui-btn" type="primary" bindtap="submitForm">确定</button>
+                            </view>
+                            <view class="weui-uploader__input-box">
+                                <view aria-role="button" aria-label="上传" class="weui-uploader__input" id="2" bindtap="chooseImage"></view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
         </view>
-        <view style="width:100vw; height:30px">
-            
+
+        <view class="weui-cells">
+            <view class="weui-cell weui-cell_uploader">
+                <view class="weui-cell__bd">
+                    <view class="weui-uploader">
+                        <view class="weui-uploader__hd">
+                          <view aria-role="option" class="weui-uploader__overview">
+                              <view class="weui-uploader__title">图纸（结构、电气）</view>
+                          </view>
+                          <view class="weui-uploader__tips">
+                            提供认证服务（载荷报告）
+                          </view>
+                        </view>
+                        <view class="weui-uploader__bd">
+                            <view class="weui-uploader__files" id="uploaderFiles">
+                              <block wx:for="{{tuzhi}}" wx:key="*this">
+                                    <view class="weui-uploader__file" bindtap="previewImage" data-type="3" id="{{item}}">
+                                        <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                                    </view>
+                                </block>
+
+                            </view>
+                            <view class="weui-uploader__input-box">
+                                <view aria-role="button" aria-label="上传" class="weui-uploader__input" id="3" bindtap="chooseImage"></view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+
+        <view class="weui-cells">
+            <view class="weui-cell weui-cell_uploader">
+                <view class="weui-cell__bd">
+                    <view class="weui-uploader">
+                        <view class="weui-uploader__hd">
+                          <view aria-role="option" class="weui-uploader__overview">
+                              <view class="weui-uploader__title">照片库</view>
+                          </view>
+                          <view class="weui-uploader__tips">
+                            屋顶航拍图、瓦屋面近距离拍摄图
+                          </view>
+                        </view>
+                        <view class="weui-uploader__bd">
+                            <view class="weui-uploader__files" id="uploaderFiles">
+                              <block wx:for="{{zhaopianku}}" wx:key="*this">
+                                    <view class="weui-uploader__file" bindtap="previewImage" data-type="4" id="{{item}}">
+                                        <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                                    </view>
+                                </block>
+
+                            </view>
+                            <view class="weui-uploader__input-box">
+                                <view aria-role="button" aria-label="上传" class="weui-uploader__input" id="4" bindtap="chooseImage"></view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+
+        <view class="weui-cells">
+            <view class="weui-cell weui-cell_uploader">
+                <view class="weui-cell__bd">
+                    <view class="weui-uploader">
+                        <view class="weui-uploader__hd">
+                          <view aria-role="option" class="weui-uploader__overview">
+                              <view class="weui-uploader__title">业主信息</view>
+                          </view>
+                          <view class="weui-uploader__tips">
+                            产证、营业执照
+                          </view>
+                        </view>
+                        <view class="weui-uploader__bd">
+                            <view class="weui-uploader__files" id="uploaderFiles">
+                              <block wx:for="{{yezhuxinxi}}" wx:key="*this">
+                                    <view class="weui-uploader__file" bindtap="previewImage" data-type="5" id="{{item}}">
+                                        <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                                    </view>
+                                </block>
+
+                            </view>
+                            <view class="weui-uploader__input-box">
+                                <view aria-role="button" aria-label="上传" class="weui-uploader__input" id="5" bindtap="chooseImage"></view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+
+        <view class="weui-cells">
+            <view class="weui-cell weui-cell_uploader">
+                <view class="weui-cell__bd">
+                    <view class="weui-uploader">
+                        <view class="weui-uploader__hd">
+                          <view aria-role="option" class="weui-uploader__overview">
+                              <view class="weui-uploader__title">备案证</view>
+                          </view>
+                          <view class="weui-uploader__tips">
+                            增加RTB认证
+                          </view>
+                        </view>
+                        <view class="weui-uploader__bd">
+                            <view class="weui-uploader__files" id="uploaderFiles">
+                              <block wx:for="{{beianzheng}}" wx:key="*this">
+                                    <view class="weui-uploader__file" bindtap="previewImage" data-type="6" id="{{item}}">
+                                        <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                                    </view>
+                                </block>
+
+                            </view>
+                            <view class="weui-uploader__input-box">
+                                <view aria-role="button" aria-label="上传" class="weui-uploader__input" id="6" bindtap="chooseImage"></view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+
+        <view class="weui-cells">
+            <view class="weui-cell weui-cell_uploader">
+                <view class="weui-cell__bd">
+                    <view class="weui-uploader">
+                        <view class="weui-uploader__hd">
+                          <view aria-role="option" class="weui-uploader__overview">
+                              <view class="weui-uploader__title">接入方案</view>
+                          </view>
+                          <view class="weui-uploader__tips">
+                            增加RTB认证
+                          </view>
+                        </view>
+                        <view class="weui-uploader__bd">
+                            <view class="weui-uploader__files" id="uploaderFiles">
+                              <block wx:for="{{jierufangan}}" wx:key="*this">
+                                    <view class="weui-uploader__file" bindtap="previewImage" data-type="7" id="{{item}}">
+                                        <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                                    </view>
+                                </block>
+
+                            </view>
+                            <view class="weui-uploader__input-box">
+                                <view aria-role="button" aria-label="上传" class="weui-uploader__input" id="7" bindtap="chooseImage"></view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
         </view>
     </view>
 </view>
-
-<!-- <div class="bot_menu">
-  <view class="baocun" bindtap="updetail">保存</view>
-</div> -->

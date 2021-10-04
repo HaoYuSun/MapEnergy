@@ -603,14 +603,14 @@ Page({
     });
     wx.request({
       url: getReportInfoUrl,
-      // data:{
-      //   'openid': that.data.openid,
-      //   'recordid': that.data.recordid
-      // },
       data:{
-        'openid': 'oi3_x4o3V5dAlMi1-IF1BHy6WXBY',
-        'recordid': 813
+        'openid': that.data.openid,
+        'recordid': that.data.recordid
       },
+      // data:{
+      //   'openid': 'oi3_x4o3V5dAlMi1-IF1BHy6WXBY',
+      //   'recordid': 813
+      // },
       method:"GET",
       success(res){
         console.log(res)
