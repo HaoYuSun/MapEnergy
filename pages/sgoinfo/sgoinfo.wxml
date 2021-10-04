@@ -29,9 +29,13 @@
                         <view class="weui-uploader__bd">
                             <view class="weui-uploader__files" id="uploaderFiles">
                                 <block wx:for="{{wumianjiegou}}" wx:key="*this">
+                                  <view class="superview">
                                     <view class="weui-uploader__file" bindtap="previewImage" data-type="1" id="{{item}}">
                                         <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
                                     </view>
+                                    <image class="cancelbtn" src="../../images/menu_2.png" data-type="1" id="{{item}}" bindtap="cancelTap"></image>
+                                  </view>
+                                    
                                 </block>
                                 <!-- <view class="weui-uploader__file">
                                     <image class="weui-uploader__img" src="../../images/pic_160.png" mode="aspectFill" />
@@ -71,9 +75,12 @@
                         <view class="weui-uploader__bd">
                             <view class="weui-uploader__files" id="uploaderFiles">
                                 <block wx:for="{{dianfeidan}}" wx:key="*this">
+                                  <view class="superview">
                                     <view class="weui-uploader__file" bindtap="previewImage" data-type="2" id="{{item}}">
                                         <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
                                     </view>
+                                    <image class="cancelbtn" src="../../images/menu_2.png" data-type="2" id="{{item}}" bindtap="cancelTap"></image>
+                                  </view>
                                 </block>
                                 <!-- <view class="weui-uploader__file">
                                     <image class="weui-uploader__img" src="../../images/pic_160.png" mode="aspectFill" />
@@ -104,9 +111,12 @@
                         <view class="weui-uploader__bd">
                             <view class="weui-uploader__files" id="uploaderFiles">
                               <block wx:for="{{tuzhi}}" wx:key="*this">
+                                <view class="superview">
                                     <view class="weui-uploader__file" bindtap="previewImage" data-type="3" id="{{item}}">
                                         <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
                                     </view>
+                                    <image class="cancelbtn" src="../../images/menu_2.png" data-type="3" id="{{item}}" bindtap="cancelTap"></image>
+                                  </view>
                                 </block>
 
                             </view>
@@ -134,9 +144,12 @@
                         <view class="weui-uploader__bd">
                             <view class="weui-uploader__files" id="uploaderFiles">
                               <block wx:for="{{zhaopianku}}" wx:key="*this">
+                                <view class="superview">
                                     <view class="weui-uploader__file" bindtap="previewImage" data-type="4" id="{{item}}">
                                         <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
                                     </view>
+                                    <image class="cancelbtn" src="../../images/menu_2.png" data-type="4" id="{{item}}" bindtap="cancelTap"></image>
+                                  </view>
                                 </block>
 
                             </view>
@@ -164,9 +177,12 @@
                         <view class="weui-uploader__bd">
                             <view class="weui-uploader__files" id="uploaderFiles">
                               <block wx:for="{{yezhuxinxi}}" wx:key="*this">
+                                <view class="superview">
                                     <view class="weui-uploader__file" bindtap="previewImage" data-type="5" id="{{item}}">
                                         <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
                                     </view>
+                                    <image class="cancelbtn" src="../../images/menu_2.png" data-type="5" id="{{item}}" bindtap="cancelTap"></image>
+                                  </view>
                                 </block>
 
                             </view>
@@ -194,9 +210,12 @@
                         <view class="weui-uploader__bd">
                             <view class="weui-uploader__files" id="uploaderFiles">
                               <block wx:for="{{beianzheng}}" wx:key="*this">
+                                <view class="superview">
                                     <view class="weui-uploader__file" bindtap="previewImage" data-type="6" id="{{item}}">
                                         <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
                                     </view>
+                                    <image class="cancelbtn" src="../../images/menu_2.png" data-type="6" id="{{item}}" bindtap="cancelTap"></image>
+                                  </view>
                                 </block>
 
                             </view>
@@ -224,9 +243,12 @@
                         <view class="weui-uploader__bd">
                             <view class="weui-uploader__files" id="uploaderFiles">
                               <block wx:for="{{jierufangan}}" wx:key="*this">
+                                <view class="superview">
                                     <view class="weui-uploader__file" bindtap="previewImage" data-type="7" id="{{item}}">
                                         <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
                                     </view>
+                                    <image class="cancelbtn" src="../../images/menu_2.png" data-type="7" id="{{item}}" bindtap="cancelTap"></image>
+                                  </view>
                                 </block>
 
                             </view>

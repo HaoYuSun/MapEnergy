@@ -87,6 +87,62 @@ Page({
             }
         })
     },
+    cancelTap: function (e) {
+      var that = this;
+      console.log(e.currentTarget)
+      var type_id = e.currentTarget.dataset.type
+      var url =  e.currentTarget.id
+      var delFileUrl = app.globalData.delFileUrl;
+      wx.request({
+        url: delFileUrl,
+        data:{
+          // 'openid': that.data.openid,
+          // 'recordid': that.data.recordid
+          'openid': 'oi3_x4o3V5dAlMi1-IF1BHy6WXBY',
+          'recordid': '823',
+          'type': type_id,
+          'url': url
+        },
+        method:"GET",
+        success(res){
+          console.log(res)
+          if(res.data.code == '0'){
+            if(type_id == 1){
+              that.setData({
+                wumianjiegou: res.data.data,
+              })
+            }else if(type_id == 2){
+              that.setData({
+                dianfeidan: res.data.data,
+              })
+            }else if(type_id == 3){
+              that.setData({
+                tuzhi: res.data.data,
+              })
+            }else if(type_id == 4){
+              that.setData({
+                zhaopianku: res.data.data,
+              })
+            }else if(type_id == 5){
+              that.setData({
+                yezhuxinxi: res.data.data,
+              })
+            }else if(type_id == 6){
+              that.setData({
+                beianzheng: res.data.data,
+              })
+            }else if(type_id == 7){
+              that.setData({
+                jierufangan: res.data.data,
+              })
+            }
+          }
+        },
+        complete(){
+          
+        }
+      });
+    },
     previewImage: function(e){
         var that = this;
         console.log(e.currentTarget)

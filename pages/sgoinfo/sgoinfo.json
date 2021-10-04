@@ -5,7 +5,8 @@
     "mp-cell": "weui-miniprogram/cell/cell",
     "mp-checkbox": "weui-miniprogram/checkbox/checkbox",
     "mp-checkbox-group": "weui-miniprogram//checkbox-group/checkbox-group",
-    "mp-form": "weui-miniprogram/form/form"
+    "mp-form": "weui-miniprogram/form/form",
+    "mp-icon": "weui-miniprogram/icon/icon"
   },
   "navigationBarTitleText": "sgo",
   "backgroundColor": "#ffffff"

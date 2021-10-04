@@ -140,5 +140,6 @@ App({
     gelProjectsListUrl: 'https://sgo.en.com.cn/getprojectslist',
     uploadFileUrl: 'https://sgo.en.com.cn/uploadfile',
     getSgoFileUrl: 'https://sgo.en.com.cn/getsgofile',
+    delFileUrl: 'https://sgo.en.com.cn/delsgofile',
   }
 })

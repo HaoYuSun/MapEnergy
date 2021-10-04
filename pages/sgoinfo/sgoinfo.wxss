@@ -85,3 +85,23 @@
 .weui-progress__bar{
   height: 6px;
 }
+
+.weui-uploader__file{
+  position: relative;
+}
+
+.cancelbtn{
+    height: 23px;
+    width: 23px;
+    position: absolute;
+    z-index: 9999;
+    right: 8px;
+    top: 0px;
+    /* background-color: red; */
+    background-color: #f2f2f2;
+    border-radius: 11.5px;
+}
+.superview{
+  position: relative;
+  display: inline;
+}
