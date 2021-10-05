@@ -26,7 +26,7 @@ Page({
     console.log(index)
     var record_id = that.data.list[index]['id'];
     wx.navigateTo({
-      url: '../reportlist/reportlist?record_id='+record_id,
+      url: '../reportindex/reportindex?record_id='+record_id,
     })
     
   },

@@ -10,6 +10,7 @@ Page({
     isLeftSel: true,
     activeTab: 0,
     openid: '',
+    type: 1,
     pageid: 1,
     pagesize: 12,
     isall: false,
@@ -20,7 +21,20 @@ Page({
     deleteall: 0,
     reocrd_id:0
   },
-
+  cell2Tap: function (e) {
+    var that = this;
+    var first = e.currentTarget.dataset.first;
+    var index = e.currentTarget.dataset.index;
+    console.log(e.currentTarget)
+    var type_id = e.currentTarget.dataset.type
+    console.log(type_id)
+    var urls = that.data.list[first]['file_path']
+    console.log(urls)
+    wx.previewImage({
+        current: index, // 当前显示图片的http链接
+        urls: urls // 需要预览的图片http链接列表
+    })
+  },
   cellTap: function(e){
     var that = this;
     var index = e.currentTarget.dataset.index;
@@ -165,7 +179,8 @@ Page({
     var that = this;
     console.log(options)
     that.setData({
-      record_id: options.record_id
+      record_id: options.record_id,
+      type: options.type
     });
 
     that.getReportsList();
@@ -178,7 +193,8 @@ Page({
       
       url: app.globalData.gelProjectsListUrl,
       data:{
-        recordid: that.data.record_id
+        recordid: that.data.record_id,
+        type: that.data.type
       },
       method:"GET",
       success(resp){

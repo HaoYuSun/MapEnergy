@@ -29,9 +29,6 @@ Page({
             sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
             success: function (res) {
                 // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-                
-                
-
                 for (var i=0; i< res.tempFilePaths.length; i++){
                   var imgpath = res.tempFilePaths[i];
                   wx.uploadFile({
@@ -42,8 +39,8 @@ Page({
                       'content-type': 'application/x-wwww-form-urlencoded'
                     },
                     formData:{
-                      'openid': 'oi3_x4o3V5dAlMi1-IF1BHy6WXBY',
-                      'recordid': '823',
+                      'openid': that.data.openid,
+                      'recordid': that.data.recordid,
                       'type': type_id
                     },
                     success: function(res){
@@ -98,8 +95,6 @@ Page({
         data:{
           // 'openid': that.data.openid,
           // 'recordid': that.data.recordid
-          'openid': 'oi3_x4o3V5dAlMi1-IF1BHy6WXBY',
-          'recordid': '823',
           'type': type_id,
           'url': url
         },

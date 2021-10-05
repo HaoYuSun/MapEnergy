@@ -22,7 +22,7 @@
 <view class="bot-view">
     <view class="bot-view-left-view" bindtap="allbox">
         <view class="icon-box left-view"   data-index="{{idx}}" bindtap="checkboxTap">
-            <view class="icon-small-wrp">
+            <view class="icon-small-wrp m-t-0">
                 <icon class="icon-small" type="{{deleteall == 0 ? 'circle' : 'success'}}" size="23"></icon>
             </view>
         </view>

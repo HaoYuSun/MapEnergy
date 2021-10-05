@@ -1,0 +1,45 @@
+<view class="body">
+
+<view style="padding-bottom:44px">
+    <view class="list-cell">
+
+        <view class="cell-body-view">
+            <view>基础报告</view>
+        </view>
+        <view class="icon-box checkbox-view">
+            <view class="icon-small-wrp">
+                <mp-icon icon="folder" color="black" size="18"></mp-icon>   
+            </view>
+        </view>
+        <view class="bg-tap-view"  data-type="1" bindtap="cellTap">
+        </view>
+    </view>
+    <view class="list-cell">
+
+<view class="cell-body-view">
+    <view>详细报告</view>
+</view>
+<view class="icon-box checkbox-view">
+    <view class="icon-small-wrp">
+        <mp-icon icon="folder" color="black" size="18"></mp-icon>   
+    </view>
+</view>
+<view class="bg-tap-view"  data-type="2" bindtap="cellTap">
+</view>
+</view>
+<view class="list-cell">
+
+<view class="cell-body-view">
+    <view>SGO报告</view>
+</view>
+<view class="icon-box checkbox-view">
+    <view class="icon-small-wrp">
+        <mp-icon icon="folder" color="black" size="18"></mp-icon>   
+    </view>
+</view>
+<view class="bg-tap-view"  data-type="3" bindtap="cellTap">
+</view>
+</view>
+</view>
+
+</view>
