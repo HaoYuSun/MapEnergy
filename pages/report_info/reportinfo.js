@@ -57,6 +57,7 @@ Page({
       {name: '消防', value: '消防'},
       {name: '高空作业', value: '高空作业'}
     ],
+    changfangshuoming_v:[]
   },
   checkboxChange: function (e) {
     var that = this;
@@ -75,7 +76,8 @@ Page({
     }
 
     this.setData({
-      changfangshuoming: checkboxItems
+      changfangshuoming: checkboxItems,
+      changfangshuoming_v: e.detail.value
     });
 },
 
@@ -517,7 +519,7 @@ Page({
         'yezhuxingzhi': that.data.yezhuxingzhi[that.data.yezhuxingzhiIndex],
         'zaiheshuoming': that.data.zaiheshuoming[that.data.zaiheshuomingIndex],
         'report_address': that.data.report_address,
-        'changfangshuoming': that.data.changfangshuoming
+        'changfangshuoming': that.data.changfangshuoming_v
       },
       method:"GET",
       success(res){

@@ -14,6 +14,7 @@ Page({
     if(app.globalData.userInfo){
       wx.navigateTo({
         url: '../index/index',
+  // url: '../webview/webview',
       })
     }else{
       that.authset();

@@ -95,13 +95,15 @@
     width: 23px;
     position: absolute;
     z-index: 9999;
-    right: 8px;
-    top: 0px;
+    right: 7px;
+    top: 3px;
     /* background-color: red; */
     background-color: #f2f2f2;
     border-radius: 11.5px;
 }
 .superview{
   position: relative;
-  display: inline;
+  display: inline-block;
+    width: 100px;
+    height: 100px;
 }

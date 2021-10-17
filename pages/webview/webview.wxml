@@ -1,0 +1,4 @@
+<!--pages/webview/webview.wxml-->
+<web-view class="webview"src="https://api.sgosgo.com/test">
+
+</web-view>

@@ -41,9 +41,10 @@ Page({
     console.log(index)
     var file_path = that.data.list[index]['file_path'];
     console.log(file_path)
-    var URL = 'https://sgo.en.com.cn/' + file_path;
+    var URL = app.globalData.baseUrl + file_path;
     var file_name = that.data.list[index].file_name;
     var file_title = that.data.list[index].address;
+    console.log(file_title)
     wx.showModal({
       title: '提示',
       content: '是否转发文件',
@@ -81,7 +82,7 @@ Page({
     var that = this;
     var file_path = that.data.list[0]['file_path'];
     console.log(file_path)
-    var URL = 'https://sgo.en.com.cn/' + file_path;
+    var URL = app.globalData.baseUrl + file_path;
     var file_name = that.data.list[0].file_name;
     var file_title = that.data.list[0].address;
     wx.showLoading({
@@ -98,7 +99,7 @@ Page({
           success() {
             var file_path = that.data.list[1]['file_path'];
             console.log(file_path)
-            var URL = 'https://sgo.en.com.cn/' + file_path;
+            var URL = app.globalData.baseUrl + file_path;
             var file_name = that.data.list[1].file_name;
             var file_title = that.data.list[1].address;
             wx.showLoading({
@@ -115,7 +116,7 @@ Page({
                   success() {
                     var file_path = that.data.list[2]['file_path'];
                     console.log(file_path)
-                    var URL = 'https://sgo.en.com.cn/' + file_path;
+                    var URL = app.globalData.baseUrl + file_path;
                     var file_name = that.data.list[2].file_name;
                     var file_title = that.data.list[2].address;
                     wx.showLoading({

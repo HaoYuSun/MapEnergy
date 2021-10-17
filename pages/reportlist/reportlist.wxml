@@ -38,7 +38,7 @@
         </view>
     </view>
     <view class="bot-view" wx:if="{{type == 1 || type == 2}}">
-        <view class="bot-view-left-view"  bindtap="down">下载</view>
+        <!-- <view class="bot-view-left-view"  bindtap="down">下载</view> -->
         <view class="bot-view-right-view" >咨询</view>
         <view class='contact-list'>
             <contact-button size='30'></contact-button>
@@ -57,6 +57,36 @@
             
             <contact-button size='30'></contact-button>
             
+            <contact-button size='30'></contact-button>
+            
+            <contact-button size='30'></contact-button>
+            
+            <contact-button size='30'></contact-button>
+            
+            <contact-button size='30'></contact-button>
+            <contact-button size='30'></contact-button>
+            
+            <contact-button size='30'></contact-button>
+            
+            <contact-button size='30'></contact-button>
+            
+            <contact-button size='30'></contact-button>
+            
+            <contact-button size='30'></contact-button>
+            
+            <contact-button size='30'></contact-button>
+            
+            <contact-button size='30'></contact-button>
+            
+            <contact-button size='30'></contact-button>
+            
+            <contact-button size='30'></contact-button>
+            
+            <contact-button size='30'></contact-button>
+            
+            <contact-button size='30'></contact-button>
+            
+            <contact-button size='30'></contact-button>
             <contact-button size='30'></contact-button>
             
             <contact-button size='30'></contact-button>

@@ -121,6 +121,7 @@ App({
     userInfo: null,
     map_key: 'QYEBZ-VCMED-DD44G-H4QVE-U7OHS-PAFAA',
     openid: null,
+    baseUrl: 'https://sgo.en.com.cn/',
     getOpenidUrl: 'https://sgo.en.com.cn/getopenid',
     upUserinfoUrl: 'https://sgo.en.com.cn/upuserinfo',
     upAreaUrl: 'https://sgo.en.com.cn/uparea',

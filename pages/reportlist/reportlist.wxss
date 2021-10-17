@@ -259,7 +259,7 @@ page {
 }
 
 .bot-view-right-view{
-  width: 50vw;
+  width: 100vw;
   height: 44px;
   background-color: rgba(204, 176, 140, 1);
   float: left;
@@ -297,7 +297,7 @@ page {
 
 .contact-list{
   position: absolute;
-  width: 50vw;
+  width: 100vw;
   right: 0;
   opacity: 0;
 }

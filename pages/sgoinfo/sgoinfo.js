@@ -48,31 +48,45 @@ Page({
                       var result = JSON.parse(res.data)
                       if(type_id == 1){
                         that.setData({
-                          wumianjiegou: that.data.wumianjiegou.concat(result.data.tempFilePaths)
+                          wumianjiegou: that.data.wumianjiegou.concat(result.data.tempFilePaths),
+                          num: result.data.num,
+                          rate: result.data.rate
                         });
                       }else if(type_id == 2){
                         that.setData({
-                          dianfeidan: that.data.dianfeidan.concat(result.data.tempFilePaths)
+                          dianfeidan: that.data.dianfeidan.concat(result.data.tempFilePaths),
+                          num: result.data.num,
+                          rate: result.data.rate
                         });
                       }else if(type_id == 3){
                         that.setData({
-                          tuzhi: that.data.tuzhi.concat(result.data.tempFilePaths)
+                          tuzhi: that.data.tuzhi.concat(result.data.tempFilePaths),
+                          num: result.data.num,
+                          rate: result.data.rate
                         });
                       }else if(type_id == 4){
                         that.setData({
-                          zhaopianku: that.data.zhaopianku.concat(result.data.tempFilePaths)
+                          zhaopianku: that.data.zhaopianku.concat(result.data.tempFilePaths),
+                          num: result.data.num,
+                          rate: result.data.rate
                         });
                       }else if(type_id == 5){
                         that.setData({
-                          yezhuxinxi: that.data.yezhuxinxi.concat(result.data.tempFilePaths)
+                          yezhuxinxi: that.data.yezhuxinxi.concat(result.data.tempFilePaths),
+                          num: result.data.num,
+                          rate: result.data.rate
                         });
                       }else if(type_id == 6){
                         that.setData({
-                          beianzheng: that.data.beianzheng.concat(result.data.tempFilePaths)
+                          beianzheng: that.data.beianzheng.concat(result.data.tempFilePaths),
+                          num: result.data.num,
+                          rate: result.data.rate
                         });
                       }else if(type_id == 7){
                         that.setData({
-                          jierufangan: that.data.jierufangan.concat(result.data.tempFilePaths)
+                          jierufangan: that.data.jierufangan.concat(result.data.tempFilePaths),
+                          num: result.data.num,
+                          rate: result.data.rate
                         });
                       }
                     },
@@ -93,8 +107,8 @@ Page({
       wx.request({
         url: delFileUrl,
         data:{
-          // 'openid': that.data.openid,
-          // 'recordid': that.data.recordid
+          'openid': that.data.openid,
+          'recordid': that.data.recordid,
           'type': type_id,
           'url': url
         },
@@ -104,31 +118,45 @@ Page({
           if(res.data.code == '0'){
             if(type_id == 1){
               that.setData({
-                wumianjiegou: res.data.data,
+                wumianjiegou: res.data.data.record,
+                num: res.data.data.num,
+                rate: res.data.data.rate
               })
             }else if(type_id == 2){
               that.setData({
-                dianfeidan: res.data.data,
+                dianfeidan: res.data.data.record,
+                num: res.data.data.num,
+                rate: res.data.data.rate
               })
             }else if(type_id == 3){
               that.setData({
-                tuzhi: res.data.data,
+                tuzhi: res.data.data.record,
+                num: res.data.data.num,
+                rate: res.data.data.rate
               })
             }else if(type_id == 4){
               that.setData({
-                zhaopianku: res.data.data,
+                zhaopianku: res.data.data.record,
+                num: res.data.data.num,
+                rate: res.data.data.rate
               })
             }else if(type_id == 5){
               that.setData({
-                yezhuxinxi: res.data.data,
+                yezhuxinxi: res.data.data.record,
+                num: res.data.data.num,
+                rate: res.data.data.rate
               })
             }else if(type_id == 6){
               that.setData({
-                beianzheng: res.data.data,
+                beianzheng: res.data.data.record,
+                num: res.data.data.num,
+                rate: res.data.data.rate
               })
             }else if(type_id == 7){
               that.setData({
-                jierufangan: res.data.data,
+                jierufangan: res.data.data.record,
+                num: res.data.data.num,
+                rate: res.data.data.rate
               })
             }
           }
