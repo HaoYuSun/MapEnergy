@@ -127,6 +127,7 @@ App({
     upAreaUrl: 'https://api.sgosgo.com/uparea',
     getRecordsUrl: 'https://api.sgosgo.com/getrecords',
     getRecordDetailUrl: 'https://api.sgosgo.com/getrecorddetail',
+    getgooglerecorddetail: 'https://api.sgosgo.com/getgooglerecorddetail',
     upFromopenidUrl: 'https://api.sgosgo.com/upfromopenid',
     upRecordDetailUrl: 'https://api.sgosgo.com/uprecorddetail',
     delRecordUrl: 'https://api.sgosgo.com/delrecord',

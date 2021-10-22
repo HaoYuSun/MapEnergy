@@ -1,6 +1,7 @@
 
 <view class="body">
-<map id='map' 
+<image class="static-map" src="{{mapurl}}" mode="widthFix"></image>
+<!-- <map id='map' 
         longitude="{{longitude}}" 
         latitude="{{latitude}}" 
         scale="17"  
@@ -42,9 +43,7 @@
             <cover-view class="areainfo-body-cell areainfo-body-cell-button" >
               查看详情
             </cover-view>
-            <!-- <cover-view class="areainfo-body-cell areainfo-body-cell-button areainfo-body-cell-width">
-              去分享
-            </cover-view> -->
+
         </cover-view>
         <cover-view class="areainfo-foot">
           <cover-image class="areainfo-foot-img" src="../../images/down.png"></cover-image>
@@ -52,7 +51,7 @@
       </cover-view>
     </cover-view>
     
-  </map> 
+  </map>  -->
   <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell weui-cell_active">
           <view class="weui-cell__hd">

@@ -7,7 +7,7 @@ Page({
    */
   data: {
     fromopenid: '',
-    recordid: 0,
+    recordid: 1508,
     openid:'',
     area: 0,  // 面积
     area_rate: 0.8,
@@ -49,7 +49,10 @@ Page({
     pushefangshi: ["最佳倾角", "平铺", "均衡"],
     pushefangshiIndex: 0,
     teshushuoming: '',
-    youxiaofadianshu: '0'
+    youxiaofadianshu: '0',
+
+
+    mapurl: ''
   },
 
   /**
@@ -296,7 +299,7 @@ Page({
   getDetail: function(e){
     var that = this;
     wx.request({
-      url: app.globalData.getRecordDetailUrl,
+      url: app.globalData.getgooglerecorddetail,
       data:{
         openid: that.data.openid,
         recordid: that.data.recordid,
@@ -328,7 +331,8 @@ Page({
 
             youxiaofadianshu: resp.data.youxiaofadianshu,
             teshushuoming: resp.data.teshushuoming,
-            pushefangshiIndex: that.data.pushefangshi.indexOf(resp.data.pushefangshi)
+            pushefangshiIndex: that.data.pushefangshi.indexOf(resp.data.pushefangshi),
+            mapurl: resp.data.detail.mapurl
           });
 
           that.updatePageData();

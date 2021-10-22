@@ -1,6 +1,47 @@
 /* pages/webview/webview.wxss */
 .webview{
   width: 100vw;
-  height: 100vh;
+  height: 80vh;
   background-color: red;
+}
+
+
+.cover-input{
+  position: absolute;
+  /* width: 84vw; */
+  top: 0;
+  width: 100vw;
+  /* height: 40px; */
+  /* left: 5vw; */
+  /* border-radius: 1vw;
+  padding: 5px 3vw; */
+  text-align: left;
+  z-index: 99999999999999;
+  /* background-color: tomato; */
+  /* background-color: rgba(255, 255, 255, 0.9); */
+}
+
+/* .text{
+  height: 32px;
+  line-height: 32px;
+}
+.input{
+  height: 32px;
+  line-height: 32px;
+  margin-top: -32px; 
+} */
+.weui-search-bar__box{
+  background-color: rgba(255, 255, 255, 0.9);
+  margin: 2vw 3vw;
+  width: 94vw;
+  height: 44px;
+  border-radius: 3px;
+  position: relative;
+  /* background-color: tomato; */
+}
+
+.weui-search-text{
+  line-height: 44px;
+  height: 44px;
+  font-size: 17px;
 }

@@ -11,9 +11,13 @@
   padding-bottom: 88px;
   /* background-color: red; */
 }
+.static-map{
+  width: 100%;
 
+}
 .weui-cell__hd{
   width: 46%;
+  
 }
 .weui-label{
   width: auto;

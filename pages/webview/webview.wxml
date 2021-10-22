@@ -1,4 +1,11 @@
 <!--pages/webview/webview.wxml-->
-<web-view class="webview"src="https://api.sgosgo.com/test">
+<web-view class="webview"src="{{webUrl}}">
 
+  <cover-view class="page cover-input" wx:if="{{showNav}}">
+    <cover-view class="weui-search-bar__box">
+      <cover-view class="weui-search-text" bindtap="search" >{{address}}</cover-view>
+    </cover-view>
+  </cover-view>
 </web-view>
+
+
