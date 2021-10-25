@@ -47,9 +47,13 @@ Page({
     },
 
     pushefangshi: ["最佳倾角", "平铺", "均衡"],
-    pushefangshiIndex: 0,
+    pushefangshiIndex: 1,
     teshushuoming: '',
     youxiaofadianshu: '0',
+
+
+    year_light_type: ["NASA", "metroom", "平均"],
+    year_light_type_index: 1,
 
 
     mapurl: ''
@@ -75,7 +79,7 @@ Page({
       success(res){
         console.log(res)
         if(res.data.code == '0'){
-          var URL = 'https://sgo.en.com.cn/' + res.data.file_path;
+          var URL = 'https://api.sgosgo.com/' + res.data.file_path;
           var file_name = res.data.file_name;
           wx.showModal({
             title: '提示',
@@ -280,7 +284,8 @@ Page({
         generating_year: that.data.generating_year,
         youxiaofadianshu: that.data.youxiaofadianshu,
         teshushuoming: that.data.teshushuoming,
-        pushefangshi: that.data.pushefangshi[that.data.pushefangshiIndex]
+        pushefangshi: that.data.pushefangshi[that.data.pushefangshiIndex],
+        year_light_type: that.data.year_light_type[that.data.year_light_type_index]
       },
       method:"GET",
       success(resp){
@@ -309,6 +314,7 @@ Page({
       success(resp){
         if(resp.data.code == '0'){
           console.log(resp)
+          console.log(that.data.year_light_type.indexOf(resp.data.detail.year_light_type))
           that.setData({
             latitude: resp.data.detail.latitude,
             longitude: resp.data.detail.longitude,
@@ -329,10 +335,11 @@ Page({
             operational_cost: resp.data.detail.operational_cost,  // 运维成本
             cost: Number(resp.data.detail.sum_price) - Math.floor(Number(resp.data.detail.init_subsidy) * Number(resp.data.detail.install_area)*100 * 100) / 100,
 
-            youxiaofadianshu: resp.data.youxiaofadianshu,
-            teshushuoming: resp.data.teshushuoming,
-            pushefangshiIndex: that.data.pushefangshi.indexOf(resp.data.pushefangshi),
-            mapurl: resp.data.detail.mapurl
+            youxiaofadianshu: resp.data.detail.youxiaofadianshu,
+            teshushuoming: resp.data.detail.teshushuoming,
+            pushefangshiIndex: that.data.pushefangshi.indexOf(resp.data.detail.pushefangshi),
+            mapurl: resp.data.detail.mapurl,
+            year_light_type_index: that.data.year_light_type.indexOf(resp.data.detail.year_light_type)
           });
 
           that.updatePageData();
@@ -625,6 +632,17 @@ Page({
     pushefangshiIndex: e.detail.value
   })
 },
+/**
+   * 有效发电方式
+  */
+bindYearlighttypeChange: function(e) {
+  // console.log(' 铺设方式改变，携带值为', e.detail.value);
+
+  this.setData({
+    year_light_type_index: e.detail.value
+  })
+},
+
 /**
    * 变压器容量描述改变时
    */

@@ -618,6 +618,22 @@ Page({
         console.log(res)
         if(res.data.code == '0'){
           
+          var checkboxItems = that.data.changfangshuoming;
+          var values = JSON.parse(res.data.info.changfangshuoming);
+          console.log(values)
+          for (var i = 0, lenI = checkboxItems.length; i < lenI; ++i) {
+            checkboxItems[i].checked = false;
+
+            for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
+                if(checkboxItems[i].value == values[j]){
+                  console.log('44444')
+                  checkboxItems[i].checked = true;
+                    break;
+                }
+            }
+          }
+
+
           that.setData({
             bianyaqimiaoshu: res.data.info.bianyaqimiaoshu,
             bianyaqirongliang: res.data.info.bianyaqirongliang,
@@ -640,7 +656,8 @@ Page({
             changfanggaoduIndex: that.data.changfanggaodu.indexOf(res.data.info.changfanggaodu) >= 0 ? that.data.changfanggaodu.indexOf(res.data.info.changfanggaodu) : 0,
             yezhuxingzhiIndex: that.data.yezhuxingzhi.indexOf(res.data.info.yezhuxingzhi) >= 0 ? that.data.yezhuxingzhi.indexOf(res.data.info.yezhuxingzhi) : 0,
             zaiheshuomingIndex: that.data.zaiheshuoming.indexOf(res.data.info.zaiheshuoming) >= 0 ? that.data.zaiheshuoming.indexOf(res.data.info.zaiheshuoming) : 0,
-            changfangshuoming : res.data.info.changfangshuoming
+            changfangshuoming: checkboxItems,
+            changfangshuoming_v : JSON.parse(res.data.info.changfangshuoming)
           })
         }
       },

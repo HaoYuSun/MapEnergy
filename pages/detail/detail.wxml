@@ -93,7 +93,7 @@
               <input class="weui-input" bindfocus="area_rate_inp_focus" bindblur="area_rate_inp_blur" value="{{area_rate}}" placeholder-class="weui-input__placeholder" placeholder="请输入房顶利用率"/>
           </view>
       </view>
-      <view class="weui-cell weui-cell_active">
+      <!-- <view class="weui-cell weui-cell_active">
           <view class="weui-cell__hd">
               <view class="weui-label">辐照参数</view>
               <view class="weui-label">(kWh/kWp/年)</view>
@@ -101,7 +101,7 @@
           <view class="weui-cell__bd">
             {{year_light}} 
           </view>
-      </view>
+      </view> -->
       <view class="weui-cell weui-cell_active">
           <view class="weui-cell__hd">
               <view class="weui-label">年发电量</view>
@@ -193,6 +193,18 @@
             <input class="weui-input" bindfocus="youxiaofadianshu_inp_focus" bindblur="youxiaofadianshu_inp_blur" value="{{youxiaofadianshu}}" placeholder-class="weui-input__placeholder" placeholder="请输入"/>
           </view>
       </view>
+      <view class="weui-cells weui-cells_after-title">
+            <label for="js_area" class="weui-cell weui-cell_active weui-cell_select weui-cell_select-after">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">有效发电小时数</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <picker aria-role="combobox" id="js_area" bindchange="bindYearlighttypeChange" value="{{year_light_type_index}}" range="{{year_light_type}}">
+                        <view class="weui-select weui-select_in-select-after">{{year_light_type[year_light_type_index]}}</view>
+                    </picker>
+                </view>
+            </label>
+        </view>
       <view class="weui-cells weui-cells_after-title">
             <label for="js_area" class="weui-cell weui-cell_active weui-cell_select weui-cell_select-after">
                 <view class="weui-cell__hd">
