@@ -132,18 +132,44 @@ Page({
             })
             console.log(that.data.webUrl)
           })
-        //  that.setData({
-        //     latitude: latitude,
-        //     longitude: longitude,
-        //     webUrl : that.data.baseUrl + '?openid=' + that.data.openid + '&lat=' + latitude + '&lng=' + longitude
-        //   })
-          
       }
     });
 
     
   },
-
+/**
+   * 移动到当前位置
+  */
+  moveToLocation: function () {
+      var that = this;
+  wx.getLocation({
+    type: 'wgs84',
+    success (res) {
+       var latitude = Math.floor(parseFloat(res.latitude) * 1000000) / 1000000;
+       var longitude = Math.floor(parseFloat(res.longitude) * 1000000) / 1000000;
+       var param = {
+          location: res.latitude + ',' + res.longitude,
+          key: app.globalData.map_key,
+          get_poi: 1
+        }
+        //下面是get去请求数据
+        var url = config.qqMapApi
+        util.postrequest(url, param).then(res => {
+          var d = res.data.result;
+          var r = Math.round(Math.random(10000)*10000);
+          that.setData({
+            citySelected: d.address_component.city,
+            cityPath: d.address_component.province+'-'+d.address_component.city+'-'+d.address_component.district,
+            latitude: latitude,
+            longitude: longitude,
+            address:d.address,
+            webUrl : that.data.baseUrl + '?openid=' + that.data.openid + '&lat=' + latitude + '&lng=' + longitude+ '&citySelected='+d.address_component.city + '&cityPath='+d.address_component.province+'-'+d.address_component.city+'-'+d.address_component.district+'&address='+ d.address+'&r='+ r
+          })
+          console.log(that.data.webUrl)
+        })
+    }
+  });
+    },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -1,57 +1,6 @@
 
 <view class="body">
 <image class="static-map" src="{{mapurl}}" mode="widthFix"></image>
-<!-- <map id='map' 
-        longitude="{{longitude}}" 
-        latitude="{{latitude}}" 
-        scale="17"  
-        markers="{{markers}}" 
-        polygons="{{polygons}}"
-        enable-satellite
-        style='width:100%;height:35vh;'>
-    <cover-view slot="callout">
-      <cover-view marker-id="{{customCalloutInfo.id}}" slot="callout" class="areainfo">
-        <cover-view class="areainfo-body">
-            <cover-view class="areainfo-body-cell">
-              <cover-image class="areainfo-body-cell-img" src="../../images/infotag1.png"></cover-image>
-              <cover-view class="areainfo-body-cell-info">
-                <cover-view class="areainfo-body-cell-info-title">{{customCalloutInfo.install_edcapacity}}</cover-view>
-                <cover-view class="areainfo-body-cell-info-subtitle">总装机量(MW)</cover-view>
-              </cover-view>
-            </cover-view>
-            <cover-view class="areainfo-body-cell body-cell-left">
-              <cover-image class="areainfo-body-cell-img cell-img-left"  src="../../images/infotag2.png"></cover-image>
-              <cover-view class="areainfo-body-cell-info">
-                <cover-view class="areainfo-body-cell-info-title">{{customCalloutInfo.sum_price}}万</cover-view>
-                <cover-view class="areainfo-body-cell-info-subtitle">总投资(元)</cover-view>
-              </cover-view>
-            </cover-view>
-            <cover-view class="areainfo-body-cell body-cell-top">
-              <cover-image class="areainfo-body-cell-img"  src="../../images/infotag3.png"></cover-image>
-              <cover-view class="areainfo-body-cell-info">
-                <cover-view class="areainfo-body-cell-info-title">{{customCalloutInfo.area}}</cover-view>
-                <cover-view class="areainfo-body-cell-info-subtitle">面积(㎡)</cover-view>
-              </cover-view>
-            </cover-view>
-            <cover-view class="areainfo-body-cell body-cell-left body-cell-top">
-              <cover-image class="areainfo-body-cell-img cell-img-left"  src="../../images/infotag4.png"></cover-image>
-              <cover-view class="areainfo-body-cell-info">
-                <cover-view class="areainfo-body-cell-info-title">{{customCalloutInfo.year_generating_capacity}}万</cover-view>
-                <cover-view class="areainfo-body-cell-info-subtitle">年发电量(度)</cover-view>
-              </cover-view>
-            </cover-view>
-            <cover-view class="areainfo-body-cell areainfo-body-cell-button" >
-              查看详情
-            </cover-view>
-
-        </cover-view>
-        <cover-view class="areainfo-foot">
-          <cover-image class="areainfo-foot-img" src="../../images/down.png"></cover-image>
-        </cover-view>
-      </cover-view>
-    </cover-view>
-    
-  </map>  -->
   <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell weui-cell_active">
           <view class="weui-cell__hd">
@@ -189,14 +138,14 @@
           <view class="weui-cell__hd">
             <view class="weui-label">有效发电小时数</view>
           </view>
-          <view class="weui-cell__bd weui-cell__bd__bgcolor">
-            <input class="weui-input" bindfocus="youxiaofadianshu_inp_focus" bindblur="youxiaofadianshu_inp_blur" value="{{youxiaofadianshu}}" placeholder-class="weui-input__placeholder" placeholder="请输入"/>
+          <view class="weui-cell__bd">
+            {{youxiaofadianshu}} 
           </view>
       </view>
       <view class="weui-cells weui-cells_after-title">
             <label for="js_area" class="weui-cell weui-cell_active weui-cell_select weui-cell_select-after">
                 <view class="weui-cell__hd">
-                    <view class="weui-label">有效发电小时数</view>
+                    <view class="weui-label">光照数据源</view>
                 </view>
                 <view class="weui-cell__bd">
                     <picker aria-role="combobox" id="js_area" bindchange="bindYearlighttypeChange" value="{{year_light_type_index}}" range="{{year_light_type}}">
@@ -205,6 +154,22 @@
                 </view>
             </label>
         </view>
+        <view class="weui-cell weui-cell_active">
+          <view class="weui-cell__hd">
+              <view class="weui-label">项目名称</view>
+          </view>
+          <view class="weui-cell__bd  weui-cell__bd__bgcolor">
+            <textarea class="weui-textarea" bindblur="xiangmumingcheng_inp_blur" placeholder-class="weui-input__placeholder" value="{{xiangmumingcheng}}" placeholder="请输入文本" style="height: 3.3em" />
+          </view>
+      </view>
+        <view class="weui-cell weui-cell_active">
+          <view class="weui-cell__hd">
+              <view class="weui-label">特殊情况说明</view>
+          </view>
+          <view class="weui-cell__bd  weui-cell__bd__bgcolor">
+            <textarea class="weui-textarea" bindblur="teshuqingkuangshuoming_inp_blur" placeholder-class="weui-input__placeholder" value="{{teshushuoming}}" placeholder="请输入文本" style="height: 3.3em" />
+          </view>
+      </view>
       <view class="weui-cells weui-cells_after-title">
             <label for="js_area" class="weui-cell weui-cell_active weui-cell_select weui-cell_select-after">
                 <view class="weui-cell__hd">
@@ -217,14 +182,7 @@
                 </view>
             </label>
         </view>
-      <view class="weui-cell weui-cell_active">
-          <view class="weui-cell__hd">
-              <view class="weui-label">特殊情况说明</view>
-          </view>
-          <view class="weui-cell__bd  weui-cell__bd__bgcolor">
-            <textarea class="weui-textarea" bindblur="teshuqingkuangshuoming_inp_blur" placeholder-class="weui-input__placeholder" value="{{teshushuoming}}" placeholder="请输入文本" style="height: 3.3em" />
-          </view>
-      </view>
+      
       
       
   </view>

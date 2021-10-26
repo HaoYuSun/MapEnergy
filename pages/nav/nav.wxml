@@ -4,19 +4,19 @@
     
     <view class="btn-cell" bindtap="gohome">
       <view class="cell-left-bg">
-        <image src="../../images/menu1.jpg" class="cell-left-img"></image>
+        <image src="../../images/menu1.png" class="cell-left-img"></image>
       </view>
       <view class="title-cell">开发地图</view>
     </view>
     <view class="btn-cell" bindtap="goproject">
       <view class="cell-left-bg">
-        <image src="../../images/menu2.jpg" class="cell-left-img"></image>
+        <image src="../../images/menu2.png" class="cell-left-img"></image>
       </view>
       <view class="title-cell">我的项目</view>
     </view>
     <view class="btn-cell">
       <view class="cell-left-bg">
-        <image src="../../images/menu3.jpg" class="cell-left-img"></image>
+        <image src="../../images/menu3.png" class="cell-left-img"></image>
       </view>
       <view class="title-cell">在线咨询</view>
     </view>

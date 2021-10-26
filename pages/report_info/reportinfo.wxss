@@ -18,6 +18,15 @@
   /* background-color: greenyellow; */
 }
 
+.weui-cell{
+  padding: 8px 16px;
+}
+
+.weui-select{
+  height: 30px;
+  line-height: 30px;
+}
+
 .cell1{
   width: 28vw;
   font-size: 14px;
@@ -75,4 +84,7 @@
 }
 .baocun-border{
   border-right: 1px solid #f2f2f2;
+}
+.weui-select{
+  padding-left: 0px;
 }

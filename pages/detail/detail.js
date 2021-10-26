@@ -46,7 +46,7 @@ Page({
       year_light: 1200
     },
 
-    pushefangshi: ["最佳倾角", "平铺", "均衡"],
+    pushefangshi: ["平铺", "最佳倾角", "均衡"],
     pushefangshiIndex: 1,
     teshushuoming: '',
     youxiaofadianshu: '0',
@@ -56,7 +56,9 @@ Page({
     year_light_type_index: 1,
 
 
-    mapurl: ''
+    mapurl: '',
+    light_list: [],
+    xiangmumingcheng: ''
   },
 
   /**
@@ -266,6 +268,7 @@ Page({
 
   updetail: function(e){
     var that = this;
+    console.log(that.data.teshushuoming);
     wx.request({
       url: app.globalData.upRecordDetailUrl,
       data:{
@@ -285,7 +288,8 @@ Page({
         youxiaofadianshu: that.data.youxiaofadianshu,
         teshushuoming: that.data.teshushuoming,
         pushefangshi: that.data.pushefangshi[that.data.pushefangshiIndex],
-        year_light_type: that.data.year_light_type[that.data.year_light_type_index]
+        year_light_type: that.data.year_light_type[that.data.year_light_type_index],
+        xiangmumingcheng: that.data.xiangmumingcheng
       },
       method:"GET",
       success(resp){
@@ -313,8 +317,9 @@ Page({
       method:"GET",
       success(resp){
         if(resp.data.code == '0'){
-          console.log(resp)
-          console.log(that.data.year_light_type.indexOf(resp.data.detail.year_light_type))
+          console.log(resp.data.detail.ligth_list)
+          // console.log(eval((resp.data.detail.ligth_list))[0])
+          
           that.setData({
             latitude: resp.data.detail.latitude,
             longitude: resp.data.detail.longitude,
@@ -339,7 +344,9 @@ Page({
             teshushuoming: resp.data.detail.teshushuoming,
             pushefangshiIndex: that.data.pushefangshi.indexOf(resp.data.detail.pushefangshi),
             mapurl: resp.data.detail.mapurl,
-            year_light_type_index: that.data.year_light_type.indexOf(resp.data.detail.year_light_type)
+            year_light_type_index: that.data.year_light_type.indexOf(resp.data.detail.year_light_type),
+            light_list: resp.data.detail.ligth_list,
+            xiangmumingcheng: resp.data.detail.xiangmumingcheng
           });
 
           that.updatePageData();
@@ -626,10 +633,21 @@ Page({
    * 铺设方式
   */
  bindPushefangshiChange: function(e) {
+  var that = this;
   console.log(' 铺设方式改变，携带值为', e.detail.value);
+  console.log(that.data.install_area);
+  
+  console.log(e.detail.value);
+
+  var item = that.data.light_list[e.detail.value][that.data.year_light_type_index];
+  item = Math.floor(parseFloat(item) * 1000) / 100
+
+  var nianfadian = Math.floor(parseFloat(that.data.install_area) * item * 10) / 100;
 
   this.setData({
-    pushefangshiIndex: e.detail.value
+    pushefangshiIndex: e.detail.value,
+    youxiaofadianshu: item,
+    generating_year: nianfadian
   })
 },
 /**
@@ -637,12 +655,32 @@ Page({
   */
 bindYearlighttypeChange: function(e) {
   // console.log(' 铺设方式改变，携带值为', e.detail.value);
+  var that = this;
+  console.log(e.detail.value);
 
+  var item = that.data.light_list[that.data.pushefangshiIndex][e.detail.value];
+  item = Math.floor(parseFloat(item) * 1000) / 100
+
+  var nianfadian = Math.floor(parseFloat(that.data.install_area) * item * 10) / 100;
   this.setData({
-    year_light_type_index: e.detail.value
+    year_light_type_index: e.detail.value,
+    youxiaofadianshu: item,
+    generating_year: nianfadian
   })
 },
-
+/**
+   * 项目名称改变时
+   */
+  xiangmumingcheng_inp_blur: function(e){
+    var that = this;
+    if(that.data.xiangmumingcheng == e.detail.value){
+      return;
+    }else{
+      that.setData({
+        xiangmumingcheng: e.detail.value
+      });
+    }
+  },
 /**
    * 变压器容量描述改变时
    */

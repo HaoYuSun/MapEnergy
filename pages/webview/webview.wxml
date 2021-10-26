@@ -6,6 +6,10 @@
       <cover-view class="weui-search-text" bindtap="search" >{{address}}</cover-view>
     </cover-view>
   </cover-view>
+  <cover-view class="page right_contr"  wx:if="{{showNav}}">
+    <cover-image class="cimage"  src="../../images/location1.png" bindtap="moveToLocation"></cover-image>
+  </cover-view>
+  
 </web-view>
 
 

@@ -31,7 +31,7 @@ button{
 .btn-cell{
   width: 60vw;
   height: 8vh;
-  background-color: #e3e3e3;
+  background-color: #e6e6e6;
   border-radius: 1vh;
   margin-top: 20px;
 }
@@ -39,7 +39,7 @@ button{
   float: left;
   height: 8vh;
   width: 8.4vh;
-  background-color: white;
+  background-color: #cdcdcd;
   border-radius: 1vh;
 }
 
@@ -54,8 +54,8 @@ button{
   line-height: 8vh;
   text-align: center;
   font-size: 18px;
-  font-weight: 600;
-  color: darkolivegreen;
+  font-weight: 500;
+  color: black;
 }
 
 .chatbtn{

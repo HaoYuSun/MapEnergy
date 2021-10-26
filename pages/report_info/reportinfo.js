@@ -16,7 +16,7 @@ Page({
     hezuomoshi: ["合同能源管理(EMC)", "屋顶租赁"],
     hezuomoshiIndex: 0,
 
-    wudingleixing: ["彩钢瓦", "混凝土"],
+    wudingleixing: ["彩钢瓦", "混凝土", "均衡"],
     wudingleixingIndex: 0,
     
     caigangleixing: ["角驰彩钢", "梯形彩钢"],
@@ -37,7 +37,7 @@ Page({
     fangwushiyongnianxian: ["3年内", "3-10年", "10年以上"],
     fangwushiyongnianxianIndex: 0,
 
-    qiyegongzuoshijian: ["单休", "双休", "全年"],
+    qiyegongzuoshijian: ["单休", "双休", "全年无休"],
     qiyegongzuoshijianIndex: 0,
 
     changfanggaodu: ["低", "中", "高"],
@@ -465,7 +465,7 @@ Page({
     console.log('picker hezuomoshi 发生选择改变，携带值为', e.detail.value);
 
     this.setData({
-      hezuomoshiIndex: e.detail.value
+      zaiheshuomingIndex: e.detail.value
     })
   },
   /**
@@ -619,24 +619,30 @@ Page({
         if(res.data.code == '0'){
           
           var checkboxItems = that.data.changfangshuoming;
-          var values = JSON.parse(res.data.info.changfangshuoming);
-          console.log(values)
-          for (var i = 0, lenI = checkboxItems.length; i < lenI; ++i) {
-            checkboxItems[i].checked = false;
-
-            for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
-                if(checkboxItems[i].value == values[j]){
-                  console.log('44444')
-                  checkboxItems[i].checked = true;
-                    break;
-                }
+          console.log(res.data.info.changfangshuoming)
+          if (res.data.info.changfangshuoming != undefined && res.data.info.changfangshuoming != ''){
+            var values = JSON.parse(res.data.info.changfangshuoming);
+            console.log(values)
+            for (var i = 0, lenI = checkboxItems.length; i < lenI; ++i) {
+              checkboxItems[i].checked = false;
+  
+              for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
+                  if(checkboxItems[i].value == values[j]){
+                    console.log('44444')
+                    checkboxItems[i].checked = true;
+                      break;
+                  }
+              }
             }
           }
-
-
+          
+          console.log(res)
+          console.log(res.data)
+          console.log(res.data.info)
+          console.log(res.data.info.report_address)
           that.setData({
             bianyaqimiaoshu: res.data.info.bianyaqimiaoshu,
-            bianyaqirongliang: res.data.info.bianyaqirongliang,
+            bianyaqirongliang: res.data.info.bianyaqirongliang != undefined ? res.data.info.bianyaqirongliang : 200,
             dianzhekou: res.data.info.dianzhekou,
             wudingzujin: res.data.info.wudingzujin,
             nianzongyongdian: res.data.info.nianzongyongdian,
@@ -657,7 +663,8 @@ Page({
             yezhuxingzhiIndex: that.data.yezhuxingzhi.indexOf(res.data.info.yezhuxingzhi) >= 0 ? that.data.yezhuxingzhi.indexOf(res.data.info.yezhuxingzhi) : 0,
             zaiheshuomingIndex: that.data.zaiheshuoming.indexOf(res.data.info.zaiheshuoming) >= 0 ? that.data.zaiheshuoming.indexOf(res.data.info.zaiheshuoming) : 0,
             changfangshuoming: checkboxItems,
-            changfangshuoming_v : JSON.parse(res.data.info.changfangshuoming)
+            changfangshuoming_v : res.data.info.changfangshuoming != undefined ? JSON.parse(res.data.info.changfangshuoming) : []
+            
           })
         }
       },
