@@ -9,6 +9,9 @@
   <cover-view class="page right_contr"  wx:if="{{showNav}}">
     <cover-image class="cimage"  src="../../images/location1.png" bindtap="moveToLocation"></cover-image>
   </cover-view>
+  <cover-view class="page left_contr"  wx:if="{{showNav}}">
+    <cover-image class="cimage1"  src="../../images/home.png" bindtap="moveToNav"></cover-image>
+  </cover-view>
   
 </web-view>
 

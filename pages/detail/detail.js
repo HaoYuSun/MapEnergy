@@ -47,13 +47,13 @@ Page({
     },
 
     pushefangshi: ["平铺", "最佳倾角", "均衡"],
-    pushefangshiIndex: 1,
+    pushefangshiIndex: 0,
     teshushuoming: '',
     youxiaofadianshu: '0',
 
 
     year_light_type: ["NASA", "metroom", "平均"],
-    year_light_type_index: 1,
+    year_light_type_index: 0,
 
 
     mapurl: '',
@@ -66,6 +66,7 @@ Page({
    */
   createshortreport: function(e){
     var that = this;
+    that.updetail();
     var shortReportUrl = app.globalData.shortReportUrl;
     wx.showLoading({
       title: '生成中...',
@@ -126,6 +127,7 @@ Page({
    */
   createlongreport: function(e){
     var that = this;
+    that.updetail();
     wx.navigateTo({
       url: '../report_info/reportinfo?recordid=' +that.data.recordid+'&openid='+that.data.openid,
     })
@@ -136,6 +138,7 @@ Page({
    */
   createsgoreport: function(e){
     var that = this;
+    that.updetail();
     wx.navigateTo({
       url: '../sgoinfo/sgoinfo?recordid=' +that.data.recordid+'&openid='+that.data.openid,
     })
@@ -147,9 +150,7 @@ Page({
   updatePageData: function(e){
       var that = this;
       // * Number(that.data.area_rate)
-      console.log('area:',that.data.area)
-      console.log('area_rate:',that.data.area_rate)
-      console.log('area_rate:',parseFloat(that.data.area) * parseFloat(that.data.area_rate) * 100 * 1.2 / 10000.0)
+
       var zhuangjirongliang = Math.floor(parseFloat(that.data.area) * parseFloat(that.data.area_rate) * 100 * 1.2 / 10000.0) / 100.0;
       var sumprice = Math.ceil(zhuangjirongliang * that.data.w_cost * 100);
       var year_generating_capacity = Math.ceil(zhuangjirongliang * that.data.year_light / 10);
@@ -167,7 +168,6 @@ Page({
       }
       
       // 年收益 = 年发电量*(国家补贴+地方补贴+度电收益) - 面积*租金/10000 - 运维成本*安装容积*100
-      console.log(Number(that.data.area) * Number(that.data.area_rate) * Number(that.data.rent) / 10000.0)
       var yield_year = Number(that.data.generating_year) * (Number(that.data.country_subsidy) + Number(that.data.local_subsidy) + Number(that.data.yield)) - Number(that.data.area) * Number(that.data.rent) / 10000.0 - Number(that.data.operational_cost) * Number(that.data.install_area) * 100;
       yield_year = Math.floor(yield_year * 100) / 100;
       // if(yield_year < 0){
@@ -204,6 +204,8 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    console.log(options.openid);
+    console.log(options.recordid);
     // 分享来的
     if(options.fromopenid){
       that.setData({
@@ -294,12 +296,12 @@ Page({
       method:"GET",
       success(resp){
         if(resp.data.code == '0'){
-          wx.showModal({
-            title: '提示',
-            confirmText: '确定',
-            showCancel: false,
-            content: '保存成功',
-          })
+          // wx.show({
+          //   title: '提示',
+          //   confirmText: '确定',
+          //   showCancel: false,
+          //   content: '保存成功',
+          // })
         }
       }
     });
@@ -317,9 +319,10 @@ Page({
       method:"GET",
       success(resp){
         if(resp.data.code == '0'){
-          console.log(resp.data.detail.ligth_list)
+          console.log(resp.data.detail.year_light_type)
           // console.log(eval((resp.data.detail.ligth_list))[0])
-          
+          console.log(resp.data.detail.pushefangshi)
+
           that.setData({
             latitude: resp.data.detail.latitude,
             longitude: resp.data.detail.longitude,

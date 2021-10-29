@@ -242,7 +242,7 @@ page {
 
 }
 .bot-view-right-view{
-  width: 75vw;
+  width: 100vw;
   height: 44px;
   background-color: rgba(214, 186, 140, 1);
   float: left;

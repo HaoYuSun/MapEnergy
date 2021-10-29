@@ -23,6 +23,15 @@ Page({
     })
     
   },
+
+  editpro: function(e) {
+    var that = this;
+    console.log(app.globalData.openid);
+    console.log(that.data.record_id);
+    wx.navigateTo({
+      url: '../detail/detail?recordid='+that.data.record_id+'&openid='+app.globalData.openid,
+    })
+  },
   
   
   /**
