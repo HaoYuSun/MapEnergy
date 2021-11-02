@@ -10,7 +10,8 @@ html, body {
   text-align: center;
 }
 .mapbgimg{
-  width: 42vw;
-  height: 25vw;
+  width: 200px;
+  height: 124px;
+  /* height: 25vw; */
   margin-top: 70%;
 }
