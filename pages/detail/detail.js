@@ -52,7 +52,7 @@ Page({
     youxiaofadianshu: '0',
 
 
-    year_light_type: ["NASA", "metroom", "平均"],
+    year_light_type: ["NASA", "meteonorm", "平均"],
     year_light_type_index: 0,
 
 
