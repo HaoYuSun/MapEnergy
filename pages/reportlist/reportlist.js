@@ -195,7 +195,8 @@ Page({
       url: app.globalData.gelProjectsListUrl,
       data:{
         recordid: that.data.record_id,
-        type: that.data.type
+        type: that.data.type,
+        hidecaiwu: 1
       },
       method:"GET",
       success(resp){
