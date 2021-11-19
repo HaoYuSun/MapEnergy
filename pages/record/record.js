@@ -11,7 +11,7 @@ Page({
     activeTab: 0,
     openid: '',
     pageid: 1,
-    pagesize: 12,
+    pagesize: 20,
     isall: false,
     icon: '../../images/right.png',
     list:[],
