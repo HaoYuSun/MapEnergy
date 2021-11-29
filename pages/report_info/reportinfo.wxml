@@ -1,17 +1,8 @@
 
 <view class="page">
     <view class="page__bd">
-      <!-- <mp-form id="form" rules="{{rules}}" models="{{formData}}"> -->
-        <!-- <mp-cells title="信息补充" footer="底部说明文字底部说明文字"> -->
-          <!-- <view class="weui-cells__title">项目名称</view>
-          <view class="weui-cells weui-cells_after-title">
-              <view class="weui-cell">
-                  <view class="weui-cell__bd">
-                      <input type="text" class="weui-input" placeholder="请输入..." bindfocus="reoirt_title_inp_focus" bindblur="reoirt_title_inp_blur" value="{{report_title}}" />
-                  </view>
-              </view>
-          </view> -->
-          <view class="weui-cells__title">项目地址</view>
+
+        <view class="weui-cells__title">项目地址</view>
         <view class="weui-cells weui-cells_after-title">
             <view class="weui-cell">
                 <view class="weui-cell__bd">
@@ -20,111 +11,218 @@
             </view>
         </view>
 
-          <view class="weui-cells__title">进线等级</view>
-          <view class="weui-cells weui-cells_after-title">
-              <view class="weui-cell weui-cell_select">
-                  <view class="weui-cell__bd">
-                      <picker bindchange="bindDianyadengjiChange" value="{{dianyadengjiIndex}}" range="{{dianyadengji}}">
-                          <view class="weui-select">{{dianyadengji[dianyadengjiIndex]}}</view>
-                      </picker>
-                  </view>
-              </view>
-          </view>
+        <mp-cells title="是否详细EPC报价">
+            <mp-checkbox-group prop="radio" multi="{{false}}" bindchange="xiangxi_epc_baojia_radioChange">
+                <mp-checkbox wx:for="{{xiangxi_epc_baojia_radioItems}}" wx:key="value" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
+            </mp-checkbox-group>
+        </mp-cells>
+        <vie wx:if="{{xiangxi_epc_baojia == 1}}"> 
+            <view class="weui-cells__title">详细EPC报价（元/W）</view>
+            <div class="weui-cell" style="background-color: white;">
+                <div class="weui-cell__hd"><label class="weui-label" style="width: 150px">E设计费</label></div>
+                <div class="weui-cell__bd"  style="width: 60px">
+                    <input type="digit" class="weui-input" placeholder="" bindblur="epc_shejifei_inp_blur"  value="{{epc_shejifei}}" />
+                </div>
+                <div class="weui-cell__hd"><label class="weui-label" style="width: 120px;">组件</label></div>
+                <div class="weui-cell__bd"   style="width: 60px">
+                    <input type="digit" class="weui-input" placeholder="" bindblur="epc_zujian_inp_blur"  value="{{epc_zujian}}" />
+                </div>
+            </div>
+            <div class="weui-cell" style="background-color: white;">
+                <div class="weui-cell__hd"><label class="weui-label" style="width: 150px;">逆变器</label></div>
+                <div class="weui-cell__bd"  style="width: 60px">
+                    <input type="digit" class="weui-input" placeholder="" bindblur="epc_nibianqi_inp_blur"  value="{{epc_nibianqi}}" />
+                </div>
+                <div class="weui-cell__hd"><label class="weui-label" style="width: 120px;">二次设备</label></div>
+                <div class="weui-cell__bd"  style="width: 60px">
+                    <input type="digit" class="weui-input" placeholder="" bindblur="epc_ercishebei_inp_blur"  value="{{epc_ercishebei}}" />
+                </div>
+            </div>
+            <div class="weui-cell" style="background-color: white;">
+                <div class="weui-cell__hd"><label class="weui-label" style="width: 150px;">建设小成本(小PC)</label></div>
+                <div class="weui-cell__bd"  style="width: 60px">
+                    <input type="digit" class="weui-input" placeholder="" bindblur="epc_xiaopc_inp_blur"  value="{{epc_xiaopc}}" />
+                </div>
+                <div class="weui-cell__hd"><label class="weui-label" style="width: 120px;">屋顶加固成本</label></div>
+                <div class="weui-cell__bd"  style="width: 60px">
+                    <input type="digit" class="weui-input" placeholder="" bindblur="epc_jiagu_inp_blur"  value="{{epc_jiagu}}" />
+                </div>
+            </div>
+            <div class="weui-cell" style="background-color: white;">
+                <div class="weui-cell__hd"><label class="weui-label" style="width: 150px;">监理成本</label></div>
+                <div class="weui-cell__bd"  style="width: 60px">
+                    <input type="digit" class="weui-input" placeholder="" bindblur="epc_jianli_inp_blur"  value="{{epc_jianli}}" />
+                </div>
+            </div>
+            <div class="weui-cell" style="background-color: white;">
+                <div class="weui-cell__hd"><label class="weui-label" style="width: 275px;">项目综合报价</label></div>
+                <div class="weui-cell__bd">
+                    <input type="digit" class="weui-input" disabled="true"  value="{{xiangmu_zonghe_baojia}}" />
+                </div>
+            </div>
+        </vie>
 
-          <view class="weui-cells__title">年日间总用电量(万度)</view>
-          <view class="weui-cells weui-cells_after-title">
-              <view class="weui-cell">
-                  <view class="weui-cell__bd">
-                      <input type="digit" class="weui-input" placeholder="请输入..." bindfocus="nianzongyongdian_inp_focus" bindblur="nianzongyongdian_inp_blur"  value="{{nianzongyongdian}}" />
-                  </view>
-              </view>
-          </view>
+        <view class="weui-cells__title">进线等级</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_select">
+                <view class="weui-cell__bd">
+                    <picker bindchange="bindDianyadengjiChange" value="{{dianyadengjiIndex}}" range="{{dianyadengji}}">
+                        <view class="weui-select">{{dianyadengji[dianyadengjiIndex]}}</view>
+                    </picker>
+                </view>
+            </view>
+        </view>
 
-          <view class="weui-cells__title">脱硫煤电价(元/度)</view>
-          <view class="weui-cells weui-cells_after-title">
-              <view class="weui-cell">
-                  <view class="weui-cell__bd">
-                      <input type="digit" class="weui-input" placeholder="请输入..." bindfocus="tuoliumeidianjia_inp_focus" bindblur="tuoliumeidianjia_inp_blur"  value="{{tuoliumeidianjia}}" />
-                  </view>
-              </view>
-          </view>
+        <view class="weui-cells__title">年日间总用电量(万度)</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell">
+                <view class="weui-cell__bd">
+                    <input type="digit" class="weui-input" placeholder="请输入..." bindfocus="nianzongyongdian_inp_focus" bindblur="nianzongyongdian_inp_blur"  value="{{nianzongyongdian}}" />
+                </view>
+            </view>
+        </view>
 
-          <view class="weui-cells__title">平均电价(元/度)</view>
-          <view class="weui-cells weui-cells_after-title">
-              <view class="weui-cell">
-                  <view class="weui-cell__bd">
-                      <input type="digit" class="weui-input" placeholder="请输入..." bindfocus="pingjundianjia_inp_focus" bindblur="pingjundianjia_inp_blur"  value="{{pingjundianjia}}" />
-                  </view>
-              </view>
-          </view>
+        <view class="weui-cells__title">脱硫煤电价(元/度)</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell">
+                <view class="weui-cell__bd">
+                    <input type="digit" class="weui-input" placeholder="请输入..." bindfocus="tuoliumeidianjia_inp_focus" bindblur="tuoliumeidianjia_inp_blur"  value="{{tuoliumeidianjia}}" />
+                </view>
+            </view>
+        </view>
 
-          <view class="weui-cells__title">合作模式</view>
-          <view class="weui-cells weui-cells_after-title">
-              <view class="weui-cell weui-cell_select">
-                  <view class="weui-cell__bd">
-                      <picker bindchange="bindHezuomoshiChange" value="{{hezuomoshiIndex}}" range="{{hezuomoshi}}">
-                          <view class="weui-select">{{hezuomoshi[hezuomoshiIndex]}}</view>
-                      </picker>
-                  </view>
-              </view>
-          </view>
+        <mp-cells title="是否输入详细分时电价">
+            <mp-checkbox-group prop="radio" multi="{{false}}" bindchange="xiangxi_fenshi_dianjia_radioChange">
+                <mp-checkbox wx:for="{{xiangxi_fenshi_dianjia_radioItems}}" wx:key="value" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
+            </mp-checkbox-group>
+        </mp-cells>
 
-          <view wx:if="{{hezuomoshiIndex == 0}}" class="weui-cells__title">电价折扣</view>
-          <view wx:if="{{hezuomoshiIndex == 0}}" class="weui-cells weui-cells_after-title">
-              <view class="weui-cell">
-                  <view class="weui-cell__bd">
-                      <input type="digit" class="weui-input" placeholder="请输入..." bindblur="dianzhekou_inp_blur" bindfocus="dianzhekou_inp_focus"  value="{{dianzhekou}}" />
-                  </view>
-              </view>
-          </view>
+        <view wx:if="{{xiangxi_fenshi_dianjia == 0}}" class="weui-cells__title">平均电价(元/度)</view>
+        <view wx:if="{{xiangxi_fenshi_dianjia == 0}}" class="weui-cells weui-cells_after-title">
+            <view class="weui-cell">
+                <view class="weui-cell__bd">
+                    <input type="digit" class="weui-input" placeholder="请输入..." bindfocus="pingjundianjia_inp_focus" bindblur="pingjundianjia_inp_blur"  value="{{pingjundianjia}}" />
+                </view>
+            </view>
+        </view>
+        <vie wx:if="{{xiangxi_fenshi_dianjia == 1}}"> 
+            <!-- 详细分时电价 -->
+            <view class="weui-cells__title">输入详细分时电价（含税）</view>
+            <div class="weui-cell" style="background-color: white;">
+                <div class="weui-cell__hd"><label class="weui-label" style="width: 80px">尖时电价</label></div>
+                <div class="weui-cell__bd"  style="width: 60px">
+                    <input type="digit" class="weui-input" placeholder="" bindblur="jianshi_dianjia_inp_blur"  value="{{jianshi_dianjia}}" />
+                </div>
+                <div class="weui-cell__hd"><label class="weui-label" style="width: 80px;">尖时时长</label></div>
+                <div class="weui-cell__bd"   style="width: 60px">
+                    <input type="digit" class="weui-input" placeholder="" bindblur="jianshi_shichang_inp_blur"  value="{{jianshi_shichang}}" />
+                </div>
+            </div>
+            <div class="weui-cell" style="background-color: white;">
+                <div class="weui-cell__hd"><label class="weui-label" style="width: 80px;">峰时电价</label></div>
+                <div class="weui-cell__bd"  style="width: 60px">
+                    <input type="digit" class="weui-input" placeholder="" bindblur="fengshi_dianjia_inp_blur"  value="{{fengshi_dianjia}}" />
+                </div>
+                <div class="weui-cell__hd"><label class="weui-label" style="width: 80px;">峰时时长</label></div>
+                <div class="weui-cell__bd"  style="width: 60px">
+                    <input type="digit" class="weui-input" placeholder="" bindblur="fengshi_shichang_inp_blur"  value="{{fengshi_shichang}}" />
+                </div>
+            </div>
+            <div class="weui-cell" style="background-color: white;">
+                <div class="weui-cell__hd"><label class="weui-label" style="width: 80px;">平时电价</label></div>
+                <div class="weui-cell__bd"  style="width: 60px">
+                    <input type="digit" class="weui-input" placeholder="" bindblur="pingshi_dianjia_inp_blur"  value="{{pingshi_dianjia}}" />
+                </div>
+                <div class="weui-cell__hd"><label class="weui-label" style="width: 80px;">平时时长</label></div>
+                <div class="weui-cell__bd"  style="width: 60px">
+                    <input type="digit" class="weui-input" placeholder="" bindblur="pingshi_shichang_inp_blur"  value="{{pingshi_shichang}}" />
+                </div>
+            </div>
+            <div class="weui-cell" style="background-color: white;">
+                <div class="weui-cell__hd"><label class="weui-label" style="width: 80px;">谷时电价</label></div>
+                <div class="weui-cell__bd" style="width: 60px">
+                    <input type="digit" class="weui-input" placeholder="" bindblur="gushi_dianjia_inp_blur"  value="{{fengshi_dianjia}}" />
+                </div>
+                <div class="weui-cell__hd"><label class="weui-label" style="width: 80px;">谷时时长</label></div>
+                <div class="weui-cell__bd" style="width: 60px">
+                    <input type="digit" class="weui-input" placeholder="" bindblur="gushi_shichang_inp_blur"  value="{{fengshi_shichang}}" />
+                </div>
+            </div>
+            <div class="weui-cell" style="background-color: white;">
+                <div class="weui-cell__hd"><label class="weui-label" style="width: 275px;">日间电网加权平均电价</label></div>
+                <div class="weui-cell__bd">
+                    <input type="digit" class="weui-input" disabled="true"  value="{{ri_pingjundianjia}}" />
+                </div>
+            </div>
+        </vie>
 
-          <view wx:if="{{hezuomoshiIndex == 1}}" class="weui-cells__title">屋顶租金(元/平方米/年)</view>
-          <view wx:if="{{hezuomoshiIndex == 1}}" class="weui-cells weui-cells_after-title">
-              <view class="weui-cell">
-                  <view class="weui-cell__bd">
-                      <input type="digit" class="weui-input" placeholder="请输入..." bindblur="wudingzujin_inp_blur" bindfocus="wudingzujin_inp_focus"  value="{{wudingzujin}}" />
-                  </view>
-              </view>
-          </view>
+        <view class="weui-cells__title">合作模式</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_select">
+                <view class="weui-cell__bd">
+                    <picker bindchange="bindHezuomoshiChange" value="{{hezuomoshiIndex}}" range="{{hezuomoshi}}">
+                        <view class="weui-select">{{hezuomoshi[hezuomoshiIndex]}}</view>
+                    </picker>
+                </view>
+            </view>
+        </view>
 
-          <view class="weui-cells__title">自有资金占比(0~100)%</view>
-          <view class="weui-cells weui-cells_after-title">
-              <view class="weui-cell">
-                  <view class="weui-cell__bd">
-                      <input type="digit" class="weui-input" placeholder="请输入..." bindblur="ziyouzijin_inp_blur" bindfocus="ziyouzijin_inp_focus"  value="{{ziyouzijin}}" />
-                  </view>
-              </view>
-          </view>
+        <view wx:if="{{hezuomoshiIndex == 0}}" class="weui-cells__title">电价折扣</view>
+        <view wx:if="{{hezuomoshiIndex == 0}}" class="weui-cells weui-cells_after-title">
+            <view class="weui-cell">
+                <view class="weui-cell__bd">
+                    <input type="digit" class="weui-input" placeholder="请输入..." bindblur="dianzhekou_inp_blur" bindfocus="dianzhekou_inp_focus"  value="{{dianzhekou}}" />
+                </view>
+            </view>
+        </view>
 
-          <view class="weui-cells__title">屋顶类型</view>
-          <view class="weui-cells weui-cells_after-title">
-              <view class="weui-cell weui-cell_select">
-                  <view class="weui-cell__bd">
-                      <picker bindchange="bindWudingleixingChange" value="{{wudingleixingIndex}}" range="{{wudingleixing}}">
-                          <view class="weui-select">{{wudingleixing[wudingleixingIndex]}}</view>
-                      </picker>
-                  </view>
-              </view>
-          </view>
-          <view wx:if="{{wudingleixingIndex == 0}}" class="weui-cells__title">彩钢类型</view>
-          <view wx:if="{{wudingleixingIndex == 0}}" class="weui-cells weui-cells_after-title">
-              <view class="weui-cell weui-cell_select">
-                  <view class="weui-cell__bd">
-                      <picker bindchange="bindCaigangleixingChange" value="{{caigangleixingIndex}}" range="{{caigangleixing}}">
-                          <view class="weui-select">{{caigangleixing[caigangleixingIndex]}}</view>
-                      </picker>
-                  </view>
-              </view>
-          </view>
+        <view wx:if="{{hezuomoshiIndex == 1}}" class="weui-cells__title">屋顶租金(元/平方米/年)</view>
+        <view wx:if="{{hezuomoshiIndex == 1}}" class="weui-cells weui-cells_after-title">
+            <view class="weui-cell">
+                <view class="weui-cell__bd">
+                    <input type="digit" class="weui-input" placeholder="请输入..." bindblur="wudingzujin_inp_blur" bindfocus="wudingzujin_inp_focus"  value="{{wudingzujin}}" />
+                </view>
+            </view>
+        </view>
 
-          <view class="weui-cells__title">变压器容量(kVA)</view>
-          <view class="weui-cells weui-cells_after-title">
-              <view class="weui-cell">
-                  <view class="weui-cell__bd">
-                      <input type="digit" class="weui-input" placeholder="请输入..." bindblur="bianyaqirongliang_inp_blur" bindfocus="bianyaqirongliang_inp_focus"  value="{{bianyaqirongliang}}" />
-                  </view>
-              </view>
-          </view>
+        <view class="weui-cells__title">自有资金占比(0~100)%</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell">
+                <view class="weui-cell__bd">
+                    <input type="digit" class="weui-input" placeholder="请输入..." bindblur="ziyouzijin_inp_blur" bindfocus="ziyouzijin_inp_focus"  value="{{ziyouzijin}}" />
+                </view>
+            </view>
+        </view>
+
+        <view class="weui-cells__title">屋顶类型</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_select">
+                <view class="weui-cell__bd">
+                    <picker bindchange="bindWudingleixingChange" value="{{wudingleixingIndex}}" range="{{wudingleixing}}">
+                        <view class="weui-select">{{wudingleixing[wudingleixingIndex]}}</view>
+                    </picker>
+                </view>
+            </view>
+        </view>
+        <view wx:if="{{wudingleixingIndex == 0}}" class="weui-cells__title">彩钢类型</view>
+        <view wx:if="{{wudingleixingIndex == 0}}" class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_select">
+                <view class="weui-cell__bd">
+                    <picker bindchange="bindCaigangleixingChange" value="{{caigangleixingIndex}}" range="{{caigangleixing}}">
+                        <view class="weui-select">{{caigangleixing[caigangleixingIndex]}}</view>
+                    </picker>
+                </view>
+            </view>
+        </view>
+
+        <view class="weui-cells__title">变压器容量(kVA)</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell">
+                <view class="weui-cell__bd">
+                    <input type="digit" class="weui-input" placeholder="请输入..." bindblur="bianyaqirongliang_inp_blur" bindfocus="bianyaqirongliang_inp_focus"  value="{{bianyaqirongliang}}" />
+                </view>
+            </view>
+        </view>
         <view class="weui-cells__title">其他描述</view>
         <view class="weui-cells weui-cells_after-title">
             <view class="weui-cell">
@@ -135,7 +233,6 @@
             </view>
         </view>
 
-      <!-- </mp-form> -->
         <view class="weui-cells__title">预计备案及电力接入完成时间</view>
         <view class="weui-cells weui-cells_after-title">
             <view class="weui-cell weui-cell_select">
@@ -165,6 +262,13 @@
                     </picker>
                 </view>
             </view>
+            <view class="weui-cell weui-cell_select">
+                <view class="weui-cell__bd">
+                    <picker bindchange="bindQiyegongzuoshijianshuomingChange" value="{{qiyegongzuoshijian_shuoming_Index}}" range="{{qiyegongzuoshijian_shuoming}}">
+                        <view class="weui-select">{{qiyegongzuoshijian_shuoming[qiyegongzuoshijian_shuoming_Index]}}</view>
+                    </picker>
+                </view>
+            </view>
         </view>
         <view class="weui-cells__title">厂房高度</view>
         <view class="weui-cells weui-cells_after-title">
@@ -177,16 +281,7 @@
             </view>
         </view>
         
-        <view class="weui-cells__title">业主性质</view>
-        <view class="weui-cells weui-cells_after-title">
-            <view class="weui-cell weui-cell_select">
-                <view class="weui-cell__bd">
-                    <picker bindchange="bindYezhuxingzhiChange" value="{{yezhuxingzhiIndex}}" range="{{yezhuxingzhi}}">
-                        <view class="weui-select">{{yezhuxingzhi[yezhuxingzhiIndex]}}</view>
-                    </picker>
-                </view>
-            </view>
-        </view>
+        
         <view class="weui-cells__title">载荷说明</view>
         <view class="weui-cells weui-cells_after-title">
             <view class="weui-cell weui-cell_select">
@@ -217,6 +312,272 @@
                 </label>
             </checkbox-group>
         </view>
+        <view class="weui-cells__title">业主性质</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_select">
+                <view class="weui-cell__bd">
+                    <picker bindchange="bindYezhuxingzhiChange" value="{{yezhuxingzhiIndex}}" range="{{yezhuxingzhi}}">
+                        <view class="weui-select">{{yezhuxingzhi[yezhuxingzhiIndex]}}</view>
+                    </picker>
+                </view>
+            </view>
+        </view>
+
+
+            
+        <view wx:if="{{group_id == 3}}">
+            <view class="weui-cells__title">业主主营任务</view>
+            <view class="weui-cells weui-cells_after-title">
+                <view class="weui-cell weui-cell_select">
+                    <view class="weui-cell__bd">
+                        <picker bindchange="yezhu_zhuyingyewu_f_change" value="{{yezhu_zhuyingyewu_f_index}}" range="{{yezhu_zhuyingyewu_f}}">
+                            <view class="weui-select">{{yezhu_zhuyingyewu_f[yezhu_zhuyingyewu_f_index]}}</view>
+                        </picker>
+                    </view>
+                </view>
+                <view class="weui-cell weui-cell_select">
+                    <view class="weui-cell__bd">
+                        <picker bindchange="yezhu_zhuyingyewu_t_change" value="{{yezhu_zhuyingyewu_t_index}}" range="{{yezhu_zhuyingyewu_t}}">
+                            <view class="weui-select">{{yezhu_zhuyingyewu_t[yezhu_zhuyingyewu_t_index]}}</view>
+                        </picker>
+                    </view>
+                </view>
+                <view class="weui-cell">
+                    <view class="weui-cell__bd">
+                        <input type="digit" class="weui-input" placeholder="说明..." bindblur="yezhu_zhuyingyewu_shuoming_inp_blur" bindfocus="yezhu_zhuyingyewu_shuoming_inp_focus"  value="{{yezhu_zhuyingyewu_shuoming}}" />
+                    </view>
+                </view>
+            </view>
+
+            
+            <mp-cells title="业主财务情况(财务报表/审计报告）">
+                <mp-checkbox-group prop="radio" multi="{{false}}" bindchange="yezhu_caiwuqingkuang_radioChange">
+                    <mp-checkbox wx:for="{{yezhu_caiwuqingkuang_radioItems}}" wx:key="value" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
+                </mp-checkbox-group>
+            </mp-cells>
+            <mp-cells title="业主企业股权和房屋有无被质押">
+                <mp-checkbox-group prop="radio" multi="{{false}}" bindchange="yezhu_zhiyaqingkuang_radioChange">
+                    <mp-checkbox wx:for="{{yezhu_zhiyaqingkuang_radioItems}}" wx:key="value" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
+                </mp-checkbox-group>
+            </mp-cells>
+            <mp-cells title="土地及房屋产证齐全情况">
+                <mp-checkbox-group prop="radio" multi="{{false}}" bindchange="yezhu_chanzheng_radioChange">
+                    <mp-checkbox wx:for="{{yezhu_chanzheng_radioItems}}" wx:key="value" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
+                </mp-checkbox-group>
+            </mp-cells>
+            <mp-cells title="业主是否有严重失信问题">
+                <mp-checkbox-group prop="radio" multi="{{false}}" bindchange="yezhu_shixin_radioChange">
+                    <mp-checkbox wx:for="{{yezhu_shixin_radioItems}}" wx:key="value" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
+                </mp-checkbox-group>
+            </mp-cells>
+            <mp-cells title="业主所属行业是否为负面清单">
+                <mp-checkbox-group prop="radio" multi="{{false}}" bindchange="yezhu_fumian_radioChange">
+                    <mp-checkbox wx:for="{{yezhu_fumian_radioItems}}" wx:key="value" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
+                </mp-checkbox-group>
+            </mp-cells>
+            <view wx:if="{{yezhu_fumian == 1}}" class="weui-cells__title">负面清单说明</view>
+            <view wx:if="{{yezhu_fumian == 1}}" class="weui-cells weui-cells_after-title">
+                <view class="weui-cell">
+                    <view class="weui-cell__bd">
+                        <textarea class="weui-textarea" bindblur="yezhu_fumian_shuoming_inp_blur"  placeholder="" style="height: 3.3em" value="{{yezhu_fumian_shuoming}}"/>
+                        <view class="weui-textarea-counter">0/60</view>
+                    </view>
+                </view>
+            </view>
+            <mp-cells title="业主是否有欠款发生的应诉案（天眼查）">
+                <mp-checkbox-group prop="radio" multi="{{false}}" bindchange="yezhu_qiankuan_radioChange">
+                    <mp-checkbox wx:for="{{yezhu_qiankuan_radioItems}}" wx:key="value" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
+                </mp-checkbox-group>
+            </mp-cells>
+            <mp-cells title="业主有无重大经营风险">
+                <mp-checkbox-group prop="radio" multi="{{false}}" bindchange="yezhu_jingyingfengxian_radioChange">
+                    <mp-checkbox wx:for="{{yezhu_jingyingfengxian_radioItems}}" wx:key="value" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
+                </mp-checkbox-group>
+            </mp-cells>
+            <view wx:if="{{yezhu_jingyingfengxian == 1}}" class="weui-cells__title">列示业主重大经营风险（如有）</view>
+            <view wx:if="{{yezhu_jingyingfengxian == 1}}" class="weui-cells weui-cells_after-title">
+                <view class="weui-cell">
+                    <view class="weui-cell__bd">
+                        <textarea class="weui-textarea" bindblur="yezhu_jingyinganli_inp_blur"  placeholder="" style="height: 3.3em" value="{{yezhu_jingyinganli}}"/>
+                        <view class="weui-textarea-counter">0/60</view>
+                    </view>
+                </view>
+            </view>
+
+
+
+            <mp-cells title="用电方是否为业主方">
+                <mp-checkbox-group prop="radio" multi="{{false}}" bindchange="is_yongdianhu_radioChange">
+                    <mp-checkbox wx:for="{{is_yongdianhu_radioItems}}" wx:key="value" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
+                </mp-checkbox-group>
+            </mp-cells>
+
+
+
+            <view wx:if="{{is_yongdianhu == 0}}">
+                <view class="weui-cells__title">用电户企业性质</view>
+                <view class="weui-cells weui-cells_after-title">
+                    <view class="weui-cell weui-cell_select">
+                        <view class="weui-cell__bd">
+                            <picker bindchange="bindYongdianhuxingzhiChange" value="{{yongdianhu_xingzhiIndex}}" range="{{yezhuxingzhi}}">
+                                <view class="weui-select">{{yezhuxingzhi[yongdianhu_xingzhiIndex]}}</view>
+                            </picker>
+                        </view>
+                    </view>
+                </view>
+                <view class="weui-cells__title">用电户主营任务</view>
+                <view class="weui-cells weui-cells_after-title">
+                    <view class="weui-cell weui-cell_select">
+                        <view class="weui-cell__bd">
+                            <picker bindchange="yongdianhu_zhuyingyewu_f_change" value="{{yongdianhu_zhuyingyewu_f_index}}" range="{{yezhu_zhuyingyewu_f}}">
+                                <view class="weui-select">{{yezhu_zhuyingyewu_f[yongdianhu_zhuyingyewu_f_index]}}</view>
+                            </picker>
+                        </view>
+                    </view>
+                    <view class="weui-cell weui-cell_select">
+                        <view class="weui-cell__bd">
+                            <picker bindchange="yongdianhu_zhuyingyewu_t_change" value="{{yongdianhu_zhuyingyewu_t_index}}" range="{{yongdianhu_zhuyingyewu_t}}">
+                                <view class="weui-select">{{yongdianhu_zhuyingyewu_t[yongdianhu_zhuyingyewu_t_index]}}</view>
+                            </picker>
+                        </view>
+                    </view>
+                    <view class="weui-cell">
+                        <view class="weui-cell__bd">
+                            <input type="digit" class="weui-input" placeholder="说明..." bindblur="yongdianhu_zhuyingyewu_shuoming_inp_blur" bindfocus="yongdianhu_zhuyingyewu_shuoming_inp_focus"  value="{{yongdianhu_zhuyingyewu_shuoming}}" />
+                        </view>
+                    </view>
+                </view>
+                <mp-cells title="用电户是否为周期性行业">
+                    <mp-checkbox-group prop="radio" multi="{{false}}" bindchange="yongdianhu_zhouqihangye_radioChange">
+                        <mp-checkbox wx:for="{{yongdianhu_zhouqihangye_radioItems}}" wx:key="value" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
+                    </mp-checkbox-group>
+                </mp-cells>
+                <mp-cells title="用电户财务情况(财务报表/审计报告）">
+                    <mp-checkbox-group prop="radio" multi="{{false}}" bindchange="yongdianhu_caiwuqingkuang_radioChange">
+                        <mp-checkbox wx:for="{{yongdianhu_caiwuqingkuang_radioItems}}" wx:key="value" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
+                    </mp-checkbox-group>
+                </mp-cells>
+                <mp-cells title="用电户股权和房屋有无被质押">
+                    <mp-checkbox-group prop="radio" multi="{{false}}" bindchange="yongdianhu_zhiyaqingkuang_radioChange">
+                        <mp-checkbox wx:for="{{yongdianhu_zhiyaqingkuang_radioItems}}" wx:key="value" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
+                    </mp-checkbox-group>
+                </mp-cells>
+                <mp-cells title="用电户法人是否有严重失信问题">
+                    <mp-checkbox-group prop="radio" multi="{{false}}" bindchange="yongdianhu_shixin_radioChange">
+                        <mp-checkbox wx:for="{{yongdianhu_shixin_radioItems}}" wx:key="value" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
+                    </mp-checkbox-group>
+                </mp-cells>
+                <mp-cells title="用电户所属行业是否为负面清单">
+                    <mp-checkbox-group prop="radio" multi="{{false}}" bindchange="yongdianhu_fumian_radioChange">
+                        <mp-checkbox wx:for="{{yongdianhu_fumian_radioItems}}" wx:key="value" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
+                    </mp-checkbox-group>
+                </mp-cells>
+                <view wx:if="{{yongdianhu_fumian == 1}}" class="weui-cells__title">负面清单说明</view>
+                <view wx:if="{{yongdianhu_fumian == 1}}" class="weui-cells weui-cells_after-title">
+                    <view class="weui-cell">
+                        <view class="weui-cell__bd">
+                            <textarea class="weui-textarea" bindblur="yongdianhu_fumian_shuoming_inp_blur"  placeholder="" style="height: 3.3em" value="{{yongdianhu_fumian_shuoming}}"/>
+                            <view class="weui-textarea-counter">0/60</view>
+                        </view>
+                    </view>
+                </view>
+                <mp-cells title="用电户是否有欠款发生的应诉案（天眼查）">
+                    <mp-checkbox-group prop="radio" multi="{{false}}" bindchange="yongdianhu_qiankuan_radioChange">
+                        <mp-checkbox wx:for="{{yongdianhu_qiankuan_radioItems}}" wx:key="value" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
+                    </mp-checkbox-group>
+                </mp-cells>
+                <mp-cells title="用电户有无重大经营风险">
+                    <mp-checkbox-group prop="radio" multi="{{false}}" bindchange="yongdianhu_jingyingfengxian_radioChange">
+                        <mp-checkbox wx:for="{{yongdianhu_jingyingfengxian_radioItems}}" wx:key="value" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
+                    </mp-checkbox-group>
+                </mp-cells>
+                <view wx:if="{{yongdianhu_jingyingfengxian == 1}}" class="weui-cells__title">列示用电户重大经营风险（如有）</view>
+                <view wx:if="{{yongdianhu_jingyingfengxian == 1}}" class="weui-cells weui-cells_after-title">
+                    <view class="weui-cell">
+                        <view class="weui-cell__bd">
+                            <textarea class="weui-textarea" bindblur="yongdianhu_jingyinganli_inp_blur"  placeholder="" style="height: 3.3em" value="{{yongdianhu_jingyinganli}}"/>
+                            <view class="weui-textarea-counter">0/60</view>
+                        </view>
+                    </view>
+                </view>
+
+
+                <view class="weui-cells__title">基本运营年限(年)</view>
+                <view class="weui-cells weui-cells_after-title">
+                    <view class="weui-cell">
+                        <view class="weui-cell__bd">
+                            <input type="digit" class="weui-input" placeholder="请输入..." bindblur="jiben_yunying_nianxian_inp_blur" bindfocus="jiben_yunying_nianxian_inp_focus"  value="{{jiben_yunying_nianxian}}" />
+                        </view>
+                    </view>
+                </view>
+                <view class="weui-cells__title">建设周期(月)</view>
+                <view class="weui-cells weui-cells_after-title">
+                    <view class="weui-cell">
+                        <view class="weui-cell__bd">
+                            <input type="digit" class="weui-input" placeholder="请输入..." bindblur="jianshe_zhouqi_inp_blur" bindfocus="jianshe_zhouqi_inp_focus"  value="{{jianshe_zhouqi}}" />
+                        </view>
+                    </view>
+                </view>
+                <view class="weui-cells__title">建筑物个数</view>
+                <view class="weui-cells weui-cells_after-title">
+                    <view class="weui-cell">
+                        <view class="weui-cell__bd">
+                            <input type="digit" class="weui-input" placeholder="请输入..." bindblur="jianzhuwu_geshu_inp_blur" bindfocus="jianzhuwu_geshu_inp_focus"  value="{{jianzhuwu_geshu}}" />
+                        </view>
+                    </view>
+                </view>
+                <view class="weui-cells__title">并网点个数</view>
+                <view class="weui-cells weui-cells_after-title">
+                    <view class="weui-cell">
+                        <view class="weui-cell__bd">
+                            <input type="digit" class="weui-input" placeholder="请输入..." bindblur="bingwangdian_geshu_inp_blur" bindfocus="bingwangdian_geshu_inp_focus"  value="{{bingwangdian_geshu}}" />
+                        </view>
+                    </view>
+                </view>
+                <mp-cells title="遮挡说明">
+                    <mp-checkbox-group prop="radio" multi="{{false}}" bindchange="zhedang_shuoming_radioChange">
+                        <mp-checkbox wx:for="{{zhedang_shuoming_radioItems}}" wx:key="value" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
+                    </mp-checkbox-group>
+                </mp-cells>
+                <view class="weui-cells__title">屋顶朝向</view>
+                <view class="weui-cells weui-cells_after-title">
+                    <view class="weui-cell weui-cell_select">
+                        <view class="weui-cell__bd">
+                            <picker bindchange="wuding_chaoxiang_change" value="{{wuding_chaoxiang_index}}" range="{{wuding_chaoxiang}}">
+                                <view class="weui-select">{{wuding_chaoxiang[wuding_chaoxiang_index]}}</view>
+                            </picker>
+                        </view>
+                    </view>
+                </view>
+
+                <view class="weui-cells__title">全年用电量 度（KWh)</view>
+                <view class="weui-cells weui-cells_after-title">
+                    <view class="weui-cell">
+                        <view class="weui-cell__bd">
+                            <input type="number" class="weui-input" placeholder="请输入..." bindblur="quannian_yongdianliang_inp_blur"  value="{{quannian_yongdianliang}}" />
+                        </view>
+                    </view>
+                </view>
+                <view class="weui-cells__title">全年日用电量 度（KWh)</view>
+                <view class="weui-cells weui-cells_after-title">
+                    <view class="weui-cell">
+                        <view class="weui-cell__bd">
+                            <input type="number" class="weui-input" placeholder="请输入..." bindblur="quannian_ri_yongdianliang_inp_blur" value="{{quannian_ri_yongdianliang}}" />
+                        </view>
+                    </view>
+                </view>
+                <view class="weui-cells__title">日间用电占比 %</view>
+                <view class="weui-cells weui-cells_after-title">
+                    <view class="weui-cell">
+                        <view class="weui-cell__bd">
+                            <input type="digit" class="weui-input" disabled="true" value="{{quannian_ri_yongdian_zhanbi}}" />
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+
+        
 
        
 
@@ -230,6 +591,3 @@
     </view>
 </view>
 
-<!-- <div class="bot_menu">
-  <view class="baocun" bindtap="updetail">保存</view>
-</div> -->

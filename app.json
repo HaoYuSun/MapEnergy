@@ -1,13 +1,13 @@
 {
   "pages": [
     
-   
+    "pages/report_info/reportinfo",
     "pages/launch/launch",
     "pages/nav/nav",
     "pages/reportindex/reportindex",
     "pages/sgoinfo/sgoinfo",
     "pages/detail/detail",
-    "pages/report_info/reportinfo",
+    
     "pages/report/report",
     "pages/index/index",
     "pages/logs/logs",

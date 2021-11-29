@@ -121,6 +121,8 @@ App({
     userInfo: null,
     map_key: 'QYEBZ-VCMED-DD44G-H4QVE-U7OHS-PAFAA',
     openid: null,
+    logopath: '',
+    group_id: 2,
     baseUrl: 'https://api.sgosgo.com/',
     getOpenidUrl: 'https://api.sgosgo.com/getopenid',
     upUserinfoUrl: 'https://api.sgosgo.com/upuserinfo',
@@ -143,5 +145,6 @@ App({
     uploadFileUrl: 'https://api.sgosgo.com/uploadfile',
     getSgoFileUrl: 'https://api.sgosgo.com/getsgofile',
     delFileUrl: 'https://api.sgosgo.com/delsgofile',
+    getGroupInfoUrl: 'https://api.sgosgo.com/getgroupinfo',
   }
 })
