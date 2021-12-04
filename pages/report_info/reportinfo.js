@@ -1511,22 +1511,25 @@ Page({
   onLoad: function (options) {
     var that = this;
     // 分享来的
-//     if(options.openid){
-//       that.setData({
-//         openid: options.openid
-//       })
-//     }
+    if(options.openid){
+      that.setData({
+        openid: options.openid
+      })
+    }
 
-//     if(options.recordid){
-//       that.setData({
-//         recordid: options.recordid
-//       })
-//     }
+    if(options.recordid){
+      that.setData({
+        recordid: options.recordid
+      })
+    }
 
+    // that.setData({
+    //   openid: 'oi3_x4o3V5dAlMi1-IF1BHy6WXBY',
+    //   recordid: 1626,
+    //   group_id: 3
+    // })
     that.setData({
-      openid: 'oi3_x4o3V5dAlMi1-IF1BHy6WXBY',
-      recordid: 1626,
-      group_id: 3
+      group_id: app.globalData.group_id
     })
 
     var getReportInfoUrl = app.globalData.getReportInfoUrl;
@@ -1540,10 +1543,6 @@ Page({
         'openid': that.data.openid,
         'recordid': that.data.recordid
       },
-      // data:{
-      //   'openid': 'oi3_x4o3V5dAlMi1-IF1BHy6WXBY',
-      //   'recordid': 813
-      // },
       method:"GET",
       success(res){
         console.log(res)

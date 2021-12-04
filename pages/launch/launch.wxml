@@ -3,7 +3,7 @@
   <view>
     <image class="mapbgimg" mode="heightFix" src="{{logoimg}}"></image>
   </view>
- 
+
   <view class="tag" wx:if="{{group_id != 2}}">powered by SGO</view>
 </view>
 

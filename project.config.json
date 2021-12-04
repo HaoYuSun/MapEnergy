@@ -38,7 +38,7 @@
     "minifyWXML": true
   },
   "compileType": "miniprogram",
-  "libVersion": "2.20.0",
+  "libVersion": "2.21.0",
   "appid": "wx6d09f79084843bb0",
   "projectname": "maptest",
   "debugOptions": {

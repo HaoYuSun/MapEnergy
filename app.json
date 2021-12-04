@@ -1,8 +1,8 @@
 {
   "pages": [
-    
-    "pages/report_info/reportinfo",
     "pages/launch/launch",
+    "pages/report_info/reportinfo",
+    
     "pages/nav/nav",
     "pages/reportindex/reportindex",
     "pages/sgoinfo/sgoinfo",

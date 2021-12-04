@@ -12,6 +12,7 @@ Page({
 
   getGroupInfo: function() {
     var that = this;
+    console.log('launch'+app.globalData.openid)
     wx.request({
       url: app.globalData.getGroupInfoUrl,
       data:{
@@ -44,25 +45,64 @@ Page({
         success(res) {
           if (res.authSetting['scope.userInfo']) {
             // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-            wx.getUserInfo({
-              success(res) {
-                app.globalData.userInfo=res.userInfo
+            wx.login({
+              success: function (r) {
+                var code = r.code;//登录凭证
+                let getOpenidUrl = app.globalData.getOpenidUrl;
                 wx.request({
-                  url: app.globalData.upUserinfoUrl,
+                  url: getOpenidUrl,
                   data:{
-                    openid: app.globalData.openid,
-                    userInfo: app.globalData.userInfo
+                    js_code: code,
                   },
                   method:"GET",
                   success(res){
+                    console.log('lancunch=')
+                    console.log(res)
+                    console.log(res.data.userInfo.nickName)
+                    if(res.data.code == '0'){
+                      
+                      app.globalData.openid=res.data.openid;
+                      app.globalData.userInfo=res.data.userInfo;
+                    }
+                    console.log(app.globalData.userInfo.nickName)
                     that.getGroupInfo();
                   }
                 });
               },
-              fail(res) {
-                console.log("获取用户信息失败", res)
+              fail: function () {
+                wx.showModal({
+                  title: '提示！',
+                  confirmText: '系统错误',
+                  showCancel: false,
+                  content: e,
+                  success: function(res) {
+                    if (res.confirm) {
+                    }
+                  }
+                })
+                console.log('系统错误')
               }
             })
+            
+            // wx.getUserInfo({
+            //   success(res) {
+            //     app.globalData.userInfo=res.userInfo
+            //     wx.request({
+            //       url: app.globalData.upUserinfoUrl,
+            //       data:{
+            //         openid: app.globalData.openid,
+            //         userInfo: app.globalData.userInfo
+            //       },
+            //       method:"GET",
+            //       success(res){
+            //         that.getGroupInfo();
+            //       }
+            //     });
+            //   },
+            //   fail(res) {
+            //     console.log("获取用户信息失败", res)
+            //   }
+            // })
           } else {
             wx.navigateTo({
               url: 'pages/setauth/setauth',

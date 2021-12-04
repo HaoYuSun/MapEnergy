@@ -11,9 +11,8 @@ Page({
 
   gohome: function(e){
     var that = this;
-    if(app.globalData.userInfo){
+    if(app.globalData.userInfo.nickName != '微信用户'){
       wx.navigateTo({
-  //       url: '../index/index',
         url: '../webview/webview',
       })
     }else{
@@ -22,7 +21,8 @@ Page({
   },
   goproject: function(e){
     var that = this;
-    if(app.globalData.userInfo){
+    
+    if(app.globalData.userInfo.nickName != '微信用户'){
       wx.navigateTo({
         url: '../self/self',
       })
@@ -37,8 +37,7 @@ Page({
     var that = this;
     wx.getUserProfile({
       desc: '获取你的昵称、头像、地区及性别',
-      success: res => {
-        console.log(res.userInfo);
+      success: (res) => {
         app.globalData.userInfo = res.userInfo;
         wx.request({
           url: app.globalData.upUserinfoUrl,
