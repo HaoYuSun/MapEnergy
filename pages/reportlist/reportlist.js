@@ -199,12 +199,12 @@ Page({
       data:{
         recordid: that.data.record_id,
         type: that.data.type,
-        hidecaiwu: hidecaiwu
+        hidecaiwu: hidecaiwu,
+        group_id: app.globalData.group_id
       },
       method:"GET",
       success(resp){
         if(resp.data.code == '0'){
-          console.log(resp)
           that.setData({
             list:  resp.data.list
           });

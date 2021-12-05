@@ -19,7 +19,7 @@ Page({
     var record_id = that.data.record_id;
     // record_id = 1325
     wx.navigateTo({
-      url: '../reportlist/reportlist?record_id='+record_id+'&type='+type,
+      url: '../reportlist/reportlist?record_id='+record_id+'&type='+type+'&group_id='+app.globalData.group_id,
     })
     
   },

@@ -129,7 +129,7 @@ Page({
     var that = this;
     that.updetail();
     wx.navigateTo({
-      url: '../report_info/reportinfo?recordid=' +that.data.recordid+'&openid='+that.data.openid,
+      url: '../report_info/reportinfo?recordid=' +that.data.recordid+'&openid='+that.data.openid+'&group_id='+app.globalData.group_id,
     })
     
   },
@@ -140,7 +140,7 @@ Page({
     var that = this;
     that.updetail();
     wx.navigateTo({
-      url: '../sgoinfo/sgoinfo?recordid=' +that.data.recordid+'&openid='+that.data.openid,
+      url: '../sgoinfo/sgoinfo?recordid=' +that.data.recordid+'&openid='+that.data.openid+'&group_id='+app.globalData.group_id,
     })
     
   },
