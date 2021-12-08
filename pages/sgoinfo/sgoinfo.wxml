@@ -10,7 +10,7 @@
           <!-- <navigator class="weui-wa-hotarea weui-progress__opr" aria-role="button" url="javascript:">
             <text aria-label="取消" class="weui-icon-cancel" aria-role="img"></text>
           </navigator> -->
-          <text id="js_current" class="weui-hidden_abs" aria-role="alert">{{num}}/7</text>
+          <text id="js_current" class="weui-hidden_abs" aria-role="alert">{{num}}/{{sum_type}}</text>
         </view>
       </view>
         <view class="weui-cells">
@@ -18,15 +18,14 @@
                 <view class="weui-cell__bd">
                     <view class="weui-uploader">
                         <view class="weui-uploader__hd">
-                          <view aria-role="option" class="weui-uploader__overview">
-                              <view class="weui-uploader__title">屋面结构</view>
-                              <!-- <view class="weui-uploader__info">{{files.length}}/2</view> -->
-                          </view>
-                          <!-- <view class="weui-uploader__tips">
-                            屋面结构
-                          </view> -->
+                          
+                          <mp-cell title="屋面结构" ext-class="ext-class">
+                            <switch slot="footer" wx:if="{{file_state_list[0] == 1}}" checked  bindchange="switchChange" data-type="0" />
+                            <switch slot="footer" wx:if="{{file_state_list[0] == 0}}"  bindchange="switchChange" data-type="0" />
+                          </mp-cell>
+
                         </view>
-                        <view class="weui-uploader__bd">
+                        <view wx:if="{{file_state_list[0] == 1}}" class="weui-uploader__bd">
                             <view class="weui-uploader__files" id="uploaderFiles">
                                 <block wx:for="{{wumianjiegou}}" wx:key="*this">
                                   <view class="superview">
@@ -68,11 +67,14 @@
                 <view class="weui-cell__bd">
                     <view class="weui-uploader">
                         <view class="weui-uploader__hd">
-                          <view aria-role="option" class="weui-uploader__overview">
-                              <view class="weui-uploader__title">电费单</view>
-                          </view>
+
+                          <mp-cell title="电费单" ext-class="ext-class">
+                            <switch slot="footer" wx:if="{{file_state_list[1] == 1}}" checked  bindchange="switchChange" data-type="1" />
+                            <switch slot="footer" wx:if="{{file_state_list[1] == 0}}"  bindchange="switchChange" data-type="1" />
+                          </mp-cell>
+
                         </view>
-                        <view class="weui-uploader__bd">
+                        <view wx:if="{{file_state_list[1] == 1}}" class="weui-uploader__bd">
                             <view class="weui-uploader__files" id="uploaderFiles">
                                 <block wx:for="{{dianfeidan}}" wx:key="*this">
                                   <view class="superview">
@@ -101,14 +103,14 @@
                 <view class="weui-cell__bd">
                     <view class="weui-uploader">
                         <view class="weui-uploader__hd">
-                          <view aria-role="option" class="weui-uploader__overview">
-                              <view class="weui-uploader__title">图纸（结构、电气）</view>
-                          </view>
-                          <view class="weui-uploader__tips">
-                            提供认证服务（载荷报告）
-                          </view>
+
+                          <mp-cell title="图纸（结构、电气）" ext-class="ext-class">
+                            <switch slot="footer" wx:if="{{file_state_list[2] == 1}}" checked  bindchange="switchChange" data-type="2" />
+                            <switch slot="footer"  wx:if="{{file_state_list[2] == 0}}"  bindchange="switchChange" data-type="2" />
+                          </mp-cell>
+
                         </view>
-                        <view class="weui-uploader__bd">
+                        <view wx:if="{{file_state_list[2] == 1}}" class="weui-uploader__bd">
                             <view class="weui-uploader__files" id="uploaderFiles">
                               <block wx:for="{{tuzhi}}" wx:key="*this">
                                 <view class="superview">
@@ -134,14 +136,19 @@
                 <view class="weui-cell__bd">
                     <view class="weui-uploader">
                         <view class="weui-uploader__hd">
-                          <view aria-role="option" class="weui-uploader__overview">
+                          <!-- <view aria-role="option" class="weui-uploader__overview">
                               <view class="weui-uploader__title">照片库</view>
                           </view>
                           <view class="weui-uploader__tips">
                             屋顶航拍图、瓦屋面近距离拍摄图
-                          </view>
+                          </view> -->
+                          <mp-cell title="照片库" ext-class="ext-class">
+                            <switch slot="footer"  wx:if="{{file_state_list[3] == 1}}" checked  bindchange="switchChange" data-type="3" />
+                            <switch slot="footer"  wx:if="{{file_state_list[3] == 0}}"  bindchange="switchChange" data-type="3" />
+                          </mp-cell>
+
                         </view>
-                        <view class="weui-uploader__bd">
+                        <view wx:if="{{file_state_list[3] == 1}}" class="weui-uploader__bd">
                             <view class="weui-uploader__files" id="uploaderFiles">
                               <block wx:for="{{zhaopianku}}" wx:key="*this">
                                 <view class="superview">
@@ -167,14 +174,19 @@
                 <view class="weui-cell__bd">
                     <view class="weui-uploader">
                         <view class="weui-uploader__hd">
-                          <view aria-role="option" class="weui-uploader__overview">
+                          <!-- <view aria-role="option" class="weui-uploader__overview">
                               <view class="weui-uploader__title">业主信息</view>
                           </view>
                           <view class="weui-uploader__tips">
                             产证、营业执照
-                          </view>
+                          </view> -->
+                          <mp-cell title="业主信息" ext-class="ext-class">
+                            <switch slot="footer" wx:if="{{file_state_list[4] == 1}}" checked  bindchange="switchChange" data-type="4" />
+                            <switch slot="footer" wx:if="{{file_state_list[4] == 0}}"  bindchange="switchChange" data-type="4" />
+                          </mp-cell>
+
                         </view>
-                        <view class="weui-uploader__bd">
+                        <view wx:if="{{file_state_list[4] == 1}}" class="weui-uploader__bd">
                             <view class="weui-uploader__files" id="uploaderFiles">
                               <block wx:for="{{yezhuxinxi}}" wx:key="*this">
                                 <view class="superview">
@@ -200,14 +212,19 @@
                 <view class="weui-cell__bd">
                     <view class="weui-uploader">
                         <view class="weui-uploader__hd">
-                          <view aria-role="option" class="weui-uploader__overview">
+                          <!-- <view aria-role="option" class="weui-uploader__overview">
                               <view class="weui-uploader__title">备案证</view>
                           </view>
                           <view class="weui-uploader__tips">
                             增加RTB认证
-                          </view>
+                          </view> -->
+                          <mp-cell title="备案证" ext-class="ext-class">
+                            <switch slot="footer" wx:if="{{file_state_list[5] == 1}}" checked  bindchange="switchChange" data-type="5" />
+                            <switch slot="footer" wx:if="{{file_state_list[5] == 0}}"  bindchange="switchChange" data-type="5" />
+                          </mp-cell>
+
                         </view>
-                        <view class="weui-uploader__bd">
+                        <view wx:if="{{file_state_list[5] == 1}}" class="weui-uploader__bd">
                             <view class="weui-uploader__files" id="uploaderFiles">
                               <block wx:for="{{beianzheng}}" wx:key="*this">
                                 <view class="superview">
@@ -233,14 +250,19 @@
                 <view class="weui-cell__bd">
                     <view class="weui-uploader">
                         <view class="weui-uploader__hd">
-                          <view aria-role="option" class="weui-uploader__overview">
+                          <!-- <view aria-role="option" class="weui-uploader__overview">
                               <view class="weui-uploader__title">接入方案</view>
                           </view>
                           <view class="weui-uploader__tips">
                             增加RTB认证
-                          </view>
+                          </view> -->
+                          <mp-cell title="接入方案" ext-class="ext-class">
+                            <switch slot="footer" wx:if="{{file_state_list[6] == 1}}" checked  bindchange="switchChange" data-type="6" />
+                            <switch slot="footer" wx:if="{{file_state_list[6] == 0}}"  bindchange="switchChange" data-type="6" />
+                          </mp-cell>
+
                         </view>
-                        <view class="weui-uploader__bd">
+                        <view wx:if="{{file_state_list[6] == 1}}" class="weui-uploader__bd">
                             <view class="weui-uploader__files" id="uploaderFiles">
                               <block wx:for="{{jierufangan}}" wx:key="*this">
                                 <view class="superview">
@@ -254,6 +276,361 @@
                             </view>
                             <view class="weui-uploader__input-box">
                                 <view aria-role="button" aria-label="上传" class="weui-uploader__input" id="7" bindtap="chooseImage"></view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+
+        <!-- 开玄业务 -->
+        <view wx:if="{{group_id == 3}}">
+            <view class="weui-cells">
+                <view class="weui-cell weui-cell_uploader">
+                    <view class="weui-cell__bd">
+                        <view class="weui-uploader">
+                            <view class="weui-uploader__hd">
+                            <!-- <view aria-role="option" class="weui-uploader__overview">
+                                <view class="weui-uploader__title">开发商营业执照</view>
+                            </view> -->
+                                <mp-cell title="开发商营业执照" ext-class="ext-class">
+                                <switch slot="footer" wx:if="{{file_state_list[7] == 1}}" checked  bindchange="switchChange" data-type="7" />
+                                <switch slot="footer" wx:if="{{file_state_list[7] == 0}}"  bindchange="switchChange" data-type="7" />
+                            </mp-cell>
+
+                            </view>
+                            <view wx:if="{{file_state_list[7] == 1}}" class="weui-uploader__bd">
+                                <view class="weui-uploader__files" id="uploaderFiles">
+                                <block wx:for="{{yingyezhizhao}}" wx:key="*this">
+                                    <view class="superview">
+                                        <view class="weui-uploader__file" bindtap="previewImage" data-type="8" id="{{item}}">
+                                            <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                                        </view>
+                                        <image class="cancelbtn" src="../../images/menu_2.png" data-type="8" id="{{item}}" bindtap="cancelTap"></image>
+                                    </view>
+                                    </block>
+
+                                </view>
+                                <view class="weui-uploader__input-box">
+                                    <view aria-role="button" aria-label="上传" class="weui-uploader__input" id="8" bindtap="chooseImage"></view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+
+            <view class="weui-cells">
+                <view class="weui-cell weui-cell_uploader">
+                    <view class="weui-cell__bd">
+                        <view class="weui-uploader">
+                            <view class="weui-uploader__hd">
+                            <!-- <view aria-role="option" class="weui-uploader__overview">
+                                <view class="weui-uploader__title">房产证、土地证</view>
+                            </view> -->
+                            <mp-cell title="房产证、土地证" ext-class="ext-class">
+                                <switch slot="footer" wx:if="{{file_state_list[8] == 1}}" checked bindchange="switchChange" data-type="8" />
+                                <switch slot="footer" wx:if="{{file_state_list[8] == 0}}"  bindchange="switchChange" data-type="8" />
+                            </mp-cell>
+
+                            </view>
+                            <view wx:if="{{file_state_list[8] == 1}}" class="weui-uploader__bd">
+                                <view class="weui-uploader__files" id="uploaderFiles">
+                                <block wx:for="{{fangchan_tudizheng}}" wx:key="*this">
+                                    <view class="superview">
+                                        <view class="weui-uploader__file" bindtap="previewImage" data-type="9" id="{{item}}">
+                                            <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                                        </view>
+                                        <image class="cancelbtn" src="../../images/menu_2.png" data-type="9" id="{{item}}" bindtap="cancelTap"></image>
+                                    </view>
+                                    </block>
+
+                                </view>
+                                <view class="weui-uploader__input-box">
+                                    <view aria-role="button" aria-label="上传" class="weui-uploader__input" id="9" bindtap="chooseImage"></view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+
+            <view class="weui-cells">
+                <view class="weui-cell weui-cell_uploader">
+                    <view class="weui-cell__bd">
+                        <view class="weui-uploader">
+                            <view class="weui-uploader__hd">
+                            <!-- <view aria-role="option" class="weui-uploader__overview">
+                                <view class="weui-uploader__title">房屋产权查册信息</view>
+                            </view> -->
+                            <mp-cell title="房屋产权查册信息" ext-class="ext-class">
+                                <switch slot="footer" wx:if="{{file_state_list[9] == 1}}" checked bindchange="switchChange" data-type="9" />
+                                <switch slot="footer" wx:if="{{file_state_list[9] == 0}}"  bindchange="switchChange" data-type="9" />
+                            </mp-cell>
+
+                            </view>
+                            <view wx:if="{{file_state_list[9] == 1}}" class="weui-uploader__bd">
+                                <view class="weui-uploader__files" id="uploaderFiles">
+                                <block wx:for="{{chanquan_xinxi}}" wx:key="*this">
+                                    <view class="superview">
+                                        <view class="weui-uploader__file" bindtap="previewImage" data-type="10" id="{{item}}">
+                                            <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                                        </view>
+                                        <image class="cancelbtn" src="../../images/menu_2.png" data-type="10" id="{{item}}" bindtap="cancelTap"></image>
+                                    </view>
+                                    </block>
+
+                                </view>
+                                <view class="weui-uploader__input-box">
+                                    <view aria-role="button" aria-label="上传" class="weui-uploader__input" id="10" bindtap="chooseImage"></view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+
+            <view class="weui-cells">
+                <view class="weui-cell weui-cell_uploader">
+                    <view class="weui-cell__bd">
+                        <view class="weui-uploader">
+                            <view class="weui-uploader__hd">
+                            <!-- <view aria-role="option" class="weui-uploader__overview">
+                                <view class="weui-uploader__title">用电方尽调报告</view>
+                            </view> -->
+                            <mp-cell title="用电方尽调报告" ext-class="ext-class">
+                                <switch slot="footer" wx:if="{{file_state_list[10] == 1}}" checked  bindchange="switchChange" data-type="10" />
+                                <switch slot="footer" wx:if="{{file_state_list[10] == 0}}"  bindchange="switchChange" data-type="10" />
+                            </mp-cell>
+
+                            </view>
+                            <view wx:if="{{file_state_list[10] == 1}}" class="weui-uploader__bd">
+                                <view class="weui-uploader__files" id="uploaderFiles">
+                                <block wx:for="{{jindiao_baogao}}" wx:key="*this">
+                                    <view class="superview">
+                                        <view class="weui-uploader__file" bindtap="previewImage" data-type="11" id="{{item}}">
+                                            <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                                        </view>
+                                        <image class="cancelbtn" src="../../images/menu_2.png" data-type="11" id="{{item}}" bindtap="cancelTap"></image>
+                                    </view>
+                                    </block>
+
+                                </view>
+                                <view class="weui-uploader__input-box">
+                                    <view aria-role="button" aria-label="上传" class="weui-uploader__input" id="11" bindtap="chooseImage"></view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+
+            <view class="weui-cells">
+                <view class="weui-cell weui-cell_uploader">
+                    <view class="weui-cell__bd">
+                        <view class="weui-uploader">
+                            <view class="weui-uploader__hd">
+                            <!-- <view aria-role="option" class="weui-uploader__overview">
+                                <view class="weui-uploader__title">EMC合同</view>
+                            </view> -->
+                            <mp-cell title="EMC合同" ext-class="ext-class">
+                                <switch slot="footer" wx:if="{{file_state_list[11] == 1}}" checked  bindchange="switchChange" data-type="11" />
+                                <switch slot="footer" wx:if="{{file_state_list[11] == 0}}"  bindchange="switchChange" data-type="11" />
+                            </mp-cell>
+
+                            </view>
+                            <view wx:if="{{file_state_list[11] == 1}}" class="weui-uploader__bd">
+                                <view class="weui-uploader__files" id="uploaderFiles">
+                                <block wx:for="{{emc}}" wx:key="*this">
+                                    <view class="superview">
+                                        <view class="weui-uploader__file" bindtap="previewImage" data-type="12" id="{{item}}">
+                                            <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                                        </view>
+                                        <image class="cancelbtn" src="../../images/menu_2.png" data-type="12" id="{{item}}" bindtap="cancelTap"></image>
+                                    </view>
+                                    </block>
+
+                                </view>
+                                <view class="weui-uploader__input-box">
+                                    <view aria-role="button" aria-label="上传" class="weui-uploader__input" id="12" bindtap="chooseImage"></view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+
+            <view class="weui-cells">
+                <view class="weui-cell weui-cell_uploader">
+                    <view class="weui-cell__bd">
+                        <view class="weui-uploader">
+                            <view class="weui-uploader__hd">
+                            <!-- <view aria-role="option" class="weui-uploader__overview">
+                                <view class="weui-uploader__title">踏勘报告</view>
+                            </view> -->
+                            <mp-cell title="踏勘报告" ext-class="ext-class">
+                                <switch slot="footer" wx:if="{{file_state_list[12] == 1}}" checked  bindchange="switchChange" data-type="12" />
+                                <switch slot="footer" wx:if="{{file_state_list[12] == 0}}"  bindchange="switchChange" data-type="12" />
+                            </mp-cell>
+
+                            </view>
+                            <view wx:if="{{file_state_list[12] == 1}}" class="weui-uploader__bd">
+                                <view class="weui-uploader__files" id="uploaderFiles">
+                                <block wx:for="{{takanbaogao}}" wx:key="*this">
+                                    <view class="superview">
+                                        <view class="weui-uploader__file" bindtap="previewImage" data-type="13" id="{{item}}">
+                                            <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                                        </view>
+                                        <image class="cancelbtn" src="../../images/menu_2.png" data-type="13" id="{{item}}" bindtap="cancelTap"></image>
+                                    </view>
+                                    </block>
+
+                                </view>
+                                <view class="weui-uploader__input-box">
+                                    <view aria-role="button" aria-label="上传" class="weui-uploader__input" id="13" bindtap="chooseImage"></view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+
+            <view class="weui-cells">
+                <view class="weui-cell weui-cell_uploader">
+                    <view class="weui-cell__bd">
+                        <view class="weui-uploader">
+                            <view class="weui-uploader__hd">
+                            <!-- <view aria-role="option" class="weui-uploader__overview">
+                                <view class="weui-uploader__title">电气图、平台图</view>
+                            </view> -->
+                            <mp-cell title="电气图、平台图" ext-class="ext-class">
+                                <switch slot="footer" wx:if="{{file_state_list[13] == 1}}" checked  bindchange="switchChange" data-type="13" />
+                                <switch slot="footer" wx:if="{{file_state_list[13] == 0}}"  bindchange="switchChange" data-type="13" />
+                            </mp-cell>
+
+                            </view>
+                            <view wx:if="{{file_state_list[13] == 1}}" class="weui-uploader__bd">
+                                <view class="weui-uploader__files" id="uploaderFiles">
+                                <block wx:for="{{dianqi_pingtaitu}}" wx:key="*this">
+                                    <view class="superview">
+                                        <view class="weui-uploader__file" bindtap="previewImage" data-type="14" id="{{item}}">
+                                            <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                                        </view>
+                                        <image class="cancelbtn" src="../../images/menu_2.png" data-type="14" id="{{item}}" bindtap="cancelTap"></image>
+                                    </view>
+                                    </block>
+
+                                </view>
+                                <view class="weui-uploader__input-box">
+                                    <view aria-role="button" aria-label="上传" class="weui-uploader__input" id="14" bindtap="chooseImage"></view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+
+
+            <view class="weui-cells">
+                <view class="weui-cell weui-cell_uploader">
+                    <view class="weui-cell__bd">
+                        <view class="weui-uploader">
+                            <view class="weui-uploader__hd">
+                            <!-- <view aria-role="option" class="weui-uploader__overview">
+                                <view class="weui-uploader__title">载荷报告</view>
+                            </view> -->
+                            <mp-cell title="载荷报告" ext-class="ext-class">
+                                <switch slot="footer" wx:if="{{file_state_list[14] == 1}}" checked  bindchange="switchChange" data-type="14" />
+                                <switch slot="footer" wx:if="{{file_state_list[14] == 0}}"  bindchange="switchChange" data-type="14" />
+                            </mp-cell>
+
+                            </view>
+                            <view wx:if="{{file_state_list[14] == 1}}" class="weui-uploader__bd">
+                                <view class="weui-uploader__files" id="uploaderFiles">
+                                <block wx:for="{{zaihe_baogao}}" wx:key="*this">
+                                    <view class="superview">
+                                        <view class="weui-uploader__file" bindtap="previewImage" data-type="15" id="{{item}}">
+                                            <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                                        </view>
+                                        <image class="cancelbtn" src="../../images/menu_2.png" data-type="15" id="{{item}}" bindtap="cancelTap"></image>
+                                    </view>
+                                    </block>
+
+                                </view>
+                                <view class="weui-uploader__input-box">
+                                    <view aria-role="button" aria-label="上传" class="weui-uploader__input" id="15" bindtap="chooseImage"></view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+
+
+            <view class="weui-cells">
+                <view class="weui-cell weui-cell_uploader">
+                    <view class="weui-cell__bd">
+                        <view class="weui-uploader">
+                            <view class="weui-uploader__hd">
+                            <!-- <view aria-role="option" class="weui-uploader__overview">
+                                <view class="weui-uploader__title">初设方案</view>
+                            </view> -->
+                            <mp-cell title="初设方案" ext-class="ext-class">
+                                <switch slot="footer" wx:if="{{file_state_list[15] == 1}}" checked  bindchange="switchChange" data-type="15" />
+                                <switch slot="footer" wx:if="{{file_state_list[15] == 0}}"  bindchange="switchChange" data-type="15" />
+                            </mp-cell>
+
+                            </view>
+                            <view wx:if="{{file_state_list[15] == 1}}" class="weui-uploader__bd">
+                                <view class="weui-uploader__files" id="uploaderFiles">
+                                <block wx:for="{{chushe_fangan}}" wx:key="*this">
+                                    <view class="superview">
+                                        <view class="weui-uploader__file" bindtap="previewImage" data-type="16" id="{{item}}">
+                                            <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                                        </view>
+                                        <image class="cancelbtn" src="../../images/menu_2.png" data-type="16" id="{{item}}" bindtap="cancelTap"></image>
+                                    </view>
+                                    </block>
+
+                                </view>
+                                <view class="weui-uploader__input-box">
+                                    <view aria-role="button" aria-label="上传" class="weui-uploader__input" id="16" bindtap="chooseImage"></view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+
+            <view class="weui-cells">
+                <view class="weui-cell weui-cell_uploader">
+                    <view class="weui-cell__bd">
+                        <view class="weui-uploader">
+                            <view class="weui-uploader__hd">
+                            <!-- <view aria-role="option" class="weui-uploader__overview">
+                                <view class="weui-uploader__title">组件初步排布图</view>
+                            </view> -->
+                            <mp-cell title="组件初步排布图" ext-class="ext-class">
+                                <switch slot="footer" wx:if="{{file_state_list[16] == 1}}" checked  bindchange="switchChange" data-type="16" />
+                                <switch slot="footer" wx:if="{{file_state_list[16] == 0}}"  bindchange="switchChange" data-type="16" />
+                            </mp-cell>
+
+                            </view>
+                            <view wx:if="{{file_state_list[16] == 1}}" class="weui-uploader__bd">
+                                <view class="weui-uploader__files" id="uploaderFiles">
+                                <block wx:for="{{zujian_paibutu}}" wx:key="*this">
+                                    <view class="superview">
+                                        <view class="weui-uploader__file" bindtap="previewImage" data-type="17" id="{{item}}">
+                                            <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                                        </view>
+                                        <image class="cancelbtn" src="../../images/menu_2.png" data-type="17" id="{{item}}" bindtap="cancelTap"></image>
+                                    </view>
+                                    </block>
+
+                                </view>
+                                <view class="weui-uploader__input-box">
+                                    <view aria-role="button" aria-label="上传" class="weui-uploader__input" id="17" bindtap="chooseImage"></view>
+                                </view>
                             </view>
                         </view>
                     </view>

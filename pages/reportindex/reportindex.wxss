@@ -241,8 +241,8 @@ page {
   font-size: 17px;
 
 }
-.bot-view-right-view{
-  width: 100vw;
+.bot-view-left-view{
+  width: 50vw;
   height: 44px;
   background-color: rgba(214, 186, 140, 1);
   float: left;
@@ -251,6 +251,19 @@ page {
   font-size: 17px;
   font-weight: 500;
   color: #fff;
+}
+.bot-view-right-view{
+  width: 49.5vw;
+  height: 44px;
+  background-color: rgba(214, 186, 140, 1);
+  /* background-color: rgba(0, 186, 140, 1); */
+  float: left;
+  text-align: center;
+  line-height: 44px;
+  font-size: 17px;
+  font-weight: 500;
+  color: #fff;
+  border-left: 0.5vw solid #f2f2f2;
 }
 
 .list-cell{

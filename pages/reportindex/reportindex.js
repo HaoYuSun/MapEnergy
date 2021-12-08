@@ -15,7 +15,6 @@ Page({
   cellTap: function(e){
     var that = this;
     var type = e.currentTarget.dataset.type;
-    console.log(type)
     var record_id = that.data.record_id;
     // record_id = 1325
     wx.navigateTo({
@@ -26,29 +25,49 @@ Page({
 
   editpro: function(e) {
     var that = this;
-    console.log(app.globalData.openid);
-    console.log(that.data.record_id);
     wx.navigateTo({
       url: '../detail/detail?recordid='+that.data.record_id+'&openid='+app.globalData.openid,
     })
   },
-  
+  cmtpro: function(e) {
+    var that = this;
+    wx.request({
+      url: app.globalData.getOpenProUrl,
+      data:{
+        'group_id': app.globalData.group_id,
+        'openid': app.globalData.openid,
+        'recordid': that.data.record_id
+      },
+      method:"GET",
+      success(res){
+        if(res.data.code == '200'){
+          wx.showModal({
+            title: '提示',
+            content: '项目已提交!',
+            confirmText: '完成',
+            success (res) {
+              
+            }
+          })
+          
+        }
+      },
+      complete(){
+        wx.hideLoading();
+      }
+    });
+  },
   
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     var that = this;
-    console.log(options)
     that.setData({
       record_id: options.record_id
     });
 
   },
-
-  
-
-
 
   /**
    * 生命周期函数--监听页面初次渲染完成

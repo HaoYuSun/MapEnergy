@@ -143,7 +143,9 @@ App({
     gelProjectsListUrl: 'https://api.sgosgo.com/getprojectslist',
     uploadFileUrl: 'https://api.sgosgo.com/uploadfile',
     getSgoFileUrl: 'https://api.sgosgo.com/getsgofile',
+    upSgoFileStateUrl: 'https://api.sgosgo.com/sgofilestate',
     delFileUrl: 'https://api.sgosgo.com/delsgofile',
     getGroupInfoUrl: 'https://api.sgosgo.com/getgroupinfo',
+    getOpenProUrl: 'https://api.sgosgo.com/openpro',
   }
 })

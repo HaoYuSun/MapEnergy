@@ -107,3 +107,7 @@
     width: 100px;
     height: 100px;
 }
+
+.ext-class{
+  padding: 0px;
+}

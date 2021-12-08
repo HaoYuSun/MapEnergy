@@ -17,9 +17,61 @@ Page({
       yezhuxinxi: [],
       beianzheng: [],
       jierufangan: [],
+
+      // 开玄业务
+      yingyezhizhao: [],
+      fangchan_tudizheng: [],
+      chanquan_xinxi: [],
+      jindiao_baogao: [],
+      emc: [],
+      takanbaogao: [],
+      dianqi_pingtaitu: [],
+      zaihe_baogao: [],
+      chushe_fangan: [],
+      zujian_paibutu: [],
+
       num : 0,
-      rate : 0
+      rate : 0,
+      sum_type: 0,
+      group_id: app.globalData.group_id,
+      file_state_list: ["1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"]
     },
+    switchChange: function(e){
+      var that = this;
+      var index = parseInt(e.currentTarget.dataset.type)
+
+      if(e.detail.value == true){
+        that.data.file_state_list[index] = '1'
+      }else{
+        that.data.file_state_list[index] = '0'
+      }
+      that.setData({
+        file_state_list: that.data.file_state_list
+      })
+
+      console.log(that.data.file_state_list.toString())
+    wx.request({
+      url: app.globalData.upSgoFileStateUrl,
+      data:{
+        'openid': that.data.openid,
+        'recordid': that.data.recordid,
+        'file_state': that.data.file_state_list.toString()
+      },
+      method:"GET",
+      success(res){
+        if(res.data.code == '0'){
+          that.setData({
+            num : res.data.data.num,
+            rate : res.data.data.rate,
+            sum_type: res.data.data.sum_type
+          })
+        }
+      },
+      complete(){
+        
+      }
+    });
+  },
     chooseImage: function (e) {
         var type_id = e.currentTarget.id
         var that = this;
@@ -88,6 +140,66 @@ Page({
                           num: result.data.num,
                           rate: result.data.rate
                         });
+                      }else if(type_id == 8){
+                        that.setData({
+                          yingyezhizhao: that.data.jierufangan.concat(result.data.tempFilePaths),
+                          num: result.data.num,
+                          rate: result.data.rate
+                        })
+                      }else if(type_id == 9){
+                        that.setData({
+                          fangchan_tudizheng: that.data.jierufangan.concat(result.data.tempFilePaths),
+                          num: result.data.num,
+                          rate: result.data.rate
+                        })
+                      }else if(type_id == 10){
+                        that.setData({
+                          chanquan_xinxi: that.data.jierufangan.concat(result.data.tempFilePaths),
+                          num: result.data.num,
+                          rate: result.data.rate
+                        })
+                      }else if(type_id == 11){
+                        that.setData({
+                          jindiao_baogao: that.data.jierufangan.concat(result.data.tempFilePaths),
+                          num: result.data.num,
+                          rate: result.data.rate
+                        })
+                      }else if(type_id == 12){
+                        that.setData({
+                          emc: that.data.jierufangan.concat(result.data.tempFilePaths),
+                          num: result.data.num,
+                          rate: result.data.rate
+                        })
+                      }else if(type_id == 13){
+                        that.setData({
+                          takanbaogao: that.data.jierufangan.concat(result.data.tempFilePaths),
+                          num: result.data.num,
+                          rate: result.data.rate
+                        })
+                      }else if(type_id == 14){
+                        that.setData({
+                          dianqi_pingtaitu: that.data.jierufangan.concat(result.data.tempFilePaths),
+                          num: result.data.num,
+                          rate: result.data.rate
+                        })
+                      }else if(type_id == 15){
+                        that.setData({
+                          zaihe_baogao: that.data.jierufangan.concat(result.data.tempFilePaths),
+                          num: result.data.num,
+                          rate: result.data.rate
+                        })
+                      }else if(type_id == 16){
+                        that.setData({
+                          chushe_fangan: that.data.jierufangan.concat(result.data.tempFilePaths),
+                          num: result.data.num,
+                          rate: result.data.rate
+                        })
+                      }else if(type_id == 17){
+                        that.setData({
+                          zujian_paibutu: that.data.jierufangan.concat(result.data.tempFilePaths),
+                          num: result.data.num,
+                          rate: result.data.rate
+                        })
                       }
                     },
                     fail: function(res) {
@@ -100,7 +212,6 @@ Page({
     },
     cancelTap: function (e) {
       var that = this;
-      console.log(e.currentTarget)
       var type_id = e.currentTarget.dataset.type
       var url =  e.currentTarget.id
       var delFileUrl = app.globalData.delFileUrl;
@@ -114,7 +225,6 @@ Page({
         },
         method:"GET",
         success(res){
-          console.log(res)
           if(res.data.code == '0'){
             if(type_id == 1){
               that.setData({
@@ -158,6 +268,66 @@ Page({
                 num: res.data.data.num,
                 rate: res.data.data.rate
               })
+            }else if(type_id == 8){
+              that.setData({
+                yingyezhizhao: res.data.data.record,
+                num: res.data.data.num,
+                rate: res.data.data.rate
+              })
+            }else if(type_id == 9){
+              that.setData({
+                fangchan_tudizheng: res.data.data.record,
+                num: res.data.data.num,
+                rate: res.data.data.rate
+              })
+            }else if(type_id == 10){
+              that.setData({
+                chanquan_xinxi: res.data.data.record,
+                num: res.data.data.num,
+                rate: res.data.data.rate
+              })
+            }else if(type_id == 11){
+              that.setData({
+                jindiao_baogao: res.data.data.record,
+                num: res.data.data.num,
+                rate: res.data.data.rate
+              })
+            }else if(type_id == 12){
+              that.setData({
+                emc: res.data.data.record,
+                num: res.data.data.num,
+                rate: res.data.data.rate
+              })
+            }else if(type_id == 13){
+              that.setData({
+                takanbaogao: res.data.data.record,
+                num: res.data.data.num,
+                rate: res.data.data.rate
+              })
+            }else if(type_id == 14){
+              that.setData({
+                dianqi_pingtaitu: res.data.data.record,
+                num: res.data.data.num,
+                rate: res.data.data.rate
+              })
+            }else if(type_id == 15){
+              that.setData({
+                zaihe_baogao: res.data.data.record,
+                num: res.data.data.num,
+                rate: res.data.data.rate
+              })
+            }else if(type_id == 16){
+              that.setData({
+                chushe_fangan: res.data.data.record,
+                num: res.data.data.num,
+                rate: res.data.data.rate
+              })
+            }else if(type_id == 17){
+              that.setData({
+                zujian_paibutu: res.data.data.record,
+                num: res.data.data.num,
+                rate: res.data.data.rate
+              })
             }
           }
         },
@@ -168,9 +338,7 @@ Page({
     },
     previewImage: function(e){
         var that = this;
-        console.log(e.currentTarget)
         var type_id = e.currentTarget.dataset.type
-        console.log(type_id)
         var urls = []
         if(type_id == 1){
           urls = that.data.wumianjiegou
@@ -186,7 +354,28 @@ Page({
           urls = that.data.beianzheng
         }else if(type_id == 7){
           urls = that.data.jierufangan
+        }else if(type_id == 8){
+          urls = that.data.yingyezhizhao
+        }else if(type_id == 9){
+          urls = that.data.fangchan_tudizheng
+        }else if(type_id == 10){
+          urls = that.data.chanquan_xinxi
+        }else if(type_id == 11){
+          urls = that.data.jindiao_baogao
+        }else if(type_id == 12){
+          urls = that.data.emc
+        }else if(type_id == 13){
+          urls = that.data.takanbaogao
+        }else if(type_id == 14){
+          urls = that.data.dianqi_pingtaitu
+        }else if(type_id == 15){
+          urls = that.data.zaihe_baogao
+        }else if(type_id == 16){
+          urls = that.data.chushe_fangan
+        }else if(type_id == 17){
+          urls = that.data.zujian_paibutu
         }
+
         wx.previewImage({
             current: e.currentTarget.id, // 当前显示图片的http链接
             urls: urls // 需要预览的图片http链接列表
@@ -213,19 +402,18 @@ Page({
         recordid: options.recordid
       })
     }
-    console.log('123123')
+    that.setData({
+      group_id: app.globalData.group_id
+    })
     var getSgoFileUrl = app.globalData.getSgoFileUrl;
     wx.request({
       url: getSgoFileUrl,
       data:{
-        // 'openid': that.data.openid,
-        // 'recordid': that.data.recordid
-        'openid': 'oi3_x4o3V5dAlMi1-IF1BHy6WXBY',
-        'recordid': '823',
+        'openid': that.data.openid,
+        'recordid': that.data.recordid
       },
       method:"GET",
       success(res){
-        console.log(res)
         if(res.data.code == '0'){
           
           that.setData({
@@ -237,8 +425,26 @@ Page({
             beianzheng: res.data.data.beianzheng,
             jierufangan: res.data.data.jierufangan,
             num : res.data.data.num,
-            rate : res.data.data.rate
-          })
+            rate : res.data.data.rate,
+            sum_type: res.data.data.sum_type,
+
+            yingyezhizhao: res.data.data.yingyezhizhao,
+            fangchan_tudizheng: res.data.data.fangchan_tudizheng,
+            chanquan_xinxi: res.data.data.chanquan_xinxi,
+            jindiao_baogao: res.data.data.jindiao_baogao,
+            emc: res.data.data.emc,
+            takanbaogao: res.data.data.takanbaogao,
+            dianqi_pingtaitu: res.data.data.dianqi_pingtaitu,
+            zaihe_baogao: res.data.data.zaihe_baogao,
+            chushe_fangan: res.data.data.chushe_fangan,
+            zujian_paibutu: res.data.data.zujian_paibutu,
+            
+          });
+          if(res.data.data.file_state != null && res.data.data.file_state.length > 0){
+            that.setData({
+              file_state_list: res.data.data.file_state.split(',')
+            })
+          }
         }
       },
       complete(){

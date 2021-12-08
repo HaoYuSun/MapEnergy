@@ -111,41 +111,41 @@
             <div class="weui-cell" style="background-color: white;">
                 <div class="weui-cell__hd"><label class="weui-label" style="width: 80px">尖时电价</label></div>
                 <div class="weui-cell__bd"  style="width: 60px">
-                    <input type="digit" class="weui-input" placeholder="" bindblur="jianshi_dianjia_inp_blur"  value="{{jianshi_dianjia}}" />
+                    <input type="digit" class="weui-input" placeholder="" bindblur="jianshi_dianjia_inp_blur" bindfocus="jianshi_dianjia_inp_focus" value="{{jianshi_dianjia}}" />
                 </div>
                 <div class="weui-cell__hd"><label class="weui-label" style="width: 80px;">尖时时长</label></div>
                 <div class="weui-cell__bd"   style="width: 60px">
-                    <input type="digit" class="weui-input" placeholder="" bindblur="jianshi_shichang_inp_blur"  value="{{jianshi_shichang}}" />
+                    <input type="digit" class="weui-input" placeholder="" bindblur="jianshi_shichang_inp_blur" bindfocus="jianshi_shichang_inp_focus" value="{{jianshi_shichang}}" />
                 </div>
             </div>
             <div class="weui-cell" style="background-color: white;">
                 <div class="weui-cell__hd"><label class="weui-label" style="width: 80px;">峰时电价</label></div>
                 <div class="weui-cell__bd"  style="width: 60px">
-                    <input type="digit" class="weui-input" placeholder="" bindblur="fengshi_dianjia_inp_blur"  value="{{fengshi_dianjia}}" />
+                    <input type="digit" class="weui-input" placeholder="" bindblur="fengshi_dianjia_inp_blur" bindfocus="fengshi_dianjia_inp_focus" value="{{fengshi_dianjia}}" />
                 </div>
                 <div class="weui-cell__hd"><label class="weui-label" style="width: 80px;">峰时时长</label></div>
                 <div class="weui-cell__bd"  style="width: 60px">
-                    <input type="digit" class="weui-input" placeholder="" bindblur="fengshi_shichang_inp_blur"  value="{{fengshi_shichang}}" />
+                    <input type="digit" class="weui-input" placeholder="" bindblur="fengshi_shichang_inp_blur" bindfocus="fengshi_shichang_inp_focus" value="{{fengshi_shichang}}" />
                 </div>
             </div>
             <div class="weui-cell" style="background-color: white;">
                 <div class="weui-cell__hd"><label class="weui-label" style="width: 80px;">平时电价</label></div>
                 <div class="weui-cell__bd"  style="width: 60px">
-                    <input type="digit" class="weui-input" placeholder="" bindblur="pingshi_dianjia_inp_blur"  value="{{pingshi_dianjia}}" />
+                    <input type="digit" class="weui-input" placeholder="" bindblur="pingshi_dianjia_inp_blur" bindfocus="pingshi_dianjia_inp_focus" value="{{pingshi_dianjia}}" />
                 </div>
                 <div class="weui-cell__hd"><label class="weui-label" style="width: 80px;">平时时长</label></div>
                 <div class="weui-cell__bd"  style="width: 60px">
-                    <input type="digit" class="weui-input" placeholder="" bindblur="pingshi_shichang_inp_blur"  value="{{pingshi_shichang}}" />
+                    <input type="digit" class="weui-input" placeholder="" bindblur="pingshi_shichang_inp_blur" bindfocus="pingshi_shichang_inp_focus" value="{{pingshi_shichang}}" />
                 </div>
             </div>
             <div class="weui-cell" style="background-color: white;">
                 <div class="weui-cell__hd"><label class="weui-label" style="width: 80px;">谷时电价</label></div>
                 <div class="weui-cell__bd" style="width: 60px">
-                    <input type="digit" class="weui-input" placeholder="" bindblur="gushi_dianjia_inp_blur"  value="{{fengshi_dianjia}}" />
+                    <input type="digit" class="weui-input" placeholder="" bindblur="gushi_dianjia_inp_blur" bindfocus="gushi_dianjia_inp_focus" value="{{fengshi_dianjia}}" />
                 </div>
                 <div class="weui-cell__hd"><label class="weui-label" style="width: 80px;">谷时时长</label></div>
                 <div class="weui-cell__bd" style="width: 60px">
-                    <input type="digit" class="weui-input" placeholder="" bindblur="gushi_shichang_inp_blur"  value="{{fengshi_shichang}}" />
+                    <input type="digit" class="weui-input" placeholder="" bindblur="gushi_shichang_inp_blur" bindfocus="gushi_shichang_inp_focus"  value="{{fengshi_shichang}}" />
                 </div>
             </div>
             <div class="weui-cell" style="background-color: white;">
@@ -379,7 +379,7 @@
             <view wx:if="{{yezhu_fumian == 1}}" class="weui-cells weui-cells_after-title">
                 <view class="weui-cell">
                     <view class="weui-cell__bd">
-                        <textarea class="weui-textarea" bindblur="yezhu_fumian_shuoming_inp_blur"  placeholder="" style="height: 3.3em" value="{{yezhu_fumian_shuoming}}"/>
+                        <textarea class="weui-textarea" bindblur="yezhu_fumian_shuoming_inp_blur" bindfocus="yezhu_fumian_shuoming_inp_focus" placeholder="" style="height: 3.3em" value="{{yezhu_fumian_shuoming}}"/>
                         <view class="weui-textarea-counter">0/60</view>
                     </view>
                 </view>
@@ -398,7 +398,7 @@
             <view wx:if="{{yezhu_jingyingfengxian == 1}}" class="weui-cells weui-cells_after-title">
                 <view class="weui-cell">
                     <view class="weui-cell__bd">
-                        <textarea class="weui-textarea" bindblur="yezhu_jingyinganli_inp_blur"  placeholder="" style="height: 3.3em" value="{{yezhu_jingyinganli}}"/>
+                        <textarea class="weui-textarea" bindblur="yezhu_jingyinganli_inp_blur"  bindfocus="yezhu_jingyinganli_inp_focus" placeholder="" style="height: 3.3em" value="{{yezhu_jingyinganli}}"/>
                         <view class="weui-textarea-counter">0/60</view>
                     </view>
                 </view>
@@ -476,7 +476,7 @@
                 <view wx:if="{{yongdianhu_fumian == 1}}" class="weui-cells weui-cells_after-title">
                     <view class="weui-cell">
                         <view class="weui-cell__bd">
-                            <textarea class="weui-textarea" bindblur="yongdianhu_fumian_shuoming_inp_blur"  placeholder="" style="height: 3.3em" value="{{yongdianhu_fumian_shuoming}}"/>
+                            <textarea class="weui-textarea" bindblur="yongdianhu_fumian_shuoming_inp_blur"  bindfocus="yongdianhu_fumian_shuoming_inp_focus" placeholder="" style="height: 3.3em" value="{{yongdianhu_fumian_shuoming}}"/>
                             <view class="weui-textarea-counter">0/60</view>
                         </view>
                     </view>
@@ -495,12 +495,12 @@
                 <view wx:if="{{yongdianhu_jingyingfengxian == 1}}" class="weui-cells weui-cells_after-title">
                     <view class="weui-cell">
                         <view class="weui-cell__bd">
-                            <textarea class="weui-textarea" bindblur="yongdianhu_jingyinganli_inp_blur"  placeholder="" style="height: 3.3em" value="{{yongdianhu_jingyinganli}}"/>
+                            <textarea class="weui-textarea" bindblur="yongdianhu_jingyinganli_inp_blur" bindfocus="yongdianhu_jingyinganli_inp_focus" placeholder="" style="height: 3.3em" value="{{yongdianhu_jingyinganli}}"/>
                             <view class="weui-textarea-counter">0/60</view>
                         </view>
                     </view>
                 </view>
-
+            </view>
 
                 <view class="weui-cells__title">基本运营年限(年)</view>
                 <view class="weui-cells weui-cells_after-title">
@@ -554,7 +554,7 @@
                 <view class="weui-cells weui-cells_after-title">
                     <view class="weui-cell">
                         <view class="weui-cell__bd">
-                            <input type="number" class="weui-input" placeholder="请输入..." bindblur="quannian_yongdianliang_inp_blur"  value="{{quannian_yongdianliang}}" />
+                            <input type="number" class="weui-input" placeholder="请输入..." bindblur="quannian_yongdianliang_inp_blur" bindfocus="quannian_yongdianliang_inp_focus" value="{{quannian_yongdianliang}}" />
                         </view>
                     </view>
                 </view>
@@ -562,7 +562,7 @@
                 <view class="weui-cells weui-cells_after-title">
                     <view class="weui-cell">
                         <view class="weui-cell__bd">
-                            <input type="number" class="weui-input" placeholder="请输入..." bindblur="quannian_ri_yongdianliang_inp_blur" value="{{quannian_ri_yongdianliang}}" />
+                            <input type="number" class="weui-input" placeholder="请输入..." bindblur="quannian_ri_yongdianliang_inp_blur" bindfocus="quannian_ri_yongdianliang_inp_focus" value="{{quannian_ri_yongdianliang}}" />
                         </view>
                     </view>
                 </view>
@@ -574,7 +574,7 @@
                         </view>
                     </view>
                 </view>
-            </view>
+            
         </view>
 
         

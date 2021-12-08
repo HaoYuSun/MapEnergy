@@ -371,6 +371,12 @@ Page({
       });
     }
   },
+  yezhu_fumian_shuoming_inp_focus: function(e){
+    var that = this;
+    that.setData({
+      yezhu_fumian_shuoming: ''
+    });
+  },
   /**
    * 开玄_业主是否有欠款发生的应诉案（天眼查）
    */
@@ -409,6 +415,12 @@ Page({
         yezhu_jingyinganli: e.detail.value
       });
     }
+  },
+  yezhu_jingyinganli_inp_focus: function(e){
+    var that = this;
+    that.setData({
+      yezhu_jingyinganli: ''
+    });
   },
   /**
    * 开玄_如用电方为业主方
@@ -562,6 +574,12 @@ Page({
       });
     }
   },
+  yongdianhu_fumian_shuoming_inp_focus: function(e){
+    var that = this;
+    that.setData({
+      yongdianhu_fumian_shuoming: e.detail.value
+    });
+  },
   /**
    * 开玄_用电户是否有欠款发生的应诉案（天眼查）
    */
@@ -600,6 +618,12 @@ Page({
         yongdianhu_jingyinganli: e.detail.value
       });
     }
+  },
+  yongdianhu_jingyinganli_inp_focus: function(e){
+    var that = this;
+    that.setData({
+      yongdianhu_jingyinganli: ''
+    });
   },
   /**
    * 开玄_基本运营年限
@@ -738,6 +762,12 @@ Page({
     }
 
   },
+  quannian_yongdianliang_inp_blur: function(e){
+    var that = this;
+    that.setData({
+      quannian_ri_yongdian_zhanbi: ''
+    });
+  },
   /**
    * 开玄_全年日用电量
   */
@@ -764,7 +794,12 @@ Page({
       });
     }
   },
-
+  quannian_ri_yongdianliang_inp_focus: function(e){
+    var that = this;
+    that.setData({
+      quannian_ri_yongdian_zhanbi: ''
+    });
+  },
   /**
    * 是否详细EPC报价
    */
@@ -1181,6 +1216,9 @@ Page({
     }
     this.get_ri_pingjundianjia();
   },
+  jianshi_dianjia_inp_focus: function (e) {
+    this.data.jianshi_dianjia = ''
+  },
   jianshi_shichang_inp_blur: function (e) {
     if(e.detail.value == ''){
       this.data.jianshi_shichang = '0'
@@ -1188,6 +1226,9 @@ Page({
       this.data.jianshi_shichang = e.detail.value
     }
     this.get_ri_pingjundianjia();
+  },
+  jianshi_shichang_inp_focus: function (e) {
+    this.data.jianshi_shichang = ''
   },
   fengshi_dianjia_inp_blur: function (e) {
     if(e.detail.value == ''){
@@ -1197,6 +1238,9 @@ Page({
     }
     this.get_ri_pingjundianjia();
   },
+  fengshi_dianjia_inp_focus: function (e) {
+    this.data.fengshi_dianjia = ''
+  },
   fengshi_shichang_inp_blur: function (e) {
     if(e.detail.value == ''){
       this.data.fengshi_shichang = '0'
@@ -1204,6 +1248,9 @@ Page({
       this.data.fengshi_shichang = e.detail.value
     }
     this.get_ri_pingjundianjia();
+  },
+  fengshi_shichang_inp_focus: function (e) {
+    this.data.fengshi_shichang = ''
   },
   pingshi_dianjia_inp_blur: function (e) {
     if(e.detail.value == ''){
@@ -1213,6 +1260,9 @@ Page({
     }
     this.get_ri_pingjundianjia();
   },
+  pingshi_dianjia_inp_focus: function (e) {
+    this.data.pingshi_dianjia = ''
+  },
   pingshi_shichang_inp_blur: function (e) {
     if(e.detail.value == ''){
       this.data.pingshi_shichang = '0'
@@ -1220,6 +1270,9 @@ Page({
       this.data.pingshi_shichang = e.detail.value
     }
     this.get_ri_pingjundianjia();
+  },
+  pingshi_shichang_inp_focus: function (e) {
+    this.data.pingshi_shichang = ''
   },
   gushi_dianjia_inp_blur: function (e) {
     if(e.detail.value == ''){
@@ -1229,6 +1282,9 @@ Page({
     }
     this.get_ri_pingjundianjia();
   },
+  gushi_dianjia_inp_focus: function (e) {
+    this.data.gushi_dianjia = ''
+  },
   gushi_shichang_inp_blur: function (e) {
     if(e.detail.value == ''){
       this.data.gushi_shichang = '0'
@@ -1236,6 +1292,9 @@ Page({
       this.data.gushi_shichang = e.detail.value
     }
     this.get_ri_pingjundianjia();
+  },
+  gushi_shichang_inp_focus: function (e) {
+    this.data.gushi_shichang = ''
   },
   get_ri_pingjundianjia: function () {
     console.log('计算日间加权电价')
@@ -1250,10 +1309,6 @@ Page({
       })
     }
   },
-
-
-
-  
 
   /**
    * 年总用电量改变时
@@ -1361,8 +1416,7 @@ Page({
 
   submitForm() {
     var that = this;
-    console.log('title:', that.data.report_title)
-    console.log('ziyouzijin:', that.data.ziyouzijin)
+
     wx.request({
       url: app.globalData.upReportInfoUrl,
       data:{
@@ -1465,7 +1519,8 @@ Page({
                   url: createReportUrl,
                   data:{
                     'openid': that.data.openid,
-                    'recordid': that.data.recordid
+                    'recordid': that.data.recordid,
+                    'group_id': that.data.group_id
                   },
                   method:"GET",
                   success(res){
