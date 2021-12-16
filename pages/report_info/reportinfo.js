@@ -1856,32 +1856,36 @@ Page({
               ]
             })
           }
+          console.log('=========='+res.data.info.kx_yezhu_zhuyingyewu)
           console.log(res.data.info.kx_yezhu_zhuyingyewu)
           // console.log(res.data.info.kx_yongdianhu_zhuyingyewu)
-          var yezhu_zhuyingyeli_list = res.data.info.kx_yezhu_zhuyingyewu.split('-')
-          that.setData({
-            yezhu_zhuyingyewu_f_index: that.data.yezhu_zhuyingyewu_f.indexOf(yezhu_zhuyingyeli_list[0]),
-            yezhu_zhuyingyewu_t: that.data.yezhu_zhuyingyewu_t_dict[yezhu_zhuyingyeli_list[0]],
-            yezhu_zhuyingyewu_t_index: that.data.yezhu_zhuyingyewu_t_dict[yezhu_zhuyingyeli_list[0]].indexOf(yezhu_zhuyingyeli_list[1])
-          });
-          if(yezhu_zhuyingyeli_list.length == 3){
+          if(res.data.info.kx_yezhu_zhuyingyewu.length > 0){
+            var yezhu_zhuyingyeli_list = res.data.info.kx_yezhu_zhuyingyewu.split('-')
             that.setData({
-              yezhu_zhuyingyewu_shuoming: yezhu_zhuyingyeli_list[2]
+              yezhu_zhuyingyewu_f_index: that.data.yezhu_zhuyingyewu_f.indexOf(yezhu_zhuyingyeli_list[0]),
+              yezhu_zhuyingyewu_t: that.data.yezhu_zhuyingyewu_t_dict[yezhu_zhuyingyeli_list[0]],
+              yezhu_zhuyingyewu_t_index: that.data.yezhu_zhuyingyewu_t_dict[yezhu_zhuyingyeli_list[0]].indexOf(yezhu_zhuyingyeli_list[1])
             });
-          }
-
-          var yongdianhu_zhuyingyeli_list = res.data.info.kx_yongdianhu_zhuyingyewu.split('-')
-          that.setData({
-            yongdianhu_zhuyingyewu_f_index: that.data.yezhu_zhuyingyewu_f.indexOf(yongdianhu_zhuyingyeli_list[0]),
-            yongdianhu_zhuyingyewu_t: that.data.yezhu_zhuyingyewu_t_dict[yongdianhu_zhuyingyeli_list[0]],
-            yongdianhu_zhuyingyewu_t_index: that.data.yezhu_zhuyingyewu_t_dict[yongdianhu_zhuyingyeli_list[0]].indexOf(yongdianhu_zhuyingyeli_list[1])
-          });
-          if(yongdianhu_zhuyingyeli_list.length == 3){
-            that.setData({
-              yongdianhu_zhuyingyewu_shuoming: yongdianhu_zhuyingyeli_list[2]
-            });
+            if(yezhu_zhuyingyeli_list.length == 3){
+              that.setData({
+                yezhu_zhuyingyewu_shuoming: yezhu_zhuyingyeli_list[2]
+              });
+            }
           }
           
+          if(res.data.info.kx_yongdianhu_zhuyingyewu.length > 0){
+            var yongdianhu_zhuyingyeli_list = res.data.info.kx_yongdianhu_zhuyingyewu.split('-')
+            that.setData({
+              yongdianhu_zhuyingyewu_f_index: that.data.yezhu_zhuyingyewu_f.indexOf(yongdianhu_zhuyingyeli_list[0]),
+              yongdianhu_zhuyingyewu_t: that.data.yezhu_zhuyingyewu_t_dict[yongdianhu_zhuyingyeli_list[0]],
+              yongdianhu_zhuyingyewu_t_index: that.data.yezhu_zhuyingyewu_t_dict[yongdianhu_zhuyingyeli_list[0]].indexOf(yongdianhu_zhuyingyeli_list[1])
+            });
+            if(yongdianhu_zhuyingyeli_list.length == 3){
+              that.setData({
+                yongdianhu_zhuyingyewu_shuoming: yongdianhu_zhuyingyeli_list[2]
+              });
+            }
+          }
 
         }
       },

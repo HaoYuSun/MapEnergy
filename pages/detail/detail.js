@@ -270,7 +270,6 @@ Page({
 
   updetail: function(e){
     var that = this;
-    console.log(that.data.teshushuoming);
     wx.request({
       url: app.globalData.upRecordDetailUrl,
       data:{
@@ -296,13 +295,14 @@ Page({
       method:"GET",
       success(resp){
         if(resp.data.code == '0'){
-          // wx.show({
-          //   title: '提示',
-          //   confirmText: '确定',
-          //   showCancel: false,
-          //   content: '保存成功',
-          // })
+          wx.showToast({
+            title: '保存成功',
+            icon: 'success',
+            duration: 300
+          })
+
         }
+        
       }
     });
   },
