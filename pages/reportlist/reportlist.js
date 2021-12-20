@@ -189,18 +189,22 @@ Page({
 
   getReportsList:function(e){
     var that = this;
-    console.log(that.data.record_id);
+    var hidecaiwu = 0;
+    if(app.globalData.group_id == 3){
+      hidecaiwu = 1;
+    }
     wx.request({
       
       url: app.globalData.gelProjectsListUrl,
       data:{
         recordid: that.data.record_id,
-        type: that.data.type
+        type: that.data.type,
+        hidecaiwu: hidecaiwu,
+        group_id: app.globalData.group_id
       },
       method:"GET",
       success(resp){
         if(resp.data.code == '0'){
-          console.log(resp)
           that.setData({
             list:  resp.data.list
           });

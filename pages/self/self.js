@@ -112,6 +112,8 @@ Page({
   onLoad: function (options) {
     var that = this;
     if (app.globalData.userInfo) {
+      console.log('获取个人信222息')
+      console.log(app.globalData.userInfo)
       this.setData({
         userInfo: app.globalData.userInfo,
       })
@@ -119,6 +121,7 @@ Page({
       // 在没有 open-type=getUserInfo 版本的兼容处理
       wx.getUserInfo({
         success: res => {
+          console.log('获取个人信息')
           app.globalData.userInfo = res.userInfo
           this.setData({
             userInfo: res.userInfo,

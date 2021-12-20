@@ -1,6 +1,10 @@
 <!--pages/launch/launch.wxml-->
 <view class="bgview">
-  <image class="mapbgimg" src="../../images/logo.png"></image>
+  <view>
+    <image class="mapbgimg" mode="heightFix" src="{{logoimg}}"></image>
+  </view>
+
+  <view class="tag" wx:if="{{group_id != 2}}">powered by SGO</view>
 </view>
 
 

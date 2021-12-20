@@ -41,7 +41,8 @@
         </view>
     </view>
     <view class="bot-view" >
-        <view class="bot-view-right-view" bindtap="editpro">编辑项目</view>
+        <view class="bot-view-left-view" bindtap="editpro">编辑项目</view>
+        <view class="bot-view-right-view" bindtap="cmtpro">提交项目</view>
     </view>
 </view>
 

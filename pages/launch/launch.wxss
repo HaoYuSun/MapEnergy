@@ -10,8 +10,17 @@ html, body {
   text-align: center;
 }
 .mapbgimg{
-  width: 200px;
-  height: 124px;
+  /* width: auto; */
+  height: 130px;
   /* height: 25vw; */
   margin-top: 70%;
+}
+
+.tag{
+  display: inline;
+  width: 100vw;
+  position: fixed;
+  bottom: 10px;
+  left: 0;
+  color: #a3b3c3;
 }
