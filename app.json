@@ -9,14 +9,13 @@
     "pages/sgoinfo/sgoinfo",
     "pages/detail/detail",
     "pages/report/report",
-    
     "pages/index/index",
     "pages/logs/logs",
     "pages/record/record",
     "pages/webview/webview",
     "pages/self/self",
-    "pages/setauth/setauth"
-    
+    "pages/setauth/setauth",
+    "pages/setgroup/setgroup"
   ],
   "useExtendedLib": {
     "kbone": true,

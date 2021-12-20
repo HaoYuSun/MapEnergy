@@ -56,15 +56,11 @@ Page({
                   },
                   method:"GET",
                   success(res){
-                    console.log('lancunch=')
-                    console.log(res)
-                    console.log(res.data.userInfo.nickName)
                     if(res.data.code == '0'){
                       
                       app.globalData.openid=res.data.openid;
                       app.globalData.userInfo=res.data.userInfo;
                     }
-                    console.log(app.globalData.userInfo.nickName)
                     that.getGroupInfo();
                   }
                 });

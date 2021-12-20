@@ -8,8 +8,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    baseUrl: 'https://api.sgosgo.com/test',
-    webUrl: 'https://api.sgosgo.com/test',
+    baseUrl: 'https://api.sgosgo.com/googlemap',
+    webUrl: 'https://api.sgosgo.com/googlemap',
     showNav: false,
     address: '',
     latitude: '',
