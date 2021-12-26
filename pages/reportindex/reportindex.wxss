@@ -222,7 +222,7 @@ page {
   bottom: 0px;
   z-index: 9;
 }
-.bot-view-left-view{
+/* .bot-view-left-view{
   width: 25vw;
   height: 44px;
   background-color: #fff;
@@ -232,17 +232,16 @@ page {
 .bot-view-left-view .left-view{
   float: left;
   margin: 10px 0 0 10px;
-  /* background-color: red; */
+  
 }
 .bot-view-left-view .rig-text{
   float: left;
   margin: 10px 0 0 5px;
-  /* background-color: red; */
   font-size: 17px;
 
-}
+} */
 .bot-view-left-view{
-  width: 50vw;
+  width: 25vw;
   height: 44px;
   background-color: rgba(214, 186, 140, 1);
   float: left;
@@ -253,7 +252,7 @@ page {
   color: #fff;
 }
 .bot-view-right-view{
-  width: 49.5vw;
+  width: 24.5vw;
   height: 44px;
   background-color: rgba(214, 186, 140, 1);
   /* background-color: rgba(0, 186, 140, 1); */
@@ -274,6 +273,14 @@ page {
   border-bottom: 1px solid #f2f2f2;
 }
 
+.sel_style{
+  padding-left: 0px;
+    height: 44px;
+    line-height: 44px;
+    color: white;
+    font-size: 17px;
+}
+
 .icon-small-wrp{
   margin-top: 8px;
 }
@@ -284,4 +291,7 @@ page {
 
 .m-t-0{
   margin-top: 0px;
+}
+.p-5{
+  padding: 5px 10px;
 }

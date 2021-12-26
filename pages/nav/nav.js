@@ -38,6 +38,7 @@ Page({
     wx.getUserProfile({
       desc: '获取你的昵称、头像、地区及性别',
       success: (res) => {
+        console.log(res)
         app.globalData.userInfo = res.userInfo;
         wx.request({
           url: app.globalData.upUserinfoUrl,

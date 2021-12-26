@@ -39,11 +39,68 @@
             </view>
             <view class="bg-tap-view"  data-type="3" bindtap="cellTap">
         </view>
+        </view>
+        <view class="bot-view" >
+            <view class="bot-view-left-view" bindtap="statepro">
+                <picker aria-role="combobox" id="js_area" bindchange="bindProStateChange" value="{{proStateIndex}}" range="{{proState}}">
+                    <view class="weui-select weui-select_in-select-after sel_style">{{proState[proStateIndex]}}</view>
+                </picker>
+            </view>
+            <view class="bot-view-right-view" bindtap="serverpro">我要服务</view>
+            <view class="bot-view-right-view" bindtap="editpro">编辑项目</view>
+            <view class="bot-view-right-view" bindtap="cmtpro">提交项目</view>
+        </view>
     </view>
-    <view class="bot-view" >
-        <view class="bot-view-left-view" bindtap="editpro">编辑项目</view>
-        <view class="bot-view-right-view" bindtap="cmtpro">提交项目</view>
-    </view>
-</view>
+    <view class="page dialog js_show" tabindex="-1">
+        <view id="dialogs" wah-hotarea="click">
+            <view class="js_dialog" role="dialog" aria-hidden="true" aria-modal="true" aria-labelledby="js_title4" id="serverDialog" style="display: {{server_show}};">
+                <view class="weui-mask"></view>
+                <view class="weui-dialog weui-skin_android" style="border-radius: 3px;">
+                    <div class="weui-dialog__hd"><strong class="weui-dialog__title" id="js_title1">服务需求</strong></div>
+                    <view class="weui-dialog__bd" style="height: 220px;">
+                        <view class="weui-cells__title">服务选项</view>
+                        <view class="weui-cells weui-cells_checkbox weui-cells_after-title">
+                            <checkbox-group bindchange="checkboxChange">
+                                <label class="weui-cell weui-check__label p-5" wx:for="{{server_list}}" wx:key="value">
+                                    <view class="weui-cell__hd">
+                                        <checkbox
+                                            class="weui-check"
+                                            value="{{item.value}}"
+                                            checked="{{item.checked}}"
+                                        />
+                                        <i class="weui-icon-checked"></i>
+                                    </view>
+                                    <view class="weui-cell__bd">
+                                        <view>{{item.name}}</view>
+                                    </view>
+                                </label>
+                            </checkbox-group>
+                        </view>
+                        <view class="weui-cells__title">联系方式</view>
+                        <view class="weui-cells weui-cells_after-title">
+                        <!-- <view class="weui-cell">
+                            <view class="weui-cell__bd">
+                                <input type="digit" class="weui-input" placeholder="请输入..." bindfocus="nianzongyongdian_inp_focus" bindblur="nianzongyongdian_inp_blur"  value="{{nianzongyongdian}}" />
+                            </view>
+                        </view> -->
+                        <view id="js_cell_vcode" class="weui-cell weui-cell_active weui-cell_vcode weui-cell_wrap" wah-hotarea="click">
+                            <view class="weui-cell__bd weui-flex">
+                                <input id="js_input2" style=" height: 30px;" class="weui-input weui-cell__control weui-cell__control_flex" bindblur="server_phone_inp_blur" type="text" pattern="[0-9]*" value="{{server_phone}}" placeholder="" maxlength="15" />
 
+                                <!-- <button id="js_btn_vcode" style="background-color: red; width: 80px; height: 30px;" role="button" class="js_target weui-cell__control weui-btn weui-btn_default weui-vcode-btn">授权</button> -->
+
+                                <button open-type="getPhoneNumber" style=" width: 80px; height: 30px; line-height: 30px;" class="js_target weui-cell__control weui-btn weui-btn_default weui-vcode-btn" bindgetphonenumber="getPhoneNumber">授权</button>
+                            </view>
+                        </view>
+                    </view>
+                    </view>
+                    
+                    <view class="weui-dialog__ft">
+                        <a role="button" href="javascript:" bindtap="serverCancel" class="weui-dialog__btn weui-dialog__btn_default">取消</a>
+                        <a role="button" href="javascript:" bindtap="serverSubmit" class="weui-dialog__btn weui-dialog__btn_primary">确认</a>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
 </view>

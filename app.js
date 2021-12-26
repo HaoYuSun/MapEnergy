@@ -68,5 +68,8 @@ App({
     getGroupInfoUrl: 'https://api.sgosgo.com/getgroupinfo',
     getOpenProUrl: 'https://api.sgosgo.com/openpro',
     setGroupUrl: 'https://api.sgosgo.com/setgroup',
+    setProstateUrl: 'https://api.sgosgo.com/setprostate',
+    getWxPhoneUrl: 'https://api.sgosgo.com/getwxuserphone',
+    upproserverUrl: 'https://api.sgosgo.com/upproserver',
   }
 })

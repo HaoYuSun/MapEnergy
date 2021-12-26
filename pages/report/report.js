@@ -25,8 +25,9 @@ Page({
     var index = e.currentTarget.dataset.index;
     console.log(index)
     var record_id = that.data.list[index]['id'];
+    var state = that.data.list[index]['state'];
     wx.navigateTo({
-      url: '../reportindex/reportindex?record_id='+record_id,
+      url: '../reportindex/reportindex?record_id='+record_id+'&state='+state,
     })
     
   },
