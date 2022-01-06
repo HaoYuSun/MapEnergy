@@ -12,6 +12,9 @@
           </navigator> -->
           <text id="js_current" class="weui-hidden_abs" aria-role="alert">{{num}}/{{sum_type}}</text>
         </view>
+        <view style="padding: 3px 15px;color: #a1b1c1;text-align: center;">
+            更多上传可在https://www.solarsgo.com完成
+        </view>
       </view>
         <view class="weui-cells">
             <view class="weui-cell weui-cell_uploader">

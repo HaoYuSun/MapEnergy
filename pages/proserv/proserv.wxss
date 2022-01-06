@@ -193,7 +193,7 @@ page {
 
 .checkbox-view{
   /* background-color: red; */
-  width: 12vw;
+  width: 10vw;
   float: left;
   height: 44px;
   text-align: center;
@@ -202,26 +202,21 @@ page {
 .cell-body-view{
   float: left;
   /* background-color: yellow; */
-  width: 84vw;
-  line-height: 44px;
-}
-.cell-body-view2{
-  float: left;
-  /* background-color: yellow; */
-  width: 78vw;
+  width: 75vw;
   line-height: 44px;
 }
 .bg-tap-view{
-  width: 100vw;
-    height: 44px;
-    position: absolute;
-    top: 0px;
-    left: 0vw;
+  width: 90vw;
+  height: 66px;
+  position: absolute;
+  top: 0;
+  left: 10vw;
+  /* background-color: red; */
 }
 .bot-view{
   width: 100vw;
   height: 44px;
-  background-color: red;
+  /* background-color: red; */
   position: fixed;
   left: 0px;
   bottom: 0px;
@@ -246,22 +241,10 @@ page {
   font-size: 17px;
 
 }
-.bot-view-left-view{
-  width: 50vw;
+.bot-view-right-view{
+  width: 75vw;
   height: 44px;
   background-color: rgba(214, 186, 140, 1);
-  float: left;
-  text-align: center;
-  line-height: 44px;
-  font-size: 17px;
-  font-weight: 500;
-  color: #fff;
-}
-
-.bot-view-right-view{
-  width: 100vw;
-  height: 44px;
-  background-color: rgba(204, 176, 140, 1);
   float: left;
   text-align: center;
   line-height: 44px;
@@ -274,19 +257,10 @@ page {
   position: relative;
   height: 44px;
   /* background-color: red; */
-  padding: 0 0vw 0 4vw;
+  padding: 0 2vw;
   border-bottom: 1px solid #f2f2f2;
-  display: inline-table;
 }
-.list-cell2{
-  position: relative;
-  height: 44px;
-  /* background-color: red; */
-  padding: 0 0vw 0 6vw;
-  border-top: 1px solid #f2f2f2;
-  display: inline-block;
-  /* margin-left: 6vw; */
-}
+
 .icon-small-wrp{
   margin-top: 8px;
 }
@@ -295,9 +269,6 @@ page {
   border-top: 1px solid #f6f6f6;
 }
 
-.contact-list{
-  position: absolute;
-  width: 100vw;
-  right: 0;
-  opacity: 0;
+.m-t-0{
+  margin-top: 0px;
 }

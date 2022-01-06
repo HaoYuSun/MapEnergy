@@ -771,35 +771,35 @@ Page({
   /**
    * 开玄_全年日用电量
   */
-  quannian_ri_yongdianliang_inp_blur: function(e){
-    var that = this;
-    if(e.detail.value == ''){
-      that.setData({
-        quannian_ri_yongdianliang: '0'
-      });
-    }else{
-      that.setData({
-        quannian_ri_yongdianliang: e.detail.value
-      });
-    }
+  // quannian_ri_yongdianliang_inp_blur: function(e){
+  //   var that = this;
+  //   if(e.detail.value == ''){
+  //     that.setData({
+  //       quannian_ri_yongdianliang: '0'
+  //     });
+  //   }else{
+  //     that.setData({
+  //       quannian_ri_yongdianliang: e.detail.value
+  //     });
+  //   }
 
-    if(that.data.quannian_yongdianliang != '0'){
-      var rate = parseInt(that.data.quannian_ri_yongdianliang) * 100 / parseInt(that.data.quannian_yongdianliang)
-      that.setData({
-        quannian_ri_yongdian_zhanbi: rate
-      });
-    }else{
-      that.setData({
-        quannian_ri_yongdian_zhanbi: '0'
-      });
-    }
-  },
-  quannian_ri_yongdianliang_inp_focus: function(e){
-    var that = this;
-    that.setData({
-      quannian_ri_yongdian_zhanbi: ''
-    });
-  },
+  //   if(that.data.quannian_yongdianliang != '0'){
+  //     var rate = parseInt(that.data.quannian_ri_yongdianliang) * 100 / parseInt(that.data.quannian_yongdianliang)
+  //     that.setData({
+  //       quannian_ri_yongdian_zhanbi: rate
+  //     });
+  //   }else{
+  //     that.setData({
+  //       quannian_ri_yongdian_zhanbi: '0'
+  //     });
+  //   }
+  // },
+  // quannian_ri_yongdianliang_inp_focus: function(e){
+  //   var that = this;
+  //   that.setData({
+  //     quannian_ri_yongdian_zhanbi: ''
+  //   });
+  // },
   /**
    * 是否详细EPC报价
    */
@@ -1315,30 +1315,35 @@ Page({
    */
   nianzongyongdian_inp_blur: function(e){
     var that = this;
-    if(that.data.nianzongyongdian == e.detail.value){
-      if(e.detail.value == ''){
-        that.setData({
-          nianzongyongdian: 0
-        });
-      }else{
-        return;
-      }
+    if(e.detail.value == ''){
+      that.setData({
+        nianzongyongdian: 0,
+        quannian_ri_yongdianliang: '0'
+      });
     }else{
-      if(e.detail.value == ''){
-        that.setData({
-          nianzongyongdian: 0
-        });
-      }else{
-        that.setData({
-          nianzongyongdian: Number(e.detail.value)
-        });
-      }
+      that.setData({
+        nianzongyongdian: Number(e.detail.value),
+        quannian_ri_yongdianliang: e.detail.value
+      });
+    }
+
+    if(that.data.quannian_yongdianliang != '0'){
+      var rate = parseInt(that.data.quannian_ri_yongdianliang) * 100 / parseInt(that.data.quannian_yongdianliang)
+      that.setData({
+        quannian_ri_yongdian_zhanbi: rate
+      });
+    }else{
+      that.setData({
+        quannian_ri_yongdian_zhanbi: '0'
+      });
     }
   },
   nianzongyongdian_inp_focus: function(e){
     var that = this;
     that.setData({
-      nianzongyongdian: ''
+      nianzongyongdian: '',
+      quannian_ri_yongdianliang: '',
+      quannian_ri_yongdian_zhanbi: ''
     });
   },
 

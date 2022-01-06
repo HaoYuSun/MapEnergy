@@ -1,6 +1,5 @@
 {
   "pages": [
-    
     "pages/launch/launch",
     "pages/report_info/reportinfo",
     "pages/reportlist/reportlist",
@@ -15,7 +14,8 @@
     "pages/webview/webview",
     "pages/self/self",
     "pages/setauth/setauth",
-    "pages/setgroup/setgroup"
+    "pages/setgroup/setgroup",
+    "pages/proserv/proserv"
   ],
   "useExtendedLib": {
     "kbone": true,

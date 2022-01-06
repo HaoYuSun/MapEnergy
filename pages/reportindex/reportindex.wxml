@@ -57,7 +57,7 @@
                 <view class="weui-mask"></view>
                 <view class="weui-dialog weui-skin_android" style="border-radius: 3px;">
                     <div class="weui-dialog__hd"><strong class="weui-dialog__title" id="js_title1">服务需求</strong></div>
-                    <view class="weui-dialog__bd" style="height: 220px;">
+                    <view class="weui-dialog__bd" style="height: 250px;">
                         <view class="weui-cells__title">服务选项</view>
                         <view class="weui-cells weui-cells_checkbox weui-cells_after-title">
                             <checkbox-group bindchange="checkboxChange">
@@ -85,7 +85,7 @@
                         </view> -->
                         <view id="js_cell_vcode" class="weui-cell weui-cell_active weui-cell_vcode weui-cell_wrap" wah-hotarea="click">
                             <view class="weui-cell__bd weui-flex">
-                                <input id="js_input2" style=" height: 30px;" class="weui-input weui-cell__control weui-cell__control_flex" bindblur="server_phone_inp_blur" type="text" pattern="[0-9]*" value="{{server_phone}}" placeholder="" maxlength="15" />
+                                <input id="js_input2" style=" height: 30px;" class="weui-input weui-cell__control weui-cell__control_flex" placeholder="可授权获取手机号" bindblur="server_phone_inp_blur" type="text" pattern="[0-9]*" value="{{server_phone}}"  maxlength="15" />
 
                                 <!-- <button id="js_btn_vcode" style="background-color: red; width: 80px; height: 30px;" role="button" class="js_target weui-cell__control weui-btn weui-btn_default weui-vcode-btn">授权</button> -->
 

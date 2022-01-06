@@ -15,7 +15,8 @@ Page({
     server_list: [
       {name: '踏勘/设计', value: '踏勘/设计'},
       {name: '对接投资人', value: '对接投资人'},
-      {name: '设备询价', value: '设备询价'}
+      {name: '设备询价', value: '设备询价'},
+      {name: '其他', value: '其他'}
     ],
     server:[],
     server_show: 'none',
@@ -209,6 +210,15 @@ Page({
       record_id: options.record_id,
       proStateIndex: options.state
     });
+    if(app.globalData.group_id == 3){
+      that.setData({
+        server_list: [
+          {name: '踏勘/设计', value: '踏勘/设计'},
+          {name: '设备询价', value: '设备询价'},
+          {name: '其他', value: '其他'}
+        ],
+      })
+    }
     // that.data.record_id = 2565;
   },
 

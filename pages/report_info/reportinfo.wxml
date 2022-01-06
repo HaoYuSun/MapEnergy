@@ -549,7 +549,7 @@
                         </view>
                     </view>
                 </view>
-
+                <!-- nianzongyongdian -->
                 <view class="weui-cells__title">全年用电量 度（KWh)</view>
                 <view class="weui-cells weui-cells_after-title">
                     <view class="weui-cell">
@@ -558,14 +558,14 @@
                         </view>
                     </view>
                 </view>
-                <view class="weui-cells__title">全年日用电量 度（KWh)</view>
+                <!-- <view class="weui-cells__title">全年日用电量 度（KWh)</view>
                 <view class="weui-cells weui-cells_after-title">
                     <view class="weui-cell">
                         <view class="weui-cell__bd">
                             <input type="number" class="weui-input" placeholder="请输入..." bindblur="quannian_ri_yongdianliang_inp_blur" bindfocus="quannian_ri_yongdianliang_inp_focus" value="{{quannian_ri_yongdianliang}}" />
                         </view>
                     </view>
-                </view>
+                </view> -->
                 <view class="weui-cells__title">日间用电占比 %</view>
                 <view class="weui-cells weui-cells_after-title">
                     <view class="weui-cell">

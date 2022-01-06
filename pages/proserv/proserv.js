@@ -87,14 +87,14 @@ Page({
 
   },
   checkboxTap: function(e){
-    var that = this;
-    var index = parseInt(e.currentTarget.dataset.index);
-    that.data.checkboxlist[index] = that.data.checkboxlist[index] == 1 ? 0 : 1;
-    that.data.deleteall = that.data.checkboxlist[index] == 0 ? 0 : that.data.deleteall;
-    that.setData({
-      checkboxlist: that.data.checkboxlist,
-      deleteall: that.data.deleteall
-    })
+    // var that = this;
+    // var index = parseInt(e.currentTarget.dataset.index);
+    // that.data.checkboxlist[index] = that.data.checkboxlist[index] == 1 ? 0 : 1;
+    // that.data.deleteall = that.data.checkboxlist[index] == 0 ? 0 : that.data.deleteall;
+    // that.setData({
+    //   checkboxlist: that.data.checkboxlist,
+    //   deleteall: that.data.deleteall
+    // })
   },
 
   selchange: function (e) {
@@ -148,7 +148,7 @@ Page({
     }
 
     wx.request({
-      url: app.globalData.getProjectsUrl,
+      url: app.globalData.getProservUrl,
       data:{
         openid: that.data.openid,
         pageid: that.data.pageid,
@@ -157,7 +157,6 @@ Page({
       method:"GET",
       success(resp){
         if(resp.data.code == '0'){
-          console.log(resp)
           var size = resp.data.pagesize;
           var pageid = resp.data.pageid;
           var cpageid = pageid;

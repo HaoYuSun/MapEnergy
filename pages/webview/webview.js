@@ -34,7 +34,6 @@ Page({
         latitude: that.data.latitude,
         longitude: that.data.longitude,
         success: res => {
-          // that.getValueMap(res)
 
         var latitude = parseFloat(res.latitude);
         var longitude = parseFloat(res.longitude);
@@ -53,8 +52,6 @@ Page({
         let mgLon = longitude + dLon;
         let lontitude1 = longitude * 2 - mgLon;
         let latitude1 = latitude * 2 -mgLat;
-        console.log(latitude1, lontitude1);
-
 
           that.setData({
             /*赋值*/
@@ -62,7 +59,6 @@ Page({
             longitude: lontitude1,
             address: res.name,
           })
-  
   
           var param = {
             location:  latitude1 + ',' + lontitude1,
@@ -149,8 +145,7 @@ Page({
           var url = config.qqMapApi
           util.postrequest(url, param).then(res => {
             var d = res.data.result;
-            console.log('333333333')
-            console.log(d)
+
             that.setData({
               citySelected: d.address_component.city,
               cityPath: d.address_component.province+'-'+d.address_component.city+'-'+d.address_component.district,
@@ -159,7 +154,7 @@ Page({
               address:d.address,
               webUrl : that.data.baseUrl + '?openid=' + that.data.openid + '&lat=' + latitude + '&lng=' + longitude+ '&citySelected='+d.address_component.city + '&cityPath='+d.address_component.province+'-'+d.address_component.city+'-'+d.address_component.district+'&address='+ d.address
             })
-            console.log(that.data.webUrl)
+
           })
       }
     });
@@ -177,7 +172,6 @@ Page({
         //  var latitude = Math.floor(parseFloat(res.latitude) * 1000000) / 1000000;
         //  var longitude = Math.floor(parseFloat(res.longitude) * 1000000) / 1000000;
 
-        console.log(res.latitude, res.longitude);
         var latitude = parseFloat(res.latitude);
         var longitude = parseFloat(res.longitude);
 
@@ -199,7 +193,6 @@ Page({
               address:d.address,
               webUrl : that.data.baseUrl + '?openid=' + that.data.openid + '&lat=' + latitude + '&lng=' + longitude+ '&citySelected='+d.address_component.city + '&cityPath='+d.address_component.province+'-'+d.address_component.city+'-'+d.address_component.district+'&address='+ d.address+'&r='+ r
             })
-            console.log(that.data.webUrl)
           })
       }
     });

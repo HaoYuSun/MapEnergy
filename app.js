@@ -12,25 +12,25 @@ App({
   },
   login: function() {
     var that = this;
-    wx.login({
-      success: function (r) {
-        var code = r.code;//登录凭证
-        let getOpenidUrl = that.globalData.getOpenidUrl;
-        wx.request({
-          url: getOpenidUrl,
-          data:{
-            js_code: code,
-          },
-          method:"GET",
-          success(res){
-            if(res.data.code == '0'){
-              that.globalData.openid=res.data.openid;
-              that.globalData.userInfo=res.data.userInfo;
-            }
-          }
-        });
-      }
-    })
+    // wx.login({
+    //   success: function (r) {
+    //     var code = r.code;//登录凭证
+    //     let getOpenidUrl = that.globalData.getOpenidUrl;
+    //     wx.request({
+    //       url: getOpenidUrl,
+    //       data:{
+    //         js_code: code,
+    //       },
+    //       method:"GET",
+    //       success(res){
+    //         if(res.data.code == '0'){
+    //           that.globalData.openid=res.data.openid;
+    //           that.globalData.userInfo=res.data.userInfo;
+    //         }
+    //       }
+    //     });
+    //   }
+    // })
   },
   onShow: function(){
     
@@ -71,5 +71,6 @@ App({
     setProstateUrl: 'https://api.sgosgo.com/setprostate',
     getWxPhoneUrl: 'https://api.sgosgo.com/getwxuserphone',
     upproserverUrl: 'https://api.sgosgo.com/upproserver',
+    getProservUrl: 'https://api.sgosgo.com/getproservlist',
   }
 })

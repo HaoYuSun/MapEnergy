@@ -25,15 +25,43 @@ Page({
     var that = this;
     var first = e.currentTarget.dataset.first;
     var index = e.currentTarget.dataset.index;
-    console.log(e.currentTarget)
     var type_id = e.currentTarget.dataset.type
-    console.log(type_id)
     var urls = that.data.list[first]['file_path']
-    console.log(urls)
     wx.previewImage({
         current: index, // 当前显示图片的http链接
         urls: urls // 需要预览的图片http链接列表
     })
+  },
+  viewfile: function(e){
+    var that = this;
+    var index = e.currentTarget.dataset.index;
+    var file_path = that.data.list[index]['file_path'];
+    var URL = app.globalData.baseUrl + file_path;
+    var file_name = that.data.list[index].file_name;
+    var file_title = that.data.list[index].address;
+    wx.downloadFile({
+      url: URL, // 下载url
+      success (res) {
+        // 下载完成后转发
+        console.log(res.tempFilePath)
+        wx.openDocument({
+          filePath: res.tempFilePath,  //要打开的文件路径
+          fileType: 'pdf',      //类型一定要写否则会打不开                       
+          success: function (res) {
+              wx.hideToast();
+              wx.navigateBack({
+                  delta:1 //返回上一级，不写的话，返回会是一个空白页面体验差
+              });
+          }
+        })
+      
+      },
+      fail: console.error,
+      complete (res){
+        wx.hideLoading();
+      },
+    })
+    
   },
   cellTap: function(e){
     var that = this;

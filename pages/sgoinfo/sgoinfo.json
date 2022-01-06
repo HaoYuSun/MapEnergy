@@ -8,6 +8,6 @@
     "mp-form": "weui-miniprogram/form/form",
     "mp-icon": "weui-miniprogram/icon/icon"
   },
-  "navigationBarTitleText": "sgo",
+  "navigationBarTitleText": "SGO",
   "backgroundColor": "#ffffff"
 }

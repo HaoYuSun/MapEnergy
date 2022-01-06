@@ -1,0 +1,36 @@
+<view class="body">
+
+<view style="padding-bottom:44px">
+    <view wx:for="{{list}}" wx:for-index="idx"  class="list-cell">
+        <!-- <view class="icon-box checkbox-view"   data-index="{{idx}}" bindtap="checkboxTap">
+            <view class="icon-small-wrp">
+                <icon class="icon-small" type="{{checkboxlist[idx] == 0 ? 'circle' : 'success'}}" size="17"></icon>
+            </view>
+        </view> -->
+        <view class="icon-box checkbox-view">
+            <view class="icon-small-wrp">
+                <mp-icon icon="folder" color="black" size="18"></mp-icon>   
+            </view>
+        </view>
+        <view class="cell-body-view">
+            <view>{{item.address}}</view>
+        </view>
+        
+        <!-- <view class="bg-tap-view"  data-index="{{idx}}" bindtap="cellTap">
+        </view> -->
+    </view>
+</view>
+<!-- <view class="bot-view">
+    <view class="bot-view-left-view" bindtap="allbox">
+        <view class="icon-box left-view"   data-index="{{idx}}" bindtap="checkboxTap">
+            <view class="icon-small-wrp m-t-0">
+                <icon class="icon-small" type="{{deleteall == 0 ? 'circle' : 'success'}}" size="23"></icon>
+            </view>
+        </view>
+        <view class="rig-text">
+            全选
+        </view>
+    </view>
+    <view class="bot-view-right-view"  bindtap="del">删除选中</view>
+</view> -->
+</view>

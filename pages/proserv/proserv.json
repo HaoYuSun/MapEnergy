@@ -6,6 +6,6 @@
     "mp-checkbox": "weui-miniprogram/checkbox/checkbox",
     "mp-checkbox-group": "weui-miniprogram/checkbox-group/checkbox-group"
   },
-  "navigationBarTitleText": "报告明细",
+  "navigationBarTitleText": "服务项目",
   "backgroundColor": "#ffffff"
 }

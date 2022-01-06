@@ -1,16 +1,16 @@
 <view class="body">
     <view style="padding-bottom:44px"  wx:if="{{type == 1 || type == 2}}">
         <view wx:for="{{list}}" wx:for-index="idx"  class="list-cell">
-            <view class="cell-body-view">
+            <view class="cell-body-view" data-index="{{idx}}" bindtap="viewfile">
                 <view>{{item.file_name}}</view>
             </view>
-            <view class="icon-box checkbox-view">
+            <view class="icon-box checkbox-view" style="background-color: #f2f2f2;"  data-index="{{idx}}" bindtap="cellTap">
                 <view class="icon-small-wrp">
                     <mp-icon icon="share" color="black" size="18"></mp-icon>   
                 </view>
             </view>
-            <view class="bg-tap-view"  data-index="{{idx}}" bindtap="cellTap">
-            </view>
+            <!-- <view class="bg-tap-view"  data-index="{{idx}}" bindtap="cellTap">
+            </view> -->
         </view>
     </view>
     <view style="padding-bottom:44px"  wx:if="{{type == 3}}">
