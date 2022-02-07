@@ -8,8 +8,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    baseUrl: 'https://api.sgosgo.com/googlemap',
-    webUrl: 'https://api.sgosgo.com/googlemap',
+    baseUrl: 'https://api.sgosgo.com/test',
+    webUrl: 'https://api.sgosgo.com/test',
     showNav: false,
     address: '',
     latitude: '',
@@ -154,6 +154,8 @@ Page({
               address:d.address,
               webUrl : that.data.baseUrl + '?openid=' + that.data.openid + '&lat=' + latitude + '&lng=' + longitude+ '&citySelected='+d.address_component.city + '&cityPath='+d.address_component.province+'-'+d.address_component.city+'-'+d.address_component.district+'&address='+ d.address
             })
+
+            console.log(that.data.webUrl);
 
           })
       }

@@ -16,8 +16,8 @@
             <view>{{item.address}}</view>
         </view>
         
-        <!-- <view class="bg-tap-view"  data-index="{{idx}}" bindtap="cellTap">
-        </view> -->
+        <view class="bg-tap-view"  data-index="{{idx}}" bindtap="cellTap">
+        </view>
     </view>
 </view>
 <!-- <view class="bot-view">

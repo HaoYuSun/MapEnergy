@@ -28,14 +28,14 @@ Page({
           method:"GET",
           success(res){
             wx.showToast({
-              title: '设定成功',
+              title: '已提交申请',
               icon: 'success',
               duration: 1000
             });
             let timer = setTimeout(() => {
               clearTimeout(timer)
               that.direct()
-            }, 3000);
+            }, 2000);
             
           }
         });

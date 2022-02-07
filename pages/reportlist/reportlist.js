@@ -15,7 +15,7 @@ Page({
     pagesize: 12,
     isall: false,
     icon: '../../images/right.png',
-    list:[{'address':'123123'}],
+    list:[],
     proType: 0,
     checkboxlist:[],
     deleteall: 0,

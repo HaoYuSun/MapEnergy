@@ -149,8 +149,6 @@ Page({
    */
   updatePageData: function(e){
       var that = this;
-      // * Number(that.data.area_rate)
-
       var zhuangjirongliang = Math.floor(parseFloat(that.data.area) * parseFloat(that.data.area_rate) * 100 * 1.2 / 10000.0) / 100.0;
       var sumprice = Math.ceil(zhuangjirongliang * that.data.w_cost * 100);
       var year_generating_capacity = Math.ceil(zhuangjirongliang * that.data.year_light / 10);
@@ -190,7 +188,6 @@ Page({
         back_period = Math.floor(cost * 100.0 / yield_year) / 100;
       }
 
-      console.log(cost);
       that.setData({
         yield_year: yield_year,
         pre_tax_yield_year: pre_tax_yield_year,
@@ -204,8 +201,6 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    console.log(options.openid);
-    console.log(options.recordid);
     // 分享来的
     if(options.fromopenid){
       that.setData({
@@ -319,9 +314,6 @@ Page({
       method:"GET",
       success(resp){
         if(resp.data.code == '0'){
-          console.log(resp.data.detail.year_light_type)
-          // console.log(eval((resp.data.detail.ligth_list))[0])
-          console.log(resp.data.detail.pushefangshi)
 
           that.setData({
             latitude: resp.data.detail.latitude,
@@ -361,36 +353,36 @@ Page({
   /**
    * 有效发电小时改变时
    */
-  youxiaofadianshu_inp_blur: function(e){
-    var that = this;
-    if(that.data.youxiaofadianshu == e.detail.value){
-      if(e.detail.value == ''){
-        that.setData({
-          youxiaofadianshu: 0
-        });
-        // this.updatePageData();
-      }else{
-        return;
-      }
-    }else{
-      if(e.detail.value == ''){
-        that.setData({
-          youxiaofadianshu: 0
-        });
-      }else{
-        that.setData({
-          youxiaofadianshu: Number(e.detail.value)
-        });
-      }
-      // this.updatePageData();
-    }
-  },
-  youxiaofadianshu_inp_focus: function(e){
-    var that = this;
-    that.setData({
-      youxiaofadianshu: ''
-    });
-  },
+  // youxiaofadianshu_inp_blur: function(e){
+  //   var that = this;
+  //   if(that.data.youxiaofadianshu == e.detail.value){
+  //     if(e.detail.value == ''){
+  //       that.setData({
+  //         youxiaofadianshu: 0
+  //       });
+  //       // this.updatePageData();
+  //     }else{
+  //       return;
+  //     }
+  //   }else{
+  //     if(e.detail.value == ''){
+  //       that.setData({
+  //         youxiaofadianshu: 0
+  //       });
+  //     }else{
+  //       that.setData({
+  //         youxiaofadianshu: Number(e.detail.value)
+  //       });
+  //     }
+  //     // this.updatePageData();
+  //   }
+  // },
+  // youxiaofadianshu_inp_focus: function(e){
+  //   var that = this;
+  //   that.setData({
+  //     youxiaofadianshu: ''
+  //   });
+  // },
 
   /**
    * 房屋利用率改变时
@@ -636,13 +628,10 @@ Page({
    * 铺设方式
   */
  bindPushefangshiChange: function(e) {
-  var that = this;
-  console.log(' 铺设方式改变，携带值为', e.detail.value);
-  console.log(that.data.install_area);
-  
-  console.log(e.detail.value);
-
+  // var that = this;
+  console.log('铺设方式改变时')
   var item = that.data.light_list[e.detail.value][that.data.year_light_type_index];
+  console.log('有效发电小时数：'+String(item))
   item = Math.floor(parseFloat(item) * 1000) / 100
 
   var nianfadian = Math.floor(parseFloat(that.data.install_area) * item * 10) / 100;
@@ -663,7 +652,7 @@ bindYearlighttypeChange: function(e) {
 
   var item = that.data.light_list[that.data.pushefangshiIndex][e.detail.value];
   item = Math.floor(parseFloat(item) * 1000) / 100
-
+  console.log('有效发电小时数：', item)
   var nianfadian = Math.floor(parseFloat(that.data.install_area) * item * 10) / 100;
   this.setData({
     year_light_type_index: e.detail.value,
