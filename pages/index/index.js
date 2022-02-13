@@ -298,7 +298,6 @@ Page({
     wx.getUserProfile({
       desc: '获取你的昵称、头像、地区及性别',
       success: res => {
-        console.log(res.userInfo);
         app.globalData.userInfo = res.userInfo;
         wx.request({
           url: app.globalData.upUserinfoUrl,
@@ -476,8 +475,6 @@ Page({
             height: 10,
           }]
         })
-
-
         var param = {
           location: res.latitude + ',' + res.longitude,
           key: app.globalData.map_key,
@@ -537,8 +534,6 @@ Page({
               var url = config.qqMapApi
               util.postrequest(url, param).then(res => {
                 var d = res.data.result
-                console.log(d)
-                console.log(d.address_component.city)
                 that.setData({
                   address: d.address,
                   citySelected: d.address_component.city,

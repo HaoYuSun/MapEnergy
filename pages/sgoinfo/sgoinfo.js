@@ -1,4 +1,4 @@
-// pages/report_info/reportinfo.js
+// pages/reportinfo/reportinfo.js
 const app = getApp()
 Page({
 

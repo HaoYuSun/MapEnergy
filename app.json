@@ -1,7 +1,7 @@
 {
   "pages": [
     "pages/launch/launch",
-    "pages/report_info/reportinfo",
+    "pages/reportinfo/reportinfo",
     "pages/reportlist/reportlist",
     "pages/nav/nav",
     "pages/reportindex/reportindex",

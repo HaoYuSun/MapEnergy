@@ -129,7 +129,7 @@ Page({
     var that = this;
     that.updetail();
     wx.navigateTo({
-      url: '../report_info/reportinfo?recordid=' +that.data.recordid+'&openid='+that.data.openid+'&group_id='+app.globalData.group_id,
+      url: '../reportinfo/reportinfo?recordid=' +that.data.recordid+'&openid='+that.data.openid+'&group_id='+app.globalData.group_id,
     })
     
   },
@@ -149,7 +149,7 @@ Page({
    */
   updatePageData: function(e){
       var that = this;
-      var zhuangjirongliang = Math.floor(parseFloat(that.data.area) * parseFloat(that.data.area_rate) * 100 * 1.2 / 10000.0) / 100.0;
+      var zhuangjirongliang = Math.ceil(parseFloat(that.data.area) * parseFloat(that.data.area_rate) * 100 * 1.2 / 10000.0) / 100.0;
       var sumprice = Math.ceil(zhuangjirongliang * that.data.w_cost * 100);
       var year_generating_capacity = Math.ceil(zhuangjirongliang * that.data.year_light / 10);
       that.setData({
@@ -628,8 +628,8 @@ Page({
    * 铺设方式
   */
  bindPushefangshiChange: function(e) {
-  // var that = this;
-  console.log('铺设方式改变时')
+  var that = this;
+  // console.log('铺设方式改变时')
   var item = that.data.light_list[e.detail.value][that.data.year_light_type_index];
   console.log('有效发电小时数：'+String(item))
   item = Math.floor(parseFloat(item) * 1000) / 100

@@ -8,8 +8,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    baseUrl: 'https://api.sgosgo.com/test',
-    webUrl: 'https://api.sgosgo.com/test',
+    baseUrl: 'https://api.sgosgo.com/googlemap',
+    webUrl: 'https://api.sgosgo.com/googlemap',
     showNav: false,
     address: '',
     latitude: '',
@@ -90,6 +90,14 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    var fromopenid = '';
+
+    if(options.fromopenid){
+      fromopenid = options.fromopenid;
+      console.log('fromopenid')
+      console.log(fromopenid)
+    }
+
     setTimeout(() => {
       that.setData({
         showNav: true
@@ -102,6 +110,9 @@ Page({
       this.setData({
         openid: app.globalData.openid
       });
+      if(fromopenid != ''){
+        that.upfromopenid(fromopenid);
+      }
     } else {
       wx.login({
         success: function (r) {
@@ -119,6 +130,9 @@ Page({
                 that.setData({
                   openid: res.data.openid
                 });
+                if(fromopenid != ''){
+                  that.upfromopenid(fromopenid);
+                }
               }
             }
           });
@@ -291,6 +305,32 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
-  }
+    return {
+        title: "能源预算",
+        path:`/pages/webview/webview?fromopenid=${app.globalData.openid}` 
+      }
+  },
+  /**
+   * 更新分享从属关系
+  */
+  upfromopenid: function(e){
+      var that = this;
+      if(e == '' || e == app.globalData.openid){
+        return;
+      }
+      wx.request({
+        url: app.globalData.upFromopenidUrl,
+        data:{
+          openid: app.globalData.openid,
+          fromopenid: e
+        },
+        method:"GET",
+        success(resp){
+          console.log(resp);
+        },
+        fail(resp){
+          console.log(resp);
+        }
+      });
+    },
 })

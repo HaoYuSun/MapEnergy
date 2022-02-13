@@ -1,4 +1,4 @@
-// pages/report_info/reportinfo.js
+// pages/reportinfo/reportinfo.js
 const app = getApp()
 Page({
 
@@ -8,22 +8,15 @@ Page({
   data: {
     recordid: 0,
     openid:'',
-    
     report_title: "",
-
-
     dianyadengji: ["10KV", "35KV", "110KV", "380v"],
     dianyadengjiIndex: 0,
-
     hezuomoshi: ["合同能源管理(EMC)", "屋顶租赁"],
     hezuomoshiIndex: 0,
-
     wudingleixing: ["彩钢瓦", "混凝土", "均衡"],
     wudingleixingIndex: 0,
-    
     caigangleixing: ["角驰彩钢", "梯形彩钢"],
     caigangleixingIndex: 0,
-
     nianzongyongdian: '1',
     pingjundianjia: '1',        //平均电价
     xiangxi_fenshi_dianjia: 0,     //输入详细分时电价
@@ -40,8 +33,6 @@ Page({
     gushi_dianjia: '1',         //业主用电谷时电网电价（含税）
     gushi_shichang: '0', 
     ri_pingjundianjia: '1',    //日间电网加权平均电价（含税）
-
-
     dianzhekou: '0.85',
     bianyaqirongliang: '200',
     bianyaqimiaoshu: '',
@@ -66,8 +57,6 @@ Page({
 
     report_address:'',
 
-    
-    
     zaiheshuoming: ["不确定", "载荷满足", "加固后满足"],
     zaiheshuomingIndex: 0,
 
@@ -112,7 +101,6 @@ Page({
     yezhu_zhuyingyewu_t: ['A1农业', 'A2林业', 'A3畜牧业', 'A4渔业', 'A5农、林、牧、渔服务业'],
     yezhu_zhuyingyewu_t_index: 0,
     yezhu_zhuyingyewu_shuoming: '',
-
 
     yezhu_zhuyingyewu: 'A1农业-A农、林、牧、渔业',              //业主主营业务
     yezhu_caiwuqingkuang: 0,            //业主财务情况(财务报表/审计报告）
@@ -168,7 +156,6 @@ Page({
     yongdianhu_zhuyingyewu_t_index: 0,
     yongdianhu_zhuyingyewu_shuoming: '',
 
-
     yongdianhu_zhouqihangye: 0,         //用电户是否为周期性行业
     yongdianhu_zhouqihangye_radioItems: [
       {name: '否', value: '0', checked: true},
@@ -207,7 +194,6 @@ Page({
       {name: '有', value: '1'}
     ],
     yongdianhu_jingyinganli: '',        //列示用电户重大经营风险（如有）
-
 
     jiben_yunying_nianxian: '25',       //基本运营年限
     jianshe_zhouqi: '3',                //建设周期
@@ -736,6 +722,7 @@ Page({
   */
   quannian_yongdianliang_inp_blur: function(e){
     var that = this;
+    console.log('=========')
     console.log(e.detail.value)
     if(e.detail.value == ''){
       that.setData({
@@ -748,10 +735,7 @@ Page({
     }
 
     if(that.data.quannian_yongdianliang != '0'){
-      console.log(that.data.quannian_ri_yongdianliang)
-      console.log(that.data.quannian_ri_yongdianliang)
-      var rate = parseInt(that.data.quannian_ri_yongdianliang) * 100 / parseInt(that.data.quannian_yongdianliang)
-      console.log(rate)
+      var rate = Math.floor(parseInt(that.data.nianzongyongdian) * 100 / parseInt(that.data.quannian_yongdianliang))
       that.setData({
         quannian_ri_yongdian_zhanbi: rate
       });
@@ -762,10 +746,11 @@ Page({
     }
 
   },
-  quannian_yongdianliang_inp_blur: function(e){
+  quannian_yongdianliang_inp_focus: function(e){
     var that = this;
     that.setData({
-      quannian_ri_yongdian_zhanbi: ''
+      quannian_ri_yongdian_zhanbi: '',
+      quannian_yongdianliang: '',
     });
   },
   /**
@@ -976,7 +961,7 @@ Page({
   */
   bindDianlijierushijianChange: function(e) {
     this.setData({
-      fangwushiyongnianxianIndex: e.detail.value
+      yushedianlijierushijianIndex: e.detail.value
     })
   },
   /**
@@ -1106,7 +1091,7 @@ Page({
     if(that.data.bianyaqirongliang == e.detail.value){
       if(e.detail.value == ''){
         that.setData({
-          bianyaqirongliang: '200'
+          bianyaqirongliang: '400'
         });
       }else{
         return;
@@ -1114,7 +1099,7 @@ Page({
     }else{
       if(e.detail.value == ''){
         that.setData({
-          bianyaqirongliang: '200'
+          bianyaqirongliang: '400'
         });
       }else{
         that.setData({
@@ -1397,7 +1382,7 @@ Page({
     console.log('picker hezuomoshi 发生选择改变，携带值为', e.detail.value);
 
     this.setData({
-      zaiheshuomingIndex: e.detail.value
+      hezuomoshiIndex: e.detail.value
     })
   },
   /**
